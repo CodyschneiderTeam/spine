@@ -1,0 +1,62 @@
+@layer base
+{
+    /**
+     * Proxima Vara.
+     *
+     */
+    @font-face {
+        font-family: 'Proxima Vara';
+        font-style: normal;
+        font-weight: 100 900;
+        font-variant-numeric: proportional-nums;
+        src: url('/fonts/ProximaVara.woff2') format('woff2')
+    }
+
+    /**
+     * Roboto Mono.
+     *
+     */
+    @font-face {
+        font-family: 'Roboto Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-variant-numeric: proportional-nums;
+        src: url('/fonts/RobotoMono.woff2') format('woff2')
+    }
+
+    /**
+     * Font Awesome - Regular.
+     *
+     */
+    @font-face {
+        font-family: 'Font Awesome 6 Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('/fonts/FontAwesome-Regular.woff2') format('woff2')
+    }
+
+    /**
+     * Font Awesome - Solid.
+     *
+     */
+    @font-face {
+        font-family: 'Font Awesome 6 Pro';
+        font-style: normal;
+        font-weight: 900;
+        font-display: block;
+        src: url('/fonts/FontAwesome-Solid.woff2') format('woff2')
+    }
+
+    /**
+     * Font Awesome - Brands.
+     *
+     */
+    @font-face {
+        font-family: 'Font Awesome 6 Brands';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('/fonts/FontAwesome-Brands.woff2') format('woff2')
+    }
+}

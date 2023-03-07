@@ -1,0 +1,8 @@
+@layer base
+{
+    /**
+     * Utilities.
+     *
+     */
+    .animated { @apply transition duration-300 }
+}

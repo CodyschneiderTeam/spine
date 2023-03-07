@@ -1,0 +1,48 @@
+{
+    "name": "caneara/spine",
+    "description": "A foundation for Laravel applications.",
+    "keywords": [
+        "php",
+        "laravel"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/caneara/spine",
+    "autoload": {
+        "psr-4": {
+            "Caneara\\Spine\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "bugsnag/bugsnag-laravel": "^2.0",
+        "doctrine/dbal": "^3.0",
+        "fakerphp/faker": "^1.0",
+        "inertiajs/inertia-laravel": "^0.6.9",
+        "intervention/image": "^2.0",
+        "laravel/framework": "^10.0",
+        "laravel/pint": "^1.0",
+        "laravel/sanctum": "^3.0",
+        "laravel/tinker": "^2.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "mockery/mockery": "^1.0",
+        "predis/predis": "^1.0",
+        "propaganistas/laravel-phone": "^5.0",
+        "symfony/intl": "^6.0",
+        "tightenco/ziggy": "^1.0"
+    },
+    "require-dev": {
+        "laravel/dusk": "^7.0",
+        "orchestra/testbench": "^8.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Caneara\\Spine\\ServiceProvider",
+                "Caneara\\Spine\\Providers\\RouteServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}

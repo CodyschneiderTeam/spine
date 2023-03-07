@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Factories;
+
+use Caneara\Spine\Support\Arr;
+use Caneara\Spine\Support\Str;
+use Caneara\Spine\Types\Factory;
+
+class {{ factory }}Factory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     */
+    public function definition() : array
+    {
+        return [
+            //
+        ];
+    }
+}
