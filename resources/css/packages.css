@@ -18,7 +18,6 @@
      *
      */
     .varnish-font-native { @apply font-native }
-    .varnish-notification { @apply xl:top-20px !important }
     .varnish-search .varnish-label { @apply pl-0 pt-9px }
     .varnish-search .varnish-label.pl-2 { @apply hidden }
     .varnish-search .varnish-clear { @apply w-[35px] h-[35px] }

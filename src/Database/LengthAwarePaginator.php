@@ -2,7 +2,7 @@
 
 namespace Caneara\Spine\Database;
 
-use Caneara\Spine\Types\TableRequest;
+use Caneara\Spine\Types\ListRequest;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class LengthAwarePaginator extends Paginator
@@ -11,7 +11,7 @@ class LengthAwarePaginator extends Paginator
      * Prepare the response using the instance and the request.
      *
      */
-    public function format(TableRequest $request) : array
+    public function format(ListRequest $request) : array
     {
         return [
             'type'        => 'LengthAwarePaginator',

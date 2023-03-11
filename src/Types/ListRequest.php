@@ -8,7 +8,7 @@ use Caneara\Spine\Support\Util;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
 
-abstract class TableRequest extends FormRequest
+abstract class ListRequest extends FormRequest
 {
     /**
      * Retrieve the list of columns to display.

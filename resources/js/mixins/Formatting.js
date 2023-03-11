@@ -65,7 +65,9 @@ export default
         number(value, type = 'standard')
         {
             let options = {
-                standard : {},
+                standard : {
+                    maximumFractionDigits : 2,
+                },
                 compact  : {
                     notation       : 'compact',
                     compactDisplay : 'short',
