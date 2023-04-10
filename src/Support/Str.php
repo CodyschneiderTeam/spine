@@ -7,6 +7,15 @@ use Illuminate\Support\Str as Base;
 class Str extends Base
 {
     /**
+     * Retrieve the base name of the given class or object.
+     *
+     */
+    public static function basename(string | object $value) : string
+    {
+        return class_basename($value);
+    }
+
+    /**
      * Get a new stringable object from the given string.
      *
      */

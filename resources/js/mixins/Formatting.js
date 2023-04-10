@@ -65,17 +65,10 @@ export default
         number(value, type = 'standard')
         {
             let options = {
-                standard : {
-                    maximumFractionDigits : 2,
-                },
-                compact  : {
-                    notation       : 'compact',
-                    compactDisplay : 'short',
-                },
-                decimal  : {
-                    minimumFractionDigits : 2,
-                    maximumFractionDigits : 2,
-                }
+                rounded  : { maximumFractionDigits : 0 },
+                standard : { maximumFractionDigits : 2 },
+                compact  : { notation : 'compact', compactDisplay : 'short' },
+                decimal  : { minimumFractionDigits : 2, maximumFractionDigits : 2 }
             };
 
             return new Intl.NumberFormat('en-US', options[type]).format(value);

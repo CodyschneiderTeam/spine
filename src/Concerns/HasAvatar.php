@@ -7,7 +7,7 @@ use Caneara\Spine\Support\Str;
 trait HasAvatar
 {
     /**
-     * Generate the relative path to the organization's avatar.
+     * Generate the relative path to the avatar.
      *
      */
     public function avatarPath() : string

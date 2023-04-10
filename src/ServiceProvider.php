@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\App;
 use Caneara\Spine\Database\Paginator;
 use Caneara\Spine\Macros\Notification;
 use Caneara\Spine\Macros\TestResponse;
+use Caneara\Spine\Storage\LocalDriver;
 use Caneara\Spine\Database\LazyLoading;
 use Caneara\Spine\Database\SlowQueries;
 use Caneara\Spine\Macros\RedirectResponse;
@@ -29,12 +30,13 @@ class ServiceProvider extends Provider
     public function boot() : void
     {
         $this->macros();
+        $this->storage();
         $this->database();
         $this->security();
 
         $this->commands(Commands::$list);
 
-        App::useLangPath(__DIR__.'/../resources/lang');
+        App::useLangPath(__DIR__ . '/../resources/lang');
 
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
     }
@@ -97,5 +99,14 @@ class ServiceProvider extends Provider
     protected function security() : void
     {
         PasswordDefaults::enforce();
+    }
+
+    /**
+     * Apply the storage provisions.
+     *
+     */
+    protected function storage() : void
+    {
+        LocalDriver::setup();
     }
 }

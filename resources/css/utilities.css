@@ -5,5 +5,4 @@
      *
      */
     .animated { @apply transition duration-300 }
-    .wallpaper { background: linear-gradient(to right, #F7FBFE, #F7FBFE 50%, #FFFFFF 50.1%, #FFFFFF) }
 }
