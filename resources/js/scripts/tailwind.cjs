@@ -157,7 +157,6 @@ module.exports = {
         },
 
         extend : {
-            colors    : { sky : { 50 : '#F7FBFE'} },
             height    : (theme) => ({ ...theme('spacing') }),
             width     : (theme) => ({ ...theme('spacing') }),
             minWidth  : (theme) => ({ ...theme('spacing') }),

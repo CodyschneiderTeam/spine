@@ -44,6 +44,15 @@ export default
         },
 
         /**
+         * Adjust the position of the viewport.
+         *
+         */
+        scrollTo(x, y)
+        {
+            window.scrollTo(x, y);
+        },
+
+        /**
          * Assign a deeply-nested property on the given target.
          *
          */
