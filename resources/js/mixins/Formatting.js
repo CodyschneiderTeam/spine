@@ -7,6 +7,15 @@ export default
     methods :
     {
         /**
+         * Capitalize the first letter of the given value.
+         *
+         */
+        capitalize(value)
+        {
+            return value && value.charAt(0).toUpperCase() + value.slice(1);
+        },
+
+        /**
          * Process the given date into its correct format.
          *
          */

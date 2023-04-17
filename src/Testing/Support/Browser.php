@@ -92,15 +92,6 @@ class Browser extends BaseBrowser
     }
 
     /**
-     * Assert that the given sidebar metadata item has the given value.
-     *
-     */
-    public function assertSidebarMetaData(string $key, mixed $value) : static
-    {
-        return $this->assertSeeIn("@sidebar-metadata-{$key}", $value);
-    }
-
-    /**
      * Assert that the given title is the same as the page's title.
      *
      */
@@ -228,15 +219,6 @@ class Browser extends BaseBrowser
     }
 
     /**
-     * Click on the given sidebar operation.
-     *
-     */
-    public function operation(string $key) : static
-    {
-        return $this->click("@sidebar-operation-{$key}");
-    }
-
-    /**
      * Pause for the given amount of milliseconds.
      *
      */
@@ -306,6 +288,17 @@ class Browser extends BaseBrowser
             ->getAddressOfRemoteServer();
 
         (new Client())->post("{$address}/session/{$id}/chromium/send_command", $payload);
+    }
+
+    /**
+     * Click on the given sidebar link or confirm the given statistic.
+     *
+     */
+    public function sidebar(string $key, mixed $value = null) : static
+    {
+        return Is::null($value)
+            ? $this->click("@sidebar-link-{$key}")
+            : $this->assertSeeIn("@sidebar-statistic-{$key}", $value);
     }
 
     /**
