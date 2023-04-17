@@ -92,6 +92,15 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Assert that the given sidebar metadata item has the given value.
+     *
+     */
+    public function assertSidebarMetaData(string $key, mixed $value) : static
+    {
+        return $this->assertSeeIn("@sidebar-metadata-{$key}", $value);
+    }
+
+    /**
      * Assert that the given title is the same as the page's title.
      *
      */
@@ -216,6 +225,15 @@ class Browser extends BaseBrowser
     {
         return $this->click("menu-{$name}")
             ->click("menu-{$name}-{$option}");
+    }
+
+    /**
+     * Click on the given sidebar operation.
+     *
+     */
+    public function operation(string $key) : static
+    {
+        return $this->click("@sidebar-operation-{$key}");
     }
 
     /**
