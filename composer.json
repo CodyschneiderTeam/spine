@@ -29,7 +29,8 @@
         "predis/predis": "^1.0",
         "propaganistas/laravel-phone": "^5.0",
         "symfony/intl": "^6.0",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "dompdf/dompdf": "^2.0"
     },
     "require-dev": {
         "laravel/dusk": "^7.0",
