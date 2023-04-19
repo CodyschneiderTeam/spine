@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
             return $this->renderMessage($request, $e);
         }
 
-        if (App::isProduction() && Arr::has([403, 404, 500, 503], $response->getStatusCode())) {
+        if (App::isProduction() && Arr::in([403, 404, 500, 503], $response->getStatusCode())) {
             return $this->renderPage($request, $response);
         }
 
