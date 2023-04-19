@@ -2,6 +2,7 @@
 
 namespace Caneara\Spine\Database;
 
+use Closure;
 use Caneara\Spine\Support\Arr;
 use Illuminate\Database\Query\Builder;
 use Caneara\Spine\Macros\Builder as Macro;
@@ -21,11 +22,18 @@ class Search
     protected Builder $query;
 
     /**
+     * The ordering fallback.
+     *
+     */
+    protected ?Closure $sort;
+
+    /**
      * Constructor.
      *
      */
-    public function __construct(Builder $query, array $payload)
+    public function __construct(Builder $query, array $payload, Closure $sort = null)
     {
+        $this->sort    = $sort;
         $this->query   = $query;
         $this->payload = $payload;
     }
@@ -34,9 +42,9 @@ class Search
      * Factory method.
      *
      */
-    public static function execute(Builder | Macro $query, array $payload) : Builder
+    public static function execute(Builder | Macro $query, array $payload, Closure $sort = null) : Builder
     {
-        return (new static($query, $payload))
+        return (new static($query, $payload, $sort))
             ->withFiltering()
             ->withSorting();
     }
@@ -101,6 +109,8 @@ class Search
                 $this->payload['ordering']['path'],
                 $this->payload['ordering']['direction']
             );
+        })->when($this->sort && ! $this->payload['ordering'], function($query) {
+            return call_user_func($this->sort, $query);
         });
     }
 }

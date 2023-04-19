@@ -171,6 +171,22 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Select the given date for the given field.
+     *
+     */
+    public function date(string $field, DateTime $value) : static
+    {
+        return $this->click("{$field}_text_box")
+            ->pause()
+            ->select("{$field}_select_year", $value->year)
+            ->pause()
+            ->select("{$field}_select_month", $value->month)
+            ->pause()
+            ->click("{$field}_select_day_{$value->day}")
+            ->pause();
+    }
+
+    /**
      * Select the given date and time for the given field.
      *
      */

@@ -23,8 +23,8 @@ class Builder
      */
     protected static function search() : void
     {
-        Facade::macro('search', function($payload) {
-            return Search::execute($this, $payload);
+        Facade::macro('search', function($payload, $sort = null) {
+            return Search::execute($this, $payload, $sort);
         });
     }
 
