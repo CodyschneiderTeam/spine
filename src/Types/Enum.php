@@ -71,6 +71,17 @@ trait Enum
     }
 
     /**
+     * Retrieve a random case from the selection.
+     *
+     */
+    public static function random(string $key = null) : mixed
+    {
+        $case = Arr::random(static::toArray());
+
+        return $key ? $case[$key] : $case;
+    }
+
+    /**
      * Retrieve the available cases as an array.
      *
      */
