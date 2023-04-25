@@ -2,7 +2,6 @@
 
 namespace Caneara\Spine\Providers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Caneara\Spine\Routing\PollRoutes;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +48,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function rateLimiting() : void
     {
-        RateLimiter::for('api', function(Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        RateLimiter::for('api', fn() => Limit::none());
     }
 }
