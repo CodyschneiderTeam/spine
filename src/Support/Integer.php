@@ -8,7 +8,7 @@ class Integer
      * Generate a random number between the given thresholds.
      *
      */
-    public static function random(int $min = 1, int $max = 1000) : string
+    public static function random(int $min = 1, int $max = 1000) : int
     {
         return random_int($min, $max);
     }

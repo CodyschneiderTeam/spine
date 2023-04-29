@@ -48,6 +48,48 @@ class DateTime extends CarbonImmutable
     }
 
     /**
+     * Generate a random date and time in the future observing the given limits.
+     *
+     */
+    public static function inTheFuture(string $range = '1 day', DateTime $instance = null) : static
+    {
+        $instance ??= static::now();
+
+        $matches = Str::contains($range, '-')
+            ? Regex::match('/^(\d+)\s?-\s?(\d+)\s(.+)(?<!s)/', $range)
+            : Regex::match('/^((\d+))\s(.+)(?<!s)/', $range);
+
+        $to = $instance->add("{$matches[2]} {$matches[3]}");
+
+        $from = Str::contains($range, '-') ? $instance->add("{$matches[1]} {$matches[3]}") : $instance;
+
+        $seconds = Integer::random($from->getTimestamp(), $to->getTimestamp());
+
+        return $instance->setTimestamp($seconds);
+    }
+
+    /**
+     * Generate a random date and time in the past observing the given limits.
+     *
+     */
+    public static function inThePast(string $range = '1 day', DateTime $instance = null) : static
+    {
+        $instance ??= static::now();
+
+        $matches = Str::contains($range, '-')
+            ? Regex::match('/^(\d+)\s?-\s?(\d+)\s(.+)(?<!s)/', $range)
+            : Regex::match('/^((\d+))\s(.+)(?<!s)/', $range);
+
+        $to = $instance->sub("{$matches[1]} {$matches[3]}");
+
+        $from = Str::contains($range, '-') ? $instance->sub("{$matches[2]} {$matches[3]}") : $instance;
+
+        $seconds = Integer::random($from->getTimestamp(), $to->getTimestamp());
+
+        return $instance->setTimestamp($seconds);
+    }
+
+    /**
      * Ensure that Laravel always uses an immutable Carbon instance.
      *
      */

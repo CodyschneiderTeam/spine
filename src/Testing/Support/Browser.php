@@ -81,6 +81,15 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Assert that the given statistic is present in the sidebar.
+     *
+     */
+    public function assertSeeInSidebar(string $key, mixed $value = null) : static
+    {
+        return $this->assertSeeIn("@sidebar-statistic-{$key}", $value);
+    }
+
+    /**
      * Assert that the given dropdown has the given value selected.
      *
      */
@@ -307,14 +316,12 @@ class Browser extends BaseBrowser
     }
 
     /**
-     * Click on the given sidebar link or confirm the given statistic.
+     * Click on the given sidebar link.
      *
      */
-    public function sidebar(string $key, mixed $value = null) : static
+    public function sidebar(string $key) : static
     {
-        return Is::null($value)
-            ? $this->click("@sidebar-link-{$key}")
-            : $this->assertSeeIn("@sidebar-statistic-{$key}", $value);
+        return $this->click("@sidebar-link-{$key}");
     }
 
     /**

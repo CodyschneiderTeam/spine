@@ -20,11 +20,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot() : void
     {
-        $this->rateLimiting();
-
         PollRoutes::register();
         LocalStorageRoutes::register();
         ImpersonationRoutes::register();
+
+        RateLimiter::for('api', fn() => Limit::none());
     }
 
     /**
@@ -40,14 +40,5 @@ class RouteServiceProvider extends ServiceProvider
                 );
             }
         }
-    }
-
-    /**
-     * Configure the default rate limits for the API.
-     *
-     */
-    protected function rateLimiting() : void
-    {
-        RateLimiter::for('api', fn() => Limit::none());
     }
 }
