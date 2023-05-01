@@ -88,7 +88,7 @@ trait Enum
     public static function toArray() : array
     {
         return Collection::make(static::cases())
-            ->map(fn($item) => ['id' => $item->value, 'label' => $item->label()])
+            ->map(fn($item) => ['id' => $item, 'label' => $item->label()])
             ->toArray();
     }
 }
