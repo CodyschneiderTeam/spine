@@ -7,6 +7,27 @@ export default
     methods :
     {
         /**
+         * Copy the given text to the clipboard.
+         *
+         */
+        copyToClipboard(text, then)
+        {
+            let el = document.createElement('textarea');
+
+            el.value = text;
+
+            document.body.appendChild(el);
+
+            el.select();
+
+            document.execCommand('copy');
+
+            document.body.removeChild(el);
+
+            then();
+        },
+
+        /**
          * Retrieve a deeply-nested property from the given target.
          *
          */
