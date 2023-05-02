@@ -91,16 +91,17 @@ export default
              * Send an XHR request to the given URL.
              *
              */
-            async send(url, format, options = {})
+            async send(url, format = '', options = {})
             {
                 let response = await fetch(url, options);
 
                 if (! response.ok) return response;
 
                 switch (format) {
-                    case 'json': return await response.json();
-                    case 'text': return await response.text();
-                    case 'blob': return await response.blob();
+                    case 'json' : return await response.json();
+                    case 'text' : return await response.text();
+                    case 'blob' : return await response.blob();
+                    default     : return response;
                 }
             }
         }},
