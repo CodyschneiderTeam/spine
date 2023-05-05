@@ -31,7 +31,7 @@ class Policy
      */
     protected function denyIf(bool $condition, string $message = '') : mixed
     {
-        return $condition ? $this->deny($message) : null;
+        return $condition ? $this->deny($message) : $this;
     }
 
     /**
@@ -40,7 +40,7 @@ class Policy
      */
     protected function denyUnless(bool $condition, string $message = '') : mixed
     {
-        return ! $condition ? $this->deny($message) : null;
+        return ! $condition ? $this->deny($message) : $this;
     }
 
     /**
