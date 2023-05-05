@@ -99,6 +99,15 @@ class DateTime extends CarbonImmutable
     }
 
     /**
+     * Pause the script's execution for the given number of seconds.
+     *
+     */
+    public static function sleep(int $seconds, bool $condition = true) : void
+    {
+        sleep($condition ? $seconds : 0);
+    }
+
+    /**
      * Format the instance as a human-friendly time.
      *
      */

@@ -16,6 +16,15 @@ class Str extends Base
     }
 
     /**
+     * Create a new stringable object using the contents of the given file.
+     *
+     */
+    public static function from(string $path) : FluentString
+    {
+        return static::of(file_get_contents($path));
+    }
+
+    /**
      * Get a new stringable object from the given string.
      *
      */

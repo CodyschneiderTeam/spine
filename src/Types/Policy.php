@@ -2,7 +2,6 @@
 
 namespace Caneara\Spine\Types;
 
-use Caneara\Spine\Support\Is;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -30,33 +29,26 @@ class Policy
      * Throw an exception when the given condition is true.
      *
      */
-    protected function denyIf(bool | array $condition, string $message = '') : bool
+    protected function denyIf(bool $condition, string $message = '') : mixed
     {
-        if (Is::boolean($condition)) {
-            return $condition ? $this->deny($message) : true;
-        }
-
-        foreach ($condition as $check => $response) {
-            $this->denyIf($check, $response);
-        }
-
-        return true;
+        return $condition ? $this->deny($message) : null;
     }
 
     /**
      * Throw an exception unless the given condition is true.
      *
      */
-    protected function denyUnless(bool | array $condition, string $message = '') : bool
+    protected function denyUnless(bool $condition, string $message = '') : mixed
     {
-        if (Is::boolean($condition)) {
-            return $condition ? true : $this->deny($message);
-        }
+        return ! $condition ? $this->deny($message) : null;
+    }
 
-        foreach ($condition as $check => $response) {
-            $this->denyUnless($check, $response);
-        }
-
+    /**
+     * Permit access to the user.
+     *
+     */
+    public function grantAccess() : bool
+    {
         return true;
     }
 }
