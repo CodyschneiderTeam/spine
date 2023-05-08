@@ -8,7 +8,7 @@
 
         <!-- Label -->
         <div :class="processing ? 'text-transparent hidden' : ''"
-             class="ui-label flex items-center text-[13px] whitespace-nowrap select-none px-5">
+             class="ui-label flex items-center text-13px whitespace-nowrap select-none px-5">
 
             <!-- Icon -->
             <i v-if="icon"

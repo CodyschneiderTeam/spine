@@ -1,20 +1,20 @@
 <template>
     <v-modal :dismiss="false"
-             :visible="visible"
-             class="ui-prompt">
+             class="ui-prompt"
+             :visible="visible">
 
         <!-- Circle -->
-        <div class="ui-circle bg-purple-500/[.20] dark:bg-purple-600/[.30] h-[60px] w-[60px] flex justify-center items-center rounded-full mx-auto mb-6">
-            <i class="ui-icon fas fa-comment-dots text-[30px] text-purple-700/[.40] dark:text-purple-500"></i>
+        <div class="ui-circle bg-purple-500/[.20] h-[60px] w-[60px] flex justify-center items-center rounded-full mx-auto mb-6">
+            <i class="ui-icon fas fa-comment-dots text-30px text-purple-700/[.40]"></i>
         </div>
 
         <!-- Title -->
-        <div class="font-native ui-title font-bold text-[21px] text-gray-900 dark:text-white text-center leading-snug mb-4">
+        <div class="font-native ui-title font-bold text-21px text-gray-900 text-center leading-snug mb-4">
             {{ title }}
         </div>
 
         <!-- Information -->
-        <div class="ui-summary text-[17px] text-gray-500 dark:text-gray-400 text-center leading-[1.6rem] md:px-6 mb-8">
+        <div class="ui-summary text-17px text-gray-600/90 text-center leading-[1.6rem] md:px-6 mb-8">
             {{ summary }}
         </div>
 

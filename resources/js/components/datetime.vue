@@ -23,14 +23,14 @@
 
         <!-- Container -->
         <div v-if="selectors.date || selectors.time"
-             class="ui-container bg-white dark:bg-gray-800 border-l border-r border-b border-gray-300 dark:border-gray-700 rounded-b relative -top-[3px] pt-[3px]">
+             class="ui-container bg-white border-l border-r border-b border-gray-300 rounded-b relative -top-[3px] pt-[3px]">
 
             <!-- Divider -->
-            <div class="ui-divider w-full h-[1px] border-t border-gray-300 dark:border-gray-700"></div>
+            <div class="ui-divider w-full h-[1px] border-t border-gray-300"></div>
 
             <!-- Date Selector -->
             <div v-if="selectors.date"
-                 class="ui-selector-date bg-gray-100/[.25] dark:bg-gray-800 p-6 pt-5">
+                 class="ui-selector-date bg-gray-100/[.25] p-6 pt-5">
 
                 <!-- Head -->
                 <div class="ui-header flex items-center mb-4">
@@ -38,7 +38,7 @@
                     <!-- Back -->
                     <i title="Go to previous month"
                        @click="goToPreviousMonth()"
-                       class="ui-caret-left fas fa-caret-left text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition duration-300 cursor-pointer">
+                       class="ui-caret-left fas fa-caret-left text-gray-400 hover:text-gray-600 animated cursor-pointer">
                     </i>
 
                     <!-- Month & Year -->
@@ -49,7 +49,7 @@
                                 :name="`${name}_select_month`"
                                 :dusk="`${name}_select_month`"
                                 @change="calendar = calendar.set({ month : $event.target.value })"
-                                class="ui-selector-month appearance-none bg-inherit font-semibold text-[15px] text-gray-800 dark:text-gray-300/[.80] leading-normal pr-[2px]">
+                                class="ui-selector-month appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal pr-[2px]">
 
                             <!-- Options -->
                             <option :key="index"
@@ -69,7 +69,7 @@
                                 :name="`${name}_select_year`"
                                 :dusk="`${name}_select_year`"
                                 @change="calendar = calendar.set({ year : $event.target.value })"
-                                class="ui-selector-year appearance-none bg-inherit font-semibold text-[15px] text-gray-800 dark:text-gray-300/[.80] leading-normal">
+                                class="ui-selector-year appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal">
 
                             <!-- Options -->
                             <option :key="year"
@@ -89,7 +89,7 @@
                     <!-- Forward -->
                     <i title="Go to next month"
                        @click="goToNextMonth()"
-                       class="ui-caret-right fas fa-caret-right text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition duration-300 cursor-pointer">
+                       class="ui-caret-right fas fa-caret-right text-gray-400 hover:text-gray-600 animated cursor-pointer">
                     </i>
 
                 </div>
@@ -100,7 +100,7 @@
                     <!-- Day -->
                     <span :key="day"
                           v-for="day in week"
-                          class="ui-week-day text-[12px] text-gray-500/[.80] dark:text-gray-400/[.80] text-center">
+                          class="ui-week-day text-12px text-gray-500/[.80] text-center">
 
                         <!-- Text -->
                         {{ day }}
@@ -117,13 +117,13 @@
                          @click="selectDate(day.date)"
                          class="ui-day flex justify-center"
                          :dusk="`${name}_select_day_${day.ordinal}`"
-                         :class="day.enabled ? 'text-gray-700 dark:text-gray-400 cursor-pointer group' : 'text-gray-300 dark:text-gray-700 pointer-events-none'">
+                         :class="day.enabled ? 'text-gray-700 cursor-pointer group' : 'text-gray-300 pointer-events-none'">
 
                         <!-- Ordinal -->
-                        <div class="ui-ordinal h-[28px] w-[28px] text-[15px] text-center rounded-full pt-[6px] pb-[4px]"
+                        <div class="ui-ordinal h-[28px] w-[28px] text-15px text-center rounded-full pt-[6px] pb-[4px]"
                              :class="[
-                                day.today ? 'font-semibold text-sky-600 dark:text-sky-400' : '',
-                                day.selected ? 'bg-emerald-600/[.30] dark:bg-emerald-600/[.60] dark:text-gray-300' : 'group-hover:bg-emerald-600/[.30] dark:group-hover:bg-emerald-600/[.60] dark:group-hover:text-gray-300'
+                                day.today ? 'font-semibold text-sky-600' : '',
+                                day.selected ? 'bg-emerald-600/[.30]' : 'group-hover:bg-emerald-600/[.30]'
                             ]">
 
                             <!-- Text -->
@@ -139,15 +139,15 @@
 
             <!-- Divider -->
             <div v-if="selectors.date && selectors.time"
-                 class="ui-divider w-full h-[1px] border-t border-gray-300 dark:border-gray-700"></div>
+                 class="ui-divider w-full h-[1px] border-t border-gray-300"></div>
 
             <!-- Time Selector -->
             <div v-if="selectors.time"
-                 class="ui-selector-time flex flex-col justify-between items-center bg-gray-100/[.25] dark:bg-gray-800 p-6 pb-[18px]">
+                 class="ui-selector-time flex flex-col justify-between items-center bg-gray-100/[.25] p-6 pb-[18px]">
 
                 <!-- Time Zone -->
                 <div :title="`UTC ${calendar.toFormat('Z')}`"
-                     class="ui-zone font-medium basis-full text-[13px] text-gray-500 dark:text-gray-400/[.80] truncate mb-1">
+                     class="ui-zone font-medium basis-full text-13px text-gray-500 truncate mb-1">
 
                     <!-- Text -->
                     {{ calendar.toFormat('ZZZZZ') }}
@@ -163,7 +163,7 @@
                             :id="`${name}_select_hour`"
                             :name="`${name}_select_hour`"
                             :dusk="`${name}_select_hour`"
-                            class="ui-selector-hour appearance-none bg-inherit font-medium text-[15px] text-gray-800 dark:text-gray-300 leading-normal pr-[6px]">
+                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal pr-[6px]">
 
                         <!-- Options -->
                         <option :key="hour"
@@ -189,7 +189,7 @@
                             :id="`${name}_select_minute`"
                             :name="`${name}_select_minute`"
                             :dusk="`${name}_select_minute`"
-                            class="ui-selector-minute appearance-none bg-inherit font-medium text-[15px] text-gray-800 dark:text-gray-300 leading-normal">
+                            class="ui-selector-minute appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
 
                         <!-- Options -->
                         <option :key="minute"
@@ -220,7 +220,7 @@
                             :id="`${name}_select_second`"
                             :name="`${name}_select_second`"
                             :dusk="`${name}_select_second`"
-                            class="ui-selector-second appearance-none bg-inherit font-medium text-[15px] text-gray-800 dark:text-gray-300 leading-normal">
+                            class="ui-selector-second appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
 
                         <!-- Options -->
                         <option :key="second"
@@ -237,7 +237,7 @@
 
                     <!-- Meridiem -->
                     <span v-if="meridiem"
-                        class="ui-meridiem text-[14px] text-gray-400 dark:text-gray-400/[.60] ml-2">
+                        class="ui-meridiem text-14px text-gray-400 ml-2">
 
                         <!-- Text -->
                         {{ value.toFormat('a').toLowerCase() }}

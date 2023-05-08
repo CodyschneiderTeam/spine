@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center mt-4">
 
         <!-- Summary -->
-        <span class="text-[12px] text-gray-500/[.80] dark:text-gray-500 uppercase relative top-[1px]">
+        <span class="text-12px text-gray-500/[.80] uppercase relative top-[1px]">
 
             <!-- Text -->
             <span>
@@ -10,7 +10,7 @@
             </span>
 
             <!-- Current -->
-            <span class="font-medium text-gray-700 dark:text-gray-400 mx-[1px]">
+            <span class="font-medium text-gray-700 mx-[1px]">
                 {{ trim(source.pagination?.current_page ?? '1') }},
             </span>
 
@@ -20,7 +20,7 @@
             </span>
 
             <!-- From -->
-            <span class="font-medium text-gray-700 dark:text-gray-400 ml-[1px]">
+            <span class="font-medium text-gray-700 ml-[1px]">
                 {{ trim(source.pagination?.from ?? '0') }}
             </span>
 
@@ -30,7 +30,7 @@
             </span>
 
             <!-- To -->
-            <span class="font-medium text-gray-700 dark:text-gray-400 ml-[1px]">
+            <span class="font-medium text-gray-700 ml-[1px]">
                 {{ trim(source.pagination?.to ?? '0') }}
                 {{ source.type === 'LengthAwarePaginator' ? ',' : '' }}
             </span>
@@ -45,7 +45,7 @@
                 </span>
 
                 <!-- Value -->
-                <span class="font-medium text-gray-700 dark:text-gray-400 ml-[1px]">
+                <span class="font-medium text-gray-700 ml-[1px]">
                     {{ trim(source.pagination?.total ?? '0') }}
                 </span>
 
@@ -61,10 +61,10 @@
                  title="Clear search filters"
                  dusk="ui_paginator_button_reset"
                  @click="System.Form.submit(System.Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)"
-                 class="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600 border border-r-0 border-gray-300 dark:border-gray-500 rounded-l cursor-pointer group transition duration-300 px-[13px] py-2">
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 rounded-l cursor-pointer group animated px-[13px] py-2">
 
                 <!-- Link -->
-                <i class="fas fa-times text-[14px] text-gray-800/[.50] dark:text-gray-500"></i>
+                <i class="fas fa-times text-14px text-gray-800/[.50]"></i>
 
             </div>
 
@@ -74,10 +74,10 @@
                  @click="search()"
                  :class="reset ? '' : 'rounded-l'"
                  dusk="ui_paginator_button_search"
-                 class="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600 border border-r-0 border-gray-300 dark:border-gray-500 cursor-pointer group transition duration-300 px-3 py-2">
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-search text-[14px] text-gray-800/[.50] dark:text-gray-500"></i>
+                <i class="fas fa-search text-14px text-gray-800/[.50]"></i>
 
             </div>
 
@@ -87,20 +87,20 @@
                  @click="download()"
                  :class="search ? '' : 'rounded-l'"
                  dusk="ui_paginator_button_download"
-                 class="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600 border border-r-0 border-gray-300 dark:border-gray-500 cursor-pointer group transition duration-300 px-3 py-2">
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-download text-[14px] text-gray-800/[.50] dark:text-gray-500"></i>
+                <i class="fas fa-download text-14px text-gray-800/[.50]"></i>
 
             </div>
 
             <!-- Previous Page (Disabled) -->
             <div :class="search ? '' : 'rounded-l'"
                  v-if="System.Util.blank(source.pagination.prev_page_url)"
-                 class="border border-r-0 border-gray-300 dark:border-gray-500 select-none cursor-not-allowed px-3 py-2">
+                 class="border border-r-0 border-gray-300 select-none cursor-not-allowed px-3 py-2">
 
                 <!-- Arrow -->
-                <i class="fas fa-arrow-left text-[14px] text-gray-300 dark:text-gray-800"></i>
+                <i class="fas fa-arrow-left text-14px text-gray-300"></i>
 
             </div>
 
@@ -109,10 +109,10 @@
                  :class="search ? '' : 'rounded-l'"
                  v-if="source.pagination.prev_page_url"
                  @click="goToPage(url(source.pagination.prev_page_url), { preserveScroll : true })"
-                 class="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600 border border-r-0 border-gray-300 dark:border-gray-500 cursor-pointer group transition duration-300 px-3 py-2">
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-left text-[14px] text-gray-800/[.50] dark:text-gray-500"></i>
+                <i class="fas fa-arrow-left text-14px text-gray-800/[.50]"></i>
 
             </div>
 
@@ -120,10 +120,10 @@
             <div title="Next Page"
                  v-if="source.pagination.next_page_url"
                  @click="goToPage(url(source.pagination.next_page_url), { preserveScroll : true })"
-                 class="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-r cursor-pointer group transition duration-300 px-3 py-2">
+                 class="bg-white hover:bg-gray-100 border border-gray-300 rounded-r cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-right text-[14px] text-gray-800/[.50] dark:text-gray-500"></i>
+                <i class="fas fa-arrow-right text-14px text-gray-800/[.50]"></i>
 
             </div>
 
@@ -132,7 +132,7 @@
                  class="border border-gray-300 rounded-r select-none cursor-not-allowed px-3 py-2">
 
                 <!-- Arrow -->
-                <i class="fas fa-arrow-right text-[14px] text-gray-300 dark:text-gray-800"></i>
+                <i class="fas fa-arrow-right text-14px text-gray-300"></i>
 
             </div>
 

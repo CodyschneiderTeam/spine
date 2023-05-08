@@ -7,8 +7,8 @@
         <div class="flex flex-col md:flex-row md:-m-6 md:-mb-7">
 
             <!-- Circle -->
-            <div class="ui-circle bg-purple-500/[.30] dark:bg-purple-600/[.50] h-[60px] w-[60px] min-w-[60px] flex justify-center items-center mx-auto md:mx-0 rounded-full">
-                <i class="ui-icon fas fa-info text-[30px] text-purple-600 dark:text-purple-400 relative left-[0.5px] -top-[1px]"></i>
+            <div class="ui-circle bg-purple-500/[.30] h-[60px] w-[60px] min-w-[60px] flex justify-center items-center mx-auto md:mx-0 rounded-full">
+                <i class="ui-icon fas fa-info text-30px text-purple-600 relative left-[0.5px] -top-[1px]"></i>
             </div>
 
             <!-- Content -->
@@ -16,7 +16,7 @@
 
                 <!-- Information -->
                 <div v-html="message"
-                     class="ui-message text-[17px] text-gray-600 dark:text-gray-400 text-center md:text-left leading-[1.6rem] md:mr-7 mb-8">
+                     class="ui-message text-17px text-gray-600 text-center md:text-left leading-[1.6rem] md:mr-7 mb-8">
                 </div>
 
                 <!-- Actions -->

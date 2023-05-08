@@ -4,7 +4,7 @@
         <!-- Container -->
         <div @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded relative transition duration-300">
+             class="ui-container bg-white border border-gray-300 rounded relative animated">
 
             <!-- Input -->
             <input :id="name"
@@ -18,7 +18,7 @@
                    :autocomplete="autocomplete"
                    @input="change($event.target.value)"
                    :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
-                   class="ui-input w-full bg-inherit font-medium text-[17px] text-gray-900 dark:text-gray-400 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
+                   class="ui-input w-full bg-inherit font-medium text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
 
             <!-- Label -->
             <v-label :icon="icon"
@@ -44,7 +44,7 @@
                 <!-- Icon -->
                 <i title="Generate a random password"
                    @click.stop="createRandomPassword()"
-                   class="ui-icon fas fa-plus text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 relative top-[.5px] left-[1.5px] cursor-pointer transition duration-300">
+                   class="ui-icon fas fa-plus text-gray-400 hover:text-gray-600 relative top-[.5px] left-[1.5px] cursor-pointer animated">
                 </i>
 
             </div>
@@ -53,10 +53,10 @@
 
         <!-- Generated -->
         <div v-if="! System.Util.blank(password)"
-             class="ui-generated font-semibold text-[14px] text-purple-700 dark:text-purple-300 mt-2">
+             class="ui-generated font-semibold text-14px text-purple-700 mt-2">
 
             <!-- Text -->
-            <span class="text-gray-700 dark:text-gray-300 mr-[2px]">
+            <span class="text-gray-700 mr-[2px]">
                 Password:
             </span>
 

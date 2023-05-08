@@ -4,7 +4,7 @@
         <!-- Container -->
         <div @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded relative transition duration-300">
+             class="ui-container bg-white border border-gray-300 rounded relative animated">
 
             <!-- Input -->
             <input :id="name"
@@ -23,7 +23,7 @@
                    :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
                    :list="System.Util.blank(items) ? null : `${name}_datalist`"
                    :autocomplete="System.Util.blank(items) ? autocomplete : 'off'"
-                   class="ui-control ui-input w-full bg-inherit text-[17px] text-gray-900 dark:text-gray-400 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
+                   class="ui-control ui-input w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
 
             <!-- Textarea -->
             <textarea :id="name"
@@ -39,7 +39,7 @@
                       :autocomplete="autocomplete"
                       @input="change($event.target.value)"
                       @keydown="interceptKeystroke($event)"
-                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 dark:text-gray-400 leading-[24px] rounded appearance-none resize-none pl-3 pr-11 pt-[25px]">
+                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 leading-[24px] rounded appearance-none resize-none pl-3 pr-11 pt-[25px]">
             </textarea>
 
             <!-- Label -->

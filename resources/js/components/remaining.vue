@@ -11,7 +11,7 @@
                     stroke-width="2"
                     fill="transparent"
                     stroke="currentColor"
-                    class="ui-track text-gray-300 dark:text-gray-600">
+                    class="ui-track text-gray-300">
             </circle>
 
             <!-- Indicator -->
@@ -31,7 +31,7 @@
         </svg>
 
         <!-- Figure -->
-        <span class="ui-figure font-semibold text-[12px] absolute"
+        <span class="ui-figure font-semibold text-12px absolute"
               :class="percentage <= 75 ? colors.green : (percentage <= 90 ? colors.yellow : colors.red)">
 
             <!-- Text -->
@@ -51,9 +51,9 @@
          */
         data() { return {
             colors : {
-                green  : 'ui-green text-green-600 dark:text-green-500',
-                yellow : 'ui-yellow text-yellow-600 dark:text-yellow-500',
-                red    : 'ui-red text-red-600 dark:text-red-500',
+                green  : 'ui-green text-green-600',
+                yellow : 'ui-yellow text-yellow-600',
+                red    : 'ui-red text-red-600',
             }
         }},
 

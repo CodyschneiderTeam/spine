@@ -15,11 +15,11 @@
                  v-for="item in items"
                  @click="$emit('change', item.id)"
                  :dusk="`ui-card-${id}-${item.id}`"
-                 class="ui-item border flex flex-col items-start rounded cursor-pointer relative transition duration-300 p-5 pb-4"
-                 :class="selected === item.id ? 'bg-sky-100/[.20] dark:bg-sky-700/[.20] border-sky-700/[.40] dark:border-sky-600' : 'border-gray-300 dark:border-gray-600'">
+                 :class="selected === item.id ? 'bg-sky-100/[.20] border-sky-700/[.40]' : 'border-gray-300'"
+                 class="ui-item border flex flex-col items-start rounded cursor-pointer relative animated p-5 pb-4">
 
                 <!-- Title -->
-                <h6 class="ui-header font-native text-[16px] flex items-center mb-4">
+                <h6 class="ui-header font-native text-16px flex items-center mb-4">
 
                     <!-- Icon -->
                     <span class="ui-icon text-gray-400 mr-3">
@@ -36,13 +36,13 @@
                 </h6>
 
                 <!-- Summary -->
-                <span class="ui-summary text-[15.5px] text-gray-500/[.90] dark:text-gray-400 text-left leading-normal">
+                <span class="ui-summary text-15.5px text-gray-500/[.90] text-left leading-normal">
                     {{ item.summary }}
                 </span>
 
                 <!-- Check -->
                 <i :class="selected === item.id ? 'opacity-100' : 'opacity-0'"
-                   class="ui-check fas fa-check-circle text-sky-600 dark:text-sky-500 transition duration-300 absolute top-4 right-[14px]">
+                   class="ui-check fas fa-check-circle text-sky-600 animated absolute top-4 right-[14px]">
                 </i>
 
             </div>

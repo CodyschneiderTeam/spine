@@ -7,20 +7,20 @@
         <div class="flex flex-col md:flex-row md:-m-6 md:-ml-7 md:-mb-7">
 
             <!-- Circle -->
-            <div class="ui-circle bg-yellow-500/[.30] dark:bg-yellow-800/[.50] h-[60px] w-[60px] min-w-[60px] flex justify-center items-center mx-auto rounded-full">
-                <i class="ui-icon fas fa-exclamation text-[30px] text-yellow-600"></i>
+            <div class="ui-circle bg-yellow-500/[.30] h-[60px] w-[60px] min-w-[60px] flex justify-center items-center mx-auto rounded-full">
+                <i class="ui-icon fas fa-exclamation text-30px text-yellow-600"></i>
             </div>
 
             <!-- Content -->
             <div class="w-full mt-6 md:ml-7 md:mt-0">
 
                 <!-- Title -->
-                <div class="font-native ui-title font-semibold text-[21px] text-gray-900 dark:text-white text-center md:text-left leading-snug mb-3">
+                <div class="font-native ui-title font-semibold text-21px text-gray-900 text-center md:text-left leading-snug mb-3">
                     {{ title }}
                 </div>
 
                 <!-- Information -->
-                <div class="ui-summary text-[17px] text-gray-500 dark:text-gray-400 text-center md:text-left leading-[1.6rem] mb-8">
+                <div class="ui-summary text-17px text-gray-600/90 text-center md:text-left leading-[1.6rem] mb-8">
                     {{ summary }}
                 </div>
 

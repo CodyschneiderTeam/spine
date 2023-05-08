@@ -1,7 +1,7 @@
 <template>
     <label v-html="content"
            v-if="! System.Util.blank(value)"
-           class="ui-error block font-sans font-semibold text-[13px] text-red-700 dark:text-red-300 text-right uppercase tracking-[.2px] my-2">
+           class="ui-error block font-sans font-semibold text-13px text-red-700 text-right uppercase tracking-[.2px] my-2">
     </label>
 </template>
 

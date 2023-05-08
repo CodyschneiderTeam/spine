@@ -1,10 +1,10 @@
 <template>
     <div :id="id"
          :dusk="id"
-         class="ui-metric bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 w-full flex flex-col rounded-lg p-6 md:p-8">
+         class="ui-metric bg-white border border-gray-300 w-full flex flex-col rounded-lg p-6 md:p-8">
 
         <!-- Label -->
-        <span class="ui-label font-medium text-[13px] text-gray-500/[.85] dark:text-gray-500 uppercase mb-4">
+        <span class="ui-label font-medium text-13px text-gray-500/[.85] uppercase mb-4">
             {{ label }}
         </span>
 
@@ -12,7 +12,7 @@
         <div class="ui-summary flex items-center">
 
             <!-- Current -->
-            <span class="ui-current font-semibold text-[35px] text-gray-700 dark:text-gray-300 mr-6">
+            <span class="ui-current font-semibold text-35px text-gray-700 mr-6">
                 {{ formatted }}
             </span>
 
@@ -26,11 +26,11 @@
 
                         <!-- Icon -->
                         <i :class="trends[direction].icon"
-                           class="ui-icon fas text-[13px]">
+                           class="ui-icon fas text-13px">
                         </i>
 
                         <!-- Percentage -->
-                        <span class="ui-percentage text-[13px] whitespace-nowrap">
+                        <span class="ui-percentage text-13px whitespace-nowrap">
                             {{ Math.abs(percentage) > 999 ? '999' : Math.abs(percentage) }}%
                         </span>
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <!-- Period -->
-                <span class="ui-period font-medium text-[13px] text-gray-500/[.70] dark:text-gray-500 pl-[2px] pt-[5px]">
+                <span class="ui-period font-medium text-13px text-gray-500/[.80] pl-[2px] pt-[5px]">
                     vs. {{ period }}
                 </span>
 
@@ -59,15 +59,15 @@
         data() { return {
             trends : {
                 down : {
-                    color : 'bg-rose-50 text-rose-600/[.90] dark:bg-rose-500/[.50] dark:text-rose-100',
+                    color : 'bg-rose-50 text-rose-600/[.90]',
                     icon  : 'fa-arrow-trend-down',
                 },
                 same : {
-                    color : 'bg-sky-50 text-sky-500 dark:bg-sky-500/[.40] dark:text-sky-100',
+                    color : 'bg-sky-50 text-sky-500',
                     icon  : 'fa-arrows-rotate',
                 },
                 up : {
-                    color : 'bg-emerald-50 text-emerald-600/[.90] dark:bg-emerald-500/[.40] dark:text-emerald-100',
+                    color : 'bg-emerald-50 text-emerald-600/[.90]',
                     icon  : 'fa-arrow-trend-up',
                 },
             }

@@ -20,8 +20,8 @@
         <!-- Button -->
         <label v-if="format === 'button'"
                @click="disabled || display ? null : selectNew()"
-               class="font-semibold text-[13px] uppercase flex justify-center items-center select-none transition duration-300"
-               :class="disabled || display ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' : 'text-sky-600 dark:text-sky-500 hover:text-rose-700 dark:hover:text-rose-400 cursor-pointer'">
+               class="font-semibold text-13px uppercase flex justify-center items-center select-none animated"
+               :class="disabled || display ? 'text-gray-400 cursor-not-allowed' : 'text-sky-600 hover:text-rose-700 cursor-pointer'">
 
             <!-- Value -->
             {{ label }}
@@ -32,7 +32,7 @@
         <div v-if="format === 'field'"
              @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded relative overflow-hidden transition duration-300">
+             class="ui-container bg-white border border-gray-300 rounded relative overflow-hidden animated">
 
 			<!-- File Name -->
 			<input readonly
@@ -42,7 +42,7 @@
                    :name="`${name}_file_name`"
                    :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
 				   @click="disabled || display ? null : selectNew()"
-				   class="bg-inherit text-gray-900 dark:text-gray-400 w-full text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-[25px] pb-[7px]" />
+				   class="bg-inherit text-gray-900 w-full text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-[25px] pb-[7px]" />
 
             <!-- Label -->
             <v-label :icon="icon"
@@ -69,7 +69,7 @@
              class="bg-gray-50/[.60] border-[1.5px] border-dashed border-gray-300 flex flex-col justify-center items-center rounded-md cursor-pointer p-14 pb-11">
 
             <!-- Icon -->
-            <i class="fas text-[35px] text-gray-400/[.80] mb-5"
+            <i class="fas text-35px text-gray-400/[.80] mb-5"
                :class="display ? 'fa-cog fa-spin' : 'fa-file-upload'">
             </i>
 

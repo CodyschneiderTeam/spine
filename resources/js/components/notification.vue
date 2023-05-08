@@ -12,7 +12,7 @@
 
             <!-- Container -->
             <div ref="container"
-                 class="ui-container bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 flex items-center shadow-sm rounded-lg relative z-[30] pl-[15px] pr-6 py-3 mr-[18px]">
+                 class="ui-container bg-white border border-gray-300 flex items-center shadow-sm rounded-lg relative z-[30] pl-[15px] pr-6 py-3 mr-[18px]">
 
                 <!-- Icon -->
                 <div class="ui-icon opacity-70 mr-3 relative top-[.5px] flex self-stretch">
@@ -38,7 +38,7 @@
 
                 <!-- Message -->
                 <span v-html="message"
-                    class="ui-message text-[16px] text-gray-800 dark:text-gray-300 leading-normal break-words relative top-[.5px]">
+                      class="ui-message text-16px text-gray-800 leading-normal break-words relative top-[.5px]">
                 </span>
 
             </div>
@@ -58,9 +58,9 @@
         data() { return {
             show : this.visible,
             types : {
-                info    : { class : 'text-blue-700 dark:text-blue-400',   svg : 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
-                error   : { class : 'text-red-700 dark:text-red-400',     svg : 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z' },
-                success : { class : 'text-green-700 dark:text-green-400', svg : 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+                info    : { class : 'text-blue-700',  svg : 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+                error   : { class : 'text-red-700',   svg : 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z' },
+                success : { class : 'text-green-700', svg : 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
             },
         }},
 

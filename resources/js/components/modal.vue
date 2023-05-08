@@ -4,7 +4,7 @@
 		<!-- Background -->
 		<div ref="background"
 			 @click="dismiss ? close() : null"
-             class="ui-background bg-black/[.60] dark:bg-gray-800 opacity-0 fixed inset-0 z-[1000] transition duration-200">
+             class="ui-background bg-black/[.60] opacity-0 fixed inset-0 z-[1000] transition duration-200">
 		</div>
 
 		<!-- Container -->
@@ -15,7 +15,7 @@
                  class="ui-content relative z-[1001] w-full md:max-w-[600px] md:rounded-lg transition duration-200 scale-110 mx-auto">
 
                 <!-- Slot -->
-                <div class="ui-slot bg-white dark:bg-gray-700 md:rounded-lg p-10 md:p-20">
+                <div class="ui-slot bg-white md:rounded-lg p-10 md:p-20">
                     <slot></slot>
                 </div>
 
@@ -29,7 +29,7 @@
            @click="close()"
            dusk="modal-close"
            title="Close the popup"
-           class="ui-close fas fa-times text-[20px] text-gray-400 dark:text-gray-600 hover:text-gray-900 dark:hover:text-gray-400 transition duration-200 cursor-pointer opacity-0 absolute z-[1001] top-[14px] right-[14px]">
+           class="ui-close fas fa-times text-20px text-gray-400 hover:text-gray-900 transition duration-200 cursor-pointer opacity-0 absolute z-[1001] top-[14px] right-[14px]">
         </i>
 
 	</div>
