@@ -5,7 +5,6 @@ module.exports = {
         './app/Enums/**/*.php',
         './app/Requests/**/*.php',
         './spa/**/*.{css,js,vue,php}',
-        './node_modules/@caneara/varnish/src/**/*.{css,js,vue}',
         './vendor/caneara/spine/resources/**/*.{css,js,vue,php}',
     ],
     darkMode : 'class',

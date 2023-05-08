@@ -1,0 +1,153 @@
+<template>
+    <div class="ui-tags w-full">
+
+        <!-- Container -->
+        <div :dusk="name"
+             class="ui-container bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 w-full min-h-[52px] flex items-start rounded relative transition duration-300">
+
+            <!-- Input -->
+            <input type="text"
+                   ref="input"
+                   :placeholder="label"
+                   @change="process($event.target.value)"
+                   class="ui-input bg-inherit font-medium text-[17px] text-gray-900 dark:text-gray-400 rounded appearance-none" />
+
+            <!-- Optional -->
+            <v-optional :value="optionalText"
+                        class="-ml-[20px] mt-[19.5px]"
+                        v-if="optional && System.Util.blank(modelValue)">
+            </v-optional>
+
+        </div>
+
+        <!-- Error -->
+        <v-error :value="fault"></v-error>
+
+    </div>
+</template>
+
+<script>
+    import Tagify from '@yaireo/tagify';
+    import '@yaireo/tagify/dist/tagify.css';
+    import ErrorComponent from './error.vue';
+    import Component from '../mixins/Component';
+    import OptionalComponent from './optional.vue';
+
+    export default
+    {
+        /**
+         * Define the mixins.
+         *
+         */
+        mixins : [
+            Component,
+        ],
+
+        /**
+         * Define the components.
+         *
+         */
+        components : {
+            'v-error'    : ErrorComponent,
+            'v-optional' : OptionalComponent,
+        },
+
+        /**
+         * Define the data model.
+         *
+         */
+        data() { return {
+            tagify : null,
+        }},
+
+        /**
+         * Define the public properties.
+         *
+         */
+        props : {
+            'characters' : { type : Number, default : 20 },
+            'limit'      : { type : Number, default : 4 },
+        },
+
+		/**
+		 * Execute actions when the component is mounted to the DOM.
+		 *
+		 */
+		mounted()
+		{
+            this.tagify = new Tagify(this.$refs.input, {
+                pattern      : `/^.{0,${this.characters}}$/`,
+                maxTags      : this.limit,
+                transformTag : (tag) => this.transform(tag),
+            });
+
+            this.format(this.modelValue);
+		},
+
+		/**
+		 * Define the supporting methods.
+		 *
+		 */
+		methods:
+        {
+            /**
+             * Convert the given input source into tags.
+             *
+             */
+            format(source)
+            {
+                this.tagify.removeAllTags();
+
+                this.tagify.addTags(source.filter(item => item));
+            },
+
+            /**
+             * Prepare the tags for two-way data binding.
+             *
+             */
+            process(tags)
+            {
+                tags = System.Util.blank(tags) ? [] : JSON.parse(tags);
+
+                this.change(tags.map(item => item.value));
+            },
+
+            /**
+             * Enforce the character limit for each tag.
+             *
+             */
+            transform(tag)
+            {
+                if (tag.value.length >= this.characters) {
+                    tag.value = tag.value.slice(0, this.characters);
+                }
+
+                return tag;
+            }
+        },
+    }
+</script>
+
+<style>
+    .ui-tags .ui-container .ui-optional { @apply top-[1px] }
+    .ui-tags .ui-container .ui-input.tagify { @apply border-none pb-3 }
+    .ui-tags .ui-container .ui-input.tagify.tagify--focus + input + .ui-optional { @apply hidden }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input { @apply font-normal relative top-[6px] left-[6px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input:before { @apply font-normal text-gray-600 dark:text-gray-400 top-[7px] pl-[28px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input:after { @apply inline font-bold text-[14px] text-gray-700/[.80] dark:text-gray-300 absolute left-[10px] top-[8px] ; font-family: 'Font Awesome 6 Free'; content: '\f02c' }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag { @apply bg-sky-600/[.10] hover:bg-sky-600/[.10] dark:bg-sky-400/[.50] dark:hover:bg-sky-400/[.50] rounded top-[6px] left-[6px] m-[5px] px-1 }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag div:before { @apply shadow-none }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag:hover div:before { @apply shadow-none }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn { @apply bg-transparent relative top-[.5px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:after { @apply text-gray-700 dark:text-gray-400 }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover { @apply bg-transparent }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover:after { @apply text-red-700 }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover + div:before { box-shadow: 0 0 #0000 !important }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover + div > span.tagify__tag-text { @apply opacity-100 }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag-text { @apply font-normal text-[16px] text-gray-700 dark:text-gray-300 overflow-visible relative -top-[.5px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input { @apply relative top-[6px] left-[6px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input:before { @apply hidden }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input:after { @apply hidden }
+    .ui-tags .ui-container .ui-input.tagify.tagify--focus .tagify__input:before { @apply hidden }
+    .ui-tags .ui-container .ui-input.tagify.tagify--focus .tagify__input:after { @apply hidden }
+</style>

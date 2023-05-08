@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import '../../css/app.css';
+
     export default
     {
         /**
@@ -13,7 +15,7 @@
          */
         created()
         {
-            document.querySelector('title').innerHTML = this.prop('title');
+            document.querySelector('title').innerHTML = System.Page.property('title');
         },
 
 		/**
@@ -22,10 +24,12 @@
 		 */
 		mounted()
 		{
-            this.when(
-                this.prop('notification'),
-                () => this.notify(this.prop('notification.type'), this.prop('notification.message'))
+            let closure = () => System.Dialog.notification(
+                System.Page.property('notification.type'),
+                System.Page.property('notification.message')
             );
+
+            System.Util.when(System.Page.property('notification'), closure);
 		},
     }
 </script>

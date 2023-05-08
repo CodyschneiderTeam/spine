@@ -38,10 +38,12 @@ export default
          */
         startPollingServer()
         {
-            if (! this.prop('poll')) return;
+            if (! System.Page.property('poll')) return;
+
+            let url = System.Server.route('poll', System.Page.property('poll'));
 
             this.poll_interval = setInterval(async () => {
-                this.onPollUpdate(await this.http().get(this.route('poll', this.prop('poll')), 'json'));
+                this.onPollUpdate(await System.Request.get(url, 'json'));
             }, 2000);
 
             setTimeout(() => clearInterval(this.poll_interval), 400000);

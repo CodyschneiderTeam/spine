@@ -32,9 +32,9 @@ export default
         {
             let trigger = this.$refs.trigger ? this.$refs.trigger : this.$el;
 
-            if (! this.isComponentOpen() || trigger === event.target) return;
+            if (! this.hasUserAttention() || trigger === event.target) return;
 
-            trigger.contains(event.target) ? null : this.closeComponent();
+            trigger.contains(event.target) ? null : this.lostUserAttention();
         },
     }
 }

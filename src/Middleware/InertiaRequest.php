@@ -28,7 +28,7 @@ class InertiaRequest extends Middleware
         return Arr::merge(parent::share($request), [
             'csrf'          => Session::token(),
             'asset'         => URL::asset(''),
-            'storage'       => Storage::url(''),
+            'file'          => Storage::url(''),
             'guest'         => Auth::guest(),
             'data'          => fn() => Util::rescue(fn() => Session::get('data'), []),
             'notification'  => fn() => Util::rescue(fn() => Session::get('notification')),

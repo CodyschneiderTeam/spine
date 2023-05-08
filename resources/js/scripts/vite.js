@@ -7,7 +7,12 @@ let plugins = [
     vue({ template: { transformAssetUrls : { base : null, includeAbsolute : false } } }),
 ];
 
+let aliases = {
+    spa : `${process.cwd()}/spa`,
+    ui  : `${process.cwd()}/vendor/caneara/spine/resources/js`,
+};
+
 export default vite.defineConfig({
     plugins : plugins,
-    resolve : { alias : { spa : `${process.cwd()}/spa` } },
+    resolve : { alias : aliases },
 });

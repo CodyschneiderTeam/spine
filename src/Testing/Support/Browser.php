@@ -130,7 +130,7 @@ class Browser extends BaseBrowser
      */
     public function card($field, $value) : static
     {
-        return $this->push("varnish-card-{$field}-{$this->convertEnumToScalar($value)}");
+        return $this->push("ui-card-{$field}-{$this->convertEnumToScalar($value)}");
     }
 
     /**
@@ -331,7 +331,7 @@ class Browser extends BaseBrowser
     public function switchTab(string $name) : static
     {
         return $this->scrollToTop()
-            ->push("varnish-tab-select-{$name}")
+            ->push("ui-tab-select-{$name}")
             ->pause();
     }
 
