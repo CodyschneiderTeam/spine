@@ -1,8 +1,8 @@
 <template>
-    <div class="ui-remaining flex items-center justify-center rounded-full relative left-[2px]">
+    <div class="ui-remaining flex items-center justify-center rounded-full relative left-2px">
 
         <!-- Ring -->
-        <svg class="ui-ring w-[30px] h-[30px]">
+        <svg class="ui-ring w-30px h-30px">
 
             <!-- Track -->
             <circle r="12"

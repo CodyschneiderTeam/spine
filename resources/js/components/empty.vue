@@ -9,7 +9,7 @@
         </i>
 
         <!-- Title -->
-        <span class="ui-title font-native font-semibold text-18px text-gray-800 -tracking-[.3px] mb-[5px]">
+        <span class="ui-title font-native font-semibold text-18px text-gray-800 -tracking-[.3px] mb-5px">
             {{ title }}
         </span>
 

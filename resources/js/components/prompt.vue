@@ -4,7 +4,7 @@
              :visible="visible">
 
         <!-- Circle -->
-        <div class="ui-circle bg-purple-500/[.20] h-[60px] w-[60px] flex justify-center items-center rounded-full mx-auto mb-6">
+        <div class="ui-circle bg-purple-500/[.20] h-60px w-60px flex justify-center items-center rounded-full mx-auto mb-6">
             <i class="ui-icon fas fa-comment-dots text-30px text-purple-700/[.40]"></i>
         </div>
 

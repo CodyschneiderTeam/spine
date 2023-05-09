@@ -7,8 +7,8 @@
         <div class="flex flex-col md:flex-row md:-m-6 md:-mb-7">
 
             <!-- Circle -->
-            <div class="ui-circle bg-purple-500/[.30] h-[60px] w-[60px] min-w-[60px] flex justify-center items-center mx-auto md:mx-0 rounded-full">
-                <i class="ui-icon fas fa-info text-30px text-purple-600 relative left-[0.5px] -top-[1px]"></i>
+            <div class="ui-circle bg-purple-500/[.30] h-60px w-60px min-w-60px flex justify-center items-center mx-auto md:mx-0 rounded-full">
+                <i class="ui-icon fas fa-info text-30px text-purple-600 relative left-[.5px] -top-1px"></i>
             </div>
 
             <!-- Content -->

@@ -23,10 +23,10 @@
 
         <!-- Container -->
         <div v-if="selectors.date || selectors.time"
-             class="ui-container bg-white border-l border-r border-b border-gray-300 rounded-b relative -top-[3px] pt-[3px]">
+             class="ui-container bg-white border-l border-r border-b border-gray-300 rounded-b relative -top-3px pt-3px">
 
             <!-- Divider -->
-            <div class="ui-divider w-full h-[1px] border-t border-gray-300"></div>
+            <div class="ui-divider w-full h-1px border-t border-gray-300"></div>
 
             <!-- Date Selector -->
             <div v-if="selectors.date"
@@ -49,7 +49,7 @@
                                 :name="`${name}_select_month`"
                                 :dusk="`${name}_select_month`"
                                 @change="calendar = calendar.set({ month : $event.target.value })"
-                                class="ui-selector-month appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal pr-[2px]">
+                                class="ui-selector-month appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal pr-2px">
 
                             <!-- Options -->
                             <option :key="index"
@@ -95,7 +95,7 @@
                 </div>
 
                 <!-- Week -->
-                <div class="ui-week grid grid-cols-7 -mx-[10px]">
+                <div class="ui-week grid grid-cols-7 -mx-10px">
 
                     <!-- Day -->
                     <span :key="day"
@@ -110,7 +110,7 @@
                 </div>
 
                 <!-- Days -->
-                <div class="ui-days grid grid-cols-7 gap-y-4 pt-4 -mx-[10px]">
+                <div class="ui-days grid grid-cols-7 gap-y-4 pt-4 -mx-10px">
 
                     <!-- Day -->
                     <div v-for="day in daysInMonth"
@@ -120,7 +120,7 @@
                          :class="day.enabled ? 'text-gray-700 cursor-pointer group' : 'text-gray-300 pointer-events-none'">
 
                         <!-- Ordinal -->
-                        <div class="ui-ordinal h-[28px] w-[28px] text-15px text-center rounded-full pt-[6px] pb-[4px]"
+                        <div class="ui-ordinal h-28px w-28px text-15px text-center rounded-full pt-6px pb-4px"
                              :class="[
                                 day.today ? 'font-semibold text-sky-600' : '',
                                 day.selected ? 'bg-emerald-600/[.30]' : 'group-hover:bg-emerald-600/[.30]'
@@ -139,11 +139,11 @@
 
             <!-- Divider -->
             <div v-if="selectors.date && selectors.time"
-                 class="ui-divider w-full h-[1px] border-t border-gray-300"></div>
+                 class="ui-divider w-full h-1px border-t border-gray-300"></div>
 
             <!-- Time Selector -->
             <div v-if="selectors.time"
-                 class="ui-selector-time flex flex-col justify-between items-center bg-gray-100/[.25] p-6 pb-[18px]">
+                 class="ui-selector-time flex flex-col justify-between items-center bg-gray-100/[.25] p-6 pb-18px">
 
                 <!-- Time Zone -->
                 <div :title="`UTC ${calendar.toFormat('Z')}`"
@@ -163,7 +163,7 @@
                             :id="`${name}_select_hour`"
                             :name="`${name}_select_hour`"
                             :dusk="`${name}_select_hour`"
-                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal pr-[6px]">
+                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal pr-6px">
 
                         <!-- Options -->
                         <option :key="hour"
@@ -179,7 +179,7 @@
                     </select>
 
                     <!-- Separator -->
-                    <span class="ui-separator relative -top-[1px] -ml-[3px] mr-[3px]">
+                    <span class="ui-separator relative -top-1px -ml-3px mr-3px">
                         :
                     </span>
 
@@ -206,7 +206,7 @@
 
                     <!-- Separator -->
                     <span v-if="showSeconds"
-                          class="ui-separator relative -top-[1px] ml-[2px] mr-[3px]">
+                          class="ui-separator relative -top-1px ml-2px mr-3px">
 
                         <!-- Text -->
                         :

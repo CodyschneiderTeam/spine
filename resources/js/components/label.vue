@@ -7,12 +7,12 @@
         <!-- Icon -->
         <i :class="icon"
            v-if="! filled && ! focus && icon"
-           class="ui-icon w-[31px] min-w-[31px] max-w-[31px] text-15px text-gray-500/[.40] text-center relative top-[.5px] mr-[6px]">
+           class="ui-icon w-31px min-w-31px max-w-31px text-15px text-gray-500/[.40] text-center relative top-[.5px] mr-6px">
         </i>
 
         <!-- Value -->
         <span class="ui-value"
-              :class="icon ? '' : 'ml-[6px]'">
+              :class="icon ? '' : 'ml-6px'">
 
             <!-- Text -->
             {{ value }}
@@ -21,7 +21,7 @@
 
         <!-- Optional -->
         <v-optional :value="optionalText"
-                    class="relative top-[1px] ml-3"
+                    class="relative top-1px ml-3"
                     v-if="optional && ! filled && ! focus">
         </v-optional>
 
@@ -46,8 +46,8 @@
          *
          */
         data() { return {
-            large : 'text-16px pl-[6px] pr-4 pt-[18px]',
-            small : 'text-13px pl-2 pr-3 pt-[8px] pb-[5px]',
+            large : 'text-16px pl-6px pr-4 pt-18px',
+            small : 'text-13px pl-2 pr-3 pt-8px pb-5px',
         }},
 
         /**

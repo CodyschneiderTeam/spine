@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-password w-full min-w-[250px]">
+    <div class="ui-password w-full min-w-250px">
 
         <!-- Container -->
         <div @mouseover="hover = true"
@@ -17,8 +17,8 @@
                    :placeholder="placeholder"
                    :autocomplete="autocomplete"
                    @input="change($event.target.value)"
-                   :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
-                   class="ui-input w-full bg-inherit font-medium text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
+                   :class="hover || focus ? 'pr-50px' : 'pr-3'"
+                   class="ui-input w-full bg-inherit font-medium text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
 
             <!-- Label -->
             <v-label :icon="icon"
@@ -38,8 +38,8 @@
 			<!-- Generate -->
             <div v-if="generate && ! System.Browser.automated()"
                  style="transition: all 0.4s ease, background-color 0s"
-                 class="ui-generate w-[50px] h-[51px] flex justify-center items-center absolute top-0 right-0 rounded-r"
-                 :class="(focus && System.Util.blank(modelValue)) || (hover && System.Util.blank(modelValue)) ? 'opacity-100 z-[2]' : 'opacity-0 pointer-events-none'">
+                 class="ui-generate w-50px h-51px flex justify-center items-center absolute top-0 right-0 rounded-r"
+                 :class="(focus && System.Util.blank(modelValue)) || (hover && System.Util.blank(modelValue)) ? 'opacity-100 z-2' : 'opacity-0 pointer-events-none'">
 
                 <!-- Icon -->
                 <i title="Generate a random password"
@@ -56,7 +56,7 @@
              class="ui-generated font-semibold text-14px text-purple-700 mt-2">
 
             <!-- Text -->
-            <span class="text-gray-700 mr-[2px]">
+            <span class="text-gray-700 mr-2px">
                 Password:
             </span>
 

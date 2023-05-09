@@ -22,7 +22,7 @@
                 <!-- Direction -->
                 <div class="ui-direction flex items-center font-semibold">
                     <div :class="trends[direction].color"
-                         class="flex items-center gap-2 rounded-full px-2 py-[3px]">
+                         class="flex items-center gap-2 rounded-full px-2 py-3px">
 
                         <!-- Icon -->
                         <i :class="trends[direction].icon"
@@ -38,7 +38,7 @@
                 </div>
 
                 <!-- Period -->
-                <span class="ui-period font-medium text-13px text-gray-500/[.80] pl-[2px] pt-[5px]">
+                <span class="ui-period font-medium text-13px text-gray-500/[.80] pl-2px pt-5px">
                     vs. {{ period }}
                 </span>
 

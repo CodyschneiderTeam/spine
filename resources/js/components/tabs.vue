@@ -13,7 +13,7 @@
                 <!-- Icon -->
                 <i :title="tab.label"
                    :class="[tab.icon, tab.id === active ? 'text-sky-600' : 'text-gray-500/[.65]']"
-                   class="ui-icon text-20px lg:text-17px animated md:mx-1 lg:ml-0 lg:mr-[14px]">
+                   class="ui-icon text-20px lg:text-17px animated md:mx-1 lg:ml-0 lg:mr-14px">
                 </i>
 
                 <!-- Label -->
@@ -25,13 +25,13 @@
             </div>
 
             <!-- Borders -->
-            <div class="ui-border-top group-hover:bg-sky-600/[.80] w-full h-[1px] animated relative z-1"></div>
-            <div class="ui-border-bottom bg-gray-300 group-hover:bg-sky-600/[.80] w-full h-[1px] animated relative z-1"></div>
+            <div class="ui-border-top group-hover:bg-sky-600/[.80] w-full h-1px animated relative z-1"></div>
+            <div class="ui-border-bottom bg-gray-300 group-hover:bg-sky-600/[.80] w-full h-1px animated relative z-1"></div>
 
         </div>
 
         <!-- Track -->
-        <div class="ui-track bg-gray-300 w-full h-[1px] rounded-lg relative z-2"></div>
+        <div class="ui-track bg-gray-300 w-full h-1px rounded-lg relative z-2"></div>
 
 	</div>
 </template>

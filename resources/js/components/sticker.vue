@@ -10,7 +10,7 @@
                    :name="name"
                    :value="value"
                    :readonly="true"
-                   class="ui-content w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none px-3 pt-[25px] pb-[6px]" />
+                   class="ui-content w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none px-3 pt-25px pb-6px" />
 
             <!-- Label -->
             <v-label :value="label"

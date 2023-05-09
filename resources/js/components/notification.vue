@@ -8,11 +8,11 @@
 
         <!-- Notification -->
         <div v-if="show"
-             class="ui-notification min-w-[250px] max-w-[350px] fixed top-[74px] right-0 z-[1002]">
+             class="ui-notification min-w-250px max-w-350px fixed top-74px right-0 z-1002">
 
             <!-- Container -->
             <div ref="container"
-                 class="ui-container bg-white border border-gray-300 flex items-center shadow-sm rounded-lg relative z-[30] pl-[15px] pr-6 py-3 mr-[18px]">
+                 class="ui-container bg-white border border-gray-300 flex items-center shadow-sm rounded-lg relative z-30 pl-15px pr-6 py-3 mr-18px">
 
                 <!-- Icon -->
                 <div class="ui-icon opacity-70 mr-3 relative top-[.5px] flex self-stretch">

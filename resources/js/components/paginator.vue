@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center mt-4">
 
         <!-- Summary -->
-        <span class="text-12px text-gray-500/[.80] uppercase relative top-[1px]">
+        <span class="text-12px text-gray-500/[.80] uppercase relative top-1px">
 
             <!-- Text -->
             <span>
@@ -10,7 +10,7 @@
             </span>
 
             <!-- Current -->
-            <span class="font-medium text-gray-700 mx-[1px]">
+            <span class="font-medium text-gray-700 mx-1px">
                 {{ trim(source.pagination?.current_page ?? '1') }},
             </span>
 
@@ -20,24 +20,24 @@
             </span>
 
             <!-- From -->
-            <span class="font-medium text-gray-700 ml-[1px]">
+            <span class="font-medium text-gray-700 ml-1px">
                 {{ trim(source.pagination?.from ?? '0') }}
             </span>
 
             <!-- Divider -->
-            <span class="-mx-[1px]">
+            <span class="-mx-1px">
                 -
             </span>
 
             <!-- To -->
-            <span class="font-medium text-gray-700 ml-[1px]">
+            <span class="font-medium text-gray-700 ml-1px">
                 {{ trim(source.pagination?.to ?? '0') }}
                 {{ source.type === 'LengthAwarePaginator' ? ',' : '' }}
             </span>
 
             <!-- Total -->
             <span v-if="source.type === 'LengthAwarePaginator'"
-                  class="block md:inline mt-[6px] md:ml-1 md:mt-0">
+                  class="block md:inline mt-6px md:ml-1 md:mt-0">
 
                 <!-- Text -->
                 <span>
@@ -45,7 +45,7 @@
                 </span>
 
                 <!-- Value -->
-                <span class="font-medium text-gray-700 ml-[1px]">
+                <span class="font-medium text-gray-700 ml-1px">
                     {{ trim(source.pagination?.total ?? '0') }}
                 </span>
 
@@ -61,7 +61,7 @@
                  title="Clear search filters"
                  dusk="ui_paginator_button_reset"
                  @click="System.Form.submit(System.Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 rounded-l cursor-pointer group animated px-[13px] py-2">
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 rounded-l cursor-pointer group animated px-13px py-2">
 
                 <!-- Link -->
                 <i class="fas fa-times text-14px text-gray-800/[.50]"></i>

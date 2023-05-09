@@ -9,7 +9,7 @@
 
             <!-- Icon -->
             <i :class="types[type].icon"
-               class="ui-icon fas text-18px relative top-[0.5px] mr-3">
+               class="ui-icon fas text-18px relative top-0.5px mr-3">
             </i>
 
             <!-- Title -->
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Content -->
-        <div class="ui-content text-left leading-normal -mb-[2px]"
+        <div class="ui-content text-left leading-normal -mb-2px"
              :class="[types[type].content, title ? 'px-6' : 'flex items-center px-5']">
 
             <!-- Icon -->

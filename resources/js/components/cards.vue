@@ -42,7 +42,7 @@
 
                 <!-- Check -->
                 <i :class="selected === item.id ? 'opacity-100' : 'opacity-0'"
-                   class="ui-check fas fa-check-circle text-sky-600 animated absolute top-4 right-[14px]">
+                   class="ui-check fas fa-check-circle text-sky-600 animated absolute top-4 right-14px">
                 </i>
 
             </div>

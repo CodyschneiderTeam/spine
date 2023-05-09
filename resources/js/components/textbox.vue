@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-textbox w-full min-w-[250px]">
+    <div class="ui-textbox w-full min-w-250px">
 
         <!-- Container -->
         <div @mouseover="hover = true"
@@ -20,10 +20,10 @@
                    @input="change($event.target.value)"
                    @keydown="interceptKeystroke($event)"
                    :readonly="readOnly ? 'readonly' : false"
-                   :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
+                   :class="hover || focus ? 'pr-50px' : 'pr-3'"
                    :list="System.Util.blank(items) ? null : `${name}_datalist`"
                    :autocomplete="System.Util.blank(items) ? autocomplete : 'off'"
-                   class="ui-control ui-input w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-[25px] pb-[6px]" />
+                   class="ui-control ui-input w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
 
             <!-- Textarea -->
             <textarea :id="name"
@@ -39,7 +39,7 @@
                       :autocomplete="autocomplete"
                       @input="change($event.target.value)"
                       @keydown="interceptKeystroke($event)"
-                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 leading-[24px] rounded appearance-none resize-none pl-3 pr-11 pt-[25px]">
+                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 leading-24px rounded appearance-none resize-none pl-3 pr-11 pt-25px">
             </textarea>
 
             <!-- Label -->

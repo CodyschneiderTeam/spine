@@ -5,7 +5,7 @@
         <div ref="trigger"
              @click="open = ! open"
              :dusk="`menu-${id.toLowerCase()}`"
-             class="ui-trigger text-13px text-gray-500 hover:text-gray-800 uppercase whitespace-nowrap select-none cursor-pointer animated relative top-[1px]">
+             class="ui-trigger text-13px text-gray-500 hover:text-gray-800 uppercase whitespace-nowrap select-none cursor-pointer animated relative top-1px">
 
             <!-- Icon -->
             <i class="ui-icon fas fa-ellipsis-h text-17px"></i>
@@ -13,8 +13,8 @@
         </div>
 
         <!-- Drawer -->
-        <div class="ui-drawer bg-white border border-gray-300 flex flex-col transition-all duration-300 rounded absolute py-[6px]"
-             :class="[position, open ? 'opacity-100 scale-100 pointer-events-auto z-[20]' : 'opacity-0 scale-90 pointer-events-none -z-[1]']">
+        <div class="ui-drawer bg-white border border-gray-300 flex flex-col transition-all duration-300 rounded absolute py-6px"
+             :class="[position, open ? 'opacity-100 scale-100 pointer-events-auto z-20' : 'opacity-0 scale-90 pointer-events-none -z-1']">
 
             <!-- Slot -->
             <div class="ui-item"
@@ -24,12 +24,12 @@
                 <span v-if="item.show && item.type === 'link'"
                       @click.stop="open = false; item['action']()"
                       :dusk="`menu-${id.toLowerCase()}-${item.id}`"
-                      class="ui-link hover:bg-gray-200/[.75] text-16px text-gray-700/[.85] hover:text-gray-700 flex items-center select-none whitespace-nowrap cursor-pointer animated pl-3 pr-6 py-[10px]">
+                      class="ui-link hover:bg-gray-200/[.75] text-16px text-gray-700/[.85] hover:text-gray-700 flex items-center select-none whitespace-nowrap cursor-pointer animated pl-3 pr-6 py-10px">
 
                     <!-- Icon -->
                     <i :class="item.icon"
                        v-if="! System.Util.blank(item.icon)"
-                       class="ui-icon fa-fw text-17px text-gray-400 relative top-[.5px] mr-[10px]">
+                       class="ui-icon fa-fw text-17px text-gray-400 relative top-[.5px] mr-10px">
                     </i>
 
                     <!-- Text -->
@@ -41,12 +41,12 @@
 
                 <!-- Separator -->
                 <div v-if="item.show && item.type === 'separator'"
-                     class="ui-separator border-t border-gray-200 my-[6px]">
+                     class="ui-separator border-t border-gray-200 my-6px">
                 </div>
 
                 <!-- Empty -->
                 <div v-if="item.show && item.type === 'empty'"
-                     class="ui-empty text-13px text-gray-600/[.65] uppercase select-none whitespace-nowrap cursor-pointer px-6 pt-2 pb-[5px]">
+                     class="ui-empty text-13px text-gray-600/[.65] uppercase select-none whitespace-nowrap cursor-pointer px-6 pt-2 pb-5px">
 
                     <!-- Text -->
                     {{ emptyText }}

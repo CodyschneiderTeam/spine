@@ -3,7 +3,7 @@
 
         <!-- Container -->
         <div :dusk="name"
-             class="ui-container bg-white border border-gray-300 w-full min-h-[52px] flex items-start rounded relative animated">
+             class="ui-container bg-white border border-gray-300 w-full min-h-52px flex items-start rounded relative animated">
 
             <!-- Input -->
             <input type="text"
@@ -14,7 +14,7 @@
 
             <!-- Optional -->
             <v-optional :value="optionalText"
-                        class="-ml-[20px] mt-[19.5px]"
+                        class="-ml-20px mt-[19.5px]"
                         v-if="optional && System.Util.blank(modelValue)">
             </v-optional>
 
@@ -129,13 +129,13 @@
 </script>
 
 <style>
-    .ui-tags .ui-container .ui-optional { @apply top-[1px] }
+    .ui-tags .ui-container .ui-optional { @apply top-1px }
     .ui-tags .ui-container .ui-input.tagify { @apply border-none pb-3 }
     .ui-tags .ui-container .ui-input.tagify.tagify--focus + input + .ui-optional { @apply hidden }
-    .ui-tags .ui-container .ui-input.tagify .tagify__input { @apply font-normal relative top-[6px] left-[6px] }
-    .ui-tags .ui-container .ui-input.tagify .tagify__input:before { @apply font-normal text-gray-600 top-[7px] pl-[28px] }
-    .ui-tags .ui-container .ui-input.tagify .tagify__input:after { @apply inline font-bold text-14px text-gray-700/[.80] absolute left-[10px] top-[8px] ; font-family: 'Font Awesome 6 Free'; content: '\f02c' }
-    .ui-tags .ui-container .ui-input.tagify .tagify__tag { @apply bg-sky-600/[.10] hover:bg-sky-600/[.10] rounded top-[6px] left-[6px] m-[5px] px-1 }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input { @apply font-normal relative top-6px left-6px }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input:before { @apply font-normal text-gray-600 top-7px pl-28px }
+    .ui-tags .ui-container .ui-input.tagify .tagify__input:after { @apply inline font-bold text-14px text-gray-700/[.80] absolute left-10px top-8px ; font-family: 'Font Awesome 6 Free'; content: '\f02c' }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag { @apply bg-sky-600/[.10] hover:bg-sky-600/[.10] rounded top-6px left-6px m-5px px-1 }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag div:before { @apply shadow-none }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag:hover div:before { @apply shadow-none }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn { @apply bg-transparent relative top-[.5px] }
@@ -145,7 +145,7 @@
     .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover + div:before { box-shadow: 0 0 #0000 !important }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag__removeBtn:hover + div > span.tagify__tag-text { @apply opacity-100 }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag .tagify__tag-text { @apply font-normal text-16px text-gray-700 overflow-visible relative -top-[.5px] }
-    .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input { @apply relative top-[6px] left-[6px] }
+    .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input { @apply relative top-6px left-6px }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input:before { @apply hidden }
     .ui-tags .ui-container .ui-input.tagify .tagify__tag + .tagify__input:after { @apply hidden }
     .ui-tags .ui-container .ui-input.tagify.tagify--focus .tagify__input:before { @apply hidden }

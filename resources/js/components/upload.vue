@@ -40,9 +40,9 @@
 				   :value="display"
                    :id="`${name}_file_name`"
                    :name="`${name}_file_name`"
-                   :class="hover || focus ? 'pr-[50px]' : 'pr-3'"
+                   :class="hover || focus ? 'pr-50px' : 'pr-3'"
 				   @click="disabled || display ? null : selectNew()"
-				   class="bg-inherit text-gray-900 w-full text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-[25px] pb-[7px]" />
+				   class="bg-inherit text-gray-900 w-full text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-25px pb-7px" />
 
             <!-- Label -->
             <v-label :icon="icon"
@@ -74,7 +74,7 @@
             </i>
 
             <!-- Instructions -->
-            <div class="text-gray-600/[.90] text-center leading-normal max-w-[230px]">
+            <div class="text-gray-600/[.90] text-center leading-normal max-w-230px">
 
                 <!-- Uploading -->
                 <span v-if="display">

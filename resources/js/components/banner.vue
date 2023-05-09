@@ -8,7 +8,7 @@
 
             <!-- Icon -->
             <i :class="icon"
-               class="ui-icon text-white text-185px hidden md:inline opacity-[.07] absolute -bottom-2 -right-[56px] -rotate-[32deg]">
+               class="ui-icon text-white text-185px hidden md:inline opacity-[.07] absolute -bottom-2 -right-56px -rotate-[32deg]">
             </i>
 
             <!-- Title -->
@@ -17,7 +17,7 @@
             </span>
 
             <!-- Message -->
-            <span class="ui-message text-17px text-gray-200 leading-normal break-words md:pr-[130px]">
+            <span class="ui-message text-17px text-gray-200 leading-normal break-words md:pr-130px">
                 {{ message }}
             </span>
 

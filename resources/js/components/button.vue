@@ -3,8 +3,8 @@
             :id="name"
             :dusk="name"
             @click.prevent="simple ? $refs.simple.click() : execute()"
-            :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-[100px]', $attrs?.class ?? '']"
-            class="ui-button w-full md:w-auto min-h-[35px] border border-solid flex items-center justify-center relative rounded transition-all duration-300 cursor-pointer">
+            :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px', $attrs?.class ?? '']"
+            class="ui-button w-full md:w-auto min-h-35px border border-solid flex items-center justify-center relative rounded transition-all duration-300 cursor-pointer">
 
         <!-- Label -->
         <div :class="processing ? 'text-transparent hidden' : ''"
@@ -26,7 +26,7 @@
         <!-- Animation -->
         <div style="animation: ui-button-spin 750ms infinite linear"
              :class="[processing ? '' : 'hidden', modes[mode][color].spinner]"
-             class="ui-spinner h-[15px] w-[15px] rounded-full border-2 border-r-transparent border-t-transparent">
+             class="ui-spinner h-15px w-15px rounded-full border-2 border-r-transparent border-t-transparent">
         </div>
 
     </button>

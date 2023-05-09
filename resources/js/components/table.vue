@@ -61,7 +61,7 @@
                             :class="[
                                 column.styles,
                                 column.align ? column.align : 'text-right lg:text-center first-of-type:lg:text-left',
-                                column.label === 'Actions' ? 'lg:w-[90px] lg:min-w-[90px] lg:max-w-[90px] lg:pr-0' : 'lg:max-w-[250px]',
+                                column.label === 'Actions' ? 'lg:w-90px lg:min-w-90px lg:max-w-90px lg:pr-0' : 'lg:max-w-250px',
                             ]">
 
                             <!-- Slot -->
