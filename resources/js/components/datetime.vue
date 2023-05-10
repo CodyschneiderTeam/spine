@@ -568,6 +568,8 @@
              */
             showSelectors()
             {
+                console.log(this.value);
+
                 if (System.Util.blank(this.value)) {
                     if (this.startDate) {
                         this.value = DateTime.fromISO(this.startDate).startOf('day').setLocale(this.locale);

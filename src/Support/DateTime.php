@@ -3,38 +3,27 @@
 namespace Caneara\Spine\Support;
 
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Env;
 use Carbon\Carbon as BaseCarbon;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Config;
 
 class DateTime extends CarbonImmutable
 {
-    /**
-     * The pre-defined formats.
-     *
-     */
-    protected const FORMAT_DATE = 'M j, Y';
-    protected const FORMAT_FULL = 'M j, Y - H:i';
-    protected const FORMAT_TIME = 'H:i';
-
     /**
      * Format the instance as a human-friendly date.
      *
      */
     public function date() : string
     {
-        return $this->format(static::FORMAT_DATE);
+        return $this->format('M j, Y');
     }
 
     /**
      * Format the instance as a human-friendly date and time.
      *
      */
-    public function dateTime() : string
+    public function dateTime($zone = false) : string
     {
-        return $this->setTimezone($this->zone())
-            ->format(static::FORMAT_FULL);
+        return ($zone ? $this->setTimezone($this->getSystemTimeZone()) : $this)->format('M j, Y - H:i');
     }
 
     /**
@@ -45,6 +34,15 @@ class DateTime extends CarbonImmutable
     {
         parent::setTestNow(parent::now()->startOfSecond());
         BaseCarbon::setTestNow(BaseCarbon::now()->startOfSecond());
+    }
+
+    /**
+     * Retrieve the local computer's time zone (for Laravel Dusk).
+     *
+     */
+    protected function getSystemTimeZone() : string
+    {
+        return Str::substr(readlink('/etc/localtime'), Str::length('/usr/share/zoneinfo/einfo/'));
     }
 
     /**
@@ -99,22 +97,12 @@ class DateTime extends CarbonImmutable
     }
 
     /**
-     * Pause the script's execution for the given number of seconds.
-     *
-     */
-    public static function sleep(int $seconds, bool $condition = true) : void
-    {
-        sleep($condition ? $seconds : 0);
-    }
-
-    /**
      * Format the instance as a human-friendly time.
      *
      */
-    public function time() : string
+    public function time($zone = false) : string
     {
-        return $this->setTimezone($this->zone())
-            ->format(static::FORMAT_TIME);
+        return ($zone ? $this->setTimezone($this->getSystemTimeZone()) : $this)->format('H:i');
     }
 
     /**
@@ -124,14 +112,5 @@ class DateTime extends CarbonImmutable
     public static function year() : string
     {
         return date('Y');
-    }
-
-    /**
-     * Retrieve the time zone to be used.
-     *
-     */
-    protected function zone() : string
-    {
-        return Env::get('DUSK_TIME_ZONE', Config::get('app.timezone'));
     }
 }

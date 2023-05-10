@@ -3,9 +3,30 @@
          class="ui-badge"
          v-if="! System.Util.blank(value)">
 
-        <!-- Content -->
-        <div :class="[modes[mode][color], uppercase ? 'uppercase' : '']"
-             class="ui-content inline-block rounded-full font-semibold text-12px tracking-[.1px] select-none whitespace-nowrap px-10px pt-1 pb-1">
+        <!-- Opaque -->
+        <div v-if="mode === 'opaque'"
+             :class="modes.opaque[color]"
+             class="ui-content ui-content-opaque inline-block rounded-md font-[630] text-11px tracking-[.1px] select-none whitespace-nowrap uppercase px-2 py-1">
+
+            <!-- Text -->
+            {{ value }}
+
+        </div>
+
+        <!-- Dot -->
+        <div v-if="mode === 'dot'"
+             class="ui-content ui-content-dot flex justify-center items-center rounded-md font-[630] text-11px text-gray-500 tracking-[.1px] select-none whitespace-nowrap uppercase">
+
+            <!-- Outer -->
+            <div :class="modes.dot[color].outer"
+                 class="w-14px h-14px flex justify-center items-center rounded-full mr-2">
+
+                <!-- Inner -->
+                <div :class="modes.dot[color].inner"
+                     class="w-6px h-6px rounded-full">
+                </div>
+
+            </div>
 
             <!-- Text -->
             {{ value }}
@@ -25,20 +46,20 @@
         data() { return {
             modes : {
                 opaque : {
-                    blue   : 'bg-sky-500/[.15] text-sky-700/[.80]',
-                    green  : 'bg-emerald-500/[.15] text-emerald-700/[.80]',
-                    gray   : 'bg-gray-500/[.10] text-gray-700/[.80]',
-                    purple : 'bg-purple-500/[.15] text-purple-900/70',
-                    red    : 'bg-red-500/[.15] text-red-800/[.80]',
-                    yellow : 'bg-yellow-500/[.15] text-yellow-700/[.80]',
+                    blue   : 'border border-sky-700/40 bg-sky-500/10 text-sky-700/90',
+                    green  : 'border border-emerald-700/40 bg-emerald-500/10 text-emerald-700/90',
+                    gray   : 'border border-gray-700/40 bg-gray-500/10 text-gray-700/90',
+                    purple : 'border border-purple-700/40 bg-purple-500/10 text-purple-900/70',
+                    red    : 'border border-red-700/40 bg-red-500/10 text-red-800/90',
+                    yellow : 'border border-yellow-700/40 bg-yellow-500/10 text-yellow-700/90',
                 },
-                transparent : {
-                    blue   : 'bg-transparent text-sky-600',
-                    green  : 'bg-transparent text-emerald-600',
-                    gray   : 'bg-transparent text-gray-500',
-                    purple : 'bg-transparent text-purple-600',
-                    red    : 'bg-transparent text-red-600',
-                    yellow : 'bg-transparent text-yellow-600',
+                dot : {
+                    blue   : { outer : 'bg-sky-500/20',     inner : 'bg-sky-500' },
+                    green  : { outer : 'bg-emerald-500/20', inner : 'bg-emerald-500' },
+                    gray   : { outer : 'bg-gray-500/20',    inner : 'bg-gray-500' },
+                    purple : { outer : 'bg-purple-500/20',  inner : 'bg-purple-500' },
+                    red    : { outer : 'bg-red-500/20',     inner : 'bg-red-500' },
+                    yellow : { outer : 'bg-yellow-500/20',  inner : 'bg-yellow-500' },
                 }
             }
         }},
@@ -48,11 +69,10 @@
          *
          */
         props : {
-            'color'     : { type : String,  default : 'blue' },
-            'mode'      : { type : String,  default : 'opaque' },
-            'tooltip'   : { type : String,  default : '' },
-            'uppercase' : { type : Boolean, default : true },
-            'value'     : { type : String,  default : '' },
+            'color'   : { type : String,  default : 'blue' },
+            'mode'    : { type : String,  default : 'opaque' },
+            'tooltip' : { type : String,  default : '' },
+            'value'   : { type : String,  default : '' },
         },
     }
 </script>

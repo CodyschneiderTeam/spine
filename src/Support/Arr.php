@@ -2,10 +2,23 @@
 
 namespace Caneara\Spine\Support;
 
+use Closure;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Arr as Base;
 
 class Arr extends Base
 {
+    /**
+     * Generate an array of the given length and populate each item using the given closure.
+     *
+     */
+    public static function fill(int $length, Closure $closure) : array
+    {
+        return Collection::make(array_fill(0, $length, null))
+            ->transform(fn() => $closure())
+            ->toArray();
+    }
+
     /**
      * Merge the given arrays together.
      *

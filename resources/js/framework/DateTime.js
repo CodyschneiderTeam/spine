@@ -39,7 +39,7 @@ export default class DateTime
         return type === 'date'
             ? new Intl.DateTimeFormat('en-US', options[type]).format(value)
             : new Intl.DateTimeFormat('en-UK', options[type]).format(value)
-            + `(${value.toLocaleString('en-US', options.meridiem).split(/\s+/)[1].toLowerCase()})`;
+            + ` (${value.toLocaleString('en-US', options.meridiem).split(/\s+/)[1].toLowerCase()})`;
     }
 
     /**

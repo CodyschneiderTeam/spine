@@ -24,13 +24,17 @@
 
             <!-- Item -->
             <div :key="row[rowKey]"
-                 v-for="row in source.data.rows ?? []"
+                 class="ui-grid-item"
                  :dusk="`ui-grid-item-${row[rowKey]}`"
+                 v-for="(row, index) in source.data.rows ?? []"
                  :class="System.Util.blank(action) ? '' : 'cursor-pointer'"
                  @click="! System.Util.blank(action) && ! $event.target.parentNode.classList.contains('ui-trigger') ? action(row) : null">
 
                 <!-- Slot -->
-                <slot :item="row"></slot>
+                <slot :item="row"
+                      :index="index"
+                      :total="source.data.rows?.length ?? 0">
+                </slot>
 
             </div>
 

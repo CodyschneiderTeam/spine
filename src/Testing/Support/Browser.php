@@ -225,6 +225,19 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Perform a lookup using the given parameters.
+     *
+     */
+    public function lookup(string $field, string $search, $value, bool $assert = true) : static
+    {
+        $this->type("{$field}_search_display", $search)
+            ->pause()
+            ->click("lookup-{$field}-item-{$value}");
+
+        return $assert ? $this->assertInputValue($field, $value) : $this;
+    }
+
+    /**
      * Execute the given JavaScript code.
      *
      */

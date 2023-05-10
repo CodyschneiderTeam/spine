@@ -5,6 +5,7 @@ namespace Caneara\Spine\Types;
 use BadMethodCallException;
 use Caneara\Spine\Support\Arr;
 use Inertia\Response as InertiaResponse;
+use Illuminate\Contracts\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Routing\ControllerMiddlewareOptions;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -25,7 +26,7 @@ class Controller
      * Execute an action on the controller.
      *
      */
-    public function callAction(string $method, array $parameters) : Response | InertiaResponse
+    public function callAction(string $method, array $parameters) : Response | InertiaResponse | Paginator | string
     {
         return $this->{$method}(...Arr::values($parameters));
     }

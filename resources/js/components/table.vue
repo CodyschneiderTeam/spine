@@ -136,3 +136,7 @@
         },
     }
 </script>
+
+<style lang="postcss">
+    .ui-table .ui-badge .ui-content-opaque { @apply inline }
+</style>

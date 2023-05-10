@@ -39,7 +39,7 @@
                       :autocomplete="autocomplete"
                       @input="change($event.target.value)"
                       @keydown="interceptKeystroke($event)"
-                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 leading-24px rounded appearance-none resize-none pl-3 pr-11 pt-25px">
+                      class="ui-control ui-textarea w-full bg-inherit text-gray-900 leading-[24px] rounded appearance-none resize-none pl-3 pr-11 pt-25px">
             </textarea>
 
             <!-- Label -->
@@ -59,8 +59,8 @@
             </v-clear>
 
             <!-- Options -->
-            <datalist v-if="! System.Util.blank(items)"
-                      :id="`${name}_datalist`">
+            <datalist :id="`${name}_datalist`"
+                      v-if="! System.Util.blank(items)">
 
                 <!-- Option -->
                 <option v-for="item in items">

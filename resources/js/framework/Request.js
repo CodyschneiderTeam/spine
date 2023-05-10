@@ -41,7 +41,7 @@ export default class Request
      * Send an XHR 'patch' request to the given URL.
      *
      */
-    async patch(url, data = {}, format = 'json', options = {})
+    static async patch(url, data = {}, format = 'json', options = {})
     {
         data._method = 'patch';
 
@@ -52,7 +52,7 @@ export default class Request
      * Send an XHR 'post' request to the given URL.
      *
      */
-    async post(url, data = {}, format = 'json', options = {})
+    static async post(url, data = {}, format = 'json', options = {})
     {
         let defaults = {
             method      : 'post',
@@ -68,7 +68,7 @@ export default class Request
      * Send an XHR 'put' request to the given URL.
      *
      */
-    async put(url, data = {}, format = 'json', options = {})
+    static async put(url, data = {}, format = 'json', options = {})
     {
         data._method = 'put';
 
@@ -79,7 +79,7 @@ export default class Request
      * Send an XHR request to the given URL.
      *
      */
-    async send(url, format = '', options = {})
+    static async send(url, format = '', options = {})
     {
         let response = await fetch(url, options);
 

@@ -1,3 +1,5 @@
+import { isProxy, toRaw } from 'vue';
+
 export default class Util
 {
     /**
@@ -11,6 +13,10 @@ export default class Util
         }
 
         if (System.Is.date(value)) {
+            return false;
+        }
+
+        if (isProxy(value) && toRaw(value).constructor.name === 'DateTime') {
             return false;
         }
 
