@@ -4,7 +4,7 @@ namespace Caneara\Spine\Enums;
 
 use Caneara\Spine\Types\Enum;
 
-enum Countries : int
+enum Country : int
 {
     use Enum;
 

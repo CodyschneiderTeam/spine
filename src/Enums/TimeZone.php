@@ -4,7 +4,7 @@ namespace Caneara\Spine\Enums;
 
 use Caneara\Spine\Types\Enum;
 
-enum TimeZones : int
+enum TimeZone : int
 {
     use Enum;
 

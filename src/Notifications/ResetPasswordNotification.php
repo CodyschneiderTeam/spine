@@ -36,6 +36,6 @@ class ResetPasswordNotification extends Notification
 
         return $this->email()
             ->subject('Reset Password')
-            ->markdown('mail.password.reset', compact('url'));
+            ->markdown('mail.password.reset', ['url' => $url]);
     }
 }

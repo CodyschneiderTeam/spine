@@ -143,7 +143,10 @@ abstract class ListRequest extends FormRequest
             ->whenEmpty(fn() => $this->toCollection('ordering')->where('default', true))
             ->first();
 
-        $result = compact('filtering', 'ordering');
+        $result = [
+            'filtering' => $filtering,
+            'ordering'  => $ordering,
+        ];
 
         return $key ? $result[$key] ?? $default : $result;
     }

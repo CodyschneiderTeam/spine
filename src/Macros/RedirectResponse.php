@@ -23,7 +23,11 @@ class RedirectResponse
     protected static function notify() : void
     {
         Facade::macro('notify', function($message, $type = 'success', $fixed = false) {
-            return Util::tap($this)->with('notification', compact('message', 'type', 'fixed'));
+            return Util::tap($this)->with('notification', [
+                'message' => $message,
+                'type'    => $type,
+                'fixed'   => $fixed,
+            ]);
         });
     }
 }

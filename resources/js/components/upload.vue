@@ -74,7 +74,7 @@
             </i>
 
             <!-- Instructions -->
-            <div class="text-gray-600/[.90] text-center leading-normal max-w-230px">
+            <div class="text-gray-600/[.90] text-center leading-normal max-w-[230px]">
 
                 <!-- Uploading -->
                 <span v-if="display">

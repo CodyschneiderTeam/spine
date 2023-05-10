@@ -2,6 +2,8 @@
 
 namespace Caneara\Spine\Types;
 
+use Caneara\Spine\Support\Str;
+use Caneara\Spine\Support\Util;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -22,7 +24,9 @@ class Policy
      */
     protected function deny(string $message = '') : void
     {
-        throw new AccessDeniedHttpException($message);
+        throw new AccessDeniedHttpException(
+            Util::blank($message) ? $this->makeErrorMessage() : $message
+        );
     }
 
     /**
@@ -50,5 +54,21 @@ class Policy
     public function grantAccess() : bool
     {
         return true;
+    }
+
+    /**
+     * Generate an error message using the policy class and method name.
+     *
+     */
+    protected function makeErrorMessage() : string
+    {
+        return Str::of(debug_backtrace()[3]['function'])
+            ->append(' this ')
+            ->append(debug_backtrace()[3]['class'])
+            ->replace('App\\Policies\\', '')
+            ->replace('Policy', '')
+            ->lower()
+            ->prepend('You cannot ')
+            ->toString();
     }
 }

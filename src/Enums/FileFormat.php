@@ -4,7 +4,7 @@ namespace Caneara\Spine\Enums;
 
 use Caneara\Spine\Types\Enum;
 
-enum FileFormats : int
+enum FileFormat : int
 {
     use Enum;
 

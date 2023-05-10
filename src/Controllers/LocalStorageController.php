@@ -31,7 +31,7 @@ class LocalStorageController extends Controller
 
         return Response::json([
             'uuid'    => $id,
-            'headers' => compact('id'),
+            'headers' => ['id' => $id],
             'url'     => $url,
         ]);
     }

@@ -4,7 +4,7 @@ namespace Caneara\Spine\Enums;
 
 use Caneara\Spine\Types\Enum;
 
-enum Languages : int
+enum Language : int
 {
     use Enum;
 

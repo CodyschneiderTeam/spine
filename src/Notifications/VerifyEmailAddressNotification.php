@@ -41,6 +41,6 @@ class VerifyEmailAddressNotification extends Notification
 
         return $this->email()
             ->subject('Verify Email')
-            ->markdown('mail.email.verify', compact('url'));
+            ->markdown('mail.email.verify', ['url' => $url]);
     }
 }
