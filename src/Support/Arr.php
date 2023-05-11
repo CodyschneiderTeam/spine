@@ -65,6 +65,19 @@ class Arr extends Base
     }
 
     /**
+     * Remove the given key from the given value.
+     *
+     */
+    public static function remove(array $value, string $key) : array
+    {
+        if (static::exists($value, $key)) {
+            unset($value[$key]);
+        }
+
+        return $value;
+    }
+
+    /**
      * Replaces elements from the passed arrays into the first array recursively.
      *
      */
