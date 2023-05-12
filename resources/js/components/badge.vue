@@ -5,8 +5,8 @@
 
         <!-- Opaque -->
         <div v-if="mode === 'opaque'"
-             :class="modes.opaque[color]"
-             class="ui-content ui-content-opaque inline-block rounded-md font-[630] text-11px tracking-[.1px] select-none whitespace-nowrap uppercase px-2 py-1">
+             :class="[modes.opaque[color], small ? 'text-10px px-1 py-2px' : 'text-11px px-2 py-1']"
+             class="ui-content ui-content-opaque inline-block rounded-md font-[630] tracking-[.1px] select-none whitespace-nowrap uppercase">
 
             <!-- Text -->
             {{ value }}
@@ -71,6 +71,7 @@
         props : {
             'color'   : { type : String,  default : 'blue' },
             'mode'    : { type : String,  default : 'opaque' },
+            'small'   : { type : Boolean, default : false },
             'tooltip' : { type : String,  default : '' },
             'value'   : { type : String,  default : '' },
         },

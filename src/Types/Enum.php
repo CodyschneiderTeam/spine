@@ -6,6 +6,7 @@ use ReflectionEnum;
 use BadMethodCallException;
 use Caneara\Spine\Support\Arr;
 use Caneara\Spine\Support\Str;
+use Caneara\Spine\Support\Util;
 use Illuminate\Support\Collection;
 
 trait Enum
@@ -32,6 +33,22 @@ trait Enum
         return $check === 'truthy'
             ? $this === $reflect->getConstant($key)
             : $this !== $reflect->getConstant($key);
+    }
+
+    /**
+     * Retrieve an item from the array of cases that matches the given key and value.
+     *
+     */
+    public static function find(mixed $value = null, string $key = 'id') : array | null
+    {
+        if (Util::blank($value)) {
+            return null;
+        }
+
+        $result = Collection::make(static::toArray())
+            ->when($value, fn($items) => $items->where($key, $value));
+
+        return $result->count() === 1 ? $result->first() : $result->toArray();
     }
 
     /**
