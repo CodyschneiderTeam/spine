@@ -2,8 +2,11 @@
 
 namespace Caneara\Spine\Database;
 
+use Caneara\Spine\Support\Arr;
+use Caneara\Spine\Support\Str;
 use Caneara\Spine\Types\ListRequest;
 use Illuminate\Pagination\Paginator as BasePaginator;
+use Caneara\Spine\Exception\TemporaryRedirectException;
 
 class Paginator extends BasePaginator
 {
@@ -13,6 +16,10 @@ class Paginator extends BasePaginator
      */
     public function format(ListRequest $request) : array
     {
+        if ($this->currentPage() !== 1 && $this->items->isEmpty()) {
+            $this->redirectToFirstPage($request->query());
+        }
+
         return [
             'type'        => 'SimplePaginator',
             'data'        => [
@@ -39,5 +46,21 @@ class Paginator extends BasePaginator
                 'total'          => null,
             ],
         ];
+    }
+
+    /**
+     * Trigger a redirect to the first page of the paginator.
+     *
+     */
+    protected function redirectToFirstPage(array $query) : void
+    {
+        $query[$this->pageName] = 1;
+
+        $url = Str::of($this->path())
+            ->append('?')
+            ->append(Arr::query($query))
+            ->toString();
+
+        throw new TemporaryRedirectException($url);
     }
 }

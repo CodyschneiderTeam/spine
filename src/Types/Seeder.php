@@ -2,6 +2,8 @@
 
 namespace Caneara\Spine\Types;
 
+use Faker\Generator;
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Traits\Conditionable;
@@ -12,10 +14,25 @@ class Seeder extends BaseSeeder
     use Conditionable;
 
     /**
+     * The current Faker instance.
+     *
+     */
+    protected $faker;
+
+    /**
      * Specify whether to delete legacy data.
      *
      */
     protected $wipe = true;
+
+    /**
+     * Constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->faker = Container::getInstance()->make(Generator::class);
+    }
 
     /**
      * Seed the application database.

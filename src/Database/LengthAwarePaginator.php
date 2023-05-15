@@ -2,7 +2,10 @@
 
 namespace Caneara\Spine\Database;
 
+use Caneara\Spine\Support\Arr;
+use Caneara\Spine\Support\Str;
 use Caneara\Spine\Types\ListRequest;
+use Caneara\Spine\Exception\TemporaryRedirectException;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class LengthAwarePaginator extends Paginator
@@ -13,6 +16,10 @@ class LengthAwarePaginator extends Paginator
      */
     public function format(ListRequest $request) : array
     {
+        if ($this->currentPage() > $this->lastPage()) {
+            $this->redirectToLastPage($request->query());
+        }
+
         return [
             'type'        => 'LengthAwarePaginator',
             'data'        => [
@@ -39,5 +46,21 @@ class LengthAwarePaginator extends Paginator
                 'total'          => $this->total(),
             ],
         ];
+    }
+
+    /**
+     * Trigger a redirect to the last page of the paginator.
+     *
+     */
+    protected function redirectToLastPage(array $query) : void
+    {
+        $query[$this->pageName] = $this->lastPage();
+
+        $url = Str::of($this->path())
+            ->append('?')
+            ->append(Arr::query($query))
+            ->toString();
+
+        throw new TemporaryRedirectException($url);
     }
 }

@@ -7,6 +7,7 @@ use Caneara\Spine\Support\Arr;
 use Caneara\Spine\Response\Page;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response as InertiaResponse;
@@ -19,6 +20,14 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
+    /**
+     * A list of the exception types that are not reported.
+     *
+     */
+    protected $dontReport = [
+        TemporaryRedirectException::class,
+    ];
+
     /**
      * Map of error codes to messages.
      *
@@ -72,8 +81,8 @@ class Handler extends ExceptionHandler
         return Page::make()
             ->title('Error')
             ->view('general.error.index')
-            ->with('asset', asset(''))
             ->with('notification', null)
+            ->with('asset', URL::asset(''))
             ->with('code', $response->getStatusCode())
             ->toResponse($request)
             ->setStatusCode($response->getStatusCode());
@@ -85,10 +94,6 @@ class Handler extends ExceptionHandler
      */
     protected function shouldUseJson($request) : bool
     {
-        $routes = [
-            'poll',
-        ];
-
-        return Arr::in($routes, $request->route()->getName());
+        return Arr::in(['poll'], $request->route()->getName());
     }
 }
