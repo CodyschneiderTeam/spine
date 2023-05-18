@@ -21,9 +21,9 @@ class DateTime extends CarbonImmutable
      * Format the instance as a human-friendly date and time.
      *
      */
-    public function dateTime($zone = false) : string
+    public function dateTime() : string
     {
-        return ($zone ? $this->setTimezone($this->getSystemTimeZone()) : $this)->format('M j, Y - H:i');
+        return $this->format('M j, Y - g:i');
     }
 
     /**
@@ -34,15 +34,6 @@ class DateTime extends CarbonImmutable
     {
         parent::setTestNow(parent::now()->startOfSecond());
         BaseCarbon::setTestNow(BaseCarbon::now()->startOfSecond());
-    }
-
-    /**
-     * Retrieve the local computer's time zone (for Laravel Dusk).
-     *
-     */
-    protected function getSystemTimeZone() : string
-    {
-        return Str::substr(readlink('/etc/localtime'), Str::length('/usr/share/zoneinfo/einfo/'));
     }
 
     /**
@@ -100,9 +91,9 @@ class DateTime extends CarbonImmutable
      * Format the instance as a human-friendly time.
      *
      */
-    public function time($zone = false) : string
+    public function time() : string
     {
-        return ($zone ? $this->setTimezone($this->getSystemTimeZone()) : $this)->format('H:i');
+        return $this->format('g:i');
     }
 
     /**

@@ -9,6 +9,17 @@ use Illuminate\Support\Arr as Base;
 class Arr extends Base
 {
     /**
+     * Iterate through the given array using the given closure.
+     *
+     */
+    public static function each(array $array, Closure $closure) : void
+    {
+        foreach ($array as $key => $value) {
+            $closure($value, $key);
+        }
+    }
+
+    /**
      * Generate an array of the given length and populate each item using the given closure.
      *
      */
@@ -84,6 +95,15 @@ class Arr extends Base
     public static function replaceRecursive(array $value, array ...$replacements) : array
     {
         return array_replace_recursive($value, ...$replacements);
+    }
+
+    /**
+     * Determine if the count of items in the given value.
+     *
+     */
+    public static function size(array $value) : int
+    {
+        return count($value);
     }
 
     /**

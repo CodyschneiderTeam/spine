@@ -4,7 +4,7 @@ export default class DateTime
      * Process the given value into its correct format.
      *
      */
-    static format(value, type = 'date')
+    static format(value, type = 'date', style = '12-hour')
     {
         let options = {
             date : {
@@ -13,33 +13,44 @@ export default class DateTime
                 year  : 'numeric',
             },
             time : {
-                dayPeriod : 'short',
-                hour      : '2-digit',
-                hour12    : false,
-                minute    : '2-digit',
-            },
-            meridiem : {
-                hour   : 'numeric',
-                hour12 : true,
+                '12-hour' : {
+                    hour   : 'numeric',
+                    hour12 : true,
+                    minute : 'numeric',
+                },
+                '24-hour' : {
+                    dayPeriod : 'short',
+                    hour      : '2-digit',
+                    hour12    : false,
+                    minute    : '2-digit',
+                },
             }
         };
 
-        if (type === 'datetime') {
-            return `${DateTime.format(value, 'date')} - ${DateTime.format(value, 'time')}`;
-        }
-
-        value = System.Is.string(value)
-            ? new Date(type === 'date' ? value.split('.')[0] : value)
-            : value;
+        value = System.Is.string(value) ? new Date(value) : value;
 
         if (System.Util.blank(value) || value.toString() === 'Invalid Date') {
             return 'Unknown';
         }
 
-        return type === 'date'
-            ? new Intl.DateTimeFormat('en-US', options[type]).format(value)
-            : new Intl.DateTimeFormat('en-UK', options[type]).format(value)
-            + ` (${value.toLocaleString('en-US', options.meridiem).split(/\s+/)[1].toLowerCase()})`;
+        if (type === 'date') {
+            return new Intl.DateTimeFormat('en-US', options.date).format(value);
+        } else if (type === 'time') {
+            return new Intl.DateTimeFormat('en-US', options.time[style]).format(value).toLowerCase();
+        } else {
+            return `${DateTime.format(value, 'date')} - ${DateTime.format(value, 'time')}`;
+        }
+    }
+
+    /**
+     * Retrieve the current date and time (observing the local time zone if required).
+     *
+     */
+    static ordinal(value)
+    {
+        value = System.Is.date(value) ? value.getDay : value;
+
+        return value > 0 ? ['th', 'st', 'nd', 'rd'][(value > 3 && value < 21) || value % 10 > 3 ? 0 : value % 10] : '';
     }
 
     /**

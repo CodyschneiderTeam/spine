@@ -40,12 +40,13 @@
             </v-label>
 
 			<!-- Caret -->
-			<i :class="System.Util.blank(modelValue) || (! System.Util.blank(modelValue) && ! hover) ? 'opacity-100' : 'opacity-0'"
-               class="ui-caret fas fa-caret-down text-gray-400 cursor-pointer pointer-events-none absolute top-18px right-19px">
+			<i class="ui-caret fas fa-caret-down text-gray-400 cursor-pointer pointer-events-none absolute top-18px right-19px"
+               :class="! clear ? 'opacity-100' : (System.Util.blank(modelValue) || (! System.Util.blank(modelValue) && ! hover) ? 'opacity-100' : 'opacity-0')">
             </i>
 
             <!-- Clear -->
-            <v-clear :focus="focus"
+            <v-clear v-if="clear"
+                     :focus="focus"
                      :hover="hover"
                      @click="change('')"
                      :filled="! System.Util.blank(modelValue)">
@@ -96,6 +97,7 @@
 		 *
 		 */
 		props : {
+			'clear'        : { type : Boolean,         default : true },
 			'items'        : { type : [Array, Object], default : [] },
 			'itemTextKey'  : { type : String,          default : '' },
 			'itemValueKey' : { type : String,          default : '' },

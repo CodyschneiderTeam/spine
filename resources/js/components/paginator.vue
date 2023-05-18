@@ -81,6 +81,21 @@
 
             </div>
 
+            <!-- Filter -->
+            <div v-if="filter"
+                 @click="filter()"
+                 :title="filterTitle"
+                 :class="filter ? '' : 'rounded-l'"
+                 dusk="ui_paginator_button_filter"
+                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
+
+                <!-- Link -->
+                <i class="fas fa-filter text-14px"
+                   :class="System.Browser.queryString(filterKey, '0') === '0' ? 'text-gray-800/50' : 'text-sky-600/70'">
+                </i>
+
+            </div>
+
             <!-- Download -->
             <div v-if="download"
                  title="Download"
@@ -149,10 +164,13 @@
          *
          */
         props : {
-            'download' : { type : Function, default : null },
-            'reset'    : { type : Boolean,  default : false },
-            'search'   : { type : Function, default : null },
-            'source'   : { type : Object,   default : {} },
+            'download'    : { type : Function, default : null },
+            'filter'      : { type : Function, default : null },
+            'filterKey'   : { type : String,   default : 'filter' },
+            'filterTitle' : { type : String,   default : '' },
+            'reset'       : { type : Boolean,  default : false },
+            'search'      : { type : Function, default : null },
+            'source'      : { type : Object,   default : {} },
         },
 
         /**

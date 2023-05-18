@@ -3,6 +3,7 @@
 namespace Caneara\Spine\Enums;
 
 use Caneara\Spine\Types\Enum;
+use Illuminate\Support\Collection;
 
 enum TimeZone : int
 {
@@ -434,6 +435,16 @@ enum TimeZone : int
     case UTC                            = 420;
 
     /**
+     * Retrieve the PHP code for the instance.
+     *
+     */
+    public function code() : string
+    {
+        return Collection::make(static::toArray())
+            ->firstWhere('id', $this)['code'];
+    }
+
+    /**
      * Retrieve the available a cases an array.
      *
      */
@@ -441,1684 +452,1684 @@ enum TimeZone : int
     {
         return [[
             'id'    => static::AFRICA_ABIDJAN,
-            'code'  => 'Africa_Abidjan',
+            'code'  => 'Africa/Abidjan',
             'label' => 'Abidjan (Africa)',
         ], [
             'id'    => static::AFRICA_ACCRA,
-            'code'  => 'Africa_Accra',
+            'code'  => 'Africa/Accra',
             'label' => 'Accra (Africa)',
         ], [
-            'id'    => static::AMERICA_ADAK,
-            'code'  => 'America_Adak',
-            'label' => 'Adak (Americas)',
-        ], [
             'id'    => static::AFRICA_ADDIS_ABABA,
-            'code'  => 'Africa_Addis_Ababa',
+            'code'  => 'Africa/Addis_Ababa',
             'label' => 'Addis Ababa (Africa)',
         ], [
-            'id'    => static::AUSTRALIA_ADELAIDE,
-            'code'  => 'Australia_Adelaide',
-            'label' => 'Adelaide (Australia)',
-        ], [
-            'id'    => static::ASIA_ADEN,
-            'code'  => 'Asia_Aden',
-            'label' => 'Aden (Asia)',
-        ], [
             'id'    => static::AFRICA_ALGIERS,
-            'code'  => 'Africa_Algiers',
+            'code'  => 'Africa/Algiers',
             'label' => 'Algiers (Africa)',
         ], [
-            'id'    => static::ASIA_ALMATY,
-            'code'  => 'Asia_Almaty',
-            'label' => 'Almaty (Asia)',
-        ], [
-            'id'    => static::ASIA_AMMAN,
-            'code'  => 'Asia_Amman',
-            'label' => 'Amman (Asia)',
-        ], [
-            'id'    => static::EUROPE_AMSTERDAM,
-            'code'  => 'Europe_Amsterdam',
-            'label' => 'Amsterdam (Europe)',
-        ], [
-            'id'    => static::ASIA_ANADYR,
-            'code'  => 'Asia_Anadyr',
-            'label' => 'Anadyr (Asia)',
-        ], [
-            'id'    => static::AMERICA_ANCHORAGE,
-            'code'  => 'America_Anchorage',
-            'label' => 'Anchorage (Americas)',
-        ], [
-            'id'    => static::EUROPE_ANDORRA,
-            'code'  => 'Europe_Andorra',
-            'label' => 'Andorra (Europe)',
-        ], [
-            'id'    => static::AMERICA_ANGUILLA,
-            'code'  => 'America_Anguilla',
-            'label' => 'Anguilla (Americas)',
-        ], [
-            'id'    => static::INDIAN_ANTANANARIVO,
-            'code'  => 'Indian_Antananarivo',
-            'label' => 'Antananarivo (Indian)',
-        ], [
-            'id'    => static::AMERICA_ANTIGUA,
-            'code'  => 'America_Antigua',
-            'label' => 'Antigua (Americas)',
-        ], [
-            'id'    => static::PACIFIC_APIA,
-            'code'  => 'Pacific_Apia',
-            'label' => 'Apia (Pacific)',
-        ], [
-            'id'    => static::ASIA_AQTAU,
-            'code'  => 'Asia_Aqtau',
-            'label' => 'Aqtau (Asia)',
-        ], [
-            'id'    => static::ASIA_AQTOBE,
-            'code'  => 'Asia_Aqtobe',
-            'label' => 'Aqtobe (Asia)',
-        ], [
-            'id'    => static::AMERICA_ARAGUAINA,
-            'code'  => 'America_Araguaina',
-            'label' => 'Araguaina (Americas)',
-        ], [
-            'id'    => static::AMERICA_ARUBA,
-            'code'  => 'America_Aruba',
-            'label' => 'Aruba (Americas)',
-        ], [
-            'id'    => static::ASIA_ASHGABAT,
-            'code'  => 'Asia_Ashgabat',
-            'label' => 'Ashgabat (Asia)',
-        ], [
             'id'    => static::AFRICA_ASMARA,
-            'code'  => 'Africa_Asmara',
+            'code'  => 'Africa/Asmara',
             'label' => 'Asmara (Africa)',
         ], [
-            'id'    => static::EUROPE_ASTRAKHAN,
-            'code'  => 'Europe_Astrakhan',
-            'label' => 'Astrakhan (Europe)',
-        ], [
-            'id'    => static::AMERICA_ASUNCION,
-            'code'  => 'America_Asuncion',
-            'label' => 'Asuncion (Americas)',
-        ], [
-            'id'    => static::EUROPE_ATHENS,
-            'code'  => 'Europe_Athens',
-            'label' => 'Athens (Europe)',
-        ], [
-            'id'    => static::AMERICA_ATIKOKAN,
-            'code'  => 'America_Atikokan',
-            'label' => 'Atikokan (Americas)',
-        ], [
-            'id'    => static::ASIA_ATYRAU,
-            'code'  => 'Asia_Atyrau',
-            'label' => 'Atyrau (Asia)',
-        ], [
-            'id'    => static::PACIFIC_AUCKLAND,
-            'code'  => 'Pacific_Auckland',
-            'label' => 'Auckland (Pacific)',
-        ], [
-            'id'    => static::ATLANTIC_AZORES,
-            'code'  => 'Atlantic_Azores',
-            'label' => 'Azores (Atlantic)',
-        ], [
-            'id'    => static::ASIA_BAGHDAD,
-            'code'  => 'Asia_Baghdad',
-            'label' => 'Baghdad (Asia)',
-        ], [
-            'id'    => static::AMERICA_BAHIA,
-            'code'  => 'America_Bahia',
-            'label' => 'Bahia (Americas)',
-        ], [
-            'id'    => static::ASIA_BAHRAIN,
-            'code'  => 'Asia_Bahrain',
-            'label' => 'Bahrain (Asia)',
-        ], [
-            'id'    => static::ASIA_BAKU,
-            'code'  => 'Asia_Baku',
-            'label' => 'Baku (Asia)',
-        ], [
             'id'    => static::AFRICA_BAMAKO,
-            'code'  => 'Africa_Bamako',
+            'code'  => 'Africa/Bamako',
             'label' => 'Bamako (Africa)',
         ], [
-            'id'    => static::AMERICA_BAHIA_BANDERAS,
-            'code'  => 'America_Bahia_Banderas',
-            'label' => 'Banderas, Bahia (Americas)',
-        ], [
-            'id'    => static::ASIA_BANGKOK,
-            'code'  => 'Asia_Bangkok',
-            'label' => 'Bangkok (Asia)',
-        ], [
             'id'    => static::AFRICA_BANGUI,
-            'code'  => 'Africa_Bangui',
+            'code'  => 'Africa/Bangui',
             'label' => 'Bangui (Africa)',
         ], [
             'id'    => static::AFRICA_BANJUL,
-            'code'  => 'Africa_Banjul',
+            'code'  => 'Africa/Banjul',
             'label' => 'Banjul (Africa)',
         ], [
-            'id'    => static::AMERICA_BARBADOS,
-            'code'  => 'America_Barbados',
-            'label' => 'Barbados (Americas)',
-        ], [
-            'id'    => static::ASIA_BARNAUL,
-            'code'  => 'Asia_Barnaul',
-            'label' => 'Barnaul (Asia)',
-        ], [
-            'id'    => static::ASIA_BEIRUT,
-            'code'  => 'Asia_Beirut',
-            'label' => 'Beirut (Asia)',
-        ], [
-            'id'    => static::AMERICA_BELEM,
-            'code'  => 'America_Belem',
-            'label' => 'Belem (Americas)',
-        ], [
-            'id'    => static::EUROPE_BELGRADE,
-            'code'  => 'Europe_Belgrade',
-            'label' => 'Belgrade (Europe)',
-        ], [
-            'id'    => static::AMERICA_BELIZE,
-            'code'  => 'America_Belize',
-            'label' => 'Belize (Americas)',
-        ], [
-            'id'    => static::EUROPE_BERLIN,
-            'code'  => 'Europe_Berlin',
-            'label' => 'Berlin (Europe)',
-        ], [
-            'id'    => static::ATLANTIC_BERMUDA,
-            'code'  => 'Atlantic_Bermuda',
-            'label' => 'Bermuda (Atlantic)',
-        ], [
-            'id'    => static::AMERICA_NORTH_DAKOTA_BEULAH,
-            'code'  => 'America_North_Dakota_Beulah',
-            'label' => 'Beulah, North Dakota (Americas)',
-        ], [
-            'id'    => static::ASIA_BISHKEK,
-            'code'  => 'Asia_Bishkek',
-            'label' => 'Bishkek (Asia)',
-        ], [
             'id'    => static::AFRICA_BISSAU,
-            'code'  => 'Africa_Bissau',
+            'code'  => 'Africa/Bissau',
             'label' => 'Bissau (Africa)',
         ], [
-            'id'    => static::AMERICA_BLANC_SABLON,
-            'code'  => 'America_Blanc',
-            'label' => 'Blanc (Americas)',
-        ], [
             'id'    => static::AFRICA_BLANTYRE,
-            'code'  => 'Africa_Blantyre',
+            'code'  => 'Africa/Blantyre',
             'label' => 'Blantyre (Africa)',
         ], [
-            'id'    => static::AMERICA_BOA_VISTA,
-            'code'  => 'America_Boa_Vista',
-            'label' => 'Boa Vista (Americas)',
-        ], [
-            'id'    => static::AMERICA_BOGOTA,
-            'code'  => 'America_Bogota',
-            'label' => 'Bogota (Americas)',
-        ], [
-            'id'    => static::AMERICA_BOISE,
-            'code'  => 'America_Boise',
-            'label' => 'Boise (Americas)',
-        ], [
-            'id'    => static::PACIFIC_BOUGAINVILLE,
-            'code'  => 'Pacific_Bougainville',
-            'label' => 'Bougainville (Pacific)',
-        ], [
-            'id'    => static::EUROPE_BRATISLAVA,
-            'code'  => 'Europe_Bratislava',
-            'label' => 'Bratislava (Europe)',
-        ], [
             'id'    => static::AFRICA_BRAZZAVILLE,
-            'code'  => 'Africa_Brazzaville',
+            'code'  => 'Africa/Brazzaville',
             'label' => 'Brazzaville (Africa)',
         ], [
-            'id'    => static::AUSTRALIA_BRISBANE,
-            'code'  => 'Australia_Brisbane',
-            'label' => 'Brisbane (Australia)',
-        ], [
-            'id'    => static::AUSTRALIA_BROKEN_HILL,
-            'code'  => 'Australia_Broken_Hill',
-            'label' => 'Broken Hill (Australia)',
-        ], [
-            'id'    => static::ASIA_BRUNEI,
-            'code'  => 'Asia_Brunei',
-            'label' => 'Brunei (Asia)',
-        ], [
-            'id'    => static::EUROPE_BRUSSELS,
-            'code'  => 'Europe_Brussels',
-            'label' => 'Brussels (Europe)',
-        ], [
-            'id'    => static::EUROPE_BUCHAREST,
-            'code'  => 'Europe_Bucharest',
-            'label' => 'Bucharest (Europe)',
-        ], [
-            'id'    => static::EUROPE_BUDAPEST,
-            'code'  => 'Europe_Budapest',
-            'label' => 'Budapest (Europe)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_BUENOS_AIRES,
-            'code'  => 'America_Argentina_Buenos_Aires',
-            'label' => 'Buenos Aires, Argentina (Americas)',
-        ], [
             'id'    => static::AFRICA_BUJUMBURA,
-            'code'  => 'Africa_Bujumbura',
+            'code'  => 'Africa/Bujumbura',
             'label' => 'Bujumbura (Africa)',
         ], [
-            'id'    => static::EUROPE_BUSINGEN,
-            'code'  => 'Europe_Busingen',
-            'label' => 'Busingen (Europe)',
-        ], [
             'id'    => static::AFRICA_CAIRO,
-            'code'  => 'Africa_Cairo',
+            'code'  => 'Africa/Cairo',
             'label' => 'Cairo (Africa)',
         ], [
-            'id'    => static::AMERICA_CAMBRIDGE_BAY,
-            'code'  => 'America_Cambridge_Bay',
-            'label' => 'Cambridge Bay (Americas)',
-        ], [
-            'id'    => static::AMERICA_CAMPO_GRANDE,
-            'code'  => 'America_Campo_Grande',
-            'label' => 'Campo Grande (Americas)',
-        ], [
-            'id'    => static::ATLANTIC_CANARY,
-            'code'  => 'Atlantic_Canary',
-            'label' => 'Canary (Atlantic)',
-        ], [
-            'id'    => static::AMERICA_CANCUN,
-            'code'  => 'America_Cancun',
-            'label' => 'Cancun (Americas)',
-        ], [
-            'id'    => static::ATLANTIC_CAPE_VERDE,
-            'code'  => 'Atlantic_Cape_Verde',
-            'label' => 'Cape Verde (Atlantic)',
-        ], [
-            'id'    => static::AMERICA_CARACAS,
-            'code'  => 'America_Caracas',
-            'label' => 'Caracas (Americas)',
-        ], [
             'id'    => static::AFRICA_CASABLANCA,
-            'code'  => 'Africa_Casablanca',
+            'code'  => 'Africa/Casablanca',
             'label' => 'Casablanca (Africa)',
         ], [
-            'id'    => static::ANTARCTICA_CASEY,
-            'code'  => 'Antarctica_Casey',
-            'label' => 'Casey (Antarctica)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_CATAMARCA,
-            'code'  => 'America_Argentina_Catamarca',
-            'label' => 'Catamarca, Argentina (Americas)',
-        ], [
-            'id'    => static::AMERICA_CAYENNE,
-            'code'  => 'America_Cayenne',
-            'label' => 'Cayenne (Americas)',
-        ], [
-            'id'    => static::AMERICA_CAYMAN,
-            'code'  => 'America_Cayman',
-            'label' => 'Cayman (Americas)',
-        ], [
-            'id'    => static::AMERICA_NORTH_DAKOTA_CENTER,
-            'code'  => 'America_North_Dakota_Center',
-            'label' => 'Center, North Dakota (Americas)',
-        ], [
             'id'    => static::AFRICA_CEUTA,
-            'code'  => 'Africa_Ceuta',
+            'code'  => 'Africa/Ceuta',
             'label' => 'Ceuta (Africa)',
         ], [
-            'id'    => static::INDIAN_CHAGOS,
-            'code'  => 'Indian_Chagos',
-            'label' => 'Chagos (Indian)',
-        ], [
-            'id'    => static::PACIFIC_CHATHAM,
-            'code'  => 'Pacific_Chatham',
-            'label' => 'Chatham (Pacific)',
-        ], [
-            'id'    => static::AMERICA_CHICAGO,
-            'code'  => 'America_Chicago',
-            'label' => 'Chicago (Americas)',
-        ], [
-            'id'    => static::AMERICA_CHIHUAHUA,
-            'code'  => 'America_Chihuahua',
-            'label' => 'Chihuahua (Americas)',
-        ], [
-            'id'    => static::EUROPE_CHISINAU,
-            'code'  => 'Europe_Chisinau',
-            'label' => 'Chisinau (Europe)',
-        ], [
-            'id'    => static::ASIA_CHITA,
-            'code'  => 'Asia_Chita',
-            'label' => 'Chita (Asia)',
-        ], [
-            'id'    => static::ASIA_CHOIBALSAN,
-            'code'  => 'Asia_Choibalsan',
-            'label' => 'Choibalsan (Asia)',
-        ], [
-            'id'    => static::INDIAN_CHRISTMAS,
-            'code'  => 'Indian_Christmas',
-            'label' => 'Christmas (Indian)',
-        ], [
-            'id'    => static::PACIFIC_CHUUK,
-            'code'  => 'Pacific_Chuuk',
-            'label' => 'Chuuk (Pacific)',
-        ], [
-            'id'    => static::AMERICA_CIUDAD_JUAREZ,
-            'code'  => 'America_Ciudad_Juarez',
-            'label' => 'Ciudad Juarez (Americas)',
-        ], [
-            'id'    => static::INDIAN_COCOS,
-            'code'  => 'Indian_Cocos',
-            'label' => 'Cocos (Indian)',
-        ], [
-            'id'    => static::ASIA_COLOMBO,
-            'code'  => 'Asia_Colombo',
-            'label' => 'Colombo (Asia)',
-        ], [
-            'id'    => static::INDIAN_COMORO,
-            'code'  => 'Indian_Comoro',
-            'label' => 'Comoro (Indian)',
-        ], [
             'id'    => static::AFRICA_CONAKRY,
-            'code'  => 'Africa_Conakry',
+            'code'  => 'Africa/Conakry',
             'label' => 'Conakry (Africa)',
         ], [
-            'id'    => static::EUROPE_COPENHAGEN,
-            'code'  => 'Europe_Copenhagen',
-            'label' => 'Copenhagen (Europe)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_CORDOBA,
-            'code'  => 'America_Argentina_Cordoba',
-            'label' => 'Cordoba, Argentina (Americas)',
-        ], [
-            'id'    => static::AMERICA_COSTA_RICA,
-            'code'  => 'America_Costa_Rica',
-            'label' => 'Costa Rica (Americas)',
-        ], [
-            'id'    => static::AMERICA_CRESTON,
-            'code'  => 'America_Creston',
-            'label' => 'Creston (Americas)',
-        ], [
-            'id'    => static::AMERICA_CUIABA,
-            'code'  => 'America_Cuiaba',
-            'label' => 'Cuiaba (Americas)',
-        ], [
-            'id'    => static::AMERICA_CURACAO,
-            'code'  => 'America_Curacao',
-            'label' => 'Curacao (Americas)',
-        ], [
             'id'    => static::AFRICA_DAKAR,
-            'code'  => 'Africa_Dakar',
+            'code'  => 'Africa/Dakar',
             'label' => 'Dakar (Africa)',
         ], [
-            'id'    => static::ASIA_DAMASCUS,
-            'code'  => 'Asia_Damascus',
-            'label' => 'Damascus (Asia)',
-        ], [
-            'id'    => static::AMERICA_DANMARKSHAVN,
-            'code'  => 'America_Danmarkshavn',
-            'label' => 'Danmarkshavn (Americas)',
-        ], [
             'id'    => static::AFRICA_DAR_ES_SALAAM,
-            'code'  => 'Africa_Dar_es_Salaam',
+            'code'  => 'Africa/Dar_es_Salaam',
             'label' => 'Dar-es-Salaam (Africa)',
         ], [
-            'id'    => static::AUSTRALIA_DARWIN,
-            'code'  => 'Australia_Darwin',
-            'label' => 'Darwin (Australia)',
-        ], [
-            'id'    => static::ANTARCTICA_DAVIS,
-            'code'  => 'Antarctica_Davis',
-            'label' => 'Davis (Antarctica)',
-        ], [
-            'id'    => static::AMERICA_DAWSON,
-            'code'  => 'America_Dawson',
-            'label' => 'Dawson (Americas)',
-        ], [
-            'id'    => static::AMERICA_DAWSON_CREEK,
-            'code'  => 'America_Dawson_Creek',
-            'label' => 'Dawson Creek (Americas)',
-        ], [
-            'id'    => static::AMERICA_DENVER,
-            'code'  => 'America_Denver',
-            'label' => 'Denver (Americas)',
-        ], [
-            'id'    => static::AMERICA_DETROIT,
-            'code'  => 'America_Detroit',
-            'label' => 'Detroit (Americas)',
-        ], [
-            'id'    => static::ASIA_DHAKA,
-            'code'  => 'Asia_Dhaka',
-            'label' => 'Dhaka (Asia)',
-        ], [
-            'id'    => static::ASIA_DILI,
-            'code'  => 'Asia_Dili',
-            'label' => 'Dili (Asia)',
-        ], [
             'id'    => static::AFRICA_DJIBOUTI,
-            'code'  => 'Africa_Djibouti',
+            'code'  => 'Africa/Djibouti',
             'label' => 'Djibouti (Africa)',
         ], [
-            'id'    => static::AMERICA_DOMINICA,
-            'code'  => 'America_Dominica',
-            'label' => 'Dominica (Americas)',
-        ], [
             'id'    => static::AFRICA_DOUALA,
-            'code'  => 'Africa_Douala',
+            'code'  => 'Africa/Douala',
             'label' => 'Douala (Africa)',
         ], [
-            'id'    => static::ASIA_DUBAI,
-            'code'  => 'Asia_Dubai',
-            'label' => 'Dubai (Asia)',
-        ], [
-            'id'    => static::EUROPE_DUBLIN,
-            'code'  => 'Europe_Dublin',
-            'label' => 'Dublin (Europe)',
-        ], [
-            'id'    => static::ANTARCTICA_DUMONTDURVILLE,
-            'code'  => 'Antarctica_DumontDUrville',
-            'label' => 'DumontDUrville (Antarctica)',
-        ], [
-            'id'    => static::ASIA_DUSHANBE,
-            'code'  => 'Asia_Dushanbe',
-            'label' => 'Dushanbe (Asia)',
-        ], [
-            'id'    => static::PACIFIC_EASTER,
-            'code'  => 'Pacific_Easter',
-            'label' => 'Easter (Pacific)',
-        ], [
-            'id'    => static::AMERICA_EDMONTON,
-            'code'  => 'America_Edmonton',
-            'label' => 'Edmonton (Americas)',
-        ], [
-            'id'    => static::PACIFIC_EFATE,
-            'code'  => 'Pacific_Efate',
-            'label' => 'Efate (Pacific)',
-        ], [
-            'id'    => static::AMERICA_EIRUNEPE,
-            'code'  => 'America_Eirunepe',
-            'label' => 'Eirunepe (Americas)',
-        ], [
             'id'    => static::AFRICA_EL_AAIUN,
-            'code'  => 'Africa_El_Aaiun',
+            'code'  => 'Africa/El_Aaiun',
             'label' => 'El Aaiun (Africa)',
         ], [
-            'id'    => static::AMERICA_EL_SALVADOR,
-            'code'  => 'America_El_Salvador',
-            'label' => 'El Salvador (Americas)',
-        ], [
-            'id'    => static::AUSTRALIA_EUCLA,
-            'code'  => 'Australia_Eucla',
-            'label' => 'Eucla (Australia)',
-        ], [
-            'id'    => static::PACIFIC_FAKAOFO,
-            'code'  => 'Pacific_Fakaofo',
-            'label' => 'Fakaofo (Pacific)',
-        ], [
-            'id'    => static::ASIA_FAMAGUSTA,
-            'code'  => 'Asia_Famagusta',
-            'label' => 'Famagusta (Asia)',
-        ], [
-            'id'    => static::ATLANTIC_FAROE,
-            'code'  => 'Atlantic_Faroe',
-            'label' => 'Faroe (Atlantic)',
-        ], [
-            'id'    => static::PACIFIC_FIJI,
-            'code'  => 'Pacific_Fiji',
-            'label' => 'Fiji (Pacific)',
-        ], [
-            'id'    => static::AMERICA_FORT_NELSON,
-            'code'  => 'America_Fort_Nelson',
-            'label' => 'Fort Nelson (Americas)',
-        ], [
-            'id'    => static::AMERICA_FORTALEZA,
-            'code'  => 'America_Fortaleza',
-            'label' => 'Fortaleza (Americas)',
-        ], [
             'id'    => static::AFRICA_FREETOWN,
-            'code'  => 'Africa_Freetown',
+            'code'  => 'Africa/Freetown',
             'label' => 'Freetown (Africa)',
         ], [
-            'id'    => static::PACIFIC_FUNAFUTI,
-            'code'  => 'Pacific_Funafuti',
-            'label' => 'Funafuti (Pacific)',
-        ], [
             'id'    => static::AFRICA_GABORONE,
-            'code'  => 'Africa_Gaborone',
+            'code'  => 'Africa/Gaborone',
             'label' => 'Gaborone (Africa)',
         ], [
-            'id'    => static::PACIFIC_GALAPAGOS,
-            'code'  => 'Pacific_Galapagos',
-            'label' => 'Galapagos (Pacific)',
-        ], [
-            'id'    => static::PACIFIC_GAMBIER,
-            'code'  => 'Pacific_Gambier',
-            'label' => 'Gambier (Pacific)',
-        ], [
-            'id'    => static::ASIA_GAZA,
-            'code'  => 'Asia_Gaza',
-            'label' => 'Gaza (Asia)',
-        ], [
-            'id'    => static::EUROPE_GIBRALTAR,
-            'code'  => 'Europe_Gibraltar',
-            'label' => 'Gibraltar (Europe)',
-        ], [
-            'id'    => static::AMERICA_GLACE_BAY,
-            'code'  => 'America_Glace_Bay',
-            'label' => 'Glace Bay (Americas)',
-        ], [
-            'id'    => static::AMERICA_GOOSE_BAY,
-            'code'  => 'America_Goose_Bay',
-            'label' => 'Goose Bay (Americas)',
-        ], [
-            'id'    => static::AMERICA_GRAND_TURK,
-            'code'  => 'America_Grand_Turk',
-            'label' => 'Grand Turk (Americas)',
-        ], [
-            'id'    => static::AMERICA_GRENADA,
-            'code'  => 'America_Grenada',
-            'label' => 'Grenada (Americas)',
-        ], [
-            'id'    => static::PACIFIC_GUADALCANAL,
-            'code'  => 'Pacific_Guadalcanal',
-            'label' => 'Guadalcanal (Pacific)',
-        ], [
-            'id'    => static::AMERICA_GUADELOUPE,
-            'code'  => 'America_Guadeloupe',
-            'label' => 'Guadeloupe (Americas)',
-        ], [
-            'id'    => static::PACIFIC_GUAM,
-            'code'  => 'Pacific_Guam',
-            'label' => 'Guam (Pacific)',
-        ], [
-            'id'    => static::AMERICA_GUATEMALA,
-            'code'  => 'America_Guatemala',
-            'label' => 'Guatemala (Americas)',
-        ], [
-            'id'    => static::AMERICA_GUAYAQUIL,
-            'code'  => 'America_Guayaquil',
-            'label' => 'Guayaquil (Americas)',
-        ], [
-            'id'    => static::EUROPE_GUERNSEY,
-            'code'  => 'Europe_Guernsey',
-            'label' => 'Guernsey (Europe)',
-        ], [
-            'id'    => static::AMERICA_GUYANA,
-            'code'  => 'America_Guyana',
-            'label' => 'Guyana (Americas)',
-        ], [
-            'id'    => static::AMERICA_HALIFAX,
-            'code'  => 'America_Halifax',
-            'label' => 'Halifax (Americas)',
-        ], [
             'id'    => static::AFRICA_HARARE,
-            'code'  => 'Africa_Harare',
+            'code'  => 'Africa/Harare',
             'label' => 'Harare (Africa)',
         ], [
-            'id'    => static::AMERICA_HAVANA,
-            'code'  => 'America_Havana',
-            'label' => 'Havana (Americas)',
-        ], [
-            'id'    => static::ASIA_HEBRON,
-            'code'  => 'Asia_Hebron',
-            'label' => 'Hebron (Asia)',
-        ], [
-            'id'    => static::EUROPE_HELSINKI,
-            'code'  => 'Europe_Helsinki',
-            'label' => 'Helsinki (Europe)',
-        ], [
-            'id'    => static::AMERICA_HERMOSILLO,
-            'code'  => 'America_Hermosillo',
-            'label' => 'Hermosillo (Americas)',
-        ], [
-            'id'    => static::ASIA_HO_CHI_MINH,
-            'code'  => 'Asia_Ho_Chi_Minh',
-            'label' => 'Ho Chi Minh (Asia)',
-        ], [
-            'id'    => static::AUSTRALIA_HOBART,
-            'code'  => 'Australia_Hobart',
-            'label' => 'Hobart (Australia)',
-        ], [
-            'id'    => static::ASIA_HONG_KONG,
-            'code'  => 'Asia_Hong_Kong',
-            'label' => 'Hong Kong (Asia)',
-        ], [
-            'id'    => static::PACIFIC_HONOLULU,
-            'code'  => 'Pacific_Honolulu',
-            'label' => 'Honolulu (Pacific)',
-        ], [
-            'id'    => static::ASIA_HOVD,
-            'code'  => 'Asia_Hovd',
-            'label' => 'Hovd (Asia)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_INDIANAPOLIS,
-            'code'  => 'America_Indiana_Indianapolis',
-            'label' => 'Indianapolis, Indiana (Americas)',
-        ], [
-            'id'    => static::AMERICA_INUVIK,
-            'code'  => 'America_Inuvik',
-            'label' => 'Inuvik (Americas)',
-        ], [
-            'id'    => static::AMERICA_IQALUIT,
-            'code'  => 'America_Iqaluit',
-            'label' => 'Iqaluit (Americas)',
-        ], [
-            'id'    => static::ASIA_IRKUTSK,
-            'code'  => 'Asia_Irkutsk',
-            'label' => 'Irkutsk (Asia)',
-        ], [
-            'id'    => static::EUROPE_ISLE_OF_MAN,
-            'code'  => 'Europe_Isle_of_Man',
-            'label' => 'Isle of Man (Europe)',
-        ], [
-            'id'    => static::EUROPE_ISTANBUL,
-            'code'  => 'Europe_Istanbul',
-            'label' => 'Istanbul (Europe)',
-        ], [
-            'id'    => static::ASIA_JAKARTA,
-            'code'  => 'Asia_Jakarta',
-            'label' => 'Jakarta (Asia)',
-        ], [
-            'id'    => static::AMERICA_JAMAICA,
-            'code'  => 'America_Jamaica',
-            'label' => 'Jamaica (Americas)',
-        ], [
-            'id'    => static::ASIA_JAYAPURA,
-            'code'  => 'Asia_Jayapura',
-            'label' => 'Jayapura (Asia)',
-        ], [
-            'id'    => static::EUROPE_JERSEY,
-            'code'  => 'Europe_Jersey',
-            'label' => 'Jersey (Europe)',
-        ], [
-            'id'    => static::ASIA_JERUSALEM,
-            'code'  => 'Asia_Jerusalem',
-            'label' => 'Jerusalem (Asia)',
-        ], [
             'id'    => static::AFRICA_JOHANNESBURG,
-            'code'  => 'Africa_Johannesburg',
+            'code'  => 'Africa/Johannesburg',
             'label' => 'Johannesburg (Africa)',
         ], [
             'id'    => static::AFRICA_JUBA,
-            'code'  => 'Africa_Juba',
+            'code'  => 'Africa/Juba',
             'label' => 'Juba (Africa)',
         ], [
-            'id'    => static::AMERICA_ARGENTINA_JUJUY,
-            'code'  => 'America_Argentina_Jujuy',
-            'label' => 'Jujuy, Argentina (Americas)',
-        ], [
-            'id'    => static::AMERICA_JUNEAU,
-            'code'  => 'America_Juneau',
-            'label' => 'Juneau (Americas)',
-        ], [
-            'id'    => static::ASIA_KABUL,
-            'code'  => 'Asia_Kabul',
-            'label' => 'Kabul (Asia)',
-        ], [
-            'id'    => static::EUROPE_KALININGRAD,
-            'code'  => 'Europe_Kaliningrad',
-            'label' => 'Kaliningrad (Europe)',
-        ], [
-            'id'    => static::ASIA_KAMCHATKA,
-            'code'  => 'Asia_Kamchatka',
-            'label' => 'Kamchatka (Asia)',
-        ], [
             'id'    => static::AFRICA_KAMPALA,
-            'code'  => 'Africa_Kampala',
+            'code'  => 'Africa/Kampala',
             'label' => 'Kampala (Africa)',
         ], [
-            'id'    => static::PACIFIC_KANTON,
-            'code'  => 'Pacific_Kanton',
-            'label' => 'Kanton (Pacific)',
-        ], [
-            'id'    => static::ASIA_KARACHI,
-            'code'  => 'Asia_Karachi',
-            'label' => 'Karachi (Asia)',
-        ], [
-            'id'    => static::ASIA_KATHMANDU,
-            'code'  => 'Asia_Kathmandu',
-            'label' => 'Kathmandu (Asia)',
-        ], [
-            'id'    => static::INDIAN_KERGUELEN,
-            'code'  => 'Indian_Kerguelen',
-            'label' => 'Kerguelen (Indian)',
-        ], [
-            'id'    => static::ASIA_KHANDYGA,
-            'code'  => 'Asia_Khandyga',
-            'label' => 'Khandyga (Asia)',
-        ], [
             'id'    => static::AFRICA_KHARTOUM,
-            'code'  => 'Africa_Khartoum',
+            'code'  => 'Africa/Khartoum',
             'label' => 'Khartoum (Africa)',
         ], [
             'id'    => static::AFRICA_KIGALI,
-            'code'  => 'Africa_Kigali',
+            'code'  => 'Africa/Kigali',
             'label' => 'Kigali (Africa)',
         ], [
             'id'    => static::AFRICA_KINSHASA,
-            'code'  => 'Africa_Kinshasa',
+            'code'  => 'Africa/Kinshasa',
             'label' => 'Kinshasa (Africa)',
         ], [
-            'id'    => static::PACIFIC_KIRITIMATI,
-            'code'  => 'Pacific_Kiritimati',
-            'label' => 'Kiritimati (Pacific)',
-        ], [
-            'id'    => static::EUROPE_KIROV,
-            'code'  => 'Europe_Kirov',
-            'label' => 'Kirov (Europe)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_KNOX,
-            'code'  => 'America_Indiana_Knox',
-            'label' => 'Knox, Indiana (Americas)',
-        ], [
-            'id'    => static::ASIA_KOLKATA,
-            'code'  => 'Asia_Kolkata',
-            'label' => 'Kolkata (Asia)',
-        ], [
-            'id'    => static::PACIFIC_KOSRAE,
-            'code'  => 'Pacific_Kosrae',
-            'label' => 'Kosrae (Pacific)',
-        ], [
-            'id'    => static::AMERICA_KRALENDIJK,
-            'code'  => 'America_Kralendijk',
-            'label' => 'Kralendijk (Americas)',
-        ], [
-            'id'    => static::ASIA_KRASNOYARSK,
-            'code'  => 'Asia_Krasnoyarsk',
-            'label' => 'Krasnoyarsk (Asia)',
-        ], [
-            'id'    => static::ASIA_KUALA_LUMPUR,
-            'code'  => 'Asia_Kuala_Lumpur',
-            'label' => 'Kuala Lumpur (Asia)',
-        ], [
-            'id'    => static::ASIA_KUCHING,
-            'code'  => 'Asia_Kuching',
-            'label' => 'Kuching (Asia)',
-        ], [
-            'id'    => static::ASIA_KUWAIT,
-            'code'  => 'Asia_Kuwait',
-            'label' => 'Kuwait (Asia)',
-        ], [
-            'id'    => static::PACIFIC_KWAJALEIN,
-            'code'  => 'Pacific_Kwajalein',
-            'label' => 'Kwajalein (Pacific)',
-        ], [
-            'id'    => static::EUROPE_KYIV,
-            'code'  => 'Europe_Kyiv',
-            'label' => 'Kyiv (Europe)',
-        ], [
-            'id'    => static::AMERICA_LA_PAZ,
-            'code'  => 'America_La_Paz',
-            'label' => 'La Paz (Americas)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_LA_RIOJA,
-            'code'  => 'America_Argentina_La_Rioja',
-            'label' => 'La Rioja, Argentina (Americas)',
-        ], [
             'id'    => static::AFRICA_LAGOS,
-            'code'  => 'Africa_Lagos',
+            'code'  => 'Africa/Lagos',
             'label' => 'Lagos (Africa)',
         ], [
             'id'    => static::AFRICA_LIBREVILLE,
-            'code'  => 'Africa_Libreville',
+            'code'  => 'Africa/Libreville',
             'label' => 'Libreville (Africa)',
         ], [
-            'id'    => static::AMERICA_LIMA,
-            'code'  => 'America_Lima',
-            'label' => 'Lima (Americas)',
-        ], [
-            'id'    => static::AUSTRALIA_LINDEMAN,
-            'code'  => 'Australia_Lindeman',
-            'label' => 'Lindeman (Australia)',
-        ], [
-            'id'    => static::EUROPE_LISBON,
-            'code'  => 'Europe_Lisbon',
-            'label' => 'Lisbon (Europe)',
-        ], [
-            'id'    => static::EUROPE_LJUBLJANA,
-            'code'  => 'Europe_Ljubljana',
-            'label' => 'Ljubljana (Europe)',
-        ], [
             'id'    => static::AFRICA_LOME,
-            'code'  => 'Africa_Lome',
+            'code'  => 'Africa/Lome',
             'label' => 'Lome (Africa)',
         ], [
-            'id'    => static::EUROPE_LONDON,
-            'code'  => 'Europe_London',
-            'label' => 'London (Europe)',
-        ], [
-            'id'    => static::ARCTIC_LONGYEARBYEN,
-            'code'  => 'Arctic_Longyearbyen',
-            'label' => 'Longyearbyen (Arctic)',
-        ], [
-            'id'    => static::AUSTRALIA_LORD_HOWE,
-            'code'  => 'Australia_Lord_Howe',
-            'label' => 'Lord Howe (Australia)',
-        ], [
-            'id'    => static::AMERICA_LOS_ANGELES,
-            'code'  => 'America_Los_Angeles',
-            'label' => 'Los Angeles (Americas)',
-        ], [
-            'id'    => static::AMERICA_KENTUCKY_LOUISVILLE,
-            'code'  => 'America_Kentucky_Louisville',
-            'label' => 'Louisville, Kentucky (Americas)',
-        ], [
-            'id'    => static::AMERICA_LOWER_PRINCES,
-            'code'  => 'America_Lower_Princes',
-            'label' => 'Lower Princes (Americas)',
-        ], [
             'id'    => static::AFRICA_LUANDA,
-            'code'  => 'Africa_Luanda',
+            'code'  => 'Africa/Luanda',
             'label' => 'Luanda (Africa)',
         ], [
             'id'    => static::AFRICA_LUBUMBASHI,
-            'code'  => 'Africa_Lubumbashi',
+            'code'  => 'Africa/Lubumbashi',
             'label' => 'Lubumbashi (Africa)',
         ], [
             'id'    => static::AFRICA_LUSAKA,
-            'code'  => 'Africa_Lusaka',
+            'code'  => 'Africa/Lusaka',
             'label' => 'Lusaka (Africa)',
         ], [
-            'id'    => static::EUROPE_LUXEMBOURG,
-            'code'  => 'Europe_Luxembourg',
-            'label' => 'Luxembourg (Europe)',
-        ], [
-            'id'    => static::ASIA_MACAU,
-            'code'  => 'Asia_Macau',
-            'label' => 'Macau (Asia)',
-        ], [
-            'id'    => static::AMERICA_MACEIO,
-            'code'  => 'America_Maceio',
-            'label' => 'Maceio (Americas)',
-        ], [
-            'id'    => static::ANTARCTICA_MACQUARIE,
-            'code'  => 'Antarctica_Macquarie',
-            'label' => 'Macquarie (Antarctica)',
-        ], [
-            'id'    => static::ATLANTIC_MADEIRA,
-            'code'  => 'Atlantic_Madeira',
-            'label' => 'Madeira (Atlantic)',
-        ], [
-            'id'    => static::EUROPE_MADRID,
-            'code'  => 'Europe_Madrid',
-            'label' => 'Madrid (Europe)',
-        ], [
-            'id'    => static::ASIA_MAGADAN,
-            'code'  => 'Asia_Magadan',
-            'label' => 'Magadan (Asia)',
-        ], [
-            'id'    => static::INDIAN_MAHE,
-            'code'  => 'Indian_Mahe',
-            'label' => 'Mahe (Indian)',
-        ], [
-            'id'    => static::PACIFIC_MAJURO,
-            'code'  => 'Pacific_Majuro',
-            'label' => 'Majuro (Pacific)',
-        ], [
-            'id'    => static::ASIA_MAKASSAR,
-            'code'  => 'Asia_Makassar',
-            'label' => 'Makassar (Asia)',
-        ], [
             'id'    => static::AFRICA_MALABO,
-            'code'  => 'Africa_Malabo',
+            'code'  => 'Africa/Malabo',
             'label' => 'Malabo (Africa)',
         ], [
-            'id'    => static::INDIAN_MALDIVES,
-            'code'  => 'Indian_Maldives',
-            'label' => 'Maldives (Indian)',
-        ], [
-            'id'    => static::EUROPE_MALTA,
-            'code'  => 'Europe_Malta',
-            'label' => 'Malta (Europe)',
-        ], [
-            'id'    => static::AMERICA_MANAGUA,
-            'code'  => 'America_Managua',
-            'label' => 'Managua (Americas)',
-        ], [
-            'id'    => static::AMERICA_MANAUS,
-            'code'  => 'America_Manaus',
-            'label' => 'Manaus (Americas)',
-        ], [
-            'id'    => static::ASIA_MANILA,
-            'code'  => 'Asia_Manila',
-            'label' => 'Manila (Asia)',
-        ], [
             'id'    => static::AFRICA_MAPUTO,
-            'code'  => 'Africa_Maputo',
+            'code'  => 'Africa/Maputo',
             'label' => 'Maputo (Africa)',
         ], [
-            'id'    => static::AMERICA_INDIANA_MARENGO,
-            'code'  => 'America_Indiana_Marengo',
-            'label' => 'Marengo, Indiana (Americas)',
-        ], [
-            'id'    => static::EUROPE_MARIEHAMN,
-            'code'  => 'Europe_Mariehamn',
-            'label' => 'Mariehamn (Europe)',
-        ], [
-            'id'    => static::AMERICA_MARIGOT,
-            'code'  => 'America_Marigot',
-            'label' => 'Marigot (Americas)',
-        ], [
-            'id'    => static::PACIFIC_MARQUESAS,
-            'code'  => 'Pacific_Marquesas',
-            'label' => 'Marquesas (Pacific)',
-        ], [
-            'id'    => static::AMERICA_MARTINIQUE,
-            'code'  => 'America_Martinique',
-            'label' => 'Martinique (Americas)',
-        ], [
             'id'    => static::AFRICA_MASERU,
-            'code'  => 'Africa_Maseru',
+            'code'  => 'Africa/Maseru',
             'label' => 'Maseru (Africa)',
         ], [
-            'id'    => static::AMERICA_MATAMOROS,
-            'code'  => 'America_Matamoros',
-            'label' => 'Matamoros (Americas)',
-        ], [
-            'id'    => static::INDIAN_MAURITIUS,
-            'code'  => 'Indian_Mauritius',
-            'label' => 'Mauritius (Indian)',
-        ], [
-            'id'    => static::ANTARCTICA_MAWSON,
-            'code'  => 'Antarctica_Mawson',
-            'label' => 'Mawson (Antarctica)',
-        ], [
-            'id'    => static::INDIAN_MAYOTTE,
-            'code'  => 'Indian_Mayotte',
-            'label' => 'Mayotte (Indian)',
-        ], [
-            'id'    => static::AMERICA_MAZATLAN,
-            'code'  => 'America_Mazatlan',
-            'label' => 'Mazatlan (Americas)',
-        ], [
             'id'    => static::AFRICA_MBABANE,
-            'code'  => 'Africa_Mbabane',
+            'code'  => 'Africa/Mbabane',
             'label' => 'Mbabane (Africa)',
         ], [
-            'id'    => static::ANTARCTICA_MCMURDO,
-            'code'  => 'Antarctica_McMurdo',
-            'label' => 'McMurdo (Antarctica)',
-        ], [
-            'id'    => static::AUSTRALIA_MELBOURNE,
-            'code'  => 'Australia_Melbourne',
-            'label' => 'Melbourne (Australia)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_MENDOZA,
-            'code'  => 'America_Argentina_Mendoza',
-            'label' => 'Mendoza, Argentina (Americas)',
-        ], [
-            'id'    => static::AMERICA_MENOMINEE,
-            'code'  => 'America_Menominee',
-            'label' => 'Menominee (Americas)',
-        ], [
-            'id'    => static::AMERICA_MERIDA,
-            'code'  => 'America_Merida',
-            'label' => 'Merida (Americas)',
-        ], [
-            'id'    => static::AMERICA_METLAKATLA,
-            'code'  => 'America_Metlakatla',
-            'label' => 'Metlakatla (Americas)',
-        ], [
-            'id'    => static::AMERICA_MEXICO_CITY,
-            'code'  => 'America_Mexico_City',
-            'label' => 'Mexico City (Americas)',
-        ], [
-            'id'    => static::PACIFIC_MIDWAY,
-            'code'  => 'Pacific_Midway',
-            'label' => 'Midway (Pacific)',
-        ], [
-            'id'    => static::EUROPE_MINSK,
-            'code'  => 'Europe_Minsk',
-            'label' => 'Minsk (Europe)',
-        ], [
-            'id'    => static::AMERICA_MIQUELON,
-            'code'  => 'America_Miquelon',
-            'label' => 'Miquelon (Americas)',
-        ], [
             'id'    => static::AFRICA_MOGADISHU,
-            'code'  => 'Africa_Mogadishu',
+            'code'  => 'Africa/Mogadishu',
             'label' => 'Mogadishu (Africa)',
         ], [
-            'id'    => static::EUROPE_MONACO,
-            'code'  => 'Europe_Monaco',
-            'label' => 'Monaco (Europe)',
-        ], [
-            'id'    => static::AMERICA_MONCTON,
-            'code'  => 'America_Moncton',
-            'label' => 'Moncton (Americas)',
-        ], [
             'id'    => static::AFRICA_MONROVIA,
-            'code'  => 'Africa_Monrovia',
+            'code'  => 'Africa/Monrovia',
             'label' => 'Monrovia (Africa)',
         ], [
-            'id'    => static::AMERICA_MONTERREY,
-            'code'  => 'America_Monterrey',
-            'label' => 'Monterrey (Americas)',
-        ], [
-            'id'    => static::AMERICA_MONTEVIDEO,
-            'code'  => 'America_Montevideo',
-            'label' => 'Montevideo (Americas)',
-        ], [
-            'id'    => static::AMERICA_KENTUCKY_MONTICELLO,
-            'code'  => 'America_Kentucky_Monticello',
-            'label' => 'Monticello, Kentucky (Americas)',
-        ], [
-            'id'    => static::AMERICA_MONTSERRAT,
-            'code'  => 'America_Montserrat',
-            'label' => 'Montserrat (Americas)',
-        ], [
-            'id'    => static::EUROPE_MOSCOW,
-            'code'  => 'Europe_Moscow',
-            'label' => 'Moscow (Europe)',
-        ], [
-            'id'    => static::ASIA_MUSCAT,
-            'code'  => 'Asia_Muscat',
-            'label' => 'Muscat (Asia)',
-        ], [
             'id'    => static::AFRICA_NAIROBI,
-            'code'  => 'Africa_Nairobi',
+            'code'  => 'Africa/Nairobi',
             'label' => 'Nairobi (Africa)',
         ], [
-            'id'    => static::AMERICA_NASSAU,
-            'code'  => 'America_Nassau',
-            'label' => 'Nassau (Americas)',
-        ], [
-            'id'    => static::PACIFIC_NAURU,
-            'code'  => 'Pacific_Nauru',
-            'label' => 'Nauru (Pacific)',
-        ], [
             'id'    => static::AFRICA_NDJAMENA,
-            'code'  => 'Africa_Ndjamena',
+            'code'  => 'Africa/Ndjamena',
             'label' => 'Ndjamena (Africa)',
         ], [
-            'id'    => static::AMERICA_NORTH_DAKOTA_NEW_SALEM,
-            'code'  => 'America_North_Dakota_New_Salem',
-            'label' => 'New Salem, North Dakota (Americas)',
-        ], [
-            'id'    => static::AMERICA_NEW_YORK,
-            'code'  => 'America_New_York',
-            'label' => 'New York (Americas)',
-        ], [
             'id'    => static::AFRICA_NIAMEY,
-            'code'  => 'Africa_Niamey',
+            'code'  => 'Africa/Niamey',
             'label' => 'Niamey (Africa)',
         ], [
-            'id'    => static::ASIA_NICOSIA,
-            'code'  => 'Asia_Nicosia',
-            'label' => 'Nicosia (Asia)',
-        ], [
-            'id'    => static::PACIFIC_NIUE,
-            'code'  => 'Pacific_Niue',
-            'label' => 'Niue (Pacific)',
-        ], [
-            'id'    => static::AMERICA_NOME,
-            'code'  => 'America_Nome',
-            'label' => 'Nome (Americas)',
-        ], [
-            'id'    => static::PACIFIC_NORFOLK,
-            'code'  => 'Pacific_Norfolk',
-            'label' => 'Norfolk (Pacific)',
-        ], [
-            'id'    => static::AMERICA_NORONHA,
-            'code'  => 'America_Noronha',
-            'label' => 'Noronha (Americas)',
-        ], [
             'id'    => static::AFRICA_NOUAKCHOTT,
-            'code'  => 'Africa_Nouakchott',
+            'code'  => 'Africa/Nouakchott',
             'label' => 'Nouakchott (Africa)',
         ], [
-            'id'    => static::PACIFIC_NOUMEA,
-            'code'  => 'Pacific_Noumea',
-            'label' => 'Noumea (Pacific)',
+            'id'    => static::AFRICA_OUAGADOUGOU,
+            'code'  => 'Africa/Ouagadougou',
+            'label' => 'Ouagadougou (Africa)',
+        ], [
+            'id'    => static::AFRICA_PORTO_NOVO,
+            'code'  => 'Africa/Porto-Novo',
+            'label' => 'Porto-Novo (Africa)',
+        ], [
+            'id'    => static::AFRICA_SAO_TOME,
+            'code'  => 'Africa/Sao_Tome',
+            'label' => 'Sao Tome (Africa)',
+        ], [
+            'id'    => static::AFRICA_TRIPOLI,
+            'code'  => 'Africa/Tripoli',
+            'label' => 'Tripoli (Africa)',
+        ], [
+            'id'    => static::AFRICA_TUNIS,
+            'code'  => 'Africa/Tunis',
+            'label' => 'Tunis (Africa)',
+        ], [
+            'id'    => static::AFRICA_WINDHOEK,
+            'code'  => 'Africa/Windhoek',
+            'label' => 'Windhoek (Africa)',
+        ], [
+            'id'    => static::AMERICA_ADAK,
+            'code'  => 'America/Adak',
+            'label' => 'Adak (America)',
+        ], [
+            'id'    => static::AMERICA_ANCHORAGE,
+            'code'  => 'America/Anchorage',
+            'label' => 'Anchorage (America)',
+        ], [
+            'id'    => static::AMERICA_ANGUILLA,
+            'code'  => 'America/Anguilla',
+            'label' => 'Anguilla (America)',
+        ], [
+            'id'    => static::AMERICA_ANTIGUA,
+            'code'  => 'America/Antigua',
+            'label' => 'Antigua (America)',
+        ], [
+            'id'    => static::AMERICA_ARAGUAINA,
+            'code'  => 'America/Araguaina',
+            'label' => 'Araguaina (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_BUENOS_AIRES,
+            'code'  => 'America/Argentina/Buenos_Aires',
+            'label' => 'Argentina - Buenos Aires (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_CATAMARCA,
+            'code'  => 'America/Argentina/Catamarca',
+            'label' => 'Argentina - Catamarca (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_CORDOBA,
+            'code'  => 'America/Argentina/Cordoba',
+            'label' => 'Argentina - Cordoba (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_JUJUY,
+            'code'  => 'America/Argentina/Jujuy',
+            'label' => 'Argentina - Jujuy (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_LA_RIOJA,
+            'code'  => 'America/Argentina/La_Rioja',
+            'label' => 'Argentina - La Rioja (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_MENDOZA,
+            'code'  => 'America/Argentina/Mendoza',
+            'label' => 'Argentina - Mendoza (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_RIO_GALLEGOS,
+            'code'  => 'America/Argentina/Rio_Gallegos',
+            'label' => 'Argentina - Rio Gallegos (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_SALTA,
+            'code'  => 'America/Argentina/Salta',
+            'label' => 'Argentina - Salta (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_SAN_JUAN,
+            'code'  => 'America/Argentina/San_Juan',
+            'label' => 'Argentina - San Juan (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_SAN_LUIS,
+            'code'  => 'America/Argentina/San_Luis',
+            'label' => 'Argentina - San Luis (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_TUCUMAN,
+            'code'  => 'America/Argentina/Tucuman',
+            'label' => 'Argentina - Tucuman (America)',
+        ], [
+            'id'    => static::AMERICA_ARGENTINA_USHUAIA,
+            'code'  => 'America/Argentina/Ushuaia',
+            'label' => 'Argentina - Ushuaia (America)',
+        ], [
+            'id'    => static::AMERICA_ARUBA,
+            'code'  => 'America/Aruba',
+            'label' => 'Aruba (America)',
+        ], [
+            'id'    => static::AMERICA_ASUNCION,
+            'code'  => 'America/Asuncion',
+            'label' => 'Asuncion (America)',
+        ], [
+            'id'    => static::AMERICA_ATIKOKAN,
+            'code'  => 'America/Atikokan',
+            'label' => 'Atikokan (America)',
+        ], [
+            'id'    => static::AMERICA_BAHIA,
+            'code'  => 'America/Bahia',
+            'label' => 'Bahia (America)',
+        ], [
+            'id'    => static::AMERICA_BAHIA_BANDERAS,
+            'code'  => 'America/Bahia_Banderas',
+            'label' => 'Bahia Banderas (America)',
+        ], [
+            'id'    => static::AMERICA_BARBADOS,
+            'code'  => 'America/Barbados',
+            'label' => 'Barbados (America)',
+        ], [
+            'id'    => static::AMERICA_BELEM,
+            'code'  => 'America/Belem',
+            'label' => 'Belem (America)',
+        ], [
+            'id'    => static::AMERICA_BELIZE,
+            'code'  => 'America/Belize',
+            'label' => 'Belize (America)',
+        ], [
+            'id'    => static::AMERICA_BLANC_SABLON,
+            'code'  => 'America/Blanc-Sablon',
+            'label' => 'Blanc-Sablon (America)',
+        ], [
+            'id'    => static::AMERICA_BOA_VISTA,
+            'code'  => 'America/Boa_Vista',
+            'label' => 'Boa Vista (America)',
+        ], [
+            'id'    => static::AMERICA_BOGOTA,
+            'code'  => 'America/Bogota',
+            'label' => 'Bogota (America)',
+        ], [
+            'id'    => static::AMERICA_BOISE,
+            'code'  => 'America/Boise',
+            'label' => 'Boise (America)',
+        ], [
+            'id'    => static::AMERICA_CAMBRIDGE_BAY,
+            'code'  => 'America/Cambridge_Bay',
+            'label' => 'Cambridge Bay (America)',
+        ], [
+            'id'    => static::AMERICA_CAMPO_GRANDE,
+            'code'  => 'America/Campo_Grande',
+            'label' => 'Campo Grande (America)',
+        ], [
+            'id'    => static::AMERICA_CANCUN,
+            'code'  => 'America/Cancun',
+            'label' => 'Cancun (America)',
+        ], [
+            'id'    => static::AMERICA_CARACAS,
+            'code'  => 'America/Caracas',
+            'label' => 'Caracas (America)',
+        ], [
+            'id'    => static::AMERICA_CAYENNE,
+            'code'  => 'America/Cayenne',
+            'label' => 'Cayenne (America)',
+        ], [
+            'id'    => static::AMERICA_CAYMAN,
+            'code'  => 'America/Cayman',
+            'label' => 'Cayman (America)',
+        ], [
+            'id'    => static::AMERICA_CHICAGO,
+            'code'  => 'America/Chicago',
+            'label' => 'Chicago (America)',
+        ], [
+            'id'    => static::AMERICA_CHIHUAHUA,
+            'code'  => 'America/Chihuahua',
+            'label' => 'Chihuahua (America)',
+        ], [
+            'id'    => static::AMERICA_CIUDAD_JUAREZ,
+            'code'  => 'America/Ciudad_Juarez',
+            'label' => 'Ciudad Juarez (America)',
+        ], [
+            'id'    => static::AMERICA_COSTA_RICA,
+            'code'  => 'America/Costa_Rica',
+            'label' => 'Costa Rica (America)',
+        ], [
+            'id'    => static::AMERICA_CRESTON,
+            'code'  => 'America/Creston',
+            'label' => 'Creston (America)',
+        ], [
+            'id'    => static::AMERICA_CUIABA,
+            'code'  => 'America/Cuiaba',
+            'label' => 'Cuiaba (America)',
+        ], [
+            'id'    => static::AMERICA_CURACAO,
+            'code'  => 'America/Curacao',
+            'label' => 'Curacao (America)',
+        ], [
+            'id'    => static::AMERICA_DANMARKSHAVN,
+            'code'  => 'America/Danmarkshavn',
+            'label' => 'Danmarkshavn (America)',
+        ], [
+            'id'    => static::AMERICA_DAWSON,
+            'code'  => 'America/Dawson',
+            'label' => 'Dawson (America)',
+        ], [
+            'id'    => static::AMERICA_DAWSON_CREEK,
+            'code'  => 'America/Dawson_Creek',
+            'label' => 'Dawson Creek (America)',
+        ], [
+            'id'    => static::AMERICA_DENVER,
+            'code'  => 'America/Denver',
+            'label' => 'Denver (America)',
+        ], [
+            'id'    => static::AMERICA_DETROIT,
+            'code'  => 'America/Detroit',
+            'label' => 'Detroit (America)',
+        ], [
+            'id'    => static::AMERICA_DOMINICA,
+            'code'  => 'America/Dominica',
+            'label' => 'Dominica (America)',
+        ], [
+            'id'    => static::AMERICA_EDMONTON,
+            'code'  => 'America/Edmonton',
+            'label' => 'Edmonton (America)',
+        ], [
+            'id'    => static::AMERICA_EIRUNEPE,
+            'code'  => 'America/Eirunepe',
+            'label' => 'Eirunepe (America)',
+        ], [
+            'id'    => static::AMERICA_EL_SALVADOR,
+            'code'  => 'America/El_Salvador',
+            'label' => 'El Salvador (America)',
+        ], [
+            'id'    => static::AMERICA_FORT_NELSON,
+            'code'  => 'America/Fort_Nelson',
+            'label' => 'Fort Nelson (America)',
+        ], [
+            'id'    => static::AMERICA_FORTALEZA,
+            'code'  => 'America/Fortaleza',
+            'label' => 'Fortaleza (America)',
+        ], [
+            'id'    => static::AMERICA_GLACE_BAY,
+            'code'  => 'America/Glace_Bay',
+            'label' => 'Glace Bay (America)',
+        ], [
+            'id'    => static::AMERICA_GOOSE_BAY,
+            'code'  => 'America/Goose_Bay',
+            'label' => 'Goose Bay (America)',
+        ], [
+            'id'    => static::AMERICA_GRAND_TURK,
+            'code'  => 'America/Grand_Turk',
+            'label' => 'Grand Turk (America)',
+        ], [
+            'id'    => static::AMERICA_GRENADA,
+            'code'  => 'America/Grenada',
+            'label' => 'Grenada (America)',
+        ], [
+            'id'    => static::AMERICA_GUADELOUPE,
+            'code'  => 'America/Guadeloupe',
+            'label' => 'Guadeloupe (America)',
+        ], [
+            'id'    => static::AMERICA_GUATEMALA,
+            'code'  => 'America/Guatemala',
+            'label' => 'Guatemala (America)',
+        ], [
+            'id'    => static::AMERICA_GUAYAQUIL,
+            'code'  => 'America/Guayaquil',
+            'label' => 'Guayaquil (America)',
+        ], [
+            'id'    => static::AMERICA_GUYANA,
+            'code'  => 'America/Guyana',
+            'label' => 'Guyana (America)',
+        ], [
+            'id'    => static::AMERICA_HALIFAX,
+            'code'  => 'America/Halifax',
+            'label' => 'Halifax (America)',
+        ], [
+            'id'    => static::AMERICA_HAVANA,
+            'code'  => 'America/Havana',
+            'label' => 'Havana (America)',
+        ], [
+            'id'    => static::AMERICA_HERMOSILLO,
+            'code'  => 'America/Hermosillo',
+            'label' => 'Hermosillo (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_INDIANAPOLIS,
+            'code'  => 'America/Indiana/Indianapolis',
+            'label' => 'Indiana - Indianapolis (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_KNOX,
+            'code'  => 'America/Indiana/Knox',
+            'label' => 'Indiana - Knox (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_MARENGO,
+            'code'  => 'America/Indiana/Marengo',
+            'label' => 'Indiana - Marengo (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_PETERSBURG,
+            'code'  => 'America/Indiana/Petersburg',
+            'label' => 'Indiana - Petersburg (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_TELL_CITY,
+            'code'  => 'America/Indiana/Tell_City',
+            'label' => 'Indiana - Tell City (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_VEVAY,
+            'code'  => 'America/Indiana/Vevay',
+            'label' => 'Indiana - Vevay (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_VINCENNES,
+            'code'  => 'America/Indiana/Vincennes',
+            'label' => 'Indiana - Vincennes (America)',
+        ], [
+            'id'    => static::AMERICA_INDIANA_WINAMAC,
+            'code'  => 'America/Indiana/Winamac',
+            'label' => 'Indiana - Winamac (America)',
+        ], [
+            'id'    => static::AMERICA_INUVIK,
+            'code'  => 'America/Inuvik',
+            'label' => 'Inuvik (America)',
+        ], [
+            'id'    => static::AMERICA_IQALUIT,
+            'code'  => 'America/Iqaluit',
+            'label' => 'Iqaluit (America)',
+        ], [
+            'id'    => static::AMERICA_JAMAICA,
+            'code'  => 'America/Jamaica',
+            'label' => 'Jamaica (America)',
+        ], [
+            'id'    => static::AMERICA_JUNEAU,
+            'code'  => 'America/Juneau',
+            'label' => 'Juneau (America)',
+        ], [
+            'id'    => static::AMERICA_KENTUCKY_LOUISVILLE,
+            'code'  => 'America/Kentucky/Louisville',
+            'label' => 'Kentucky - Louisville (America)',
+        ], [
+            'id'    => static::AMERICA_KENTUCKY_MONTICELLO,
+            'code'  => 'America/Kentucky/Monticello',
+            'label' => 'Kentucky - Monticello (America)',
+        ], [
+            'id'    => static::AMERICA_KRALENDIJK,
+            'code'  => 'America/Kralendijk',
+            'label' => 'Kralendijk (America)',
+        ], [
+            'id'    => static::AMERICA_LA_PAZ,
+            'code'  => 'America/La_Paz',
+            'label' => 'La Paz (America)',
+        ], [
+            'id'    => static::AMERICA_LIMA,
+            'code'  => 'America/Lima',
+            'label' => 'Lima (America)',
+        ], [
+            'id'    => static::AMERICA_LOS_ANGELES,
+            'code'  => 'America/Los_Angeles',
+            'label' => 'Los Angeles (America)',
+        ], [
+            'id'    => static::AMERICA_LOWER_PRINCES,
+            'code'  => 'America/Lower_Princes',
+            'label' => 'Lower Princes (America)',
+        ], [
+            'id'    => static::AMERICA_MACEIO,
+            'code'  => 'America/Maceio',
+            'label' => 'Maceio (America)',
+        ], [
+            'id'    => static::AMERICA_MANAGUA,
+            'code'  => 'America/Managua',
+            'label' => 'Managua (America)',
+        ], [
+            'id'    => static::AMERICA_MANAUS,
+            'code'  => 'America/Manaus',
+            'label' => 'Manaus (America)',
+        ], [
+            'id'    => static::AMERICA_MARIGOT,
+            'code'  => 'America/Marigot',
+            'label' => 'Marigot (America)',
+        ], [
+            'id'    => static::AMERICA_MARTINIQUE,
+            'code'  => 'America/Martinique',
+            'label' => 'Martinique (America)',
+        ], [
+            'id'    => static::AMERICA_MATAMOROS,
+            'code'  => 'America/Matamoros',
+            'label' => 'Matamoros (America)',
+        ], [
+            'id'    => static::AMERICA_MAZATLAN,
+            'code'  => 'America/Mazatlan',
+            'label' => 'Mazatlan (America)',
+        ], [
+            'id'    => static::AMERICA_MENOMINEE,
+            'code'  => 'America/Menominee',
+            'label' => 'Menominee (America)',
+        ], [
+            'id'    => static::AMERICA_MERIDA,
+            'code'  => 'America/Merida',
+            'label' => 'Merida (America)',
+        ], [
+            'id'    => static::AMERICA_METLAKATLA,
+            'code'  => 'America/Metlakatla',
+            'label' => 'Metlakatla (America)',
+        ], [
+            'id'    => static::AMERICA_MEXICO_CITY,
+            'code'  => 'America/Mexico_City',
+            'label' => 'Mexico City (America)',
+        ], [
+            'id'    => static::AMERICA_MIQUELON,
+            'code'  => 'America/Miquelon',
+            'label' => 'Miquelon (America)',
+        ], [
+            'id'    => static::AMERICA_MONCTON,
+            'code'  => 'America/Moncton',
+            'label' => 'Moncton (America)',
+        ], [
+            'id'    => static::AMERICA_MONTERREY,
+            'code'  => 'America/Monterrey',
+            'label' => 'Monterrey (America)',
+        ], [
+            'id'    => static::AMERICA_MONTEVIDEO,
+            'code'  => 'America/Montevideo',
+            'label' => 'Montevideo (America)',
+        ], [
+            'id'    => static::AMERICA_MONTSERRAT,
+            'code'  => 'America/Montserrat',
+            'label' => 'Montserrat (America)',
+        ], [
+            'id'    => static::AMERICA_NASSAU,
+            'code'  => 'America/Nassau',
+            'label' => 'Nassau (America)',
+        ], [
+            'id'    => static::AMERICA_NEW_YORK,
+            'code'  => 'America/New_York',
+            'label' => 'New York (America)',
+        ], [
+            'id'    => static::AMERICA_NOME,
+            'code'  => 'America/Nome',
+            'label' => 'Nome (America)',
+        ], [
+            'id'    => static::AMERICA_NORONHA,
+            'code'  => 'America/Noronha',
+            'label' => 'Noronha (America)',
+        ], [
+            'id'    => static::AMERICA_NORTH_DAKOTA_BEULAH,
+            'code'  => 'America/North_Dakota/Beulah',
+            'label' => 'North Dakota - Beulah (America)',
+        ], [
+            'id'    => static::AMERICA_NORTH_DAKOTA_CENTER,
+            'code'  => 'America/North_Dakota/Center',
+            'label' => 'North Dakota - Center (America)',
+        ], [
+            'id'    => static::AMERICA_NORTH_DAKOTA_NEW_SALEM,
+            'code'  => 'America/North_Dakota/New_Salem',
+            'label' => 'North Dakota - New Salem (America)',
+        ], [
+            'id'    => static::AMERICA_NUUK,
+            'code'  => 'America/Nuuk',
+            'label' => 'Nuuk (America)',
+        ], [
+            'id'    => static::AMERICA_OJINAGA,
+            'code'  => 'America/Ojinaga',
+            'label' => 'Ojinaga (America)',
+        ], [
+            'id'    => static::AMERICA_PANAMA,
+            'code'  => 'America/Panama',
+            'label' => 'Panama (America)',
+        ], [
+            'id'    => static::AMERICA_PARAMARIBO,
+            'code'  => 'America/Paramaribo',
+            'label' => 'Paramaribo (America)',
+        ], [
+            'id'    => static::AMERICA_PHOENIX,
+            'code'  => 'America/Phoenix',
+            'label' => 'Phoenix (America)',
+        ], [
+            'id'    => static::AMERICA_PORT_AU_PRINCE,
+            'code'  => 'America/Port-au-Prince',
+            'label' => 'Port-au-Prince (America)',
+        ], [
+            'id'    => static::AMERICA_PORT_OF_SPAIN,
+            'code'  => 'America/Port_of_Spain',
+            'label' => 'Port of Spain (America)',
+        ], [
+            'id'    => static::AMERICA_PORTO_VELHO,
+            'code'  => 'America/Porto_Velho',
+            'label' => 'Porto Velho (America)',
+        ], [
+            'id'    => static::AMERICA_PUERTO_RICO,
+            'code'  => 'America/Puerto_Rico',
+            'label' => 'Puerto Rico (America)',
+        ], [
+            'id'    => static::AMERICA_PUNTA_ARENAS,
+            'code'  => 'America/Punta_Arenas',
+            'label' => 'Punta Arenas (America)',
+        ], [
+            'id'    => static::AMERICA_RANKIN_INLET,
+            'code'  => 'America/Rankin_Inlet',
+            'label' => 'Rankin Inlet (America)',
+        ], [
+            'id'    => static::AMERICA_RECIFE,
+            'code'  => 'America/Recife',
+            'label' => 'Recife (America)',
+        ], [
+            'id'    => static::AMERICA_REGINA,
+            'code'  => 'America/Regina',
+            'label' => 'Regina (America)',
+        ], [
+            'id'    => static::AMERICA_RESOLUTE,
+            'code'  => 'America/Resolute',
+            'label' => 'Resolute (America)',
+        ], [
+            'id'    => static::AMERICA_RIO_BRANCO,
+            'code'  => 'America/Rio_Branco',
+            'label' => 'Rio Branco (America)',
+        ], [
+            'id'    => static::AMERICA_SANTAREM,
+            'code'  => 'America/Santarem',
+            'label' => 'Santarem (America)',
+        ], [
+            'id'    => static::AMERICA_SANTIAGO,
+            'code'  => 'America/Santiago',
+            'label' => 'Santiago (America)',
+        ], [
+            'id'    => static::AMERICA_SANTO_DOMINGO,
+            'code'  => 'America/Santo_Domingo',
+            'label' => 'Santo Domingo (America)',
+        ], [
+            'id'    => static::AMERICA_SAO_PAULO,
+            'code'  => 'America/Sao_Paulo',
+            'label' => 'Sao Paulo (America)',
+        ], [
+            'id'    => static::AMERICA_SCORESBYSUND,
+            'code'  => 'America/Scoresbysund',
+            'label' => 'Scoresbysund (America)',
+        ], [
+            'id'    => static::AMERICA_SITKA,
+            'code'  => 'America/Sitka',
+            'label' => 'Sitka (America)',
+        ], [
+            'id'    => static::AMERICA_ST_BARTHELEMY,
+            'code'  => 'America/St_Barthelemy',
+            'label' => 'St Barthelemy (America)',
+        ], [
+            'id'    => static::AMERICA_ST_JOHNS,
+            'code'  => 'America/St_Johns',
+            'label' => 'St Johns (America)',
+        ], [
+            'id'    => static::AMERICA_ST_KITTS,
+            'code'  => 'America/St_Kitts',
+            'label' => 'St Kitts (America)',
+        ], [
+            'id'    => static::AMERICA_ST_LUCIA,
+            'code'  => 'America/St_Lucia',
+            'label' => 'St Lucia (America)',
+        ], [
+            'id'    => static::AMERICA_ST_THOMAS,
+            'code'  => 'America/St_Thomas',
+            'label' => 'St Thomas (America)',
+        ], [
+            'id'    => static::AMERICA_ST_VINCENT,
+            'code'  => 'America/St_Vincent',
+            'label' => 'St Vincent (America)',
+        ], [
+            'id'    => static::AMERICA_SWIFT_CURRENT,
+            'code'  => 'America/Swift_Current',
+            'label' => 'Swift Current (America)',
+        ], [
+            'id'    => static::AMERICA_TEGUCIGALPA,
+            'code'  => 'America/Tegucigalpa',
+            'label' => 'Tegucigalpa (America)',
+        ], [
+            'id'    => static::AMERICA_THULE,
+            'code'  => 'America/Thule',
+            'label' => 'Thule (America)',
+        ], [
+            'id'    => static::AMERICA_TIJUANA,
+            'code'  => 'America/Tijuana',
+            'label' => 'Tijuana (America)',
+        ], [
+            'id'    => static::AMERICA_TORONTO,
+            'code'  => 'America/Toronto',
+            'label' => 'Toronto (America)',
+        ], [
+            'id'    => static::AMERICA_TORTOLA,
+            'code'  => 'America/Tortola',
+            'label' => 'Tortola (America)',
+        ], [
+            'id'    => static::AMERICA_VANCOUVER,
+            'code'  => 'America/Vancouver',
+            'label' => 'Vancouver (America)',
+        ], [
+            'id'    => static::AMERICA_WHITEHORSE,
+            'code'  => 'America/Whitehorse',
+            'label' => 'Whitehorse (America)',
+        ], [
+            'id'    => static::AMERICA_WINNIPEG,
+            'code'  => 'America/Winnipeg',
+            'label' => 'Winnipeg (America)',
+        ], [
+            'id'    => static::AMERICA_YAKUTAT,
+            'code'  => 'America/Yakutat',
+            'label' => 'Yakutat (America)',
+        ], [
+            'id'    => static::AMERICA_YELLOWKNIFE,
+            'code'  => 'America/Yellowknife',
+            'label' => 'Yellowknife (America)',
+        ], [
+            'id'    => static::ANTARCTICA_CASEY,
+            'code'  => 'Antarctica/Casey',
+            'label' => 'Casey (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_DAVIS,
+            'code'  => 'Antarctica/Davis',
+            'label' => 'Davis (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_DUMONTDURVILLE,
+            'code'  => 'Antarctica/DumontDUrville',
+            'label' => 'DumontDUrville (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_MACQUARIE,
+            'code'  => 'Antarctica/Macquarie',
+            'label' => 'Macquarie (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_MAWSON,
+            'code'  => 'Antarctica/Mawson',
+            'label' => 'Mawson (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_MCMURDO,
+            'code'  => 'Antarctica/McMurdo',
+            'label' => 'McMurdo (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_PALMER,
+            'code'  => 'Antarctica/Palmer',
+            'label' => 'Palmer (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_ROTHERA,
+            'code'  => 'Antarctica/Rothera',
+            'label' => 'Rothera (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_SYOWA,
+            'code'  => 'Antarctica/Syowa',
+            'label' => 'Syowa (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_TROLL,
+            'code'  => 'Antarctica/Troll',
+            'label' => 'Troll (Antarctica)',
+        ], [
+            'id'    => static::ANTARCTICA_VOSTOK,
+            'code'  => 'Antarctica/Vostok',
+            'label' => 'Vostok (Antarctica)',
+        ], [
+            'id'    => static::ARCTIC_LONGYEARBYEN,
+            'code'  => 'Arctic/Longyearbyen',
+            'label' => 'Longyearbyen (Arctic)',
+        ], [
+            'id'    => static::ASIA_ADEN,
+            'code'  => 'Asia/Aden',
+            'label' => 'Aden (Asia)',
+        ], [
+            'id'    => static::ASIA_ALMATY,
+            'code'  => 'Asia/Almaty',
+            'label' => 'Almaty (Asia)',
+        ], [
+            'id'    => static::ASIA_AMMAN,
+            'code'  => 'Asia/Amman',
+            'label' => 'Amman (Asia)',
+        ], [
+            'id'    => static::ASIA_ANADYR,
+            'code'  => 'Asia/Anadyr',
+            'label' => 'Anadyr (Asia)',
+        ], [
+            'id'    => static::ASIA_AQTAU,
+            'code'  => 'Asia/Aqtau',
+            'label' => 'Aqtau (Asia)',
+        ], [
+            'id'    => static::ASIA_AQTOBE,
+            'code'  => 'Asia/Aqtobe',
+            'label' => 'Aqtobe (Asia)',
+        ], [
+            'id'    => static::ASIA_ASHGABAT,
+            'code'  => 'Asia/Ashgabat',
+            'label' => 'Ashgabat (Asia)',
+        ], [
+            'id'    => static::ASIA_ATYRAU,
+            'code'  => 'Asia/Atyrau',
+            'label' => 'Atyrau (Asia)',
+        ], [
+            'id'    => static::ASIA_BAGHDAD,
+            'code'  => 'Asia/Baghdad',
+            'label' => 'Baghdad (Asia)',
+        ], [
+            'id'    => static::ASIA_BAHRAIN,
+            'code'  => 'Asia/Bahrain',
+            'label' => 'Bahrain (Asia)',
+        ], [
+            'id'    => static::ASIA_BAKU,
+            'code'  => 'Asia/Baku',
+            'label' => 'Baku (Asia)',
+        ], [
+            'id'    => static::ASIA_BANGKOK,
+            'code'  => 'Asia/Bangkok',
+            'label' => 'Bangkok (Asia)',
+        ], [
+            'id'    => static::ASIA_BARNAUL,
+            'code'  => 'Asia/Barnaul',
+            'label' => 'Barnaul (Asia)',
+        ], [
+            'id'    => static::ASIA_BEIRUT,
+            'code'  => 'Asia/Beirut',
+            'label' => 'Beirut (Asia)',
+        ], [
+            'id'    => static::ASIA_BISHKEK,
+            'code'  => 'Asia/Bishkek',
+            'label' => 'Bishkek (Asia)',
+        ], [
+            'id'    => static::ASIA_BRUNEI,
+            'code'  => 'Asia/Brunei',
+            'label' => 'Brunei (Asia)',
+        ], [
+            'id'    => static::ASIA_CHITA,
+            'code'  => 'Asia/Chita',
+            'label' => 'Chita (Asia)',
+        ], [
+            'id'    => static::ASIA_CHOIBALSAN,
+            'code'  => 'Asia/Choibalsan',
+            'label' => 'Choibalsan (Asia)',
+        ], [
+            'id'    => static::ASIA_COLOMBO,
+            'code'  => 'Asia/Colombo',
+            'label' => 'Colombo (Asia)',
+        ], [
+            'id'    => static::ASIA_DAMASCUS,
+            'code'  => 'Asia/Damascus',
+            'label' => 'Damascus (Asia)',
+        ], [
+            'id'    => static::ASIA_DHAKA,
+            'code'  => 'Asia/Dhaka',
+            'label' => 'Dhaka (Asia)',
+        ], [
+            'id'    => static::ASIA_DILI,
+            'code'  => 'Asia/Dili',
+            'label' => 'Dili (Asia)',
+        ], [
+            'id'    => static::ASIA_DUBAI,
+            'code'  => 'Asia/Dubai',
+            'label' => 'Dubai (Asia)',
+        ], [
+            'id'    => static::ASIA_DUSHANBE,
+            'code'  => 'Asia/Dushanbe',
+            'label' => 'Dushanbe (Asia)',
+        ], [
+            'id'    => static::ASIA_FAMAGUSTA,
+            'code'  => 'Asia/Famagusta',
+            'label' => 'Famagusta (Asia)',
+        ], [
+            'id'    => static::ASIA_GAZA,
+            'code'  => 'Asia/Gaza',
+            'label' => 'Gaza (Asia)',
+        ], [
+            'id'    => static::ASIA_HEBRON,
+            'code'  => 'Asia/Hebron',
+            'label' => 'Hebron (Asia)',
+        ], [
+            'id'    => static::ASIA_HO_CHI_MINH,
+            'code'  => 'Asia/Ho_Chi_Minh',
+            'label' => 'Ho Chi Minh (Asia)',
+        ], [
+            'id'    => static::ASIA_HONG_KONG,
+            'code'  => 'Asia/Hong_Kong',
+            'label' => 'Hong Kong (Asia)',
+        ], [
+            'id'    => static::ASIA_HOVD,
+            'code'  => 'Asia/Hovd',
+            'label' => 'Hovd (Asia)',
+        ], [
+            'id'    => static::ASIA_IRKUTSK,
+            'code'  => 'Asia/Irkutsk',
+            'label' => 'Irkutsk (Asia)',
+        ], [
+            'id'    => static::ASIA_JAKARTA,
+            'code'  => 'Asia/Jakarta',
+            'label' => 'Jakarta (Asia)',
+        ], [
+            'id'    => static::ASIA_JAYAPURA,
+            'code'  => 'Asia/Jayapura',
+            'label' => 'Jayapura (Asia)',
+        ], [
+            'id'    => static::ASIA_JERUSALEM,
+            'code'  => 'Asia/Jerusalem',
+            'label' => 'Jerusalem (Asia)',
+        ], [
+            'id'    => static::ASIA_KABUL,
+            'code'  => 'Asia/Kabul',
+            'label' => 'Kabul (Asia)',
+        ], [
+            'id'    => static::ASIA_KAMCHATKA,
+            'code'  => 'Asia/Kamchatka',
+            'label' => 'Kamchatka (Asia)',
+        ], [
+            'id'    => static::ASIA_KARACHI,
+            'code'  => 'Asia/Karachi',
+            'label' => 'Karachi (Asia)',
+        ], [
+            'id'    => static::ASIA_KATHMANDU,
+            'code'  => 'Asia/Kathmandu',
+            'label' => 'Kathmandu (Asia)',
+        ], [
+            'id'    => static::ASIA_KHANDYGA,
+            'code'  => 'Asia/Khandyga',
+            'label' => 'Khandyga (Asia)',
+        ], [
+            'id'    => static::ASIA_KOLKATA,
+            'code'  => 'Asia/Kolkata',
+            'label' => 'Kolkata (Asia)',
+        ], [
+            'id'    => static::ASIA_KRASNOYARSK,
+            'code'  => 'Asia/Krasnoyarsk',
+            'label' => 'Krasnoyarsk (Asia)',
+        ], [
+            'id'    => static::ASIA_KUALA_LUMPUR,
+            'code'  => 'Asia/Kuala_Lumpur',
+            'label' => 'Kuala Lumpur (Asia)',
+        ], [
+            'id'    => static::ASIA_KUCHING,
+            'code'  => 'Asia/Kuching',
+            'label' => 'Kuching (Asia)',
+        ], [
+            'id'    => static::ASIA_KUWAIT,
+            'code'  => 'Asia/Kuwait',
+            'label' => 'Kuwait (Asia)',
+        ], [
+            'id'    => static::ASIA_MACAU,
+            'code'  => 'Asia/Macau',
+            'label' => 'Macau (Asia)',
+        ], [
+            'id'    => static::ASIA_MAGADAN,
+            'code'  => 'Asia/Magadan',
+            'label' => 'Magadan (Asia)',
+        ], [
+            'id'    => static::ASIA_MAKASSAR,
+            'code'  => 'Asia/Makassar',
+            'label' => 'Makassar (Asia)',
+        ], [
+            'id'    => static::ASIA_MANILA,
+            'code'  => 'Asia/Manila',
+            'label' => 'Manila (Asia)',
+        ], [
+            'id'    => static::ASIA_MUSCAT,
+            'code'  => 'Asia/Muscat',
+            'label' => 'Muscat (Asia)',
+        ], [
+            'id'    => static::ASIA_NICOSIA,
+            'code'  => 'Asia/Nicosia',
+            'label' => 'Nicosia (Asia)',
         ], [
             'id'    => static::ASIA_NOVOKUZNETSK,
-            'code'  => 'Asia_Novokuznetsk',
+            'code'  => 'Asia/Novokuznetsk',
             'label' => 'Novokuznetsk (Asia)',
         ], [
             'id'    => static::ASIA_NOVOSIBIRSK,
-            'code'  => 'Asia_Novosibirsk',
+            'code'  => 'Asia/Novosibirsk',
             'label' => 'Novosibirsk (Asia)',
         ], [
-            'id'    => static::AMERICA_NUUK,
-            'code'  => 'America_Nuuk',
-            'label' => 'Nuuk (Americas)',
-        ], [
-            'id'    => static::AMERICA_OJINAGA,
-            'code'  => 'America_Ojinaga',
-            'label' => 'Ojinaga (Americas)',
-        ], [
             'id'    => static::ASIA_OMSK,
-            'code'  => 'Asia_Omsk',
+            'code'  => 'Asia/Omsk',
             'label' => 'Omsk (Asia)',
         ], [
             'id'    => static::ASIA_ORAL,
-            'code'  => 'Asia_Oral',
+            'code'  => 'Asia/Oral',
             'label' => 'Oral (Asia)',
         ], [
-            'id'    => static::EUROPE_OSLO,
-            'code'  => 'Europe_Oslo',
-            'label' => 'Oslo (Europe)',
-        ], [
-            'id'    => static::AFRICA_OUAGADOUGOU,
-            'code'  => 'Africa_Ouagadougou',
-            'label' => 'Ouagadougou (Africa)',
-        ], [
-            'id'    => static::PACIFIC_PAGO_PAGO,
-            'code'  => 'Pacific_Pago_Pago',
-            'label' => 'Pago Pago (Pacific)',
-        ], [
-            'id'    => static::PACIFIC_PALAU,
-            'code'  => 'Pacific_Palau',
-            'label' => 'Palau (Pacific)',
-        ], [
-            'id'    => static::ANTARCTICA_PALMER,
-            'code'  => 'Antarctica_Palmer',
-            'label' => 'Palmer (Antarctica)',
-        ], [
-            'id'    => static::AMERICA_PANAMA,
-            'code'  => 'America_Panama',
-            'label' => 'Panama (Americas)',
-        ], [
-            'id'    => static::AMERICA_PARAMARIBO,
-            'code'  => 'America_Paramaribo',
-            'label' => 'Paramaribo (Americas)',
-        ], [
-            'id'    => static::EUROPE_PARIS,
-            'code'  => 'Europe_Paris',
-            'label' => 'Paris (Europe)',
-        ], [
-            'id'    => static::AUSTRALIA_PERTH,
-            'code'  => 'Australia_Perth',
-            'label' => 'Perth (Australia)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_PETERSBURG,
-            'code'  => 'America_Indiana_Petersburg',
-            'label' => 'Petersburg, Indiana (Americas)',
-        ], [
             'id'    => static::ASIA_PHNOM_PENH,
-            'code'  => 'Asia_Phnom_Penh',
+            'code'  => 'Asia/Phnom_Penh',
             'label' => 'Phnom Penh (Asia)',
         ], [
-            'id'    => static::AMERICA_PHOENIX,
-            'code'  => 'America_Phoenix',
-            'label' => 'Phoenix (Americas)',
-        ], [
-            'id'    => static::PACIFIC_PITCAIRN,
-            'code'  => 'Pacific_Pitcairn',
-            'label' => 'Pitcairn (Pacific)',
-        ], [
-            'id'    => static::EUROPE_PODGORICA,
-            'code'  => 'Europe_Podgorica',
-            'label' => 'Podgorica (Europe)',
-        ], [
-            'id'    => static::PACIFIC_POHNPEI,
-            'code'  => 'Pacific_Pohnpei',
-            'label' => 'Pohnpei (Pacific)',
-        ], [
             'id'    => static::ASIA_PONTIANAK,
-            'code'  => 'Asia_Pontianak',
+            'code'  => 'Asia/Pontianak',
             'label' => 'Pontianak (Asia)',
         ], [
-            'id'    => static::AMERICA_PORT_AU_PRINCE,
-            'code'  => 'America_Port',
-            'label' => 'Port (Americas)',
-        ], [
-            'id'    => static::PACIFIC_PORT_MORESBY,
-            'code'  => 'Pacific_Port_Moresby',
-            'label' => 'Port Moresby (Pacific)',
-        ], [
-            'id'    => static::AMERICA_PORT_OF_SPAIN,
-            'code'  => 'America_Port_of_Spain',
-            'label' => 'Port of Spain (Americas)',
-        ], [
-            'id'    => static::AFRICA_PORTO_NOVO,
-            'code'  => 'Africa_Porto',
-            'label' => 'Porto (Africa)',
-        ], [
-            'id'    => static::AMERICA_PORTO_VELHO,
-            'code'  => 'America_Porto_Velho',
-            'label' => 'Porto Velho (Americas)',
-        ], [
-            'id'    => static::EUROPE_PRAGUE,
-            'code'  => 'Europe_Prague',
-            'label' => 'Prague (Europe)',
-        ], [
-            'id'    => static::AMERICA_PUERTO_RICO,
-            'code'  => 'America_Puerto_Rico',
-            'label' => 'Puerto Rico (Americas)',
-        ], [
-            'id'    => static::AMERICA_PUNTA_ARENAS,
-            'code'  => 'America_Punta_Arenas',
-            'label' => 'Punta Arenas (Americas)',
-        ], [
             'id'    => static::ASIA_PYONGYANG,
-            'code'  => 'Asia_Pyongyang',
+            'code'  => 'Asia/Pyongyang',
             'label' => 'Pyongyang (Asia)',
         ], [
             'id'    => static::ASIA_QATAR,
-            'code'  => 'Asia_Qatar',
+            'code'  => 'Asia/Qatar',
             'label' => 'Qatar (Asia)',
         ], [
             'id'    => static::ASIA_QOSTANAY,
-            'code'  => 'Asia_Qostanay',
+            'code'  => 'Asia/Qostanay',
             'label' => 'Qostanay (Asia)',
         ], [
             'id'    => static::ASIA_QYZYLORDA,
-            'code'  => 'Asia_Qyzylorda',
+            'code'  => 'Asia/Qyzylorda',
             'label' => 'Qyzylorda (Asia)',
         ], [
-            'id'    => static::AMERICA_RANKIN_INLET,
-            'code'  => 'America_Rankin_Inlet',
-            'label' => 'Rankin Inlet (Americas)',
-        ], [
-            'id'    => static::PACIFIC_RAROTONGA,
-            'code'  => 'Pacific_Rarotonga',
-            'label' => 'Rarotonga (Pacific)',
-        ], [
-            'id'    => static::AMERICA_RECIFE,
-            'code'  => 'America_Recife',
-            'label' => 'Recife (Americas)',
-        ], [
-            'id'    => static::AMERICA_REGINA,
-            'code'  => 'America_Regina',
-            'label' => 'Regina (Americas)',
-        ], [
-            'id'    => static::AMERICA_RESOLUTE,
-            'code'  => 'America_Resolute',
-            'label' => 'Resolute (Americas)',
-        ], [
-            'id'    => static::INDIAN_REUNION,
-            'code'  => 'Indian_Reunion',
-            'label' => 'Reunion (Indian)',
-        ], [
-            'id'    => static::ATLANTIC_REYKJAVIK,
-            'code'  => 'Atlantic_Reykjavik',
-            'label' => 'Reykjavik (Atlantic)',
-        ], [
-            'id'    => static::EUROPE_RIGA,
-            'code'  => 'Europe_Riga',
-            'label' => 'Riga (Europe)',
-        ], [
-            'id'    => static::AMERICA_RIO_BRANCO,
-            'code'  => 'America_Rio_Branco',
-            'label' => 'Rio Branco (Americas)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_RIO_GALLEGOS,
-            'code'  => 'America_Argentina_Rio_Gallegos',
-            'label' => 'Rio Gallegos, Argentina (Americas)',
-        ], [
             'id'    => static::ASIA_RIYADH,
-            'code'  => 'Asia_Riyadh',
+            'code'  => 'Asia/Riyadh',
             'label' => 'Riyadh (Asia)',
         ], [
-            'id'    => static::EUROPE_ROME,
-            'code'  => 'Europe_Rome',
-            'label' => 'Rome (Europe)',
-        ], [
-            'id'    => static::ANTARCTICA_ROTHERA,
-            'code'  => 'Antarctica_Rothera',
-            'label' => 'Rothera (Antarctica)',
-        ], [
-            'id'    => static::PACIFIC_SAIPAN,
-            'code'  => 'Pacific_Saipan',
-            'label' => 'Saipan (Pacific)',
-        ], [
             'id'    => static::ASIA_SAKHALIN,
-            'code'  => 'Asia_Sakhalin',
+            'code'  => 'Asia/Sakhalin',
             'label' => 'Sakhalin (Asia)',
         ], [
-            'id'    => static::AMERICA_ARGENTINA_SALTA,
-            'code'  => 'America_Argentina_Salta',
-            'label' => 'Salta, Argentina (Americas)',
-        ], [
-            'id'    => static::EUROPE_SAMARA,
-            'code'  => 'Europe_Samara',
-            'label' => 'Samara (Europe)',
-        ], [
             'id'    => static::ASIA_SAMARKAND,
-            'code'  => 'Asia_Samarkand',
+            'code'  => 'Asia/Samarkand',
             'label' => 'Samarkand (Asia)',
         ], [
-            'id'    => static::AMERICA_ARGENTINA_SAN_JUAN,
-            'code'  => 'America_Argentina_San_Juan',
-            'label' => 'San Juan, Argentina (Americas)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_SAN_LUIS,
-            'code'  => 'America_Argentina_San_Luis',
-            'label' => 'San Luis, Argentina (Americas)',
-        ], [
-            'id'    => static::EUROPE_SAN_MARINO,
-            'code'  => 'Europe_San_Marino',
-            'label' => 'San Marino (Europe)',
-        ], [
-            'id'    => static::AMERICA_SANTAREM,
-            'code'  => 'America_Santarem',
-            'label' => 'Santarem (Americas)',
-        ], [
-            'id'    => static::AMERICA_SANTIAGO,
-            'code'  => 'America_Santiago',
-            'label' => 'Santiago (Americas)',
-        ], [
-            'id'    => static::AMERICA_SANTO_DOMINGO,
-            'code'  => 'America_Santo_Domingo',
-            'label' => 'Santo Domingo (Americas)',
-        ], [
-            'id'    => static::AMERICA_SAO_PAULO,
-            'code'  => 'America_Sao_Paulo',
-            'label' => 'Sao Paulo (Americas)',
-        ], [
-            'id'    => static::AFRICA_SAO_TOME,
-            'code'  => 'Africa_Sao_Tome',
-            'label' => 'Sao Tome (Africa)',
-        ], [
-            'id'    => static::EUROPE_SARAJEVO,
-            'code'  => 'Europe_Sarajevo',
-            'label' => 'Sarajevo (Europe)',
-        ], [
-            'id'    => static::EUROPE_SARATOV,
-            'code'  => 'Europe_Saratov',
-            'label' => 'Saratov (Europe)',
-        ], [
-            'id'    => static::AMERICA_SCORESBYSUND,
-            'code'  => 'America_Scoresbysund',
-            'label' => 'Scoresbysund (Americas)',
-        ], [
             'id'    => static::ASIA_SEOUL,
-            'code'  => 'Asia_Seoul',
+            'code'  => 'Asia/Seoul',
             'label' => 'Seoul (Asia)',
         ], [
             'id'    => static::ASIA_SHANGHAI,
-            'code'  => 'Asia_Shanghai',
+            'code'  => 'Asia/Shanghai',
             'label' => 'Shanghai (Asia)',
         ], [
-            'id'    => static::EUROPE_SIMFEROPOL,
-            'code'  => 'Europe_Simferopol',
-            'label' => 'Simferopol (Europe)',
-        ], [
             'id'    => static::ASIA_SINGAPORE,
-            'code'  => 'Asia_Singapore',
+            'code'  => 'Asia/Singapore',
             'label' => 'Singapore (Asia)',
         ], [
-            'id'    => static::AMERICA_SITKA,
-            'code'  => 'America_Sitka',
-            'label' => 'Sitka (Americas)',
-        ], [
-            'id'    => static::EUROPE_SKOPJE,
-            'code'  => 'Europe_Skopje',
-            'label' => 'Skopje (Europe)',
-        ], [
-            'id'    => static::EUROPE_SOFIA,
-            'code'  => 'Europe_Sofia',
-            'label' => 'Sofia (Europe)',
-        ], [
-            'id'    => static::ATLANTIC_SOUTH_GEORGIA,
-            'code'  => 'Atlantic_South_Georgia',
-            'label' => 'South Georgia (Atlantic)',
-        ], [
             'id'    => static::ASIA_SREDNEKOLYMSK,
-            'code'  => 'Asia_Srednekolymsk',
+            'code'  => 'Asia/Srednekolymsk',
             'label' => 'Srednekolymsk (Asia)',
         ], [
-            'id'    => static::AMERICA_ST_BARTHELEMY,
-            'code'  => 'America_St_Barthelemy',
-            'label' => 'St. Barthelemy (Americas)',
-        ], [
-            'id'    => static::ATLANTIC_ST_HELENA,
-            'code'  => 'Atlantic_St_Helena',
-            'label' => 'St. Helena (Atlantic)',
-        ], [
-            'id'    => static::AMERICA_ST_JOHNS,
-            'code'  => 'America_St_Johns',
-            'label' => 'St. Johns (Americas)',
-        ], [
-            'id'    => static::AMERICA_ST_KITTS,
-            'code'  => 'America_St_Kitts',
-            'label' => 'St. Kitts (Americas)',
-        ], [
-            'id'    => static::AMERICA_ST_LUCIA,
-            'code'  => 'America_St_Lucia',
-            'label' => 'St. Lucia (Americas)',
-        ], [
-            'id'    => static::AMERICA_ST_THOMAS,
-            'code'  => 'America_St_Thomas',
-            'label' => 'St. Thomas (Americas)',
-        ], [
-            'id'    => static::AMERICA_ST_VINCENT,
-            'code'  => 'America_St_Vincent',
-            'label' => 'St. Vincent (Americas)',
-        ], [
-            'id'    => static::ATLANTIC_STANLEY,
-            'code'  => 'Atlantic_Stanley',
-            'label' => 'Stanley (Atlantic)',
-        ], [
-            'id'    => static::EUROPE_STOCKHOLM,
-            'code'  => 'Europe_Stockholm',
-            'label' => 'Stockholm (Europe)',
-        ], [
-            'id'    => static::AMERICA_SWIFT_CURRENT,
-            'code'  => 'America_Swift_Current',
-            'label' => 'Swift Current (Americas)',
-        ], [
-            'id'    => static::AUSTRALIA_SYDNEY,
-            'code'  => 'Australia_Sydney',
-            'label' => 'Sydney (Australia)',
-        ], [
-            'id'    => static::ANTARCTICA_SYOWA,
-            'code'  => 'Antarctica_Syowa',
-            'label' => 'Syowa (Antarctica)',
-        ], [
-            'id'    => static::PACIFIC_TAHITI,
-            'code'  => 'Pacific_Tahiti',
-            'label' => 'Tahiti (Pacific)',
-        ], [
             'id'    => static::ASIA_TAIPEI,
-            'code'  => 'Asia_Taipei',
+            'code'  => 'Asia/Taipei',
             'label' => 'Taipei (Asia)',
         ], [
-            'id'    => static::EUROPE_TALLINN,
-            'code'  => 'Europe_Tallinn',
-            'label' => 'Tallinn (Europe)',
-        ], [
-            'id'    => static::PACIFIC_TARAWA,
-            'code'  => 'Pacific_Tarawa',
-            'label' => 'Tarawa (Pacific)',
-        ], [
             'id'    => static::ASIA_TASHKENT,
-            'code'  => 'Asia_Tashkent',
+            'code'  => 'Asia/Tashkent',
             'label' => 'Tashkent (Asia)',
         ], [
             'id'    => static::ASIA_TBILISI,
-            'code'  => 'Asia_Tbilisi',
+            'code'  => 'Asia/Tbilisi',
             'label' => 'Tbilisi (Asia)',
         ], [
-            'id'    => static::AMERICA_TEGUCIGALPA,
-            'code'  => 'America_Tegucigalpa',
-            'label' => 'Tegucigalpa (Americas)',
-        ], [
             'id'    => static::ASIA_TEHRAN,
-            'code'  => 'Asia_Tehran',
+            'code'  => 'Asia/Tehran',
             'label' => 'Tehran (Asia)',
         ], [
-            'id'    => static::AMERICA_INDIANA_TELL_CITY,
-            'code'  => 'America_Indiana_Tell_City',
-            'label' => 'Tell City, Indiana (Americas)',
-        ], [
             'id'    => static::ASIA_THIMPHU,
-            'code'  => 'Asia_Thimphu',
+            'code'  => 'Asia/Thimphu',
             'label' => 'Thimphu (Asia)',
         ], [
-            'id'    => static::AMERICA_THULE,
-            'code'  => 'America_Thule',
-            'label' => 'Thule (Americas)',
-        ], [
-            'id'    => static::AMERICA_TIJUANA,
-            'code'  => 'America_Tijuana',
-            'label' => 'Tijuana (Americas)',
-        ], [
-            'id'    => static::EUROPE_TIRANE,
-            'code'  => 'Europe_Tirane',
-            'label' => 'Tirane (Europe)',
-        ], [
             'id'    => static::ASIA_TOKYO,
-            'code'  => 'Asia_Tokyo',
+            'code'  => 'Asia/Tokyo',
             'label' => 'Tokyo (Asia)',
         ], [
             'id'    => static::ASIA_TOMSK,
-            'code'  => 'Asia_Tomsk',
+            'code'  => 'Asia/Tomsk',
             'label' => 'Tomsk (Asia)',
         ], [
+            'id'    => static::ASIA_ULAANBAATAR,
+            'code'  => 'Asia/Ulaanbaatar',
+            'label' => 'Ulaanbaatar (Asia)',
+        ], [
+            'id'    => static::ASIA_URUMQI,
+            'code'  => 'Asia/Urumqi',
+            'label' => 'Urumqi (Asia)',
+        ], [
+            'id'    => static::ASIA_UST_NERA,
+            'code'  => 'Asia/Ust-Nera',
+            'label' => 'Ust-Nera (Asia)',
+        ], [
+            'id'    => static::ASIA_VIENTIANE,
+            'code'  => 'Asia/Vientiane',
+            'label' => 'Vientiane (Asia)',
+        ], [
+            'id'    => static::ASIA_VLADIVOSTOK,
+            'code'  => 'Asia/Vladivostok',
+            'label' => 'Vladivostok (Asia)',
+        ], [
+            'id'    => static::ASIA_YAKUTSK,
+            'code'  => 'Asia/Yakutsk',
+            'label' => 'Yakutsk (Asia)',
+        ], [
+            'id'    => static::ASIA_YANGON,
+            'code'  => 'Asia/Yangon',
+            'label' => 'Yangon (Asia)',
+        ], [
+            'id'    => static::ASIA_YEKATERINBURG,
+            'code'  => 'Asia/Yekaterinburg',
+            'label' => 'Yekaterinburg (Asia)',
+        ], [
+            'id'    => static::ASIA_YEREVAN,
+            'code'  => 'Asia/Yerevan',
+            'label' => 'Yerevan (Asia)',
+        ], [
+            'id'    => static::ATLANTIC_AZORES,
+            'code'  => 'Atlantic/Azores',
+            'label' => 'Azores (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_BERMUDA,
+            'code'  => 'Atlantic/Bermuda',
+            'label' => 'Bermuda (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_CANARY,
+            'code'  => 'Atlantic/Canary',
+            'label' => 'Canary (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_CAPE_VERDE,
+            'code'  => 'Atlantic/Cape_Verde',
+            'label' => 'Cape Verde (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_FAROE,
+            'code'  => 'Atlantic/Faroe',
+            'label' => 'Faroe (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_MADEIRA,
+            'code'  => 'Atlantic/Madeira',
+            'label' => 'Madeira (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_REYKJAVIK,
+            'code'  => 'Atlantic/Reykjavik',
+            'label' => 'Reykjavik (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_SOUTH_GEORGIA,
+            'code'  => 'Atlantic/South_Georgia',
+            'label' => 'South Georgia (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_ST_HELENA,
+            'code'  => 'Atlantic/St_Helena',
+            'label' => 'St Helena (Atlantic)',
+        ], [
+            'id'    => static::ATLANTIC_STANLEY,
+            'code'  => 'Atlantic/Stanley',
+            'label' => 'Stanley (Atlantic)',
+        ], [
+            'id'    => static::AUSTRALIA_ADELAIDE,
+            'code'  => 'Australia/Adelaide',
+            'label' => 'Adelaide (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_BRISBANE,
+            'code'  => 'Australia/Brisbane',
+            'label' => 'Brisbane (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_BROKEN_HILL,
+            'code'  => 'Australia/Broken_Hill',
+            'label' => 'Broken Hill (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_DARWIN,
+            'code'  => 'Australia/Darwin',
+            'label' => 'Darwin (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_EUCLA,
+            'code'  => 'Australia/Eucla',
+            'label' => 'Eucla (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_HOBART,
+            'code'  => 'Australia/Hobart',
+            'label' => 'Hobart (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_LINDEMAN,
+            'code'  => 'Australia/Lindeman',
+            'label' => 'Lindeman (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_LORD_HOWE,
+            'code'  => 'Australia/Lord_Howe',
+            'label' => 'Lord Howe (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_MELBOURNE,
+            'code'  => 'Australia/Melbourne',
+            'label' => 'Melbourne (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_PERTH,
+            'code'  => 'Australia/Perth',
+            'label' => 'Perth (Australia)',
+        ], [
+            'id'    => static::AUSTRALIA_SYDNEY,
+            'code'  => 'Australia/Sydney',
+            'label' => 'Sydney (Australia)',
+        ], [
+            'id'    => static::EUROPE_AMSTERDAM,
+            'code'  => 'Europe/Amsterdam',
+            'label' => 'Amsterdam (Europe)',
+        ], [
+            'id'    => static::EUROPE_ANDORRA,
+            'code'  => 'Europe/Andorra',
+            'label' => 'Andorra (Europe)',
+        ], [
+            'id'    => static::EUROPE_ASTRAKHAN,
+            'code'  => 'Europe/Astrakhan',
+            'label' => 'Astrakhan (Europe)',
+        ], [
+            'id'    => static::EUROPE_ATHENS,
+            'code'  => 'Europe/Athens',
+            'label' => 'Athens (Europe)',
+        ], [
+            'id'    => static::EUROPE_BELGRADE,
+            'code'  => 'Europe/Belgrade',
+            'label' => 'Belgrade (Europe)',
+        ], [
+            'id'    => static::EUROPE_BERLIN,
+            'code'  => 'Europe/Berlin',
+            'label' => 'Berlin (Europe)',
+        ], [
+            'id'    => static::EUROPE_BRATISLAVA,
+            'code'  => 'Europe/Bratislava',
+            'label' => 'Bratislava (Europe)',
+        ], [
+            'id'    => static::EUROPE_BRUSSELS,
+            'code'  => 'Europe/Brussels',
+            'label' => 'Brussels (Europe)',
+        ], [
+            'id'    => static::EUROPE_BUCHAREST,
+            'code'  => 'Europe/Bucharest',
+            'label' => 'Bucharest (Europe)',
+        ], [
+            'id'    => static::EUROPE_BUDAPEST,
+            'code'  => 'Europe/Budapest',
+            'label' => 'Budapest (Europe)',
+        ], [
+            'id'    => static::EUROPE_BUSINGEN,
+            'code'  => 'Europe/Busingen',
+            'label' => 'Busingen (Europe)',
+        ], [
+            'id'    => static::EUROPE_CHISINAU,
+            'code'  => 'Europe/Chisinau',
+            'label' => 'Chisinau (Europe)',
+        ], [
+            'id'    => static::EUROPE_COPENHAGEN,
+            'code'  => 'Europe/Copenhagen',
+            'label' => 'Copenhagen (Europe)',
+        ], [
+            'id'    => static::EUROPE_DUBLIN,
+            'code'  => 'Europe/Dublin',
+            'label' => 'Dublin (Europe)',
+        ], [
+            'id'    => static::EUROPE_GIBRALTAR,
+            'code'  => 'Europe/Gibraltar',
+            'label' => 'Gibraltar (Europe)',
+        ], [
+            'id'    => static::EUROPE_GUERNSEY,
+            'code'  => 'Europe/Guernsey',
+            'label' => 'Guernsey (Europe)',
+        ], [
+            'id'    => static::EUROPE_HELSINKI,
+            'code'  => 'Europe/Helsinki',
+            'label' => 'Helsinki (Europe)',
+        ], [
+            'id'    => static::EUROPE_ISLE_OF_MAN,
+            'code'  => 'Europe/Isle_of_Man',
+            'label' => 'Isle of Man (Europe)',
+        ], [
+            'id'    => static::EUROPE_ISTANBUL,
+            'code'  => 'Europe/Istanbul',
+            'label' => 'Istanbul (Europe)',
+        ], [
+            'id'    => static::EUROPE_JERSEY,
+            'code'  => 'Europe/Jersey',
+            'label' => 'Jersey (Europe)',
+        ], [
+            'id'    => static::EUROPE_KALININGRAD,
+            'code'  => 'Europe/Kaliningrad',
+            'label' => 'Kaliningrad (Europe)',
+        ], [
+            'id'    => static::EUROPE_KIROV,
+            'code'  => 'Europe/Kirov',
+            'label' => 'Kirov (Europe)',
+        ], [
+            'id'    => static::EUROPE_KYIV,
+            'code'  => 'Europe/Kyiv',
+            'label' => 'Kyiv (Europe)',
+        ], [
+            'id'    => static::EUROPE_LISBON,
+            'code'  => 'Europe/Lisbon',
+            'label' => 'Lisbon (Europe)',
+        ], [
+            'id'    => static::EUROPE_LJUBLJANA,
+            'code'  => 'Europe/Ljubljana',
+            'label' => 'Ljubljana (Europe)',
+        ], [
+            'id'    => static::EUROPE_LONDON,
+            'code'  => 'Europe/London',
+            'label' => 'London (Europe)',
+        ], [
+            'id'    => static::EUROPE_LUXEMBOURG,
+            'code'  => 'Europe/Luxembourg',
+            'label' => 'Luxembourg (Europe)',
+        ], [
+            'id'    => static::EUROPE_MADRID,
+            'code'  => 'Europe/Madrid',
+            'label' => 'Madrid (Europe)',
+        ], [
+            'id'    => static::EUROPE_MALTA,
+            'code'  => 'Europe/Malta',
+            'label' => 'Malta (Europe)',
+        ], [
+            'id'    => static::EUROPE_MARIEHAMN,
+            'code'  => 'Europe/Mariehamn',
+            'label' => 'Mariehamn (Europe)',
+        ], [
+            'id'    => static::EUROPE_MINSK,
+            'code'  => 'Europe/Minsk',
+            'label' => 'Minsk (Europe)',
+        ], [
+            'id'    => static::EUROPE_MONACO,
+            'code'  => 'Europe/Monaco',
+            'label' => 'Monaco (Europe)',
+        ], [
+            'id'    => static::EUROPE_MOSCOW,
+            'code'  => 'Europe/Moscow',
+            'label' => 'Moscow (Europe)',
+        ], [
+            'id'    => static::EUROPE_OSLO,
+            'code'  => 'Europe/Oslo',
+            'label' => 'Oslo (Europe)',
+        ], [
+            'id'    => static::EUROPE_PARIS,
+            'code'  => 'Europe/Paris',
+            'label' => 'Paris (Europe)',
+        ], [
+            'id'    => static::EUROPE_PODGORICA,
+            'code'  => 'Europe/Podgorica',
+            'label' => 'Podgorica (Europe)',
+        ], [
+            'id'    => static::EUROPE_PRAGUE,
+            'code'  => 'Europe/Prague',
+            'label' => 'Prague (Europe)',
+        ], [
+            'id'    => static::EUROPE_RIGA,
+            'code'  => 'Europe/Riga',
+            'label' => 'Riga (Europe)',
+        ], [
+            'id'    => static::EUROPE_ROME,
+            'code'  => 'Europe/Rome',
+            'label' => 'Rome (Europe)',
+        ], [
+            'id'    => static::EUROPE_SAMARA,
+            'code'  => 'Europe/Samara',
+            'label' => 'Samara (Europe)',
+        ], [
+            'id'    => static::EUROPE_SAN_MARINO,
+            'code'  => 'Europe/San_Marino',
+            'label' => 'San Marino (Europe)',
+        ], [
+            'id'    => static::EUROPE_SARAJEVO,
+            'code'  => 'Europe/Sarajevo',
+            'label' => 'Sarajevo (Europe)',
+        ], [
+            'id'    => static::EUROPE_SARATOV,
+            'code'  => 'Europe/Saratov',
+            'label' => 'Saratov (Europe)',
+        ], [
+            'id'    => static::EUROPE_SIMFEROPOL,
+            'code'  => 'Europe/Simferopol',
+            'label' => 'Simferopol (Europe)',
+        ], [
+            'id'    => static::EUROPE_SKOPJE,
+            'code'  => 'Europe/Skopje',
+            'label' => 'Skopje (Europe)',
+        ], [
+            'id'    => static::EUROPE_SOFIA,
+            'code'  => 'Europe/Sofia',
+            'label' => 'Sofia (Europe)',
+        ], [
+            'id'    => static::EUROPE_STOCKHOLM,
+            'code'  => 'Europe/Stockholm',
+            'label' => 'Stockholm (Europe)',
+        ], [
+            'id'    => static::EUROPE_TALLINN,
+            'code'  => 'Europe/Tallinn',
+            'label' => 'Tallinn (Europe)',
+        ], [
+            'id'    => static::EUROPE_TIRANE,
+            'code'  => 'Europe/Tirane',
+            'label' => 'Tirane (Europe)',
+        ], [
+            'id'    => static::EUROPE_ULYANOVSK,
+            'code'  => 'Europe/Ulyanovsk',
+            'label' => 'Ulyanovsk (Europe)',
+        ], [
+            'id'    => static::EUROPE_VADUZ,
+            'code'  => 'Europe/Vaduz',
+            'label' => 'Vaduz (Europe)',
+        ], [
+            'id'    => static::EUROPE_VATICAN,
+            'code'  => 'Europe/Vatican',
+            'label' => 'Vatican (Europe)',
+        ], [
+            'id'    => static::EUROPE_VIENNA,
+            'code'  => 'Europe/Vienna',
+            'label' => 'Vienna (Europe)',
+        ], [
+            'id'    => static::EUROPE_VILNIUS,
+            'code'  => 'Europe/Vilnius',
+            'label' => 'Vilnius (Europe)',
+        ], [
+            'id'    => static::EUROPE_VOLGOGRAD,
+            'code'  => 'Europe/Volgograd',
+            'label' => 'Volgograd (Europe)',
+        ], [
+            'id'    => static::EUROPE_WARSAW,
+            'code'  => 'Europe/Warsaw',
+            'label' => 'Warsaw (Europe)',
+        ], [
+            'id'    => static::EUROPE_ZAGREB,
+            'code'  => 'Europe/Zagreb',
+            'label' => 'Zagreb (Europe)',
+        ], [
+            'id'    => static::EUROPE_ZURICH,
+            'code'  => 'Europe/Zurich',
+            'label' => 'Zurich (Europe)',
+        ], [
+            'id'    => static::INDIAN_ANTANANARIVO,
+            'code'  => 'Indian/Antananarivo',
+            'label' => 'Antananarivo (Indian)',
+        ], [
+            'id'    => static::INDIAN_CHAGOS,
+            'code'  => 'Indian/Chagos',
+            'label' => 'Chagos (Indian)',
+        ], [
+            'id'    => static::INDIAN_CHRISTMAS,
+            'code'  => 'Indian/Christmas',
+            'label' => 'Christmas (Indian)',
+        ], [
+            'id'    => static::INDIAN_COCOS,
+            'code'  => 'Indian/Cocos',
+            'label' => 'Cocos (Indian)',
+        ], [
+            'id'    => static::INDIAN_COMORO,
+            'code'  => 'Indian/Comoro',
+            'label' => 'Comoro (Indian)',
+        ], [
+            'id'    => static::INDIAN_KERGUELEN,
+            'code'  => 'Indian/Kerguelen',
+            'label' => 'Kerguelen (Indian)',
+        ], [
+            'id'    => static::INDIAN_MAHE,
+            'code'  => 'Indian/Mahe',
+            'label' => 'Mahe (Indian)',
+        ], [
+            'id'    => static::INDIAN_MALDIVES,
+            'code'  => 'Indian/Maldives',
+            'label' => 'Maldives (Indian)',
+        ], [
+            'id'    => static::INDIAN_MAURITIUS,
+            'code'  => 'Indian/Mauritius',
+            'label' => 'Mauritius (Indian)',
+        ], [
+            'id'    => static::INDIAN_MAYOTTE,
+            'code'  => 'Indian/Mayotte',
+            'label' => 'Mayotte (Indian)',
+        ], [
+            'id'    => static::INDIAN_REUNION,
+            'code'  => 'Indian/Reunion',
+            'label' => 'Reunion (Indian)',
+        ], [
+            'id'    => static::PACIFIC_APIA,
+            'code'  => 'Pacific/Apia',
+            'label' => 'Apia (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_AUCKLAND,
+            'code'  => 'Pacific/Auckland',
+            'label' => 'Auckland (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_BOUGAINVILLE,
+            'code'  => 'Pacific/Bougainville',
+            'label' => 'Bougainville (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_CHATHAM,
+            'code'  => 'Pacific/Chatham',
+            'label' => 'Chatham (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_CHUUK,
+            'code'  => 'Pacific/Chuuk',
+            'label' => 'Chuuk (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_EASTER,
+            'code'  => 'Pacific/Easter',
+            'label' => 'Easter (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_EFATE,
+            'code'  => 'Pacific/Efate',
+            'label' => 'Efate (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_FAKAOFO,
+            'code'  => 'Pacific/Fakaofo',
+            'label' => 'Fakaofo (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_FIJI,
+            'code'  => 'Pacific/Fiji',
+            'label' => 'Fiji (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_FUNAFUTI,
+            'code'  => 'Pacific/Funafuti',
+            'label' => 'Funafuti (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_GALAPAGOS,
+            'code'  => 'Pacific/Galapagos',
+            'label' => 'Galapagos (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_GAMBIER,
+            'code'  => 'Pacific/Gambier',
+            'label' => 'Gambier (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_GUADALCANAL,
+            'code'  => 'Pacific/Guadalcanal',
+            'label' => 'Guadalcanal (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_GUAM,
+            'code'  => 'Pacific/Guam',
+            'label' => 'Guam (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_HONOLULU,
+            'code'  => 'Pacific/Honolulu',
+            'label' => 'Honolulu (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_KANTON,
+            'code'  => 'Pacific/Kanton',
+            'label' => 'Kanton (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_KIRITIMATI,
+            'code'  => 'Pacific/Kiritimati',
+            'label' => 'Kiritimati (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_KOSRAE,
+            'code'  => 'Pacific/Kosrae',
+            'label' => 'Kosrae (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_KWAJALEIN,
+            'code'  => 'Pacific/Kwajalein',
+            'label' => 'Kwajalein (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_MAJURO,
+            'code'  => 'Pacific/Majuro',
+            'label' => 'Majuro (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_MARQUESAS,
+            'code'  => 'Pacific/Marquesas',
+            'label' => 'Marquesas (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_MIDWAY,
+            'code'  => 'Pacific/Midway',
+            'label' => 'Midway (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_NAURU,
+            'code'  => 'Pacific/Nauru',
+            'label' => 'Nauru (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_NIUE,
+            'code'  => 'Pacific/Niue',
+            'label' => 'Niue (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_NORFOLK,
+            'code'  => 'Pacific/Norfolk',
+            'label' => 'Norfolk (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_NOUMEA,
+            'code'  => 'Pacific/Noumea',
+            'label' => 'Noumea (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_PAGO_PAGO,
+            'code'  => 'Pacific/Pago_Pago',
+            'label' => 'Pago Pago (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_PALAU,
+            'code'  => 'Pacific/Palau',
+            'label' => 'Palau (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_PITCAIRN,
+            'code'  => 'Pacific/Pitcairn',
+            'label' => 'Pitcairn (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_POHNPEI,
+            'code'  => 'Pacific/Pohnpei',
+            'label' => 'Pohnpei (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_PORT_MORESBY,
+            'code'  => 'Pacific/Port_Moresby',
+            'label' => 'Port Moresby (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_RAROTONGA,
+            'code'  => 'Pacific/Rarotonga',
+            'label' => 'Rarotonga (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_SAIPAN,
+            'code'  => 'Pacific/Saipan',
+            'label' => 'Saipan (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_TAHITI,
+            'code'  => 'Pacific/Tahiti',
+            'label' => 'Tahiti (Pacific)',
+        ], [
+            'id'    => static::PACIFIC_TARAWA,
+            'code'  => 'Pacific/Tarawa',
+            'label' => 'Tarawa (Pacific)',
+        ], [
             'id'    => static::PACIFIC_TONGATAPU,
-            'code'  => 'Pacific_Tongatapu',
+            'code'  => 'Pacific/Tongatapu',
             'label' => 'Tongatapu (Pacific)',
         ], [
-            'id'    => static::AMERICA_TORONTO,
-            'code'  => 'America_Toronto',
-            'label' => 'Toronto (Americas)',
+            'id'    => static::PACIFIC_WAKE,
+            'code'  => 'Pacific/Wake',
+            'label' => 'Wake (Pacific)',
         ], [
-            'id'    => static::AMERICA_TORTOLA,
-            'code'  => 'America_Tortola',
-            'label' => 'Tortola (Americas)',
-        ], [
-            'id'    => static::AFRICA_TRIPOLI,
-            'code'  => 'Africa_Tripoli',
-            'label' => 'Tripoli (Africa)',
-        ], [
-            'id'    => static::ANTARCTICA_TROLL,
-            'code'  => 'Antarctica_Troll',
-            'label' => 'Troll (Antarctica)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_TUCUMAN,
-            'code'  => 'America_Argentina_Tucuman',
-            'label' => 'Tucuman, Argentina (Americas)',
-        ], [
-            'id'    => static::AFRICA_TUNIS,
-            'code'  => 'Africa_Tunis',
-            'label' => 'Tunis (Africa)',
+            'id'    => static::PACIFIC_WALLIS,
+            'code'  => 'Pacific/Wallis',
+            'label' => 'Wallis (Pacific)',
         ], [
             'id'    => static::UTC,
             'code'  => 'UTC',
             'label' => 'UTC',
-        ], [
-            'id'    => static::ASIA_ULAANBAATAR,
-            'code'  => 'Asia_Ulaanbaatar',
-            'label' => 'Ulaanbaatar (Asia)',
-        ], [
-            'id'    => static::EUROPE_ULYANOVSK,
-            'code'  => 'Europe_Ulyanovsk',
-            'label' => 'Ulyanovsk (Europe)',
-        ], [
-            'id'    => static::ASIA_URUMQI,
-            'code'  => 'Asia_Urumqi',
-            'label' => 'Urumqi (Asia)',
-        ], [
-            'id'    => static::AMERICA_ARGENTINA_USHUAIA,
-            'code'  => 'America_Argentina_Ushuaia',
-            'label' => 'Ushuaia, Argentina (Americas)',
-        ], [
-            'id'    => static::ASIA_UST_NERA,
-            'code'  => 'Asia_Ust',
-            'label' => 'Ust (Asia)',
-        ], [
-            'id'    => static::EUROPE_VADUZ,
-            'code'  => 'Europe_Vaduz',
-            'label' => 'Vaduz (Europe)',
-        ], [
-            'id'    => static::AMERICA_VANCOUVER,
-            'code'  => 'America_Vancouver',
-            'label' => 'Vancouver (Americas)',
-        ], [
-            'id'    => static::EUROPE_VATICAN,
-            'code'  => 'Europe_Vatican',
-            'label' => 'Vatican (Europe)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_VEVAY,
-            'code'  => 'America_Indiana_Vevay',
-            'label' => 'Vevay, Indiana (Americas)',
-        ], [
-            'id'    => static::EUROPE_VIENNA,
-            'code'  => 'Europe_Vienna',
-            'label' => 'Vienna (Europe)',
-        ], [
-            'id'    => static::ASIA_VIENTIANE,
-            'code'  => 'Asia_Vientiane',
-            'label' => 'Vientiane (Asia)',
-        ], [
-            'id'    => static::EUROPE_VILNIUS,
-            'code'  => 'Europe_Vilnius',
-            'label' => 'Vilnius (Europe)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_VINCENNES,
-            'code'  => 'America_Indiana_Vincennes',
-            'label' => 'Vincennes, Indiana (Americas)',
-        ], [
-            'id'    => static::ASIA_VLADIVOSTOK,
-            'code'  => 'Asia_Vladivostok',
-            'label' => 'Vladivostok (Asia)',
-        ], [
-            'id'    => static::EUROPE_VOLGOGRAD,
-            'code'  => 'Europe_Volgograd',
-            'label' => 'Volgograd (Europe)',
-        ], [
-            'id'    => static::ANTARCTICA_VOSTOK,
-            'code'  => 'Antarctica_Vostok',
-            'label' => 'Vostok (Antarctica)',
-        ], [
-            'id'    => static::PACIFIC_WAKE,
-            'code'  => 'Pacific_Wake',
-            'label' => 'Wake (Pacific)',
-        ], [
-            'id'    => static::PACIFIC_WALLIS,
-            'code'  => 'Pacific_Wallis',
-            'label' => 'Wallis (Pacific)',
-        ], [
-            'id'    => static::EUROPE_WARSAW,
-            'code'  => 'Europe_Warsaw',
-            'label' => 'Warsaw (Europe)',
-        ], [
-            'id'    => static::AMERICA_WHITEHORSE,
-            'code'  => 'America_Whitehorse',
-            'label' => 'Whitehorse (Americas)',
-        ], [
-            'id'    => static::AMERICA_INDIANA_WINAMAC,
-            'code'  => 'America_Indiana_Winamac',
-            'label' => 'Winamac, Indiana (Americas)',
-        ], [
-            'id'    => static::AFRICA_WINDHOEK,
-            'code'  => 'Africa_Windhoek',
-            'label' => 'Windhoek (Africa)',
-        ], [
-            'id'    => static::AMERICA_WINNIPEG,
-            'code'  => 'America_Winnipeg',
-            'label' => 'Winnipeg (Americas)',
-        ], [
-            'id'    => static::AMERICA_YAKUTAT,
-            'code'  => 'America_Yakutat',
-            'label' => 'Yakutat (Americas)',
-        ], [
-            'id'    => static::ASIA_YAKUTSK,
-            'code'  => 'Asia_Yakutsk',
-            'label' => 'Yakutsk (Asia)',
-        ], [
-            'id'    => static::ASIA_YANGON,
-            'code'  => 'Asia_Yangon',
-            'label' => 'Yangon (Asia)',
-        ], [
-            'id'    => static::ASIA_YEKATERINBURG,
-            'code'  => 'Asia_Yekaterinburg',
-            'label' => 'Yekaterinburg (Asia)',
-        ], [
-            'id'    => static::AMERICA_YELLOWKNIFE,
-            'code'  => 'America_Yellowknife',
-            'label' => 'Yellowknife (Americas)',
-        ], [
-            'id'    => static::ASIA_YEREVAN,
-            'code'  => 'Asia_Yerevan',
-            'label' => 'Yerevan (Asia)',
-        ], [
-            'id'    => static::EUROPE_ZAGREB,
-            'code'  => 'Europe_Zagreb',
-            'label' => 'Zagreb (Europe)',
-        ], [
-            'id'    => static::EUROPE_ZURICH,
-            'code'  => 'Europe_Zurich',
-            'label' => 'Zurich (Europe)',
         ]];
     }
 }

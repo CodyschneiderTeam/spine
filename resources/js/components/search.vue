@@ -6,7 +6,7 @@
 
             <!-- Controls -->
             <div :key="field.id"
-                 v-for="field in source.search.filtering">
+                 v-for="field in source.search.filtering.filter(i => i?.show ?? true)">
 
                 <!-- TextBox -->
                 <v-textbox :icon="field.icon"

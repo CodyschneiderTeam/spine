@@ -55,4 +55,22 @@ export default class Number
             .format(value)
             .replace(/^.*?(?=[^\w\s]|_)/, '');
     }
+
+    /**
+     * Round the given value down to its nearest whole number.
+     *
+     */
+    static roundDown(value)
+    {
+        return Math.floor(value);
+    }
+
+    /**
+     * Round the given value up to its nearest whole number.
+     *
+     */
+    static roundUp(value)
+    {
+        return Math.ceil(value);
+    }
 }

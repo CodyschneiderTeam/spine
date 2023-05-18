@@ -66,7 +66,14 @@ class Browser extends BaseBrowser
      */
     public function assertDateTime(string $field, DateTime $value) : static
     {
-        return $this->assertInputValue($field, $value->format('Y-m-d\TH:i:s.000\Z'));
+        $field = DateTime::parse($this->inputValue($field));
+
+        PHPUnit::assertEquals(
+            $field->startOfMinute()->format('Y-m-d\TH:i'),
+            $value->startOfMinute()->format('Y-m-d\TH:i')
+        );
+
+        return $this;
     }
 
     /**

@@ -163,16 +163,34 @@
                             :id="`${name}_select_hour`"
                             :name="`${name}_select_hour`"
                             :dusk="`${name}_select_hour`"
-                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal pr-6px">
+                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
+
+                        <!-- Meridiem (AM) -->
+                        <option :disabled="true">AM</option>
 
                         <!-- Options -->
                         <option :key="hour"
                                 :value="hour"
-                                v-for="hour in hours"
-                                :selected="hour === calendar.hour.toString().padStart(2, '0')">
+                                v-for="hour in hours.am"
+                                :selected="hour === calendar.hour">
 
                             <!-- Text -->
-                            {{ hour }}
+                            {{ parseInt(hour) === 0 ? 12 : parseInt(hour) }}
+
+                        </option>
+
+                        <!-- Meridiem (PM) -->
+                        <option :disabled="true"></option>
+                        <option :disabled="true">PM</option>
+
+                        <!-- Options -->
+                        <option :key="hour"
+                                :value="hour"
+                                v-for="hour in hours.pm"
+                                :selected="hour === calendar.hour">
+
+                            <!-- Text -->
+                            {{ parseInt(hour) === 12 ? 12 : parseInt(hour) - 12 }}
 
                         </option>
 
@@ -236,12 +254,8 @@
                     </select>
 
                     <!-- Meridiem -->
-                    <span v-if="meridiem"
-                        class="ui-meridiem text-14px text-gray-400 ml-2">
-
-                        <!-- Text -->
+                    <span class="ui-meridiem text-14px text-gray-400 ml-2">
                         {{ value.toFormat('a').toLowerCase() }}
-
                     </span>
 
                 </div>
@@ -296,7 +310,7 @@
         data() { return {
             attention : false,
             calendar  : null,
-            hours     : Array(24).fill('').map((v, i) => `${i}`.padStart(2, '0')),
+            hours     : { am : Array(12).fill('').map((v, i) => i), pm : Array(12).fill('').map((v, i) => i + 12) },
             limits    : { minimum : DateTime.fromISO(this.minDate), maximum : DateTime.fromISO(this.maxDate) },
             minutes   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
             months    : Array(12).fill('').map((v, i) => new Intl.DateTimeFormat(this.locale, { month: 'short' }).format(new Date(Date.UTC(2021, (i)%12)))),
@@ -314,7 +328,6 @@
             'hideTextbox'  : { type : Boolean, default : false },
             'locale'       : { type : String,  default : 'en-US' },
             'maxDate'      : { type : String,  default : '2100-12-31' },
-            'meridiem'     : { type : Boolean, default : false },
             'minDate'      : { type : String,  default : '1900-01-01' },
             'showCalendar' : { type : Boolean, default : false },
             'showSeconds'  : { type : Boolean, default : false },
@@ -365,7 +378,7 @@
              */
             format()
             {
-                let preset = this.showSeconds ? DateTime.TIME_24_WITH_SECONDS : DateTime.TIME_24_SIMPLE;
+                let preset = this.showSeconds ? DateTime.TIME_WITH_SECONDS : DateTime.TIME_SIMPLE;
 
                 if (System.Util.blank(this.modelValue)) {
                     return '';
@@ -381,8 +394,7 @@
 
                 if (this.type === 'datetime') {
                     return this.value.toLocaleString(DateTime.DATE_MED) + ' - ' +
-                        this.value.toLocaleString(preset) +
-                        (this.meridiem ? ` (${this.value.toFormat('a').toLowerCase()})` : '');
+                        this.value.toLocaleString(preset).toLowerCase();
                 }
 
                 throw 'Unknown type format';
@@ -568,8 +580,6 @@
              */
             showSelectors()
             {
-                console.log(this.value);
-
                 if (System.Util.blank(this.value)) {
                     if (this.startDate) {
                         this.value = DateTime.fromISO(this.startDate).startOf('day').setLocale(this.locale);

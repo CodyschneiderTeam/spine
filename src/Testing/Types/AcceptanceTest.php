@@ -30,6 +30,7 @@ class AcceptanceTest extends TestCase
         $arguments = Arr::filter([
             '--disable-gpu',
             '--window-size=1920,1080',
+            '--time-zone-for-testing=UTC',
             Env::get('DUSK_HEADLESS', true) ? '--headless' : '',
         ]);
 

@@ -1,7 +1,7 @@
 <template>
     <div v-if="display"
          class="ui-alert relative rounded-md"
-         :class="[types[type].background, title ? 'py-6' : 'py-5', title ? '' : types[type].border]">
+         :class="[types[type].background, title ? 'py-6' : 'py-5', title ? (border ? types[type].border : '') : types[type].border]">
 
         <!-- Content -->
         <div v-if="title"
@@ -104,6 +104,7 @@
          *
          */
         props : {
+            'border'  : { type : Boolean, default : false },
             'dismiss' : { type : Boolean, default : false },
             'id'      : { type : String,  default : '' },
             'title'   : { type : String,  default : '' },

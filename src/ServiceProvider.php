@@ -13,6 +13,7 @@ use Caneara\Spine\Macros\TestResponse;
 use Caneara\Spine\Storage\LocalDriver;
 use Caneara\Spine\Database\LazyLoading;
 use Caneara\Spine\Database\SlowQueries;
+use Caneara\Spine\Routing\UrlGenerator;
 use Caneara\Spine\Macros\RedirectResponse;
 use Caneara\Spine\Security\PasswordDefaults;
 use Caneara\Spine\Database\LengthAwarePaginator;
@@ -39,6 +40,8 @@ class ServiceProvider extends Provider
         App::useLangPath(__DIR__ . '/../resources/lang');
 
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+
+        App::bind('url', fn($app) => new UrlGenerator($app['router']->getRoutes(), $app['request']));
     }
 
     /**

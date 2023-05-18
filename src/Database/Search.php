@@ -4,6 +4,8 @@ namespace Caneara\Spine\Database;
 
 use Closure;
 use Caneara\Spine\Support\Arr;
+use Caneara\Spine\Support\DateTime;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
 use Caneara\Spine\Macros\Builder as Macro;
 
@@ -55,9 +57,11 @@ class Search
      */
     protected function filterByDate(string $key, string $value) : Builder
     {
+        $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
+
         $parameters = [
-            "{$value} 00:00:00",
-            "{$value} 23:59:59",
+            DateTime::parse($value)->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
+            DateTime::parse($value)->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
         ];
 
         return $this->query->whereBetween($key, $parameters);
@@ -71,9 +75,11 @@ class Search
     {
         $range = Arr::split('|', $value);
 
+        $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
+
         $parameters = [
-            "{$range[0]} 00:00:00",
-            ($range[1] ? $range[1] : $range[0]) . ' 23:59:59',
+            DateTime::parse($range[0])->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
+            DateTime::parse($range[1] ? $range[1] : $range[0])->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
         ];
 
         return $this->query->whereBetween($key, $parameters);

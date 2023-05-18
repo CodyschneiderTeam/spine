@@ -4,8 +4,10 @@
         <!-- Paginator -->
         <v-paginator class="mb-4"
                      v-if="toolbar"
+                     :filter="filter"
                      :source="source"
                      :download="download"
+                     :filterTitle="filterTitle"
                      :reset="!! System.Browser.queryString('search')"
                      :search="() => search = (search !== null) ? ! search : (System.Browser.queryString('search') ? false : true)">
         </v-paginator>
@@ -130,6 +132,9 @@
             'emptyAction'  : { type : Function, default : null },
             'emptyLabel'   : { type : String,   default : 'Create one now' },
             'emptyMessage' : { type : String,   default : '' },
+            'filter'       : { type : Function, default : null },
+            'filterKey'    : { type : String,   default : 'filter' },
+            'filterTitle'  : { type : String,   default : '' },
             'rowKey'       : { type : String,   default : 'id' },
             'source'       : { type : Object,   default : {} },
             'toolbar'      : { type : Boolean,  default : true },

@@ -45,9 +45,13 @@ export default class Browser
     {
         config = System.Is.array(config) ? config : [config];
 
-        return external
-            ? (tab ? window.open(config[0], '_blank') : window.location.href = config[0])
-            : window.app.config.globalProperties.$inertia.get(System.Server.route(...config), {}, options);
+        if (external) {
+            return tab ? window.open(config[0], '_blank') : window.location.href = config[0];
+        }
+
+        return window.app.config.globalProperties.$inertia.get(
+            config[0].startsWith('http') ? config[0] : System.Server.route(...config), {}, options
+        );
     }
 
     /**
