@@ -8,7 +8,7 @@
              class="ui-header flex items-center text-gray-600 leading-normal px-6 mb-4">
 
             <!-- Icon -->
-            <i :class="types[type].icon"
+            <i :class="[types[type].icon, icon ? '' : 'hidden']"
                class="ui-icon fas text-18px relative top-0.5px mr-3">
             </i>
 
@@ -29,12 +29,12 @@
 
             <!-- Icon -->
             <i v-if="! title"
-               :class="types[type].icon"
-               class="ui-icon fas text-21px relative mr-4">
+               class="ui-icon fas text-21px relative mr-4"
+               :class="types[type].icon, icon ? '' : 'hidden'">
             </i>
 
             <!-- Slot -->
-            <div class="ui-slot">
+            <div class="ui-slot text-gray-600">
                 <slot></slot>
             </div>
 
@@ -64,35 +64,35 @@
                 danger : {
                     background : 'bg-red-500/[.12]',
                     border     : 'border border-red-600/[.40]',
-                    content    : 'text-gray-600/[.90]',
+                    content    : 'text-gray-600',
                     icon       : 'fa-circle-exclamation text-red-600/80',
                     title      : 'text-gray-800',
                 },
                 info : {
                     background : 'bg-sky-500/10',
                     border     : 'border border-sky-600/[.40]',
-                    content    : 'text-gray-600/[.90]',
+                    content    : 'text-gray-600',
                     icon       : 'fa-circle-info text-sky-600/80',
                     title      : 'text-gray-800',
                 },
                 question : {
                     background : 'bg-purple-500/[.12]',
                     border     : 'border border-purple-700/[.30]',
-                    content    : 'text-gray-600/[.90]',
+                    content    : 'text-gray-600',
                     icon       : 'fa-question-circle text-purple-600/80',
                     title      : 'text-gray-800',
                 },
                 success : {
                     background : 'bg-emerald-500/[.12]',
                     border     : 'border border-emerald-600/[.40]',
-                    content    : 'text-gray-600/[.90]',
+                    content    : 'text-gray-600',
                     icon       : 'fa-check-circle text-emerald-600/80',
                     title      : 'text-gray-800',
                 },
                 warning : {
                     background : 'bg-orange-100/60',
                     border     : 'border border-yellow-600/[.40]',
-                    content    : 'text-gray-600/[.90]',
+                    content    : 'text-gray-600',
                     icon       : 'fa-triangle-exclamation text-yellow-600/80',
                     title      : 'text-gray-800',
                 },
@@ -107,6 +107,7 @@
             'border'  : { type : Boolean, default : false },
             'dismiss' : { type : Boolean, default : false },
             'id'      : { type : String,  default : '' },
+            'icon'    : { type : Boolean, default : true },
             'title'   : { type : String,  default : '' },
             'type'    : { type : String,  default : 'info' },
         },

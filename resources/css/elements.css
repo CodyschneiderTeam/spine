@@ -10,7 +10,7 @@
      * Headings.
      *
      */
-    h1 { @apply font-native font-bold text-27px text-gray-800 mb-5 }
+    h1 { @apply font-native font-bold text-27px text-gray-800 -tracking-[.4px] mb-5 }
     h2 { @apply font-native font-bold text-25px text-gray-800 mb-5 }
     h3 { @apply font-native font-bold text-23px text-gray-800 mb-4 }
     h4 { @apply font-native font-semibold text-21px text-gray-800 mb-4 }
@@ -21,7 +21,7 @@
      * Content.
      *
      */
-    p { @apply text-17px text-gray-600/90 leading-normal mb-5 }
+    p { @apply text-17px text-gray-600 leading-normal mb-5 }
     a { @apply text-sky-600 hover:text-rose-700 no-underline animated }
     span { @apply leading-none }
 

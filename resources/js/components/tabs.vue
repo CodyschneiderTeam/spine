@@ -3,23 +3,24 @@
 
         <!-- Tabs -->
         <div @click="tab.action()"
+             v-for="(tab, index) in visible"
              :dusk="`ui-tab-select-${tab.id}`"
-             v-for="(tab, index) in items.filter(tab => tab?.visible ?? true)"
              class="ui-tab group cursor-pointer whitespace-nowrap select-none animated relative z-1">
 
             <!-- Content -->
-            <div class="ui-content flex items-center px-4 py-3 md:mx-1">
+            <div :class="visible.length > 6 ? '' : 'md:mx-1'"
+                 class="ui-content flex items-center px-4 py-3">
 
                 <!-- Icon -->
                 <i :title="tab.label"
-                   :class="[tab.icon, tab.id === active ? 'text-sky-600' : 'text-gray-500/[.65]']"
-                   class="ui-icon text-20px lg:text-17px animated md:mx-1 lg:ml-0 lg:mr-14px">
+                   class="ui-icon text-20px lg:text-17px animated md:mx-1 lg:ml-0 lg:mr-14px"
+                   :class="[tab.icon, tab.id === active ? 'text-sky-600' : 'text-gray-500/[.65]']">
                 </i>
 
                 <!-- Label -->
                 <span v-html="tab.label"
-                      :class="tab.id === active ? 'text-sky-600' : 'text-gray-600 hidden lg:inline'"
-                      class="ui-label font-medium text-16px animated hidden lg:inline">
+                      class="ui-label font-medium text-16px animated hidden lg:inline"
+                      :class="tab.id === active ? 'text-sky-600' : 'text-gray-600 hidden lg:inline'">
                 </span>
 
             </div>
@@ -47,5 +48,21 @@
 			'active' : { type : String, default : '' },
 			'items'  : { type : Array,  default : [] },
 		},
+
+        /**
+         * Define the computed properties.
+         *
+         */
+        computed :
+        {
+            /**
+             * Filter the item list to only show visible tabs.
+             *
+             */
+            visible()
+            {
+                return this.items.filter(tab => tab?.visible ?? true);
+            }
+        },
 	}
 </script>

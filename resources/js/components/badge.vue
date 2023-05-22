@@ -52,6 +52,7 @@
                     purple : 'border border-purple-700/40 bg-purple-500/10 text-purple-900/70',
                     red    : 'border border-red-700/40 bg-red-500/10 text-red-800/90',
                     yellow : 'border border-yellow-700/40 bg-yellow-500/10 text-yellow-700/90',
+                    teal   : 'border border-teal-700/40 bg-teal-500/10 text-teal-700/90',
                 },
                 dot : {
                     blue   : { outer : 'bg-sky-500/20',     inner : 'bg-sky-500' },
@@ -60,6 +61,7 @@
                     purple : { outer : 'bg-purple-500/20',  inner : 'bg-purple-500' },
                     red    : { outer : 'bg-red-500/20',     inner : 'bg-red-500' },
                     yellow : { outer : 'bg-yellow-500/20',  inner : 'bg-yellow-500' },
+                    teal   : { outer : 'bg-teal-500/20',    inner : 'bg-teal-500' },
                 }
             }
         }},
