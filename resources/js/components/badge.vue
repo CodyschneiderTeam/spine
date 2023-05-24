@@ -5,7 +5,7 @@
 
         <!-- Opaque -->
         <div v-if="mode === 'opaque'"
-             :class="[modes.opaque[color], small ? 'text-10px px-1 py-2px' : 'text-11px px-2 py-1']"
+             :class="[modes.opaque[color], small ? 'text-10px px-1' : 'text-11px px-2 py-1']"
              class="ui-content ui-content-opaque inline-block rounded-md font-[630] tracking-[.1px] select-none whitespace-nowrap uppercase">
 
             <!-- Text -->

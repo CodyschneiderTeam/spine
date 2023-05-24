@@ -48,7 +48,7 @@ export default class DateTime
      */
     static ordinal(value)
     {
-        value = System.Is.date(value) ? value.getDay : value;
+        value = System.Is.date(value) ? value.getDate() : value;
 
         return value > 0 ? ['th', 'st', 'nd', 'rd'][(value > 3 && value < 21) || value % 10 > 3 ? 0 : value % 10] : '';
     }

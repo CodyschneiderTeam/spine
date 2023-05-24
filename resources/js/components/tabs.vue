@@ -49,6 +49,15 @@
 			'items'  : { type : Array,  default : [] },
 		},
 
+		/**
+		 * Execute actions when the component is mounted to the DOM.
+		 *
+		 */
+		mounted()
+		{
+            this.$el.style.maxWidth = `${this.$el.closest('.container').getBoundingClientRect().width - 48}px`;
+		},
+
         /**
          * Define the computed properties.
          *
