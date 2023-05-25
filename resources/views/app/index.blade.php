@@ -14,6 +14,7 @@
         <meta name="format-detection"      content="telephone=no">
         <meta name="Content-Type"          content="text/html; charset=UTF-8">
         <meta name="viewport"              content="width=device-width, initial-scale=1">
+        <meta name="robots"                content="{{ $robots ?? 'all' }}" />
 
         {{-- Open Graph --}}
         <meta property="og:title"       content="{{ $title }}">

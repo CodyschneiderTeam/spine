@@ -25,7 +25,11 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
+@if(isset($copyright))
+© {{ Caneara\Spine\Support\DateTime::year() }} {{ $copyright }}. @lang('All rights reserved.')
+@else
 © {{ Caneara\Spine\Support\DateTime::year() }} {{ Config::get('app.company', Config::get('app.name')) }}. @lang('All rights reserved.')
+@endif
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

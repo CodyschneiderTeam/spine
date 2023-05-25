@@ -4,7 +4,7 @@
  */
 body,
 body *:not(html):not(style):not(br):not(tr):not(code) { box-sizing: border-box; font-family: Verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative }
-body { -webkit-text-size-adjust: none; background-color: #f9fafb; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important }
+body { -webkit-text-size-adjust: none; background-color: #f9fafb; color: #556070; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important }
 
 /**
  * Utilities.

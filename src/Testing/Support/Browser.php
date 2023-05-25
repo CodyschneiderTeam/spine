@@ -123,6 +123,17 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Assert that the given title is a perfect match for the page's title.
+     *
+     */
+    public function assertTitleExact($title) : static
+    {
+        $this->pause();
+
+        return parent::assertTitle($title);
+    }
+
+    /**
      * Attach the file at the given path to the given field.
      *
      */

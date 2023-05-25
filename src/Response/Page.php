@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Config;
 class Page
 {
     /**
+     * The robot configuration.
+     *
+     */
+    protected ?string $robots;
+
+    /**
      * The title.
      *
      */
@@ -40,6 +46,7 @@ class Page
 
         return Inertia::render($this->view)
             ->with('title', $this->title ?? Config::get('app.name'))
+            ->withViewData('robots', $this->robots ?? null)
             ->withViewData('title', $this->title ?? Config::get('app.name'));
     }
 
@@ -47,11 +54,11 @@ class Page
      * Assign a title to the page.
      *
      */
-    public function title(string $value) : static
+    public function title(string $value, bool $exact = false) : static
     {
         $product = Config::get('app.name');
 
-        $this->title = "{$product} - {$value}";
+        $this->title = $exact ? $value : "{$product} - {$value}";
 
         return $this;
     }
@@ -74,5 +81,16 @@ class Page
     public function with(string $key, mixed $value) : Response
     {
         return $this->render()->with($key, $value);
+    }
+
+    /**
+     * Disable the use of robots on the page.
+     *
+     */
+    public function withoutRobots() : static
+    {
+        $this->robots = 'noindex, nofollow';
+
+        return $this;
     }
 }

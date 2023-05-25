@@ -3,6 +3,8 @@
 namespace Caneara\Spine\Types;
 
 use DateTimeInterface;
+use Caneara\Spine\Support\Is;
+use Caneara\Spine\Support\Arr;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 class Model extends BaseModel
@@ -18,6 +20,17 @@ class Model extends BaseModel
      *
      */
     protected $hidden = [];
+
+    /**
+     * Retrieve a subset of the model's attributes.
+     *
+     */
+    public function except(mixed $attributes) : array
+    {
+        $payload = Is::array($attributes) ? $attributes : func_get_args();
+
+        return Arr::except($this->getAttributes(), $payload);
+    }
 
     /**
      * Create a new factory instance for the model.
