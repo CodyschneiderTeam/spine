@@ -5,7 +5,7 @@
      *
      */
     .animated { @apply transition duration-300 }
-    .visible-scrollbars::-webkit-scrollbar { @apply w-8px }
+    .visible-scrollbars::-webkit-scrollbar { @apply w-7px }
     .visible-scrollbars::-webkit-scrollbar-track { @apply bg-gray-100 }
     .visible-scrollbars::-webkit-scrollbar-thumb { @apply bg-gray-300 }
 }

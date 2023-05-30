@@ -107,6 +107,7 @@ trait Enum
         return Collection::make(static::cases())
             ->map(fn($item) => ['id' => $item, 'label' => $item->label()])
             ->sortBy('label')
+            ->values()
             ->toArray();
     }
 }
