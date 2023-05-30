@@ -4,13 +4,10 @@ namespace Caneara\Spine\Exception;
 
 use Throwable;
 use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Response\Page;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Inertia\Response as InertiaResponse;
 use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
@@ -39,10 +36,29 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Map of HTTP status codes.
+     *
+     */
+    protected array $errors = [
+        302 => ['code' => 302, 'title' => 'Unexpected Redirect',   'description' => "The server encounted an unexpected redirect to another page."],
+        401 => ['code' => 401, 'title' => 'Unauthorized',          'description' => "You are not authorized to perform this action."],
+        402 => ['code' => 402, 'title' => 'Billing Issue',         'description' => "You are not able to proceed due to an outstanding payment, or lack of a subscription."],
+        403 => ['code' => 403, 'title' => 'Forbidden',             'description' => "An error was encountered while attempting to access this page."],
+        404 => ['code' => 404, 'title' => 'Not Found',             'description' => "The page you were trying to access could not be found."],
+        405 => ['code' => 405, 'title' => 'Not Allowed',           'description' => "The chosen request method is not supported for the requested resource."],
+        408 => ['code' => 408, 'title' => 'Request Timeout',       'description' => "The server timed out while waiting for a response from an external site. Please try again, or contact us."],
+        419 => ['code' => 419, 'title' => 'Page Expired',          'description' => "The security token for the page has expired. Please refresh the page and try again."],
+        422 => ['code' => 422, 'title' => 'Unprocessable Request', 'description' => "The server was unable to process your request. Please try again."],
+        429 => ['code' => 429, 'title' => 'Too Many Requests',     'description' => "Too many requests have been sent. Please wait a few minutes."],
+        500 => ['code' => 500, 'title' => 'Server Issue',          'description' => "The server encountered an unknown error and was unfortunately unable to recover from it. Please try again, or contact us."],
+        503 => ['code' => 503, 'title' => 'Maintenance Mode',      'description' => "The server is currently unavailable while we conduct routine maintenance… please check back later."],
+    ];
+
+    /**
      * Render an exception into an HTTP response.
      *
      */
-    public function render($request, Throwable $e) : Response | InertiaResponse
+    public function render($request, Throwable $e) : Response
     {
         $response = parent::render($request, $e);
 
@@ -50,8 +66,8 @@ class Handler extends ExceptionHandler
             return $this->renderMessage($request, $e);
         }
 
-        if (App::isProduction() && Arr::in([403, 404, 500, 503], $response->getStatusCode())) {
-            return $this->renderPage($request, $response);
+        if (App::isProduction()) {
+            return ResponseBuilder::view('app.error', $this->errors[$response->getStatusCode()]);
         }
 
         return $response;
@@ -67,33 +83,8 @@ class Handler extends ExceptionHandler
 
         $message = $type['message'] ?? $exception->getMessage();
 
-        return $request->expectsJson() || $this->shouldUseJson($request)
+        return $request->expectsJson() || Arr::in(['poll'], $request->route()->getName())
             ? ResponseBuilder::json(['message' => $message], $type['code'])
             : Redirect::back()->notify($message, 'error');
-    }
-
-    /**
-     * Convert the given base response into an Inertia response.
-     *
-     */
-    protected function renderPage($request, Response $response) : Response
-    {
-        return Page::make()
-            ->title('Error')
-            ->view('general.error.index')
-            ->with('notification', null)
-            ->with('asset', URL::asset(''))
-            ->with('code', $response->getStatusCode())
-            ->toResponse($request)
-            ->setStatusCode($response->getStatusCode());
-    }
-
-    /**
-     * Determine whether the route should always return JSON.
-     *
-     */
-    protected function shouldUseJson($request) : bool
-    {
-        return Arr::in(['poll'], $request->route()->getName());
     }
 }

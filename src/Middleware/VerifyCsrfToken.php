@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
         'stripe/*',
         'paddle/*',
         'spark/webhook',
+        'stripe/webhook',
+        'stripe/connect/webhook',
     ];
 }
