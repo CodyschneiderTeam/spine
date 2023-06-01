@@ -8,12 +8,12 @@
                      :source="source"
                      :download="download"
                      :filterTitle="filterTitle"
-                     :reset="!! System.Browser.queryString('search')"
-                     :search="() => search = (search !== null) ? ! search : (System.Browser.queryString('search') ? false : true)">
+                     :reset="!! Browser.queryString('search')"
+                     :search="() => search = (search !== null) ? ! search : (Browser.queryString('search') ? false : true)">
         </v-paginator>
 
         <!-- Content -->
-        <div class="lg:border border-gray-300/[.70] rounded">
+        <div class="lg:border border-gray-300/70 rounded">
 
             <!-- Table -->
             <table>
@@ -39,7 +39,7 @@
 
                     <!-- Search Row -->
                     <tr class="search"
-                        v-if="search ? true : (search === null ? System.Browser.queryString('search') : false)">
+                        v-if="search ? true : (search === null ? Browser.queryString('search') : false)">
 
                         <!-- Cell -->
                         <td :colspan="source.data.columns.length">
@@ -54,8 +54,8 @@
                     <tr :key="row[rowKey]"
                         v-for="row in source.data.rows ?? []"
                         :dusk="`ui-table-row-${row[rowKey]}`"
-                        :class="System.Util.blank(action) ? '' : 'cursor-pointer'"
-                        @click="! System.Util.blank(action) && ! $event.target.parentNode.classList.contains('ui-trigger') ? action(row) : null">
+                        :class="Util.blank(action) ? '' : 'cursor-pointer'"
+                        @click="! Util.blank(action) && ! $event.target.parentNode.classList.contains('ui-trigger') ? action(row) : null">
 
                         <!-- Cell -->
                         <td :data-title="column.label"
@@ -141,7 +141,3 @@
         },
     }
 </script>
-
-<style lang="postcss">
-    .ui-table .ui-badge .ui-content-opaque { @apply inline }
-</style>

@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Notifications;
+namespace System\Notifications;
 
+use System\Types\Notification;
 use Illuminate\Support\Facades\URL;
-use Caneara\Spine\Types\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class ResetPasswordNotification extends Notification

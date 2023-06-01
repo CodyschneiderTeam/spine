@@ -18,28 +18,28 @@
                    :autocomplete="autocomplete"
                    @input="change($event.target.value)"
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
-                   class="ui-input w-full bg-inherit font-medium text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
+                   class="ui-input bg-inherit font-medium text-17px text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
 
             <!-- Label -->
             <v-label :icon="icon"
                      :value="label"
                      :focus="focus"
                      :optional="false"
-                     :filled="! System.Util.blank(modelValue)">
+                     :filled="! Util.blank(modelValue)">
             </v-label>
 
             <!-- Clear -->
             <v-clear :focus="focus"
                      :hover="hover"
                      @click="clear()"
-                     :filled="! System.Util.blank(modelValue)">
+                     :filled="! Util.blank(modelValue)">
             </v-clear>
 
 			<!-- Generate -->
-            <div v-if="generate && ! System.Browser.automated()"
+            <div v-if="generate && ! Browser.automated()"
                  style="transition: all 0.4s ease, background-color 0s"
                  class="ui-generate w-50px h-51px flex justify-center items-center absolute top-0 right-0 rounded-r"
-                 :class="(focus && System.Util.blank(modelValue)) || (hover && System.Util.blank(modelValue)) ? 'opacity-100 z-2' : 'opacity-0 pointer-events-none'">
+                 :class="(focus && Util.blank(modelValue)) || (hover && Util.blank(modelValue)) ? 'opacity-100 z-2' : 'opacity-0 pointer-events-none'">
 
                 <!-- Icon -->
                 <i title="Generate a random password"
@@ -52,7 +52,7 @@
         </div>
 
         <!-- Generated -->
-        <div v-if="! System.Util.blank(password)"
+        <div v-if="! Util.blank(password)"
              class="ui-generated font-semibold text-14px text-purple-700 mt-2">
 
             <!-- Text -->

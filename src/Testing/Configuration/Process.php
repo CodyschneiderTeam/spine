@@ -1,14 +1,14 @@
 <?php
 
-namespace Caneara\Spine\Testing\Configuration;
+namespace System\Testing\Configuration;
 
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\DateTime;
+use System\Support\Calendar;
 use Illuminate\Support\Facades\App;
+use System\Testing\Support\Browser;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use Caneara\Spine\Testing\Support\Browser;
 
 trait Process
 {
@@ -22,7 +22,7 @@ trait Process
 
         Cache::flush();
 
-        DateTime::freeze();
+        Calendar::freeze();
 
         Http::preventStrayRequests();
 

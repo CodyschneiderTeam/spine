@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Configuration;
+namespace System\Configuration;
 
 use Illuminate\Support\Collection;
 

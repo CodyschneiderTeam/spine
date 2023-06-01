@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Concerns;
+namespace System\Concerns;
 
-use Caneara\Spine\Notifications\ResetPasswordNotification;
+use System\Notifications\ResetPasswordNotification;
 
 trait CanResetPassword
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
-use Caneara\Spine\Support\Is;
-use Caneara\Spine\Support\Util;
+use System\Support\Is;
+use System\Support\Util;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Database\Eloquent\Factories\Factory as BaseFactory;
 

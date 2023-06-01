@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Illuminate\Http\Middleware\TrustHosts as Middleware;
 

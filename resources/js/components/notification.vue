@@ -15,22 +15,22 @@
                  class="ui-container bg-white border border-gray-300 flex items-center shadow-sm rounded-lg relative z-30 pl-15px pr-6 py-3 mr-18px">
 
                 <!-- Icon -->
-                <div class="ui-icon opacity-70 mr-3 relative top-[.5px] flex self-stretch">
+                <div class="ui-icon opacity-70 flex self-stretch relative top-[.5px] mr-3">
 
                     <!-- SVG -->
                     <svg width="24"
-                        height="24"
-                        style="fill: none"
-                        viewBox="0 0 24 24"
-                        class="ui-svg"
-                        stroke="currentColor"
-                        :class="(types[type].class || '')">
+                         height="24"
+                         class="ui-svg"
+                         style="fill: none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         :class="(types[type].class || '')">
 
                         <!-- Graphic -->
                         <path stroke-width="2"
-                            :d="types[type].svg || ''"
-                            stroke-linecap="round"
-                            stroke-linejoin="round" />
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              :d="types[type].svg || ''" />
 
                     </svg>
 

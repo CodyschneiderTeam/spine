@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Types\Factory;
+use Illuminate\Support\Arr;
+use System\Support\Text;
+use System\Types\Factory;
 
 class {{ factory }}Factory extends Factory
 {

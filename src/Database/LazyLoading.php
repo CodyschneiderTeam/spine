@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Database;
+namespace System\Database;
 
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Types\Model;
+use System\Types\Model;
+use System\Support\Text;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\LazyLoadingViolationException;
 
@@ -15,12 +15,10 @@ class LazyLoading
      */
     public static function setup() : void
     {
-        Model::preventLazyLoading(! App::isProduction());
-
         Model::handleLazyLoadingViolationUsing(function($model, $relation) {
             $source = get_class($model->$relation()->getRelated());
 
-            if (! App::runningUnitTests() && Str::startsWith($source, 'App')) {
+            if (! App::runningUnitTests() && Text::startsWith($source, 'App')) {
                 throw new LazyLoadingViolationException($model, $relation);
             }
         });

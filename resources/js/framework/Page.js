@@ -6,8 +6,8 @@ export default class Page
      */
     static property(key, fallback = '')
     {
-        return System.Is.array(key)
-            ? System.Util.set(window.app.config.globalProperties.$page.props, key[0], key[1])
-            : System.Util.get(window.app.config.globalProperties.$page.props, key, fallback);
+        return Is.array(key)
+            ? Util.set(window.app.config.globalProperties.$page.props, key[0], key[1])
+            : Util.get(window.app.config.globalProperties.$page.props, key, fallback);
     }
 }

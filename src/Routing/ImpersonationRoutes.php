@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Routing;
+namespace System\Routing;
 
 use Illuminate\Support\Facades\Route;
-use Caneara\Spine\Controllers\ImpersonationController;
+use System\Controllers\ImpersonationController;
 
 class ImpersonationRoutes
 {

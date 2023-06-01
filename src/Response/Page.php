@@ -1,10 +1,10 @@
 <?php
 
-namespace Caneara\Spine\Response;
+namespace System\Response;
 
 use Inertia\Inertia;
 use Inertia\Response;
-use Caneara\Spine\Support\Str;
+use System\Support\Text;
 use Illuminate\Support\Facades\Config;
 
 class Page
@@ -69,7 +69,7 @@ class Page
      */
     public function view(string $value) : Response
     {
-        $this->view = Str::replace('.', '/', $value);
+        $this->view = Text::replace('.', '/', $value);
 
         return $this->render();
     }

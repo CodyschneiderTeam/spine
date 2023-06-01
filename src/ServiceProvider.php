@@ -1,25 +1,26 @@
 <?php
 
-namespace Caneara\Spine;
+namespace System;
 
+use System\Support\Util;
+use System\Macros\Builder;
 use Laravel\Sanctum\Sanctum;
-use Caneara\Spine\Macros\Builder;
-use Caneara\Spine\Console\Commands;
-use Caneara\Spine\Support\DateTime;
+use System\Console\Commands;
+use System\Support\Calendar;
+use System\Database\Paginator;
+use System\Macros\Notification;
+use System\Macros\TestResponse;
+use System\Storage\LocalDriver;
+use System\Database\LazyLoading;
+use System\Database\SlowQueries;
+use System\Routing\UrlGenerator;
 use Illuminate\Support\Facades\App;
-use Caneara\Spine\Database\Paginator;
-use Caneara\Spine\Macros\Notification;
-use Caneara\Spine\Macros\TestResponse;
-use Caneara\Spine\Storage\LocalDriver;
-use Caneara\Spine\Database\LazyLoading;
-use Caneara\Spine\Database\SlowQueries;
-use Caneara\Spine\Routing\UrlGenerator;
-use Caneara\Spine\Macros\RedirectResponse;
-use Caneara\Spine\Security\PasswordDefaults;
-use Caneara\Spine\Database\LengthAwarePaginator;
+use System\Macros\RedirectResponse;
+use System\Security\PasswordDefaults;
+use System\Database\LengthAwarePaginator;
 use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Pagination\Paginator as BasePaginator;
-use Caneara\Spine\Configuration\Files as ConfigurationFiles;
+use System\Configuration\Files as ConfigurationFiles;
 use Illuminate\Pagination\LengthAwarePaginator as BaseLengthAwarePaginator;
 
 class ServiceProvider extends Provider
@@ -30,10 +31,12 @@ class ServiceProvider extends Provider
      */
     public function boot() : void
     {
-        $this->macros();
-        $this->storage();
-        $this->database();
-        $this->security();
+        Builder::register();
+        Notification::register();
+        TestResponse::register();
+        RedirectResponse::register();
+
+        PasswordDefaults::enforce();
 
         $this->commands(Commands::$list);
 
@@ -41,40 +44,11 @@ class ServiceProvider extends Provider
 
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
+        Util::when(App::isProduction(), fn() => SlowQueries::setup());
+        Util::unless(App::isProduction(), fn() => LocalDriver::setup());
+        Util::unless(App::isProduction(), fn() => LazyLoading::setup());
+
         App::bind('url', fn($app) => new UrlGenerator($app['router']->getRoutes(), $app['request']));
-    }
-
-    /**
-     * Retrieve and merge the configuration files.
-     *
-     */
-    protected function configuration() : void
-    {
-        ConfigurationFiles::get()->each(function($name, $path) {
-            $this->mergeConfigFrom($path, $name);
-        });
-    }
-
-    /**
-     * Apply the database provisions.
-     *
-     */
-    protected function database() : void
-    {
-        LazyLoading::setup();
-        SlowQueries::setup();
-    }
-
-    /**
-     * Register the macros with each of their facades.
-     *
-     */
-    protected function macros() : void
-    {
-        Builder::register();
-        Notification::register();
-        TestResponse::register();
-        RedirectResponse::register();
     }
 
     /**
@@ -83,33 +57,15 @@ class ServiceProvider extends Provider
      */
     public function register() : void
     {
+        Calendar::useImmutable();
+
         Commands::register();
-
-        $this->configuration();
-
-        DateTime::useImmutable();
 
         Sanctum::ignoreMigrations();
 
         App::bind(BasePaginator::class, Paginator::class);
         App::bind(BaseLengthAwarePaginator::class, LengthAwarePaginator::class);
-    }
 
-    /**
-     * Apply the security provisions.
-     *
-     */
-    protected function security() : void
-    {
-        PasswordDefaults::enforce();
-    }
-
-    /**
-     * Apply the storage provisions.
-     *
-     */
-    protected function storage() : void
-    {
-        LocalDriver::setup();
+        ConfigurationFiles::get()->each(fn($name, $path) => $this->mergeConfigFrom($path, $name));
     }
 }

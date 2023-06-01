@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Support;
+namespace System\Support;
 
 class Regex
 {

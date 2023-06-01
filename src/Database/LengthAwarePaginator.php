@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Database;
+namespace System\Database;
 
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Types\ListRequest;
-use Caneara\Spine\Exception\TemporaryRedirectException;
+use System\Support\Text;
+use Illuminate\Support\Arr;
+use System\Types\ListRequest;
+use System\Exception\TemporaryRedirectException;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class LengthAwarePaginator extends Paginator
@@ -16,10 +16,6 @@ class LengthAwarePaginator extends Paginator
      */
     public function format(ListRequest $request) : array
     {
-        if ($this->currentPage() > $this->lastPage()) {
-            $this->redirectToLastPage($request->query());
-        }
-
         return [
             'type'        => 'LengthAwarePaginator',
             'data'        => [
@@ -44,19 +40,24 @@ class LengthAwarePaginator extends Paginator
                 'prev_page_url'  => $this->previousPageUrl(),
                 'to'             => $this->lastItem(),
                 'total'          => $this->total(),
+                'redirecting'    => $this->redirectToLastPage($request->query()),
             ],
         ];
     }
 
     /**
-     * Trigger a redirect to the last page of the paginator.
+     * Trigger a redirect to the last page of the paginator when appropriate.
      *
      */
-    protected function redirectToLastPage(array $query) : void
+    protected function redirectToLastPage(array $query) : bool
     {
-        $query[$this->pageName] = $this->lastPage();
+        if ($this->currentPage() <= $this->lastPage()) {
+            return false;
+        }
 
-        $url = Str::of($this->path())
+        $query = Arr::set($query, $this->pageName, $this->lastPage());
+
+        $url = Text::of($this->path())
             ->append('?')
             ->append(Arr::query($query))
             ->toString();

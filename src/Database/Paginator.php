@@ -1,12 +1,12 @@
 <?php
 
-namespace Caneara\Spine\Database;
+namespace System\Database;
 
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Types\ListRequest;
+use System\Support\Text;
+use Illuminate\Support\Arr;
+use System\Types\ListRequest;
+use System\Exception\TemporaryRedirectException;
 use Illuminate\Pagination\Paginator as BasePaginator;
-use Caneara\Spine\Exception\TemporaryRedirectException;
 
 class Paginator extends BasePaginator
 {
@@ -16,10 +16,6 @@ class Paginator extends BasePaginator
      */
     public function format(ListRequest $request) : array
     {
-        if ($this->currentPage() !== 1 && $this->items->isEmpty()) {
-            $this->redirectToFirstPage($request->query());
-        }
-
         return [
             'type'        => 'SimplePaginator',
             'data'        => [
@@ -44,6 +40,7 @@ class Paginator extends BasePaginator
                 'prev_page_url'  => $this->previousPageUrl(),
                 'to'             => $this->lastItem(),
                 'total'          => null,
+                'redirecting'    => $this->redirectToLastPage($request->query()),
             ],
         ];
     }
@@ -52,11 +49,15 @@ class Paginator extends BasePaginator
      * Trigger a redirect to the first page of the paginator.
      *
      */
-    protected function redirectToFirstPage(array $query) : void
+    protected function redirectToFirstPage(array $query) : bool
     {
-        $query[$this->pageName] = 1;
+        if ($this->currentPage() === 1 || $this->items->isNotEmpty()) {
+            return false;
+        }
 
-        $url = Str::of($this->path())
+        $query = Arr::set($query, $this->pageName, 1);
+
+        $url = Text::of($this->path())
             ->append('?')
             ->append(Arr::query($query))
             ->toString();

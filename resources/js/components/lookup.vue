@@ -25,7 +25,7 @@
 				   @focusout="focus = false"
 				   :name="`${name}_search_display`"
 				   :dusk="`${name}_search_display`"
-				   class="ui-control ui-input w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
+				   class="ui-control ui-input bg-inherit text-17px text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
 
             <!-- Label -->
             <v-label :icon="icon"
@@ -33,14 +33,14 @@
                      :value="label"
                      :optional="optional"
                      :optionalText="optionalText"
-                     :filled="! System.Util.blank(modelValue) || ! System.Util.blank(term)">
+                     :filled="! Util.blank(modelValue) || ! Util.blank(term)">
             </v-label>
 
             <!-- Clear -->
             <v-clear @click="clear()"
-                     :focus="focus && ! System.Util.blank(term)"
-                     :hover="hover && ! System.Util.blank(term)"
-                     :filled="! System.Util.blank(modelValue) || ! System.Util.blank(term)">
+                     :focus="focus && ! Util.blank(term)"
+                     :hover="hover && ! Util.blank(term)"
+                     :filled="! Util.blank(modelValue) || ! Util.blank(term)">
             </v-clear>
 
 		</div>
@@ -56,20 +56,20 @@
                 :value="item[itemValueKey]"
                 :id="`lookup-${name}-item-${item[itemValueKey]}`"
                 :dusk="`lookup-${name}-item-${item[itemValueKey]}`"
-                :class="System.Util.blank(item[itemSubtextKey]) ? 'pt-10px pb-1' : 'py-10px'"
+                :class="Util.blank(item[itemSubtextKey]) ? 'pt-10px pb-1' : 'py-10px'"
                 class="bg-white hover:bg-yellow-600/10 text-gray-700 text-15px cursor-pointer relative animated list-none px-3 m-0">
 
                 <!-- Item -->
                 <div class="truncate"
                      :class="[
-                        System.Util.blank(itemSubtextKey) || System.Util.blank(item[itemSubtextKey]) ? 'pb-7px' : '',
-                        System.Util.blank(itemImageKey) ? '' : 'flex items-center'
+                        Util.blank(itemSubtextKey) || Util.blank(item[itemSubtextKey]) ? 'pb-7px' : '',
+                        Util.blank(itemImageKey) ? '' : 'flex items-center'
                      ]">
 
                     <!-- Image -->
                     <img class="h-40px rounded-full mr-3"
-                         v-if="!System.Util.blank(itemImageKey)"
-                         :src="System.Resource.userAvatar(item.avatar)" />
+                         v-if="! Util.blank(itemImageKey)"
+                         :src="Resource.userAvatar(item.avatar)" />
 
                     <!-- Content -->
                     <div>
@@ -194,7 +194,7 @@
 		 */
 		created()
 		{
-			if (! System.Util.blank(this.modelValue)) {
+			if (! Util.blank(this.modelValue)) {
                 this.assignTerm();
             }
 		},
@@ -211,15 +211,15 @@
              */
             async assignTerm()
             {
-                if (! System.Util.blank(this.query)) {
+                if (! Util.blank(this.query)) {
                     return this.term = this.query;
                 }
 
-                if (System.Util.blank(this.modelValue)) {
+                if (Util.blank(this.modelValue)) {
                     return this.term = '';
                 }
 
-                let response = await System.Request.post(
+                let response = await Request.post(
                     `${this.url}${this.suffix}match=1&term=${this.modelValue}&page=${this.page}`
                 );
 
@@ -263,7 +263,7 @@
 				this.page     = 1;
 				this.open     = false;
 				this.feedback = '';
-				this.term     = System.Util.blank(this.modelValue) ? this.term : '';
+				this.term     = Util.blank(this.modelValue) ? this.term : '';
 
 				this.$refs.container.classList.add('rounded');
 				this.$refs.container.classList.remove('rounded-t');
@@ -301,7 +301,7 @@
 					this.page = this.page + 1;
 
 					setTimeout(async() => {
-                        let response = await System.Request.post(
+                        let response = await Request.post(
                             `${this.url}${this.suffix}match=0&term=${this.term}&page=${this.page}`
                         );
 
@@ -323,9 +323,9 @@
 				this.open     = true;
 				this.feedback = '';
 
-				if (System.Util.blank(results) && System.Util.blank(this.items)) {
+				if (Util.blank(results) && Util.blank(this.items)) {
 					this.feedback = 'No items were found...'; this.end = true;
-				} else if (System.Util.blank(results) && ! System.Util.blank(this.items)) {
+				} else if (Util.blank(results) && ! Util.blank(this.items)) {
 					this.feedback = 'No more items were found...'; this.end = true;
 				} else {
 					this.items = this.items.concat(results);
@@ -349,7 +349,7 @@
 
                 setTimeout(() => this.working = false);
 
-				if (System.Util.blank(this.term)) {
+				if (Util.blank(this.term)) {
 					return this.hide();
 				}
 
@@ -357,7 +357,7 @@
                     return;
                 }
 
-                let response = await System.Request.post(
+                let response = await Request.post(
                     `${this.url}${this.suffix}match=0&term=${this.term}&page=${this.page}`
                 );
 

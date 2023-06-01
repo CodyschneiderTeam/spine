@@ -1,7 +1,7 @@
 <template>
     <div :title="tooltip"
          class="ui-badge"
-         v-if="! System.Util.blank(value)">
+         v-if="! Util.blank(value)">
 
         <!-- Opaque -->
         <div v-if="mode === 'opaque'"
@@ -46,13 +46,13 @@
         data() { return {
             modes : {
                 opaque : {
-                    blue   : 'border border-sky-700/40 bg-sky-500/10 text-sky-700/90',
-                    green  : 'border border-emerald-700/40 bg-emerald-500/10 text-emerald-700/90',
-                    gray   : 'border border-gray-700/40 bg-gray-500/10 text-gray-700/90',
-                    purple : 'border border-purple-700/40 bg-purple-500/10 text-purple-900/70',
-                    red    : 'border border-red-700/40 bg-red-500/10 text-red-800/90',
-                    yellow : 'border border-yellow-700/40 bg-yellow-500/10 text-yellow-700/90',
-                    teal   : 'border border-teal-700/40 bg-teal-500/10 text-teal-700/90',
+                    blue   : 'bg-sky-500/10 border border-sky-700/40 text-sky-700/90',
+                    green  : 'bg-emerald-500/10 border border-emerald-700/40 text-emerald-700/90',
+                    gray   : 'bg-gray-500/10 border border-gray-700/40 text-gray-700/90',
+                    purple : 'bg-purple-500/10 border border-purple-700/40 text-purple-900/70',
+                    red    : 'bg-red-500/10 border border-red-700/40 text-red-800/90',
+                    yellow : 'bg-yellow-500/10 border border-yellow-700/40 text-yellow-700/90',
+                    teal   : 'bg-teal-500/10 border border-teal-700/40 text-teal-700/90',
                 },
                 dot : {
                     blue   : { outer : 'bg-sky-500/20',     inner : 'bg-sky-500' },

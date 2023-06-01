@@ -4,8 +4,8 @@
 
         <!-- Icon -->
         <i :class="icon"
-           v-if="! System.Util.blank(icon)"
-           class="ui-icon text-40px text-sky-600/[.60] pt-1 mb-7">
+           v-if="! Util.blank(icon)"
+           class="ui-icon text-40px text-sky-600/60 pt-1 mb-7">
         </i>
 
         <!-- Title -->
@@ -20,7 +20,7 @@
 
         <!-- Action -->
         <span @click="actionCommand()"
-              v-if="! System.Util.blank(actionLabel) && ! System.Util.blank(actionCommand)"
+              v-if="! Util.blank(actionLabel) && ! Util.blank(actionCommand)"
               class="ui-action font-semibold text-13px text-sky-600 hover:text-rose-700 uppercase cursor-pointer animated mt-5">
 
             <!-- Text -->

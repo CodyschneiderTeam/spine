@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Kernel;
+namespace System\Kernel;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Console\Kernel;

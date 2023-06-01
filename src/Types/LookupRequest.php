@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 class LookupRequest extends FormRequest
 {

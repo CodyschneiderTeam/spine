@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Concerns;
+namespace System\Concerns;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
@@ -15,9 +15,7 @@ trait CanUploadFiles
      */
     public function uploadFiles(Model $user) : bool
     {
-        $key = "upload-files:{$user->id}";
-
-        if (! RateLimiter::attempt($key, 20, fn() => true)) {
+        if (! RateLimiter::attempt("upload-files:{$user->id}", 20, fn() => true)) {
             App::abort(Response::HTTP_TOO_MANY_REQUESTS);
         }
 

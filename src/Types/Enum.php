@@ -1,12 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 use ReflectionEnum;
+use System\Support\Text;
+use System\Support\Util;
 use BadMethodCallException;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Support\Util;
 use Illuminate\Support\Collection;
 
 trait Enum
@@ -17,9 +16,9 @@ trait Enum
      */
     public function __call(string $name, array $arguments) : bool
     {
-        $check = Str::startsWith($name, 'isNot') ? 'falsy' : 'truthy';
+        $check = Text::startsWith($name, 'isNot') ? 'falsy' : 'truthy';
 
-        $key = Str::of($name)
+        $key = Text::of($name)
             ->substr($check === 'truthy' ? 2 : 5)
             ->upper()
             ->toString();
@@ -58,7 +57,7 @@ trait Enum
     public static function fromLabel(string $name) : static
     {
         return Collection::make(static::toArray())
-            ->filter(fn($item) => Str::lower($item['label']) === Str::lower($name))
+            ->filter(fn($item) => Text::lower($item['label']) === Text::lower($name))
             ->first()['id'];
     }
 
@@ -68,7 +67,7 @@ trait Enum
      */
     public function in(self ...$cases) : bool
     {
-        return Arr::in($cases, $this);
+        return Collection::make($cases)->contains($this);
     }
 
     /**
@@ -77,7 +76,7 @@ trait Enum
      */
     public function label() : string
     {
-        return Str::of($this->name)
+        return Text::of($this->name)
             ->title()
             ->replace('_In_', '_in_')
             ->replace('_Or_', '_or_')
@@ -93,7 +92,7 @@ trait Enum
      */
     public static function random(string $key = null) : mixed
     {
-        $case = Arr::random(static::toArray());
+        $case = Collection::make(static::toArray())->random();
 
         return $key ? $case[$key] : $case;
     }

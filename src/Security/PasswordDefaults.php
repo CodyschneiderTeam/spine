@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Security;
+namespace System\Security;
 
 use Illuminate\Validation\Rules\Password;
 

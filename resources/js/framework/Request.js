@@ -33,7 +33,7 @@ export default class Request
         return {
             'Content-Type'     : 'application/json',
             'X-Requested-With' : 'XMLHttpRequest',
-            'X-CSRF-TOKEN'     : System.Server.csrf(),
+            'X-CSRF-TOKEN'     : Server.csrf(),
         };
     }
 

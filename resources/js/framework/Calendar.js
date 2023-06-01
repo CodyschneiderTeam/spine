@@ -1,4 +1,4 @@
-export default class DateTime
+export default class Calendar
 {
     /**
      * Process the given value into its correct format.
@@ -27,9 +27,9 @@ export default class DateTime
             }
         };
 
-        value = System.Is.string(value) ? new Date(value) : value;
+        value = Is.string(value) ? new Date(value) : value;
 
-        if (System.Util.blank(value) || value.toString() === 'Invalid Date') {
+        if (Util.blank(value) || value.toString() === 'Invalid Date') {
             return 'Unknown';
         }
 
@@ -38,7 +38,7 @@ export default class DateTime
         } else if (type === 'time') {
             return new Intl.DateTimeFormat('en-US', options.time[style]).format(value).toLowerCase();
         } else {
-            return `${DateTime.format(value, 'date')} - ${DateTime.format(value, 'time')}`;
+            return `${Calendar.format(value, 'date')} - ${Calendar.format(value, 'time')}`;
         }
     }
 
@@ -48,7 +48,7 @@ export default class DateTime
      */
     static ordinal(value)
     {
-        value = System.Is.date(value) ? value.getDate() : value;
+        value = Is.date(value) ? value.getDate() : value;
 
         return value > 0 ? ['th', 'st', 'nd', 'rd'][(value > 3 && value < 21) || value % 10 > 3 ? 0 : value % 10] : '';
     }

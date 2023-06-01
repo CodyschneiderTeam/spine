@@ -2,7 +2,7 @@
     <div class="ui-sticker w-full">
 
         <!-- Container -->
-        <div class="ui-container bg-white border border-dashed border-gray-400/[.80] rounded relative">
+        <div class="ui-container bg-white border border-dashed border-gray-400/80 rounded relative">
 
             <!-- Input -->
             <input :id="name"
@@ -10,12 +10,12 @@
                    :name="name"
                    :value="value"
                    :readonly="true"
-                   class="ui-content w-full bg-inherit text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none px-3 pt-25px pb-6px" />
+                   class="ui-content bg-inherit w-full text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none px-3 pt-25px pb-6px" />
 
             <!-- Label -->
             <v-label :value="label"
                      :focus="false"
-                     :filled="! System.Util.blank(value)">
+                     :filled="! Util.blank(value)">
             </v-label>
 
         </div>

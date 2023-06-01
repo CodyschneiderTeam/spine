@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Exception;
+namespace System\Exception;
 
 use Exception;
 use Illuminate\Http\RedirectResponse;

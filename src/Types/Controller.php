@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 use BadMethodCallException;
-use Caneara\Spine\Support\Arr;
+use Illuminate\Support\Collection;
 use Inertia\Response as InertiaResponse;
 use Illuminate\Contracts\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +28,11 @@ class Controller
      */
     public function callAction(string $method, array $parameters) : Response | InertiaResponse | Paginator | string
     {
-        return $this->{$method}(...Arr::values($parameters));
+        $payload = Collection::make($parameters)
+            ->values()
+            ->toArray();
+
+        return $this->{$method}(...$payload);
     }
 
     /**

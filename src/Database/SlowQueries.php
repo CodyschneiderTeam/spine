@@ -1,9 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Database;
+namespace System\Database;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\App;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 
 class SlowQueries
@@ -14,10 +13,6 @@ class SlowQueries
      */
     public static function setup() : void
     {
-        if (! App::isProduction()) {
-            return;
-        }
-
         $error   = 'SlowDatabaseQueryError';
         $message = 'The database query did not execute in a timely fashion.';
 

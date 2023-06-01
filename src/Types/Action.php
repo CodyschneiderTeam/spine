@@ -1,12 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 class Action
 {
-    /**
-     * The key to use for polling.
-     *
-     */
-    protected string $poll;
+    //
 }

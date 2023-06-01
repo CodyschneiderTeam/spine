@@ -8,8 +8,8 @@
                      :source="source"
                      :download="download"
                      :filterTitle="filterTitle"
-                     :reset="!! System.Browser.queryString('search')"
-                     :search="() => search = (search !== null) ? ! search : (System.Browser.queryString('search') ? false : true)">
+                     :reset="!! Browser.queryString('search')"
+                     :search="() => search = (search !== null) ? ! search : (Browser.queryString('search') ? false : true)">
         </v-paginator>
 
         <!-- Search -->
@@ -17,7 +17,7 @@
                   :source="source"
                   @closed="search = false"
                   style="border-width: 1px; border-radius: 0.25rem"
-                  v-if="search ? true : (search === null ? System.Browser.queryString('search') : false)">
+                  v-if="search ? true : (search === null ? Browser.queryString('search') : false)">
         </v-search>
 
         <!-- Content -->
@@ -29,8 +29,8 @@
                  class="ui-grid-item"
                  :dusk="`ui-grid-item-${row[rowKey]}`"
                  v-for="(row, index) in source.data.rows ?? []"
-                 :class="System.Util.blank(action) ? '' : 'cursor-pointer'"
-                 @click="! System.Util.blank(action) && ! $event.target.parentNode.classList.contains('ui-trigger') ? action(row) : null">
+                 :class="Util.blank(action) ? '' : 'cursor-pointer'"
+                 @click="! Util.blank(action) && ! $event.target.parentNode.classList.contains('ui-trigger') ? action(row) : null">
 
                 <!-- Slot -->
                 <slot :item="row"

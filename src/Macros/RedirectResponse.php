@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Macros;
+namespace System\Macros;
 
-use Caneara\Spine\Support\Util;
+use System\Support\Util;
 use Illuminate\Http\RedirectResponse as Facade;
 
 class RedirectResponse

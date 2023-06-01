@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Macros;
+namespace System\Macros;
 
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Support\Util;
+use System\Support\Text;
+use System\Support\Util;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Illuminate\Testing\TestResponse as Facade;
 
@@ -41,7 +41,7 @@ class TestResponse
     protected static function assertPage() : void
     {
         Facade::macro('assertPage', function($path) {
-            $page = Str::replace('/', '.', $this->original->getData()['page']['component']);
+            $page = Text::replace('/', '.', $this->original->getData()['page']['component']);
 
             PHPUnit::assertEquals($path, $page);
 

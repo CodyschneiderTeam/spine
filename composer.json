@@ -10,7 +10,7 @@
     "homepage": "https://github.com/caneara/spine",
     "autoload": {
         "psr-4": {
-            "Caneara\\Spine\\": "src"
+            "System\\": "src"
         }
     },
     "require": {
@@ -40,8 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Caneara\\Spine\\ServiceProvider",
-                "Caneara\\Spine\\Providers\\RouteServiceProvider"
+                "System\\ServiceProvider"
             ]
         }
     },

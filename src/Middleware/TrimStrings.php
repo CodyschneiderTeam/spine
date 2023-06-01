@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 

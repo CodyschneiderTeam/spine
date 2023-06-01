@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Inertia\Middleware;
+use System\Support\Util;
 use Illuminate\Http\Request;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Util;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -25,7 +25,7 @@ class InertiaRequest extends Middleware
      */
     public function share(Request $request) : array
     {
-        return Arr::merge(parent::share($request), [
+        $defaults = [
             'csrf'          => Session::token(),
             'asset'         => URL::asset(''),
             'file'          => Storage::url(''),
@@ -33,6 +33,11 @@ class InertiaRequest extends Middleware
             'data'          => fn() => Util::rescue(fn() => Session::get('data'), []),
             'notification'  => fn() => Util::rescue(fn() => Session::get('notification')),
             'impersonation' => fn() => Util::rescue(fn() => Session::get('impersonation')),
-        ], $this->send());
+        ];
+
+        return Collection::make(parent::share($request))
+            ->merge($defaults)
+            ->merge($this->send())
+            ->toArray();
     }
 }

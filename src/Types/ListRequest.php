@@ -1,10 +1,10 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
-use Caneara\Spine\Support\Is;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Util;
+use System\Support\Is;
+use System\Support\Util;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
 

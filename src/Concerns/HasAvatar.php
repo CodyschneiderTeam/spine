@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Concerns;
+namespace System\Concerns;
 
-use Caneara\Spine\Support\Str;
+use System\Support\Text;
 
 trait HasAvatar
 {
@@ -12,7 +12,8 @@ trait HasAvatar
      */
     public function avatarPath() : string
     {
-        $directory = Str::of(class_basename($this))
+        $directory = Text::of($this)
+            ->classBasename()
             ->lower()
             ->plural()
             ->toString();

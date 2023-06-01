@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Rules;
+namespace System\Rules;
 
 use TypeError;
-use Caneara\Spine\Types\Rule;
+use System\Types\Rule;
 use Illuminate\Support\Collection;
 
 class EnumRule extends Rule

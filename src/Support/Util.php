@@ -1,26 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Support;
+namespace System\Support;
 
 use Closure;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\App;
 
 class Util
 {
-    /**
-     * Attempt to execute the given database task.
-     *
-     */
-    public static function attempt(Closure $action) : mixed
-    {
-        $delay    = App::isProduction() ? 250 : 0;
-        $retries  = App::isProduction() ? 40 : 0;
-        $attempts = App::isProduction() ? 10 : 1;
-
-        return static::retry($retries, fn() => DB::transaction($action, $attempts), $delay);
-    }
-
     /**
      * Determine if the given value is blank.
      *

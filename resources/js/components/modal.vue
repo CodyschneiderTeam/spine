@@ -1,10 +1,10 @@
 <template>
-	<div class="ui-modal w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto transition duration-200">
+	<div class="ui-modal w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
 
 		<!-- Background -->
 		<div ref="background"
 			 @click="dismiss ? close() : null"
-             class="ui-background bg-black/[.60] opacity-0 fixed inset-0 z-1000 transition duration-200">
+             class="ui-background bg-black/60 opacity-0 fixed inset-0 z-1000 animated">
 		</div>
 
 		<!-- Container -->
@@ -12,7 +12,7 @@
 
             <!-- Content -->
             <div ref="content"
-                 class="ui-content relative z-1001 w-full md:max-w-600px md:rounded-lg transition duration-200 scale-110 mx-auto">
+                 class="ui-content w-full md:max-w-600px md:rounded-lg animated scale-110 relative z-1001 mx-auto">
 
                 <!-- Slot -->
                 <div class="ui-slot bg-white md:rounded-lg p-10 md:p-20">
@@ -29,7 +29,7 @@
            @click="close()"
            dusk="modal-close"
            title="Close the popup"
-           class="ui-close fas fa-times text-20px text-gray-400 hover:text-gray-900 transition duration-200 cursor-pointer opacity-0 absolute z-1001 top-14px right-14px">
+           class="ui-close fas fa-times text-20px text-gray-400 hover:text-gray-900 animated cursor-pointer opacity-0 absolute z-1001 top-14px right-14px">
         </i>
 
 	</div>

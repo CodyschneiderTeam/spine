@@ -6,7 +6,7 @@ export default class User
      */
     static authenticated()
     {
-        return ! System.Page.property('guest');
+        return ! Page.property('guest');
     }
 
     /**
@@ -15,6 +15,6 @@ export default class User
      */
     static guest()
     {
-        return System.Page.property('guest');
+        return Page.property('guest');
     }
 }

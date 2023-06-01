@@ -1,10 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Rules;
+namespace System\Rules;
 
 use Exception;
-use Caneara\Spine\Types\Rule;
-use Caneara\Spine\Support\Arr;
+use System\Types\Rule;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -45,11 +46,11 @@ class UploadedFileRule extends Rule
      */
     protected function assertHasMimeType(string $value) : bool
     {
-        if (! $this->checks['types']) {
+        if (! Arr::exists($this->checks, 'types')) {
             return true;
         }
 
-        return Arr::notIn($this->checks['types'], $this->getMimeType($value))
+        return Collection::make($this->checks['types'])->doesntContain($this->getMimeType($value))
             ? $this->fail('The file must be a ' . Arr::join($this->checks['types'], ', ', ' or '))
             : true;
     }
@@ -60,7 +61,7 @@ class UploadedFileRule extends Rule
      */
     protected function assertIsLessThanMegabytes(string $value) : bool
     {
-        if (! $this->checks['size']) {
+        if (! Arr::exists($this->checks, 'size')) {
             return true;
         }
 
@@ -75,7 +76,7 @@ class UploadedFileRule extends Rule
      */
     protected function assertIsValidImage(string $value) : bool
     {
-        if (! $this->checks['image']) {
+        if (! Arr::exists($this->checks, 'image')) {
             return true;
         }
 
@@ -83,7 +84,7 @@ class UploadedFileRule extends Rule
             return ! ! Image::make(Storage::get("tmp/{$value}"));
         } catch (Exception) {
             return $this->fail(
-                "The file could not be processed. Save it as an image in the correct format and try again"
+                "The file could not be processed. Save it as an image in the correct format"
             );
         }
     }

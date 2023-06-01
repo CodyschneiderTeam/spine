@@ -66,7 +66,7 @@
     table thead tr th { @apply bg-gray-50/70 border-b border-gray-200 font-medium text-15px text-gray-500/90 first-of-type:rounded-tl last-of-type:rounded-tr px-5 py-3 }
     table tbody tr:not(.search) { @apply lg:hover:bg-orange-200/10 flex flex-col lg:table-row animated mb-4 last-of-type:mb-0 }
     table tbody tr.search td { @apply p-0 }
-    table tbody tr:not(.search) td { @apply border-x border-b first-of-type:border-t border-x-gray-200 border-b-gray-200 last-of-type:border-b-gray-200 lg:border-l-0 lg:border-r-0 lg:border-b-0 lg:border-t text-16px text-gray-500 leading-5 first-of-type:rounded-t last-of-type:rounded-b lg:first-of-type:rounded-none lg:last-of-type:rounded-none flex flex-col items-end lg:table-cell relative break-all p-5 pt-11 lg:pt-5 before:text-16px before:text-gray-500/90 before:absolute before:top-3 before:left-14px before:lg:hidden before:content-[attr(data-title)] }
+    table tbody tr:not(.search) td { @apply border-x border-b first-of-type:border-t lg:border-l-0 lg:border-r-0 lg:border-b-0 lg:border-t border-x-gray-200 border-b-gray-200 last-of-type:border-b-gray-200 text-16px text-gray-500 leading-5 first-of-type:rounded-t last-of-type:rounded-b lg:first-of-type:rounded-none lg:last-of-type:rounded-none flex flex-col items-end lg:table-cell relative break-all p-5 pt-11 lg:pt-5 before:text-16px before:text-gray-500/90 before:absolute before:top-3 before:left-14px before:lg:hidden before:content-[attr(data-title)] }
 
     /**
      * Animations.

@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Controllers;
+namespace System\Controllers;
 
-use Caneara\Spine\Types\Controller;
+use System\Types\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;

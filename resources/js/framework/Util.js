@@ -8,19 +8,19 @@ export default class Util
      */
     static blank(value)
     {
-        if (System.Is.array(value)) {
+        if (Is.array(value)) {
             return value.length === 0;
         }
 
-        if (System.Is.date(value)) {
+        if (Is.date(value)) {
             return false;
         }
 
-        if (isProxy(value) && toRaw(value).constructor.name === 'DateTime') {
+        if (isProxy(value) && toRaw(value).constructor.name === 'Calendar') {
             return false;
         }
 
-        if (System.Is.object(value)) {
+        if (Is.object(value)) {
             return Object.keys(value).length && Object.getOwnPropertyNames(value).length;
         }
 

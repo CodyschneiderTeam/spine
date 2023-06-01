@@ -7,8 +7,8 @@ export default class Number
     static format(value, type = 'standard', currency = 'USD')
     {
         let options = {
-            compact : { notation : 'compact', compactDisplay : 'short' },
-            decimal : { minimumFractionDigits : 2, maximumFractionDigits : 2 },
+            compact  : { notation : 'compact', compactDisplay : 'short' },
+            decimal  : { minimumFractionDigits : 2, maximumFractionDigits : 2 },
             rounded  : { maximumFractionDigits : 0 },
             standard : { maximumFractionDigits : 2 },
         };
@@ -54,23 +54,5 @@ export default class Number
         return new Intl.NumberFormat('en-US', options)
             .format(value)
             .replace(/^.*?(?=[^\w\s]|_)/, '');
-    }
-
-    /**
-     * Round the given value down to its nearest whole number.
-     *
-     */
-    static roundDown(value)
-    {
-        return Math.floor(value);
-    }
-
-    /**
-     * Round the given value up to its nearest whole number.
-     *
-     */
-    static roundUp(value)
-    {
-        return Math.ceil(value);
     }
 }

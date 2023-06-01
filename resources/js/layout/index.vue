@@ -15,7 +15,7 @@
          */
         created()
         {
-            document.querySelector('title').innerHTML = System.Page.property('title');
+            document.querySelector('title').innerHTML = Page.property('title');
         },
 
 		/**
@@ -24,12 +24,12 @@
 		 */
 		mounted()
 		{
-            let closure = () => System.Dialog.notification(
-                System.Page.property('notification.type'),
-                System.Page.property('notification.message')
+            let closure = () => Dialog.notification(
+                Page.property('notification.type'),
+                Page.property('notification.message')
             );
 
-            System.Util.when(System.Page.property('notification'), closure);
+            Util.when(Page.property('notification'), closure);
 		},
     }
 </script>

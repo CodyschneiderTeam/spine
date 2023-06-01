@@ -7,7 +7,7 @@
         <div class="flex flex-col md:flex-row md:-m-6 md:-ml-7 md:-mb-7">
 
             <!-- Circle -->
-            <div class="ui-circle bg-yellow-500/[.30] h-60px w-60px min-w-60px flex justify-center items-center mx-auto rounded-full">
+            <div class="ui-circle bg-yellow-500/30 h-60px w-60px min-w-60px flex justify-center items-center rounded-full mx-auto">
                 <i class="ui-icon fas fa-exclamation text-30px text-yellow-600"></i>
             </div>
 

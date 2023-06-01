@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Arr;
+use System\Support\Text;
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
 
 return [
 
@@ -88,7 +88,7 @@ return [
 
         'options' => [
             'cluster' => Env::get('REDIS_CLUSTER', 'redis'),
-            'prefix'  => Env::get('REDIS_PREFIX', Str::slug(Env::get('APP_NAME'), '_') . '_database_'),
+            'prefix'  => Env::get('REDIS_PREFIX', Text::slug(Env::get('APP_NAME'), '_') . '_database_'),
         ],
 
         'default' => [

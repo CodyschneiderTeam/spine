@@ -1,10 +1,10 @@
 <?php
 
-namespace Caneara\Spine\Console;
+namespace System\Console;
 
 use Illuminate\Support\Facades\App;
-use Caneara\Spine\Commands\MakeModelCommand;
-use Caneara\Spine\Commands\MakeFactoryCommand;
+use System\Commands\MakeModelCommand;
+use System\Commands\MakeFactoryCommand;
 use Illuminate\Database\Migrations\MigrationCreator;
 
 class Commands

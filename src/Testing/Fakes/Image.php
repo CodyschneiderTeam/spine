@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Testing\Fakes;
+namespace System\Testing\Fakes;
 
-use Caneara\Spine\Support\Str;
+use System\Support\Text;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +25,7 @@ class Image
     {
         Storage::makeDirectory($path);
 
-        $path = Str::of("framework/testing/{$path}/{$id}")
+        $path = Text::of("framework/testing/{$path}/{$id}")
             ->append($extension ? static::$formats[$format] : '')
             ->pipe(fn($path) => App::storagePath($path))
             ->toString();

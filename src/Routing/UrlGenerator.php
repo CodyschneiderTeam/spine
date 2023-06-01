@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Routing;
+namespace System\Routing;
 
 use Illuminate\Routing\UrlGenerator as BaseUrlGenerator;
 

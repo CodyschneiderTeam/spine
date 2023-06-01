@@ -24,11 +24,11 @@
                 <span v-if="item.show && item.type === 'link'"
                       @click.stop="open = false; item['action']()"
                       :dusk="`menu-${id.toLowerCase()}-${item.id}`"
-                      class="ui-link hover:bg-gray-200/[.75] text-16px text-gray-700/[.85] hover:text-gray-700 flex items-center select-none whitespace-nowrap cursor-pointer animated pl-3 pr-6 py-10px">
+                      class="ui-link hover:bg-gray-200/75 text-16px text-gray-700/80 hover:text-gray-700 flex items-center select-none whitespace-nowrap cursor-pointer animated pl-3 pr-6 py-10px">
 
                     <!-- Icon -->
                     <i :class="item.icon"
-                       v-if="! System.Util.blank(item.icon)"
+                       v-if="! Util.blank(item.icon)"
                        class="ui-icon fa-fw text-17px text-gray-400 relative top-[.5px] mr-10px">
                     </i>
 
@@ -46,7 +46,7 @@
 
                 <!-- Empty -->
                 <div v-if="item.show && item.type === 'empty'"
-                     class="ui-empty text-13px text-gray-600/[.65] uppercase select-none whitespace-nowrap cursor-pointer px-6 pt-2 pb-5px">
+                     class="ui-empty text-13px text-gray-600/70 uppercase select-none whitespace-nowrap cursor-pointer px-6 pt-2 pb-5px">
 
                     <!-- Text -->
                     {{ emptyText }}

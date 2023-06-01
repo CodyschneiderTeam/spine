@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-datetime">
+    <div class="ui-calendar">
 
         <!-- Hidden -->
         <input :id="name"
@@ -26,11 +26,11 @@
              class="ui-container bg-white border-l border-r border-b border-gray-300 rounded-b relative -top-3px pt-3px">
 
             <!-- Divider -->
-            <div class="ui-divider w-full h-1px border-t border-gray-300"></div>
+            <div class="ui-divider border-t border-gray-300 w-full h-1px"></div>
 
             <!-- Date Selector -->
             <div v-if="selectors.date"
-                 class="ui-selector-date bg-gray-100/[.25] p-6 pt-5">
+                 class="ui-selector-date bg-gray-100/25 p-6 pt-5">
 
                 <!-- Head -->
                 <div class="ui-header flex items-center mb-4">
@@ -48,14 +48,14 @@
                         <select :id="`${name}_select_month`"
                                 :name="`${name}_select_month`"
                                 :dusk="`${name}_select_month`"
-                                @change="calendar = calendar.set({ month : $event.target.value })"
-                                class="ui-selector-month appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal pr-2px">
+                                @change="luxon = luxon.set({ month : $event.target.value })"
+                                class="ui-selector-month bg-inherit font-semibold text-15px text-gray-800 leading-normal appearance-none pr-2px">
 
                             <!-- Options -->
                             <option :key="index"
                                     :value="index + 1"
                                     v-for="(month, index) in months"
-                                    :selected="(index + 1) === calendar.month">
+                                    :selected="(index + 1) === luxon.month">
 
                                 <!-- Text -->
                                 {{ month }}
@@ -68,14 +68,14 @@
                         <select :id="`${name}_select_year`"
                                 :name="`${name}_select_year`"
                                 :dusk="`${name}_select_year`"
-                                @change="calendar = calendar.set({ year : $event.target.value })"
-                                class="ui-selector-year appearance-none bg-inherit font-semibold text-15px text-gray-800 leading-normal">
+                                @change="luxon = luxon.set({ year : $event.target.value })"
+                                class="ui-selector-year bg-inherit font-semibold text-15px text-gray-800 leading-normal appearance-none">
 
                             <!-- Options -->
                             <option :key="year"
                                     :value="year"
                                     v-for="year in years"
-                                    :selected="year === calendar.year">
+                                    :selected="year === luxon.year">
 
                                 <!-- Text -->
                                 {{ year }}
@@ -100,7 +100,7 @@
                     <!-- Day -->
                     <span :key="day"
                           v-for="day in week"
-                          class="ui-week-day text-12px text-gray-500/[.80] text-center">
+                          class="ui-week-day text-12px text-gray-500/80 text-center">
 
                         <!-- Text -->
                         {{ day }}
@@ -120,10 +120,10 @@
                          :class="day.enabled ? 'text-gray-700 cursor-pointer group' : 'text-gray-300 pointer-events-none'">
 
                         <!-- Ordinal -->
-                        <div class="ui-ordinal h-28px w-28px text-15px text-center rounded-full pt-6px pb-4px"
+                        <div class="ui-ordinal text-15px text-center h-28px w-28px rounded-full pt-6px pb-4px"
                              :class="[
                                 day.today ? 'font-semibold text-sky-600' : '',
-                                day.selected ? 'bg-emerald-600/[.30]' : 'group-hover:bg-emerald-600/[.30]'
+                                day.selected ? 'bg-emerald-600/30' : 'group-hover:bg-emerald-600/30'
                             ]">
 
                             <!-- Text -->
@@ -139,18 +139,18 @@
 
             <!-- Divider -->
             <div v-if="selectors.date && selectors.time"
-                 class="ui-divider w-full h-1px border-t border-gray-300"></div>
+                 class="ui-divider border-t border-gray-300 w-full h-1px"></div>
 
             <!-- Time Selector -->
             <div v-if="selectors.time"
-                 class="ui-selector-time flex flex-col justify-between items-center bg-gray-100/[.25] p-6 pb-18px">
+                 class="ui-selector-time bg-gray-100/25 flex flex-col justify-between items-center p-6 pb-18px">
 
                 <!-- Time Zone -->
-                <div :title="`UTC ${calendar.toFormat('Z')}`"
-                     class="ui-zone font-medium basis-full text-13px text-gray-500 truncate mb-1">
+                <div :title="`UTC ${luxon.toFormat('Z')}`"
+                     class="ui-zone font-medium text-13px text-gray-500 truncate basis-full mb-1">
 
                     <!-- Text -->
-                    {{ calendar.toFormat('ZZZZZ') }}
+                    {{ luxon.toFormat('ZZZZZ') }}
 
                 </div>
 
@@ -163,7 +163,7 @@
                             :id="`${name}_select_hour`"
                             :name="`${name}_select_hour`"
                             :dusk="`${name}_select_hour`"
-                            class="ui-selector-hour appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
+                            class="ui-selector-hour bg-inherit font-medium text-15px text-gray-800 leading-normal appearance-none">
 
                         <!-- Meridiem (AM) -->
                         <option :disabled="true">AM</option>
@@ -172,7 +172,7 @@
                         <option :key="hour"
                                 :value="hour"
                                 v-for="hour in hours.am"
-                                :selected="hour === calendar.hour">
+                                :selected="hour === luxon.hour">
 
                             <!-- Text -->
                             {{ parseInt(hour) === 0 ? 12 : parseInt(hour) }}
@@ -187,7 +187,7 @@
                         <option :key="hour"
                                 :value="hour"
                                 v-for="hour in hours.pm"
-                                :selected="hour === calendar.hour">
+                                :selected="hour === luxon.hour">
 
                             <!-- Text -->
                             {{ parseInt(hour) === 12 ? 12 : parseInt(hour) - 12 }}
@@ -207,13 +207,13 @@
                             :id="`${name}_select_minute`"
                             :name="`${name}_select_minute`"
                             :dusk="`${name}_select_minute`"
-                            class="ui-selector-minute appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
+                            class="ui-selector-minute bg-inherit font-medium text-15px text-gray-800 leading-normal appearance-none">
 
                         <!-- Options -->
                         <option :key="minute"
                                 :value="minute"
                                 v-for="minute in minutes"
-                                :selected="minute === calendar.minute.toString().padStart(2, '0')">
+                                :selected="minute === luxon.minute.toString().padStart(2, '0')">
 
                             <!-- Text -->
                             {{ minute }}
@@ -238,13 +238,13 @@
                             :id="`${name}_select_second`"
                             :name="`${name}_select_second`"
                             :dusk="`${name}_select_second`"
-                            class="ui-selector-second appearance-none bg-inherit font-medium text-15px text-gray-800 leading-normal">
+                            class="ui-selector-second bg-inherit font-medium text-15px text-gray-800 leading-normal appearance-none">
 
                         <!-- Options -->
                         <option :key="second"
                                 :value="second"
                                 v-for="second in seconds"
-                                :selected="second === calendar.second.toString().padStart(2, '0')">
+                                :selected="second === luxon.second.toString().padStart(2, '0')">
 
                             <!-- Text -->
                             {{ second }}
@@ -309,9 +309,9 @@
          */
         data() { return {
             attention : false,
-            calendar  : null,
             hours     : { am : Array(12).fill('').map((v, i) => i), pm : Array(12).fill('').map((v, i) => i + 12) },
             limits    : { minimum : DateTime.fromISO(this.minDate), maximum : DateTime.fromISO(this.maxDate) },
+            luxon     : null,
             minutes   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
             months    : Array(12).fill('').map((v, i) => new Intl.DateTimeFormat(this.locale, { month: 'short' }).format(new Date(Date.UTC(2021, (i)%12)))),
             seconds   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
@@ -325,14 +325,14 @@
          *
          */
         props : {
-            'hideTextbox'  : { type : Boolean, default : false },
-            'locale'       : { type : String,  default : 'en-US' },
-            'maxDate'      : { type : String,  default : '2100-12-31' },
-            'minDate'      : { type : String,  default : '1900-01-01' },
-            'showCalendar' : { type : Boolean, default : false },
-            'showSeconds'  : { type : Boolean, default : false },
-            'startDate'    : { type : String,  default : '' },
-            'type'         : { type : String,  default : 'date' },
+            'hideTextbox'   : { type : Boolean, default : false },
+            'locale'        : { type : String,  default : 'en-US' },
+            'maxDate'       : { type : String,  default : '2100-12-31' },
+            'minDate'       : { type : String,  default : '1900-01-01' },
+            'showComponent' : { type : Boolean, default : false },
+            'showSeconds'   : { type : Boolean, default : false },
+            'startDate'     : { type : String,  default : '' },
+            'type'          : { type : String,  default : 'date' },
         },
 
         /**
@@ -349,23 +349,23 @@
             {
                 let days = [];
 
-                for (let ordinal = this.calendar.startOf('month').weekday; ordinal > 1; ordinal--) {
+                for (let ordinal = this.luxon.startOf('month').weekday; ordinal > 1; ordinal--) {
                     days.push({
                         date     : null,
                         enabled  : false,
-                        ordinal  : this.calendar.startOf('month').minus({ days : ordinal - 1 }).day,
+                        ordinal  : this.luxon.startOf('month').minus({ days : ordinal - 1 }).day,
                         selected : false,
                         today    : false,
                     });
                 }
 
-                for (let ordinal = 1; ordinal <= this.calendar.daysInMonth; ordinal++) {
+                for (let ordinal = 1; ordinal <= this.luxon.daysInMonth; ordinal++) {
                     days.push({
-                        date     : this.calendar.set({ day : ordinal }).toISODate(),
-                        enabled  : this.withinLimits(this.calendar.set({ day : ordinal })),
+                        date     : this.luxon.set({ day : ordinal }).toISODate(),
+                        enabled  : this.withinLimits(this.luxon.set({ day : ordinal })),
                         ordinal  : ordinal,
-                        selected : this.value.toISODate() === this.calendar.set({ day : ordinal }).toISODate(),
-                        today    : DateTime.now().setLocale(this.locale).toISODate() === this.calendar.set({ day : ordinal }).toISODate(),
+                        selected : this.value.toISODate() === this.luxon.set({ day : ordinal }).toISODate(),
+                        today    : DateTime.now().setLocale(this.locale).toISODate() === this.luxon.set({ day : ordinal }).toISODate(),
                     });
                 }
 
@@ -380,7 +380,7 @@
             {
                 let preset = this.showSeconds ? DateTime.TIME_WITH_SECONDS : DateTime.TIME_SIMPLE;
 
-                if (System.Util.blank(this.modelValue)) {
+                if (Util.blank(this.modelValue)) {
                     return '';
                 }
 
@@ -393,8 +393,7 @@
                 }
 
                 if (this.type === 'datetime') {
-                    return this.value.toLocaleString(DateTime.DATE_MED) + ' - ' +
-                        this.value.toLocaleString(preset).toLowerCase();
+                    return `${this.value.toLocaleString(DateTime.DATE_MED)} - ${this.value.toLocaleString(preset).toLowerCase()}`;
                 }
 
                 throw 'Unknown type format';
@@ -442,14 +441,14 @@
              */
             modelValue : function(current, previous)
             {
-                this.value = System.Util.blank(current) ? null : DateTime.fromISO(current, { locale : this.locale });
+                this.value = Util.blank(current) ? null : DateTime.fromISO(current, { locale : this.locale });
             },
 
             /**
-             * Watch the 'showCalendar' property.
+             * Watch the 'showComponent' property.
              *
              */
-            showCalendar : function(current, previous)
+            showComponent : function(current, previous)
             {
                 if (! current) return this.lostUserAttention();
 
@@ -465,7 +464,7 @@
          */
         created()
         {
-            if (System.Util.blank(this.modelValue)) return;
+            if (Util.blank(this.modelValue)) return;
 
             this.value = DateTime.fromISO(this.modelValue, { locale : this.locale });
         },
@@ -494,7 +493,7 @@
             goToMonth(month)
             {
                 if (this.withinLimits(month)) {
-                    this.calendar = month;
+                    this.luxon = month;
                 }
             },
 
@@ -504,7 +503,7 @@
              */
             goToNextMonth()
             {
-                this.goToMonth(this.calendar.plus({ months : 1 }));
+                this.goToMonth(this.luxon.plus({ months : 1 }));
             },
 
             /**
@@ -513,7 +512,7 @@
              */
             goToPreviousMonth()
             {
-                this.goToMonth(this.calendar.minus({ months : 1 }));
+                this.goToMonth(this.luxon.minus({ months : 1 }));
             },
 
 	    	/**
@@ -580,15 +579,13 @@
              */
             showSelectors()
             {
-                if (System.Util.blank(this.value)) {
-                    if (this.startDate) {
-                        this.value = DateTime.fromISO(this.startDate).startOf('day').setLocale(this.locale);
-                    } else {
-                        this.value = DateTime.now().startOf('day').setLocale(this.locale);
-                    }
+                if (Util.blank(this.value)) {
+                    this.value = this.startDate
+                        ? DateTime.fromISO(this.startDate).startOf('day').setLocale(this.locale)
+                        : DateTime.now().startOf('day').setLocale(this.locale);
                 }
 
-                this.calendar = this.value;
+                this.luxon = this.value;
 
                 if (['date', 'datetime'].includes(this.type)) {
                     this.selectors.date = true;

@@ -4,7 +4,7 @@
          class="ui-metric bg-white border border-gray-300 w-full flex flex-col rounded-lg p-6 md:p-8">
 
         <!-- Label -->
-        <span class="ui-label font-medium text-13px text-gray-500/[.85] uppercase mb-4">
+        <span class="ui-label font-medium text-13px text-gray-500/90 uppercase mb-4">
             {{ label }}
         </span>
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <!-- Period -->
-                <span class="ui-period font-medium text-13px text-gray-500/[.80] pl-2px pt-5px">
+                <span class="ui-period font-medium text-13px text-gray-500/80 pl-2px pt-5px">
                     vs. {{ period }}
                 </span>
 
@@ -59,7 +59,7 @@
         data() { return {
             trends : {
                 down : {
-                    color : 'bg-rose-50 text-rose-600/[.90]',
+                    color : 'bg-rose-50 text-rose-600/90',
                     icon  : 'fa-arrow-trend-down',
                 },
                 same : {
@@ -67,7 +67,7 @@
                     icon  : 'fa-arrows-rotate',
                 },
                 up : {
-                    color : 'bg-emerald-50 text-emerald-600/[.90]',
+                    color : 'bg-emerald-50 text-emerald-600/90',
                     icon  : 'fa-arrow-trend-up',
                 },
             }

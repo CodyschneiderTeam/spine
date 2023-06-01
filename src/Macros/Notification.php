@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Macros;
+namespace System\Macros;
 
 use Illuminate\Support\Testing\Fakes\NotificationFake as Facade;
 

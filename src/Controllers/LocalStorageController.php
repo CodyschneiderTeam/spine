@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Controllers;
+namespace System\Controllers;
 
-use Caneara\Spine\Support\Str;
+use System\Support\Text;
+use System\Support\Calendar;
+use System\Types\Controller;
 use Illuminate\Http\JsonResponse;
-use Caneara\Spine\Support\DateTime;
-use Caneara\Spine\Types\Controller;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -25,8 +25,8 @@ class LocalStorageController extends Controller
 
         $url = URL::temporarySignedRoute(
             'signed.storage.upload',
-            DateTime::now()->addHour(),
-            ['id' => $id = Str::uuid()]
+            Calendar::now()->addHour(),
+            ['id' => $id = Text::uuid()]
         );
 
         return Response::json([

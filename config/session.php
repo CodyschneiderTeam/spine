@@ -1,7 +1,7 @@
 <?php
 
+use System\Support\Text;
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\Str;
 use Illuminate\Container\Container;
 
 return [
@@ -126,7 +126,7 @@ return [
     |
     */
 
-    'cookie' => Env::get('SESSION_COOKIE', Str::slug(Env::get('APP_NAME'), '_') . '_session'),
+    'cookie' => Env::get('SESSION_COOKIE', Text::slug(Env::get('APP_NAME'), '_') . '_session'),
 
     /*
     |--------------------------------------------------------------------------

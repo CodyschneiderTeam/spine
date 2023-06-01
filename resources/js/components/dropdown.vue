@@ -14,9 +14,9 @@
                     @focus="focus = true"
                     @focusout="focus = false"
 					@change="change($event.target.value)"
-                    :class="System.Util.blank(modelValue) ? '' : 'pt-24px pb-7px'"
+                    :class="Util.blank(modelValue) ? '' : 'pt-24px pb-7px'"
 					style="line-height: 1.3; padding-right: 50px; -webkit-padding-end: 50px !important"
-					class="ui-input w-full h-51px bg-inherit text-17px text-gray-900 align-middle text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3">
+					class="ui-input bg-inherit text-17px text-gray-900 text-ellipsis w-full h-51px align-middle overflow-hidden rounded appearance-none cursor-pointer pl-3">
 
 				<!-- Items -->
 				<option v-for="item in items"
@@ -35,13 +35,13 @@
                      :value="label"
                      :optional="optional"
                      :optionalText="optionalText"
-                     :focus="! System.Util.blank(modelValue)"
-                     :filled="! System.Util.blank(modelValue)">
+                     :focus="! Util.blank(modelValue)"
+                     :filled="! Util.blank(modelValue)">
             </v-label>
 
 			<!-- Caret -->
 			<i class="ui-caret fas fa-caret-down text-gray-400 cursor-pointer pointer-events-none absolute top-18px right-19px"
-               :class="! clear ? 'opacity-100' : (System.Util.blank(modelValue) || (! System.Util.blank(modelValue) && ! hover) ? 'opacity-100' : 'opacity-0')">
+               :class="! clear ? 'opacity-100' : (Util.blank(modelValue) || (! Util.blank(modelValue) && ! hover) ? 'opacity-100' : 'opacity-0')">
             </i>
 
             <!-- Clear -->
@@ -49,7 +49,7 @@
                      :focus="focus"
                      :hover="hover"
                      @click="change('')"
-                     :filled="! System.Util.blank(modelValue)">
+                     :filled="! Util.blank(modelValue)">
             </v-clear>
 
         </div>
@@ -142,7 +142,7 @@
 
 				this.fault = '';
 
-                if (payload === undefined) return;
+                if (Util.blank(payload)) return;
 
                 if (! ['', null].includes(payload) && ! isNaN(payload)) {
                     payload = Number(payload);

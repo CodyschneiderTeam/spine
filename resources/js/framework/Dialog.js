@@ -1,7 +1,4 @@
 import { createApp } from 'vue';
-import TipComponent from '../components/tip.vue';
-import ShareComponent from '../components/share.vue';
-import PromptComponent from '../components/prompt.vue';
 import ConfirmComponent from '../components/confirm.vue';
 import NotificationComponent from '../components/notification.vue';
 
@@ -85,72 +82,5 @@ export default class Dialog
         element.container.mount(`#${element.id}`);
 
         setTimeout(() => Dialog.#closeDialog(element), 3500);
-    }
-
-    /**
-     * Request that the user provide some feedback.
-     *
-     */
-    static prompt(title = null, summary = null, label = null, fallback = '', lines = 1, maxLength = null)
-    {
-        let element = Dialog.#createDialogElement();
-
-        return new Promise((resolve, reject) =>
-        {
-            element.container = createApp(PromptComponent, {
-                fallback  : fallback,
-                label     : label ?? 'Your response',
-                lines     : lines,
-                maxLength : maxLength,
-                summary   : summary ?? 'In order to proceed, some input is required. Please enter it below, then press continue, or press cancel.',
-                title     : title ?? 'Awaiting your response...',
-                visible   : true,
-                onCancel : () => {
-                    resolve(fallback);
-
-                    Dialog.#closeDialog(element);
-                },
-                onContinue : (event) => {
-                    resolve(['', null, undefined].includes(event) ? fallback : event);
-
-                    Dialog.#closeDialog(element);
-                },
-            });
-
-            element.container.mount(`#${element.id}`);
-        });
-    }
-
-    /**
-     * Allow the user to share the given link.
-     *
-     */
-    static share(url)
-    {
-        let element = Dialog.#createDialogElement();
-
-        element.container = createApp(ShareComponent, {
-            url     : url,
-            visible : true,
-        });
-
-        element.container.mount(`#${element.id}`);
-    }
-
-    /**
-     * Display some information to the user.
-     *
-     */
-    static tip(message = '')
-    {
-        let element = Dialog.#createDialogElement();
-
-        element.container = createApp(TipComponent, {
-            message : message,
-            visible : true,
-            onClose : () => Dialog.#closeDialog(element),
-        });
-
-        element.container.mount(`#${element.id}`);
     }
 }

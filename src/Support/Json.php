@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Support;
+namespace System\Support;
 
 class Json
 {
@@ -28,6 +28,6 @@ class Json
      */
     public static function valid(string $value) : bool
     {
-        return Str::isJson($value);
+        return Text::isJson($value);
     }
 }

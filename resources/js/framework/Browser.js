@@ -17,7 +17,7 @@ export default class Browser
     {
         let scripts = document.getElementsByTagName('script');
 
-        if (! System.Util.blank(Array.from(scripts).filter(item => item.src === url))) return;
+        if (! Util.blank(Array.from(scripts).filter(item => item.src === url))) return;
 
         let script = document.createElement('script');
 
@@ -43,14 +43,14 @@ export default class Browser
      */
     static redirect(config, options = { preserveScroll : false }, external = false, tab = false)
     {
-        config = System.Is.array(config) ? config : [config];
+        config = Is.array(config) ? config : [config];
 
         if (external) {
             return tab ? window.open(config[0], '_blank') : window.location.href = config[0];
         }
 
         return window.app.config.globalProperties.$inertia.get(
-            config[0].startsWith('http') ? config[0] : System.Server.route(...config), {}, options
+            config[0].startsWith('http') ? config[0] : Server.route(...config), {}, options
         );
     }
 

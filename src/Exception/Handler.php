@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Exception;
+namespace System\Exception;
 
 use Throwable;
-use Caneara\Spine\Support\Arr;
+use Illuminate\Support\Arr;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
@@ -60,17 +60,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e) : Response
     {
-        $response = parent::render($request, $e);
-
         if (Arr::exists($this->exceptions, get_class($e))) {
             return $this->renderMessage($request, $e);
         }
 
-        if (App::isProduction()) {
-            return ResponseBuilder::view('app.error', $this->errors[$response->getStatusCode()]);
+        if (! App::isProduction()) {
+            return parent::render($request, $e);
         }
 
-        return $response;
+        return ResponseBuilder::view('app.error', $this->errors[
+            parent::render($request, $e)->getStatusCode()
+        ]);
     }
 
     /**
@@ -83,7 +83,7 @@ class Handler extends ExceptionHandler
 
         $message = $type['message'] ?? $exception->getMessage();
 
-        return $request->expectsJson() || Arr::in(['poll'], $request->route()->getName())
+        return $request->expectsJson()
             ? ResponseBuilder::json(['message' => $message], $type['code'])
             : Redirect::back()->notify($message, 'error');
     }

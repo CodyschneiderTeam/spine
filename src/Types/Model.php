@@ -1,10 +1,10 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 use DateTimeInterface;
-use Caneara\Spine\Support\Is;
-use Caneara\Spine\Support\Arr;
+use System\Support\Is;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 class Model extends BaseModel

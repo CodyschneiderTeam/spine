@@ -1,13 +1,14 @@
 <?php
 
-namespace Caneara\Spine\Testing\Support;
+namespace System\Testing\Support;
 
 use UnitEnum;
 use GuzzleHttp\Client;
-use Caneara\Spine\Support\Is;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Support\Util;
-use Caneara\Spine\Support\DateTime;
+use System\Support\Is;
+use System\Support\Json;
+use System\Support\Text;
+use System\Support\Util;
+use System\Support\Calendar;
 use Illuminate\Support\Facades\Config;
 use Laravel\Dusk\Browser as BaseBrowser;
 use PHPUnit\Framework\Assert as PHPUnit;
@@ -23,6 +24,22 @@ class Browser extends BaseBrowser
         parent::__construct($driver, $resolver);
 
         $this->setDownloadDirectory();
+    }
+
+    /**
+     * Assert that the given field has the given date and time.
+     *
+     */
+    public function assertCalendar(string $field, Calendar $value) : static
+    {
+        $field = Calendar::parse($this->inputValue($field));
+
+        PHPUnit::assertEquals(
+            $field->startOfMinute()->format('Y-m-d\TH:i'),
+            $value->startOfMinute()->format('Y-m-d\TH:i')
+        );
+
+        return $this;
     }
 
     /**
@@ -49,29 +66,13 @@ class Browser extends BaseBrowser
      * Assert that a file with the given file name was downloaded.
      *
      */
-    public function assertDownloaded(string $file_name, int $wait = 3000) : static
+    public function assertDownloaded(string $file, int $wait = 3000) : static
     {
         $this->pause($wait);
 
-        PHPUnit::assertCount(1, glob(getcwd() . "/storage/framework/testing/{$file_name}"));
+        PHPUnit::assertCount(1, glob(getcwd() . "/storage/framework/testing/{$file}"));
 
-        @unlink(glob(getcwd() . "/storage/framework/testing/{$file_name}")[0]);
-
-        return $this;
-    }
-
-    /**
-     * Assert that the given field has the given date and time.
-     *
-     */
-    public function assertDateTime(string $field, DateTime $value) : static
-    {
-        $field = DateTime::parse($this->inputValue($field));
-
-        PHPUnit::assertEquals(
-            $field->startOfMinute()->format('Y-m-d\TH:i'),
-            $value->startOfMinute()->format('Y-m-d\TH:i')
-        );
+        @unlink(glob(getcwd() . "/storage/framework/testing/{$file}")[0]);
 
         return $this;
     }
@@ -139,7 +140,29 @@ class Browser extends BaseBrowser
      */
     public function attach($field, $path) : static
     {
-        return parent::attach(Str::start($field, '@'), $path)->pause(2000);
+        return parent::attach(Text::start($field, '@'), $path)->pause(2000);
+    }
+
+    /**
+     * Select the given value (date and / or time) for the given field.
+     *
+     */
+    public function calendar(string $type, string $field, Calendar $value) : static
+    {
+        $this->click("{$field}_text_box")->pause();
+
+        if (Text::contains($type, 'date')) {
+            $this->select("{$field}_select_year", $value->year)->pause()
+                ->select("{$field}_select_month", $value->month)->pause()
+                ->click("{$field}_select_day_{$value->day}")->pause();
+        }
+
+        if (Text::contains($type, 'time')) {
+            $this->select("{$field}_select_hour", $value->hour)->pause()
+                ->select("{$field}_select_minute", $value->minute)->pause();
+        }
+
+        return $this;
     }
 
     /**
@@ -170,11 +193,20 @@ class Browser extends BaseBrowser
      */
     public function click($selector = null) : static
     {
-        $selector = Str::startsWith($selector, '|')
-            ? Str::substr($selector, 1)
-            : Str::start($selector, '@');
+        $selector = Text::startsWith($selector, '|')
+            ? Text::substr($selector, 1)
+            : Text::start($selector, '@');
 
-        return parent::click($selector)->pause(500);
+        return parent::click($selector)->pause();
+    }
+
+    /**
+     * Click on the given sidebar link.
+     *
+     */
+    public function clickOnSidebarLink(string $key) : static
+    {
+        return $this->click("@sidebar-link-{$key}");
     }
 
     /**
@@ -192,76 +224,20 @@ class Browser extends BaseBrowser
      * Ensure that the given value has been reduced to its scalar value.
      *
      */
-    public function convertEnumToScalar(mixed $value) : mixed
+    protected function convertEnumToScalar(mixed $value) : mixed
     {
         return $value instanceof UnitEnum ? $value->value : $value;
-    }
-
-    /**
-     * Select the given date for the given field.
-     *
-     */
-    public function date(string $field, DateTime $value) : static
-    {
-        return $this->click("{$field}_text_box")
-            ->pause()
-            ->select("{$field}_select_year", $value->year)
-            ->pause()
-            ->select("{$field}_select_month", $value->month)
-            ->pause()
-            ->click("{$field}_select_day_{$value->day}")
-            ->pause();
-    }
-
-    /**
-     * Select the given date and time for the given field.
-     *
-     */
-    public function dateTime(string $field, DateTime $value) : static
-    {
-        return $this->click("{$field}_text_box")
-            ->pause()
-            ->select("{$field}_select_year", $value->year)
-            ->pause()
-            ->select("{$field}_select_month", $value->month)
-            ->pause()
-            ->click("{$field}_select_day_{$value->day}")
-            ->pause()
-            ->select("{$field}_select_hour", $value->hour)
-            ->pause()
-            ->select("{$field}_select_minute", $value->minute)
-            ->pause();
-    }
-
-    /**
-     * Assign the given value to the browser's local storage.
-     *
-     */
-    public function localStorage(string $key, string $value) : static
-    {
-        return $this->javascript("localStorage.setItem('{$key}', '{$value}')");
     }
 
     /**
      * Perform a lookup using the given parameters.
      *
      */
-    public function lookup(string $field, string $search, $value, bool $assert = true) : static
+    public function lookup(string $field, string $search, mixed $value) : static
     {
-        $this->type("{$field}_search_display", $search)
-            ->pause()
-            ->click("lookup-{$field}-item-{$value}");
-
-        return $assert ? $this->assertInputValue($field, $value) : $this;
-    }
-
-    /**
-     * Execute the given JavaScript code.
-     *
-     */
-    public function javascript(string $code) : static
-    {
-        return (tap($this)->script($code))->pause();
+        return $this->type("{$field}_search_display", $search)->pause()
+            ->click("lookup-{$field}-item-{$value}")
+            ->assertInputValue($field, $value);
     }
 
     /**
@@ -293,24 +269,6 @@ class Browser extends BaseBrowser
     }
 
     /**
-     * Scroll to the bottom of the page.
-     *
-     */
-    public function scrollToBottom() : static
-    {
-        return $this->javascript('scrollTo(0, document.body.scrollHeight)');
-    }
-
-    /**
-     * Scroll to the top of the page.
-     *
-     */
-    public function scrollToTop() : static
-    {
-        return $this->javascript('scrollTo(0, 0)');
-    }
-
-    /**
      * Select the given value.
      *
      */
@@ -328,7 +286,7 @@ class Browser extends BaseBrowser
     protected function setDownloadDirectory() : void
     {
         $payload = [
-            'body' => json_encode([
+            'body' => Json::encode([
                 'cmd'    => 'Page.setDownloadBehavior',
                 'params' => [
                     'behavior'     => 'allow',
@@ -344,38 +302,6 @@ class Browser extends BaseBrowser
             ->getAddressOfRemoteServer();
 
         (new Client())->post("{$address}/session/{$id}/chromium/send_command", $payload);
-    }
-
-    /**
-     * Click on the given sidebar link.
-     *
-     */
-    public function sidebar(string $key) : static
-    {
-        return $this->click("@sidebar-link-{$key}");
-    }
-
-    /**
-     * Switch to the given menu tab.
-     *
-     */
-    public function switchTab(string $name) : static
-    {
-        return $this->scrollToTop()
-            ->push("ui-tab-select-{$name}")
-            ->pause();
-    }
-
-    /**
-     * Select the given time for the given field.
-     *
-     */
-    public function time(string $field, string | DateTime $value) : static
-    {
-        $value = Is::string($value) ? new DateTime($value) : $value;
-
-        return $this->select("{$field}_hour", $value->hour)
-            ->select("{$field}_minute", $value->minute);
     }
 
     /**
@@ -396,7 +322,6 @@ class Browser extends BaseBrowser
      */
     public function visitRoute($route, $parameters = []) : static
     {
-        return parent::visitRoute($route, $parameters)
-            ->pause(3000);
+        return parent::visitRoute($route, $parameters)->pause(3000);
     }
 }

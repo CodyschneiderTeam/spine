@@ -9,7 +9,7 @@ import Server from './Server';
 import String from './String';
 import Browser from './Browser';
 import Request from './Request';
-import DateTime from './DateTime';
+import Calendar from './Calendar';
 
 export default class System
 {
@@ -17,21 +17,13 @@ export default class System
      * Configure the system framework.
      *
      */
-    static configure(features = {})
+    static configure(classes = {})
     {
-        window.System = Object.assign({}, features, {
-            Browser,
-            DateTime,
-            Dialog,
-            Form,
-            Is,
-            Number,
-            Page,
-            Request,
-            Server,
-            String,
-            User,
-            Util,
+        window.System = Object.assign({}, classes, {
+            Browser, Calendar, Dialog, Form, Is, Number,
+            Page, Request, Server, String, User, Util,
         });
+
+        Object.entries(window.System).forEach(i => window[i[0]] = i[1]);
     }
 }

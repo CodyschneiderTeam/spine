@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center mt-4">
 
         <!-- Summary -->
-        <span class="text-12px text-gray-500/[.80] uppercase relative top-1px">
+        <span class="text-12px text-gray-500/80 uppercase relative top-1px">
 
             <!-- Text -->
             <span>
@@ -60,11 +60,11 @@
             <div v-if="reset"
                  title="Clear search filters"
                  dusk="ui_paginator_button_reset"
-                 @click="System.Form.submit(System.Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)"
+                 @click="Form.submit(Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)"
                  class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 rounded-l cursor-pointer group animated px-13px py-2">
 
                 <!-- Link -->
-                <i class="fas fa-times text-14px text-gray-800/[.50]"></i>
+                <i class="fas fa-times text-14px text-gray-800/50"></i>
 
             </div>
 
@@ -77,7 +77,7 @@
                  class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-search text-14px text-gray-800/[.50]"></i>
+                <i class="fas fa-search text-14px text-gray-800/50"></i>
 
             </div>
 
@@ -91,7 +91,7 @@
 
                 <!-- Link -->
                 <i class="fas fa-filter text-14px"
-                   :class="System.Browser.queryString(filterKey, '0') === '0' ? 'text-gray-800/50' : 'text-sky-600/70'">
+                   :class="Browser.queryString(filterKey, '0') === '0' ? 'text-gray-800/50' : 'text-sky-600/70'">
                 </i>
 
             </div>
@@ -105,13 +105,13 @@
                  class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-download text-14px text-gray-800/[.50]"></i>
+                <i class="fas fa-download text-14px text-gray-800/50"></i>
 
             </div>
 
             <!-- Previous Page (Disabled) -->
             <div :class="search ? '' : 'rounded-l'"
-                 v-if="System.Util.blank(source.pagination.prev_page_url)"
+                 v-if="Util.blank(source.pagination.prev_page_url)"
                  class="border border-r-0 border-gray-300 select-none cursor-not-allowed px-3 py-2">
 
                 <!-- Arrow -->
@@ -127,7 +127,7 @@
                  class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-left text-14px text-gray-800/[.50]"></i>
+                <i class="fas fa-arrow-left text-14px text-gray-800/50"></i>
 
             </div>
 
@@ -138,12 +138,12 @@
                  class="bg-white hover:bg-gray-100 border border-gray-300 rounded-r cursor-pointer group animated px-3 py-2">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-right text-14px text-gray-800/[.50]"></i>
+                <i class="fas fa-arrow-right text-14px text-gray-800/50"></i>
 
             </div>
 
             <!-- Next Page (Disabled) -->
-            <div v-if="System.Util.blank(source.pagination.next_page_url)"
+            <div v-if="Util.blank(source.pagination.next_page_url)"
                  class="border border-gray-300 rounded-r select-none cursor-not-allowed px-3 py-2">
 
                 <!-- Arrow -->
@@ -214,7 +214,7 @@
             {
                 let pair = link.split('?')[1].split('=');
 
-                let query = System.Browser.queryString();
+                let query = Browser.queryString();
 
                 query.set(pair[0], pair[1]);
 

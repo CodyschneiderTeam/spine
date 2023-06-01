@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Macros;
+namespace System\Macros;
 
-use Caneara\Spine\Database\Search;
+use System\Database\Search;
 use Illuminate\Database\Query\Builder as Facade;
 
 class Builder

@@ -1,27 +1,30 @@
 <?php
 
-namespace Caneara\Spine\Testing\Fakes;
+namespace System\Testing\Fakes;
 
+use System\Support\Text;
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\Str;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class Avatar
 {
+    use WithFaker;
+
     /**
      * Retrieve and assign an avatar using the given gender.
      *
      */
     public static function fake(string $gender) : ?string
     {
-        if (static::shouldSkip()) {
+        if (App::runningUnitTests() || Env::get('APP_DUSK', false)) {
             return null;
         }
 
         Storage::put(
-            static::getPath($id = Str::uuid()),
+            static::getPath($id = Text::uuid()),
             static::getRandomImage($gender)
         );
 
@@ -34,7 +37,7 @@ class Avatar
      */
     protected static function getPath(string $id) : string
     {
-        return Str::of('images/avatars/')
+        return Text::of('images/avatars/')
             ->append(static::getResourceType())
             ->append("/{$id}.jpg")
             ->toString();
@@ -48,7 +51,9 @@ class Avatar
     {
         $directory = "/../../../resources/images/avatars/{$gender}/";
 
-        return File::get(realpath(__DIR__ . $directory . rand(1, 50) . '.jpg'));
+        $index = (new static())->faker()->numberBetween(1, 50);
+
+        return File::get(realpath(__DIR__ . "{$directory}/{$index}/.jpg"));
     }
 
     /**
@@ -57,20 +62,12 @@ class Avatar
      */
     protected static function getResourceType() : string
     {
-        return Str::of(class_basename(debug_backtrace()[2]['file']))
+        return Text::of(debug_backtrace()[2]['file'])
+            ->classBasename()
             ->before('.php')
             ->before('Factory')
             ->plural()
             ->lower()
             ->toString();
-    }
-
-    /**
-     * Determine whether the process should be abandoned.
-     *
-     */
-    protected static function shouldSkip() : bool
-    {
-        return App::runningUnitTests() || Env::get('APP_DUSK', false);
     }
 }

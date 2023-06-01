@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Commands;
+namespace System\Commands;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 

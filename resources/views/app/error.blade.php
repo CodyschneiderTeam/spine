@@ -9,26 +9,25 @@
         <title>{{ Config::get('app.name') }}</title>
 
         {{-- Meta --}}
-        <meta name="description"           content="{{ Config::get('app.description') }}">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="format-detection"      content="telephone=no">
-        <meta name="Content-Type"          content="text/html; charset=UTF-8">
-        <meta name="viewport"              content="width=device-width, initial-scale=1">
-        <meta name="robots"                content="noindex, nofollow" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="robots"           content="noindex, nofollow" />
+        <meta name="Content-Type"     content="text/html; charset=UTF-8">
+        <meta name="viewport"         content="width=device-width, initial-scale=1">
+        <meta name="description"      content="{{ Config::get('app.description') }}">
 
         {{-- Open Graph --}}
-        <meta property="og:title"       content="{{ Config::get('app.name') }}">
-        <meta property="og:description" content="{{ Config::get('app.description') }}">
         <meta property="og:type"        content="website">
         <meta property="og:url"         content="{{ Request::url() }}">
+        <meta property="og:title"       content="{{ Config::get('app.name') }}">
         <meta property="og:image"       content="{{ URL::asset('images/card.png') }}">
         <meta property="og:secure_url"  content="{{ URL::asset('images/card.png') }}">
+        <meta property="og:description" content="{{ Config::get('app.description') }}">
 
         {{-- Twitter Card --}}
         <meta name="twitter:card"        content="summary_large_image">
         <meta name="twitter:title"       content="{{ Config::get('app.name') }}">
-        <meta name="twitter:description" content="{{ Config::get('app.description') }}">
         <meta name="twitter:image"       content="{{ URL::asset('images/card.png') }}">
+        <meta name="twitter:description" content="{{ Config::get('app.description') }}">
 
         {{-- Favicon --}}
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
@@ -40,7 +39,7 @@
         <style>
 
             /**
-             * Proxima Vara.
+             * Font.
              *
              */
             @font-face {
@@ -52,7 +51,7 @@
             }
 
             /**
-             * Styles.
+             * Classes.
              *
              */
             .font-sans { font-family: 'Proxima Vara' !important }
@@ -65,17 +64,17 @@
     <body class="font-sans leading-none flex flex-col justify-center items-center min-h-screen">
 
         {{-- Code --}}
-        <h3 class="font-semibold text-indigo-600 mb-3">
+        <h3 class="font-semibold text-indigo-600 mb-2">
             {{ $code }}
         </h3>
 
         {{-- Title --}}
-        <h1 class="font-[650] text-[30px] md:text-[45px] mb-5">
+        <h1 class="font-[650] text-[30px] md:text-[40px] mb-7">
             {{ $title }}
         </h1>
 
         {{-- Description --}}
-        <h2 class="text-[18px] text-gray-600 text-center leading-normal px-6 mb-10">
+        <h2 class="text-[18px] text-gray-600 text-center leading-normal px-6 mb-9">
             {{ $description }}
         </h2>
 

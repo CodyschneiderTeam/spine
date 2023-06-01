@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Casts;
+namespace System\Casts;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;

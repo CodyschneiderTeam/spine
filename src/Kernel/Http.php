@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Kernel;
+namespace System\Kernel;
 
-use Caneara\Spine\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Foundation\Http\Kernel;
 
 class Http extends Kernel
@@ -18,12 +18,12 @@ class Http extends Kernel
      *
      */
     protected $middleware = [
-        \Caneara\Spine\Middleware\TrustHosts::class,
-        \Caneara\Spine\Middleware\TrustProxies::class,
+        \System\Middleware\TrustHosts::class,
+        \System\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Caneara\Spine\Middleware\TrimStrings::class,
+        \System\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -32,15 +32,15 @@ class Http extends Kernel
      *
      */
     protected $middlewareAliases = [
-        'auth'             => \Caneara\Spine\Middleware\Authenticate::class,
+        'auth'             => \System\Middleware\Authenticate::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'              => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest'            => \Caneara\Spine\Middleware\RedirectIfAuthenticated::class,
+        'guest'            => \System\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified'         => \Caneara\Spine\Middleware\EnsureEmailIsVerified::class,
+        'verified'         => \System\Middleware\EnsureEmailIsVerified::class,
     ];
 
     /**
@@ -54,7 +54,7 @@ class Http extends Kernel
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Caneara\Spine\Middleware\VerifyCsrfToken::class,
+            \System\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Middleware\HandleInertiaRequests::class,
         ],
@@ -72,7 +72,9 @@ class Http extends Kernel
      */
     public function getMiddlewareAliases() : array
     {
-        return Arr::merge($this->middlewareAliases, $this->customMiddlewareAliases);
+        return Collection::make($this->middlewareAliases)
+            ->merge($this->customMiddlewareAliases)
+            ->toArray();
     }
 
     /**

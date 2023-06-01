@@ -1,10 +1,10 @@
 <?php
 
-namespace Caneara\Spine\Routing;
+namespace System\Routing;
 
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Support\Util;
+use System\Support\Text;
+use System\Support\Util;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Routing\RouteUrlGenerator as BaseRouteUrlGenerator;
 
@@ -22,13 +22,13 @@ class RouteUrlGenerator extends BaseRouteUrlGenerator
 
         $query = Arr::query($keyed = $this->getStringParameters($parameters));
 
-        if (Arr::size($keyed) < Arr::size($parameters)) {
+        if (Collection::make($keyed)->count() < Collection::make($parameters)->count()) {
             $query .= '&' . Collection::make($this->getNumericParameters($parameters))
                 ->map(fn($value, $key) => "{$key}={$value}")
                 ->implode('&');
         }
 
-        $query = Str::trim($query, '&');
+        $query = Text::trim($query, '&');
 
         return $query === '' ? '' : "?{$query}";
     }

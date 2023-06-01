@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-search bg-gray-50/[.50] border border-gray-200 lg:border-0 rounded lg:rounded-none w-full p-5 mb-4 lg:mb-0">
+    <div class="ui-search bg-gray-50/50 border border-gray-200 lg:border-0 rounded lg:rounded-none w-full p-5 mb-4 lg:mb-0">
 
         <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -14,8 +14,8 @@
                            :title="field.label"
                            v-model="form[field.id]"
                            :error="form.errors[field.id]"
-                           :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
-                           v-if="! System.Is.array(field.control) && field.control === 'TextBox'">
+                           v-if="! Is.array(field.control) && field.control === 'TextBox'"
+                           :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`">
                 </v-textbox>
 
                 <!-- DropDown -->
@@ -26,31 +26,21 @@
                             :title="field.label"
                             v-model="form[field.id]"
                             :error="form.errors[field.id]"
-                            :items="System.Page.property(field.control[1])"
+                            :items="Page.property(field.control[1])"
                             :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
-                            v-if="System.Is.array(field.control) && field.control[0] === 'DropDown'">
+                            v-if="Is.array(field.control) && field.control[0] === 'DropDown'">
                 </v-dropdown>
 
-                <!-- Date -->
-                <v-datetime type="date"
+                <!-- Calendar -->
+                <v-calendar type="date"
                             :icon="field.icon"
                             :label="field.label"
                             :title="field.label"
                             v-model="form[field.id]"
                             :error="form.errors[field.id]"
                             :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
-                            v-if="! System.Is.array(field.control) && field.control === 'Date'">
-                </v-datetime>
-
-                <!-- Period -->
-                <v-period :icon="field.icon"
-                          :label="field.label"
-                          :title="field.label"
-                          v-model="form[field.id]"
-                          :error="form.errors[field.id]"
-                          :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
-                          v-if="! System.Is.array(field.control) && field.control === 'Period'">
-                </v-period>
+                            v-if="! Is.array(field.control) && field.control === 'Calendar'">
+                </v-calendar>
 
             </div>
 
@@ -78,7 +68,7 @@
                           id="reset-search"
                           v-if="isBeingUsed()"
                           class="mt-2 -mb-2 md:mt-0 md:mb-0 md:mr-4"
-                          @click="System.Form.submit(System.Form.create(), url(), 'get', { preserveScroll : true }, true)">
+                          @click="Form.submit(Form.create(), url(), 'get', { preserveScroll : true }, true)">
                 </v-button>
 
                 <!-- Search -->
@@ -86,7 +76,7 @@
                           mode="outline"
                           id="run-search"
                           :processing="form.processing"
-                          @click="System.Form.submit(form, url(), 'get', { preserveScroll : true }, true)">
+                          @click="Form.submit(form, url(), 'get', { preserveScroll : true }, true)">
                 </v-button>
 
             </div>
@@ -98,9 +88,8 @@
 
 <script>
     import ButtonComponent from './button.vue';
-    import PeriodComponent from './period.vue';
     import TextBoxComponent from './textbox.vue';
-    import DateTimeComponent from './datetime.vue';
+    import CalendarComponent from './calendar.vue';
     import DropDownComponent from './dropdown.vue';
 
     export default
@@ -111,9 +100,8 @@
          */
         components : {
             'v-button'   : ButtonComponent,
-            'v-datetime' : DateTimeComponent,
+            'v-calendar' : CalendarComponent,
             'v-dropdown' : DropDownComponent,
-            'v-period'   : PeriodComponent,
             'v-textbox'  : TextBoxComponent,
         },
 
@@ -147,17 +135,17 @@
         {
             let attributes = { search : true };
 
-            attributes[this.source.search.order_key] = System.Browser.queryString(this.source.search.order_key)
-                ? parseInt(System.Browser.queryString(this.source.search.order_key))
+            attributes[this.source.search.order_key] = Browser.queryString(this.source.search.order_key)
+                ? parseInt(Browser.queryString(this.source.search.order_key))
                 : '';
 
             this.source.search.filtering.forEach(field => {
-                attributes[field.id] = System.Is.array(field.control) && field.control[0] === 'DropDown'
-                    ? parseInt(System.Browser.queryString(field.id))
-                    : System.Browser.queryString(field.id);
+                attributes[field.id] = Is.array(field.control) && field.control[0] === 'DropDown'
+                    ? parseInt(Browser.queryString(field.id))
+                    : Browser.queryString(field.id);
             });
 
-            this.form = System.Form.create(attributes);
+            this.form = Form.create(attributes);
         },
 
         /**
@@ -172,12 +160,12 @@
              */
             isBeingUsed()
             {
-                if (System.Browser.queryString(this.source.search.order_key)) {
+                if (Browser.queryString(this.source.search.order_key)) {
                     return true;
                 }
 
                 return !! this.source.search.filtering
-                    .map(field => System.Browser.queryString(field.id))
+                    .map(field => Browser.queryString(field.id))
                     .filter(field => field)
                     .length;
             },
@@ -193,16 +181,3 @@
         },
     }
 </script>
-
-<style lang="postcss">
-    .ui-search .ui-label { @apply pl-0 pt-9px }
-    .ui-search .ui-label.pl-2 { @apply hidden }
-    .ui-search .ui-clear { @apply w-35px h-35px }
-    .ui-search .ui-caret { @apply top-9px right-11px }
-    .ui-search .ui-textbox .ui-input { @apply h-35px pt-6px pb-7px }
-    .ui-search .ui-datetime .ui-textbox .ui-input { @apply h-35px }
-    .ui-search .ui-datetime .ui-textbox .ui-label { @apply pt-9px }
-    .ui-search .ui-dropdown .ui-input { @apply h-35px pt-6px }
-    .ui-search .ui-dropdown .ui-label { @apply pt-9px }
-    .ui-search .ui-button .ui-label { @apply pt-0 pl-5 }
-</style>

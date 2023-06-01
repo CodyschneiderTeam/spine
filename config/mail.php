@@ -1,7 +1,7 @@
 <?php
 
+use System\Support\Text;
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\Str;
 use Illuminate\Container\Container;
 
 return [
@@ -80,7 +80,7 @@ return [
 
     'from' => [
         'name'    => Env::get('MAIL_FROM_NAME', Env::get('APP_NAME')),
-        'address' => Env::get('MAIL_FROM_ADDRESS', 'noreply@' . Str::lower(Env::get('APP_NAME')) . '.test'),
+        'address' => Env::get('MAIL_FROM_ADDRESS', 'noreply@' . Text::lower(Env::get('APP_NAME')) . '.test'),
     ],
 
     /*
@@ -95,7 +95,7 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'caneara',
+        'theme' => 'system',
         'paths' => [Container::getInstance()->basePath('vendor/caneara/spine/resources/views/vendor/mail')],
     ],
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 use Exception;
+use System\Support\Text;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Markdown;
-use Caneara\Spine\Support\Str;
 use Illuminate\Container\Container;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -28,7 +28,7 @@ class Notification extends BaseNotification implements ShouldQueue
      */
     public function assertAction(string $label, string $url, bool $query = true) : static
     {
-        $action = $query ? $this->getActionUrl() : Str::before($this->getActionUrl(), '?');
+        $action = $query ? $this->getActionUrl() : Text::before($this->getActionUrl(), '?');
 
         PHPUnit::assertEquals($action, $url);
 
@@ -70,7 +70,7 @@ class Notification extends BaseNotification implements ShouldQueue
         $body = Container::getInstance()->make(Markdown::class)
             ->render($this->mailable->markdown, $this->mailable->viewData);
 
-        PHPUnit::assertTrue(Str::contains($body->toHtml(), $text));
+        PHPUnit::assertTrue(Text::contains($body->toHtml(), $text));
 
         return $this;
     }
@@ -84,7 +84,7 @@ class Notification extends BaseNotification implements ShouldQueue
         $body = Container::getInstance()->make(Markdown::class)
             ->render($this->mailable->markdown, $this->mailable->viewData);
 
-        PHPUnit::assertFalse(Str::contains($body->toHtml(), $text));
+        PHPUnit::assertFalse(Text::contains($body->toHtml(), $text));
 
         return $this;
     }

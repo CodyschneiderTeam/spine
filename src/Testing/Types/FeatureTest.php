@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Testing\Types;
+namespace System\Testing\Types;
 
+use System\Testing\Configuration\Process;
 use Illuminate\Foundation\Testing\TestCase;
+use System\Testing\Configuration\Bootstrap;
 use Illuminate\Support\Traits\Conditionable;
-use Caneara\Spine\Testing\Configuration\Process;
-use Caneara\Spine\Testing\Configuration\Bootstrap;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeatureTest extends TestCase

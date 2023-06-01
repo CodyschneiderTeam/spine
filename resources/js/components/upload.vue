@@ -15,7 +15,7 @@
                :dusk="name"
 			   :accept="types"
                @change="upload()"
-               :class="System.Browser.automated() ? '' : 'hidden'" />
+               :class="Browser.automated() ? '' : 'hidden'" />
 
         <!-- Button -->
         <label v-if="format === 'button'"
@@ -42,21 +42,21 @@
                    :name="`${name}_file_name`"
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
 				   @click="disabled || display ? null : selectNew()"
-				   class="bg-inherit text-gray-900 w-full text-ellipsis overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-25px pb-7px" />
+				   class="bg-inherit text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-25px pb-7px" />
 
             <!-- Label -->
             <v-label :icon="icon"
                      :value="label"
                      :focus="focus"
                      :optional="optional"
-                     :filled="! System.Util.blank(display)">
+                     :filled="! Util.blank(display)">
             </v-label>
 
             <!-- Clear -->
             <v-clear :focus="focus"
                      :hover="hover"
                      @click="reset()"
-                     :filled="! System.Util.blank(display)">
+                     :filled="! Util.blank(display)">
             </v-clear>
 
         </div>
@@ -66,24 +66,24 @@
              v-if="format === 'drag'"
              @click="disabled || display ? null : selectNew()"
              @drop.prevent="disabled || display ? null : uploadMany($event.dataTransfer.files)"
-             class="bg-gray-50/[.60] border-[1.5px] border-dashed border-gray-300 flex flex-col justify-center items-center rounded-md cursor-pointer p-14 pb-11">
+             class="bg-gray-50/60 border-[1.5px] border-dashed border-gray-300 flex flex-col justify-center items-center rounded-md cursor-pointer p-14 pb-11">
 
             <!-- Icon -->
-            <i class="fas text-35px text-gray-400/[.80] mb-5"
+            <i class="fas text-35px text-gray-400/80 mb-5"
                :class="display ? 'fa-cog fa-spin' : 'fa-file-upload'">
             </i>
 
             <!-- Instructions -->
-            <div class="text-gray-600/[.90] text-center leading-normal max-w-[230px]">
+            <div class="text-gray-600/90 text-center leading-normal max-w-[230px]">
 
                 <!-- Uploading -->
                 <span v-if="display">
-                    The selected {{ multiple ? 'file(s) are' : 'file is now'}} being uploaded. Just one moment&hellip;
+                    The selected {{ multiple ? 'file(s) are' : 'file is now' }} being uploaded. Just one moment&hellip;
                 </span>
 
                 <!-- Waiting -->
                 <span v-if="! display">
-                    Drag and drop {{ multiple ? 'file(s)' : 'a file'}} to upload, or click here to select one.
+                    Drag and drop {{ multiple ? 'file(s)' : 'a file' }} to upload, or click here to select one.
                 </span>
 
             </div>

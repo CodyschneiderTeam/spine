@@ -1,14 +1,12 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
 use Illuminate\Bus\Queueable;
-use Caneara\Spine\Support\Str;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Foundation\Bus\PendingDispatch;
 
 class Job implements ShouldQueue
 {
@@ -24,12 +22,6 @@ class Job implements ShouldQueue
     public bool $deleteWhenMissingModels = true;
 
     /**
-     * The key to use for polling.
-     *
-     */
-    public string $poll;
-
-    /**
      * The number of seconds the job can run before timing out.
      *
      */
@@ -40,15 +32,4 @@ class Job implements ShouldQueue
      *
      */
     public int $tries = 3;
-
-    /**
-     * Dispatch the job with the given arguments and generate a poll key.
-     *
-     */
-    public static function dispatchWithPolling(...$arguments) : string
-    {
-        new PendingDispatch(new static($id = Str::uuid(), ...$arguments));
-
-        return $id;
-    }
 }

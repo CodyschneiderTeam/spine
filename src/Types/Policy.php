@@ -1,9 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Types;
+namespace System\Types;
 
-use Caneara\Spine\Support\Str;
-use Caneara\Spine\Support\Util;
+use System\Support\Text;
+use System\Support\Util;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -62,7 +62,7 @@ class Policy
      */
     protected function makeErrorMessage() : string
     {
-        return Str::of(debug_backtrace()[3]['function'])
+        return Text::of(debug_backtrace()[3]['function'])
             ->append(' this ')
             ->append(debug_backtrace()[3]['class'])
             ->replace('App\\Policies\\', '')

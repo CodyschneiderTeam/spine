@@ -1,16 +1,16 @@
 <?php
 
-namespace Caneara\Spine\Testing\Types;
+namespace System\Testing\Types;
 
 use Laravel\Dusk\TestCase;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Testing\Support\Browser;
+use System\Testing\Support\Browser;
+use System\Testing\Configuration\Process;
+use System\Testing\Configuration\Bootstrap;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Illuminate\Support\Traits\Conditionable;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Caneara\Spine\Testing\Configuration\Process;
-use Caneara\Spine\Testing\Configuration\Bootstrap;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

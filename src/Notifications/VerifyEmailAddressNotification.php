@@ -1,11 +1,11 @@
 <?php
 
-namespace Caneara\Spine\Notifications;
+namespace System\Notifications;
 
-use Caneara\Spine\Support\Hash;
-use Caneara\Spine\Support\DateTime;
+use System\Support\Hash;
+use System\Support\Calendar;
+use System\Types\Notification;
 use Illuminate\Support\Facades\URL;
-use Caneara\Spine\Types\Notification;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Notifications\Messages\MailMessage;
 
@@ -22,11 +22,9 @@ class VerifyEmailAddressNotification extends Notification
             'hash' => Hash::sha1($user->email),
         ];
 
-        $time = DateTime::now()->addHour();
-
         return URL::temporarySignedRoute(
             'authentication.email.verify.confirm',
-            $time,
+            Calendar::now()->addHour(),
             $payload
         );
     }

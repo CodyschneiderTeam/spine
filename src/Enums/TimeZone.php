@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Enums;
+namespace System\Enums;
 
-use Caneara\Spine\Types\Enum;
+use System\Types\Enum;
 use Illuminate\Support\Collection;
 
 enum TimeZone : int

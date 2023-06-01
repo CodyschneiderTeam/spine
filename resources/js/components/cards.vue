@@ -15,7 +15,7 @@
                  v-for="item in items"
                  @click="$emit('change', item.id)"
                  :dusk="`ui-card-${id}-${item.id}`"
-                 :class="selected === item.id ? 'bg-sky-100/[.20] border-sky-700/[.40]' : 'border-gray-300'"
+                 :class="selected === item.id ? 'bg-sky-100/20 border-sky-700/40' : 'border-gray-300'"
                  class="ui-item border flex flex-col items-start rounded cursor-pointer relative animated p-5 pb-4">
 
                 <!-- Title -->
@@ -36,7 +36,7 @@
                 </h6>
 
                 <!-- Summary -->
-                <span class="ui-summary text-15.5px text-gray-500/[.90] text-left leading-normal">
+                <span class="ui-summary text-[15.5px] text-gray-500/90 text-left leading-normal">
                     {{ item.summary }}
                 </span>
 

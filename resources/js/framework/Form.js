@@ -8,7 +8,7 @@ export default class Form
      */
     static async confirmThenSubmit(form, url, method = 'post', options = {}, exact = false)
     {
-        return await System.Dialog.confirm() ? System.Form.submit(form, url, method, options, exact) : null;
+        return await Dialog.confirm() ? Form.submit(form, url, method, options, exact) : null;
     }
 
     /**
@@ -17,7 +17,7 @@ export default class Form
      */
     static create(data = {})
     {
-        let fields = Object.assign({ _token : System.Server.csrf() }, data);
+        let fields = Object.assign({ _token : Server.csrf() }, data);
 
         let options = {
             key      : parseInt(window.performance.now()),
@@ -46,7 +46,7 @@ export default class Form
                 'Accept'           : 'application/json',
                 'Content-Type'     : 'application/json',
                 'X-Requested-With' : 'XMLHttpRequest',
-                'X-CSRF-TOKEN'     : System.Server.csrf(),
+                'X-CSRF-TOKEN'     : Server.csrf(),
             },
             preserveState  : 'errors',
             preserveScroll : 'errors',
@@ -54,7 +54,7 @@ export default class Form
 
         return form.submit(
             method !== 'get' ? 'post' : 'get',
-            exact ? url : System.Server.route(...(System.Is.array(url) ? url : [url])),
+            exact ? url : Server.route(...(Is.array(url) ? url : [url])),
             Object.assign(defaults, options)
         );
     }

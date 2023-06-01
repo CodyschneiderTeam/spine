@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Closure;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified as Middleware;

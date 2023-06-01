@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Env;
 use Laravel\Sanctum\Sanctum;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Middleware\VerifyCsrfToken;
+use System\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 
 return [
@@ -19,7 +18,7 @@ return [
     |
     */
 
-    'stateful' => Arr::split(',', Env::get('SANCTUM_STATEFUL_DOMAINS', sprintf(
+    'stateful' => explode(',', Env::get('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
         Sanctum::currentApplicationUrlWithPort()

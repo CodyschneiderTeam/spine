@@ -1,13 +1,13 @@
 <?php
 
-namespace Caneara\Spine\Database;
+namespace System\Database;
 
 use Closure;
-use Caneara\Spine\Support\Arr;
-use Caneara\Spine\Support\DateTime;
+use Illuminate\Support\Arr;
+use System\Support\Calendar;
+use System\Macros\Builder as Macro;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
-use Caneara\Spine\Macros\Builder as Macro;
 
 class Search
 {
@@ -52,52 +52,24 @@ class Search
     }
 
     /**
-     * Apply a date filter.
-     *
-     */
-    protected function filterByDate(string $key, string $value) : Builder
-    {
-        $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
-
-        $parameters = [
-            DateTime::parse($value)->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
-            DateTime::parse($value)->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
-        ];
-
-        return $this->query->whereBetween($key, $parameters);
-    }
-
-    /**
-     * Apply a date range / period filter.
-     *
-     */
-    protected function filterByPeriod(string $key, string $value) : Builder
-    {
-        $range = Arr::split('|', $value);
-
-        $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
-
-        $parameters = [
-            DateTime::parse($range[0])->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
-            DateTime::parse($range[1] ? $range[1] : $range[0])->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
-        ];
-
-        return $this->query->whereBetween($key, $parameters);
-    }
-
-    /**
      * Apply the filtering constraints to the query.
      *
      */
     protected function withFiltering() : static
     {
+        $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
+
+        $range = fn($value) => [
+            Calendar::parse($value)->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
+            Calendar::parse($value)->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
+        ];
+
         foreach ($this->payload['filtering'] as $key => $filter) {
             $this->query = match ($filter['type']) {
-                'date'   => $this->filterByDate($key, $filter['value']),
-                'like'   => $this->query->whereLike($key, $filter['value']),
-                'match'  => $this->query->where($key, $filter['value']),
-                'period' => $this->filterByPeriod($key, $filter['value']),
-                default  => $this->query,
+                'calendar' => $this->query->whereBetween($key, $range($filter['value'])),
+                'like'     => $this->query->whereLike($key, $filter['value']),
+                'match'    => $this->query->where($key, $filter['value']),
+                default    => $this->query,
             };
         }
 
@@ -110,12 +82,12 @@ class Search
      */
     protected function withSorting() : Builder
     {
-        return $this->query->when($this->payload['ordering'], function($query) {
+        return $this->query->when(Arr::exists($this->payload, 'ordering'), function($query) {
             return $query->orderBy(
-                $this->payload['ordering']['path'],
-                $this->payload['ordering']['direction']
+                Arr::get($this->payload, 'ordering.path'),
+                Arr::get($this->payload, 'ordering.direction')
             );
-        })->when($this->sort && ! $this->payload['ordering'], function($query) {
+        })->when($this->sort && ! Arr::exists($this->payload, 'ordering'), function($query) {
             return call_user_func($this->sort, $query);
         });
     }

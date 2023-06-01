@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
@@ -14,7 +14,5 @@ class VerifyCsrfToken extends Middleware
         'stripe/*',
         'paddle/*',
         'spark/webhook',
-        'stripe/webhook',
-        'stripe/connect/webhook',
     ];
 }

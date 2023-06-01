@@ -1,13 +1,13 @@
 <template>
-    <label style="width: calc(100% - 19px)"
-           v-if="! System.Browser.automated()"
+    <label v-if="! Browser.automated()"
+           style="width: calc(100% - 19px)"
            :class="filled ? small : (focus ? small : large)"
-           class="ui-label bg-white text-gray-700/[.90] flex items-center cursor-text select-none pointer-events-none absolute top-0 left-1">
+           class="ui-label bg-white text-gray-700/90 flex items-center cursor-text select-none pointer-events-none absolute top-0 left-1">
 
         <!-- Icon -->
         <i :class="icon"
            v-if="! filled && ! focus && icon"
-           class="ui-icon w-31px min-w-31px max-w-31px text-15px text-gray-500/[.40] text-center relative top-[.5px] mr-6px">
+           class="ui-icon text-15px text-gray-500/40 text-center w-31px min-w-31px max-w-31px relative top-[.5px] mr-6px">
         </i>
 
         <!-- Value -->

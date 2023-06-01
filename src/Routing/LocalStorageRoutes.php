@@ -1,10 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Routing;
+namespace System\Routing;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Caneara\Spine\Controllers\LocalStorageController;
+use System\Controllers\LocalStorageController;
 
 class LocalStorageRoutes
 {
@@ -14,10 +13,6 @@ class LocalStorageRoutes
      */
     public static function register() : void
     {
-        if (App::isProduction()) {
-            return;
-        }
-
         Route::post('/vapor/signed-storage-url', [LocalStorageController::class, 'create'])
             ->name('signed.storage.url')
             ->middleware('web');

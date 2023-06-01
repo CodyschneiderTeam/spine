@@ -6,6 +6,6 @@ export default
      */
     created()
     {
-        this.System = window.System;
+        Object.entries(window.System).forEach(i => this[i[0]] = i[1]);
     },
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Concerns;
+namespace System\Concerns;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 

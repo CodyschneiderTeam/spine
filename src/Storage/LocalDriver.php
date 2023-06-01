@@ -1,8 +1,8 @@
 <?php
 
-namespace Caneara\Spine\Storage;
+namespace System\Storage;
 
-use Caneara\Spine\Support\Str;
+use System\Support\Text;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,14 +14,10 @@ class LocalDriver
      */
     public static function setup() : void
     {
-        if (App::isProduction()) {
-            return;
-        }
-
         $url = function($path, $file) {
             return Storage::download(
-                Str::of(Storage::path($path))->after(App::storagePath())->after('app/')->after('testing/')->toString(),
-                Str::of($file)->after('="')->beforeLast('"')->toString()
+                Text::of(Storage::path($path))->after(App::storagePath())->after('app/')->after('testing/')->toString(),
+                Text::of($file)->after('="')->beforeLast('"')->toString()
             );
         };
 

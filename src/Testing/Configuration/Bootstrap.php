@@ -1,6 +1,6 @@
 <?php
 
-namespace Caneara\Spine\Testing\Configuration;
+namespace System\Testing\Configuration;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel;

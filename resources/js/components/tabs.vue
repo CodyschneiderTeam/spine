@@ -26,8 +26,8 @@
             </div>
 
             <!-- Borders -->
-            <div class="ui-border-top group-hover:bg-sky-600/[.80] w-full h-1px animated relative z-1"></div>
-            <div class="ui-border-bottom bg-gray-300 group-hover:bg-sky-600/[.80] w-full h-1px animated relative z-1"></div>
+            <div class="ui-border-top group-hover:bg-sky-600/80 w-full h-1px animated relative z-1"></div>
+            <div class="ui-border-bottom bg-gray-300 group-hover:bg-sky-600/80 w-full h-1px animated relative z-1"></div>
 
         </div>
 

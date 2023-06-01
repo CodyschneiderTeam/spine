@@ -1,8 +1,9 @@
 <?php
 
-namespace Caneara\Spine\Middleware;
+namespace System\Middleware;
 
 use Closure;
+use System\Support\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -16,7 +17,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards) : Response
     {
-        $guards = empty($guards) ? [null] : $guards;
+        $guards = Util::blank($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
