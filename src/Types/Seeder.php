@@ -2,6 +2,7 @@
 
 namespace System\Types;
 
+use Faker\Factory;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,21 +15,17 @@ class Seeder extends BaseSeeder
     use Conditionable;
 
     /**
-     * Specify whether to delete legacy data.
-     *
-     */
-    protected $wipe = true;
-
-    /**
      * Seed the application database.
      *
      */
     public function run() : void
     {
+        $this->faker = Factory::create();
+
         Model::preventLazyLoading(false);
 
-        $this->unless(App::isProduction(), fn() => $this->seed());
+        $this->unless(App::isProduction(), fn() => File::deleteDirectory(App::storagePath('app'), true));
 
-        $this->when($this->wipe, fn() => File::deleteDirectory(App::storagePath('app'), true));
+        $this->unless(App::isProduction(), fn() => $this->seed());
     }
 }

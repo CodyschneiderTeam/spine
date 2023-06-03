@@ -8,6 +8,24 @@ use Illuminate\Support\Stringable;
 class Text extends Str
 {
     /**
+     * Retrieve the base name of the given path.
+     *
+     */
+    public static function basename(string $path) : string
+    {
+        return basename($path);
+    }
+
+    /**
+     * Retrieve the base name of the given class or object.
+     *
+     */
+    public static function classBasename(string | object $class) : string
+    {
+        return class_basename($class);
+    }
+
+    /**
      * Create a fluent string using the given string.
      *
      */

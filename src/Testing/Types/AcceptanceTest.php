@@ -3,8 +3,8 @@
 namespace System\Testing\Types;
 
 use Laravel\Dusk\TestCase;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
+use Illuminate\Support\Collection;
 use System\Testing\Support\Browser;
 use System\Testing\Configuration\Process;
 use System\Testing\Configuration\Bootstrap;
@@ -27,12 +27,16 @@ class AcceptanceTest extends TestCase
      */
     protected function driver() : RemoteWebDriver
     {
-        $arguments = Arr::filter([
+        $arguments = [
             '--disable-gpu',
             '--window-size=1920,1080',
             '--time-zone-for-testing=UTC',
             Env::get('DUSK_HEADLESS', true) ? '--headless' : '',
-        ]);
+        ];
+
+        $arguments = Collection::make($arguments)
+            ->filter()
+            ->toArray();
 
         return RemoteWebDriver::create(
             'http://localhost:9515',

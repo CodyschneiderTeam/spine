@@ -6,13 +6,10 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriodImmutable;
 use Illuminate\Support\Collection;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Date as Facade;
 
 class Calendar extends CarbonImmutable
 {
-    use WithFaker;
-
     /**
      * Format the instance as a human-friendly date.
      *
@@ -57,7 +54,7 @@ class Calendar extends CarbonImmutable
 
         $from = Text::contains($range, '-') ? $instance->add("{$matches[1]} {$matches[3]}") : $instance;
 
-        $seconds = $instance->faker()->numberBetween($from->getTimestamp(), $to->getTimestamp());
+        $seconds = fake()->numberBetween($from->getTimestamp(), $to->getTimestamp());
 
         return $instance->setTimestamp($seconds);
     }
@@ -78,7 +75,7 @@ class Calendar extends CarbonImmutable
 
         $from = Text::contains($range, '-') ? $instance->sub("{$matches[2]} {$matches[3]}") : $instance;
 
-        $seconds = $instance->faker()->numberBetween($from->getTimestamp(), $to->getTimestamp());
+        $seconds = fake()->numberBetween($from->getTimestamp(), $to->getTimestamp());
 
         return $instance->setTimestamp($seconds);
     }

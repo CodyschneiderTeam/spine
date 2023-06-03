@@ -7,12 +7,9 @@ use Illuminate\Support\Env;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\WithFaker;
 
 class Avatar
 {
-    use WithFaker;
-
     /**
      * Retrieve and assign an avatar using the given gender.
      *
@@ -51,9 +48,9 @@ class Avatar
     {
         $directory = "/../../../resources/images/avatars/{$gender}/";
 
-        $index = (new static())->faker()->numberBetween(1, 50);
+        $index = fake()->numberBetween(1, 50);
 
-        return File::get(realpath(__DIR__ . "{$directory}/{$index}/.jpg"));
+        return File::get(realpath(__DIR__ . "{$directory}/{$index}.jpg"));
     }
 
     /**

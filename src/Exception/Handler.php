@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
         401 => ['code' => 401, 'title' => 'Unauthorized',          'description' => "You are not authorized to perform this action."],
         402 => ['code' => 402, 'title' => 'Billing Issue',         'description' => "You are not able to proceed due to an outstanding payment, or lack of a subscription."],
         403 => ['code' => 403, 'title' => 'Forbidden',             'description' => "An error was encountered while attempting to access this page."],
-        404 => ['code' => 404, 'title' => 'Not Found',             'description' => "The page you were trying to access could not be found."],
+        404 => ['code' => 404, 'title' => 'Page Not Found',        'description' => "The page you were trying to access could not be found."],
         405 => ['code' => 405, 'title' => 'Not Allowed',           'description' => "The chosen request method is not supported for the requested resource."],
         408 => ['code' => 408, 'title' => 'Request Timeout',       'description' => "The server timed out while waiting for a response from an external site. Please try again, or contact us."],
         419 => ['code' => 419, 'title' => 'Page Expired',          'description' => "The security token for the page has expired. Please refresh the page and try again."],

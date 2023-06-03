@@ -1,5 +1,6 @@
 <template>
-    <div class="ui-calendar">
+    <div class="ui-calendar"
+         :class="selectors.date || selectors.time ? 'ui-open' : ''">
 
         <!-- Hidden -->
         <input :id="name"
@@ -8,25 +9,24 @@
                :value="modelValue">
 
         <!-- TextBox -->
-        <v-textbox :icon="icon"
-                   :label="label"
-                   :readOnly="true"
+        <v-textbox :readOnly="true"
                    @change="clear()"
                    :optional="optional"
                    :modelValue="format"
+                   :labelTitle="labelTitle"
                    :id="`${name}_text_box`"
                    @click="showSelectors()"
                    :dusk="`${name}_text_box`"
                    :optionalText="optionalText"
-                   :class="hideTextbox ? 'hidden' : ''">
+                   placeholder="Select a date...">
         </v-textbox>
 
         <!-- Container -->
         <div v-if="selectors.date || selectors.time"
-             class="ui-container bg-white border-l border-r border-b border-gray-300 rounded-b relative -top-3px pt-3px">
+             class="ui-container bg-white border-l border-r border-b border-sky-500 rounded-b relative -top-3px pt-3px">
 
             <!-- Divider -->
-            <div class="ui-divider border-t border-gray-300 w-full h-1px"></div>
+            <div class="ui-divider border-t border-sky-500 w-full h-1px"></div>
 
             <!-- Date Selector -->
             <div v-if="selectors.date"
@@ -325,7 +325,6 @@
          *
          */
         props : {
-            'hideTextbox'   : { type : Boolean, default : false },
             'locale'        : { type : String,  default : 'en-US' },
             'maxDate'       : { type : String,  default : '2100-12-31' },
             'minDate'       : { type : String,  default : '1900-01-01' },

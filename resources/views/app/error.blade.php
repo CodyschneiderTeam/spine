@@ -64,7 +64,7 @@
     <body class="font-sans leading-none flex flex-col justify-center items-center min-h-screen">
 
         {{-- Code --}}
-        <h3 class="font-semibold text-indigo-600 mb-2">
+        <h3 class="font-semibold text-indigo-600 mb-3">
             {{ $code }}
         </h3>
 
@@ -74,13 +74,13 @@
         </h1>
 
         {{-- Description --}}
-        <h2 class="text-[18px] text-gray-600 text-center leading-normal px-6 mb-9">
+        <h2 class="text-[18px] text-gray-500 text-center leading-normal px-6 mb-9">
             {{ $description }}
         </h2>
 
         {{-- Link --}}
         <a href="/"
-           class="bg-sky-600 hover:bg-sky-700 text-sm font-medium text-white uppercase rounded-md transition duration-300 px-3.5 py-2">
+           class="bg-sky-100 border border-sky-200 hover:border-sky-500 text-[13px] font-medium text-sky-600 uppercase rounded transition duration-300 px-4 pt-[10px] pb-[9px]">
 
             {{-- Text --}}
             Go home

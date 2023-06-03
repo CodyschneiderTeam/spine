@@ -142,7 +142,7 @@
 
 				this.fault = '';
 
-                if (Util.blank(payload)) return;
+                if (payload === undefined) return;
 
                 if (! ['', null].includes(payload) && ! isNaN(payload)) {
                     payload = Number(payload);

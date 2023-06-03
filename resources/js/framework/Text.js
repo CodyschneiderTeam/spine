@@ -1,4 +1,4 @@
-export default class String
+export default class Text
 {
     /**
      * Capitalize the first letter of the given value.

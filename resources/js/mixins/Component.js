@@ -85,7 +85,7 @@ export default
         {
             this.fault = '';
 
-            if (Util.blank(payload)) return;
+            if (payload === undefined) return;
 
             this.$emit('change', payload);
             this.$emit('update:modelValue', payload);
