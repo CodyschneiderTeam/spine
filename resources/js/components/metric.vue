@@ -5,7 +5,7 @@
 
         <!-- Label -->
         <span class="ui-label font-medium text-13px text-gray-500/90 uppercase mb-4">
-            {{ label }}
+            {{ labelTitle }}
         </span>
 
         <!-- Summary -->
@@ -78,14 +78,14 @@
          *
          */
         props : {
-            'id'       : { type : String, default : '' },
-            'currency' : { type : String, default : 'USD' },
-            'current'  : { type : Number, default : 0 },
-            'label'    : { type : String, default : 'Label' },
-            'locale'   : { type : String, default : 'en-US' },
-            'period'   : { type : String, default : '' },
-            'previous' : { type : Number, default : 0 },
-            'type'     : { type : String, default : 'integer' },
+            'id'         : { type : String, default : '' },
+            'currency'   : { type : String, default : 'USD' },
+            'current'    : { type : Number, default : 0 },
+            'labelTitle' : { type : String, default : 'Label' },
+            'locale'     : { type : String, default : 'en-US' },
+            'period'     : { type : String, default : '' },
+            'previous'   : { type : Number, default : 0 },
+            'type'       : { type : String, default : 'integer' },
         },
 
         /**

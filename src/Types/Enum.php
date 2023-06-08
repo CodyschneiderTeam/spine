@@ -77,7 +77,8 @@ trait Enum
     public function label() : string
     {
         return Text::of($this->name)
-            ->title()
+            ->lower()
+            ->ucfirst()
             ->replace('_In_', '_in_')
             ->replace('_Or_', '_or_')
             ->replace('_Of_', '_of_')
