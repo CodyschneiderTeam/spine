@@ -17,22 +17,18 @@
                @change="upload()"
                :class="Browser.automated() ? '' : 'hidden'" />
 
-        <!-- Button -->
-        <label v-if="format === 'button'"
-               @click="disabled || display ? null : selectNew()"
-               class="font-semibold text-13px uppercase flex justify-center items-center select-none animated"
-               :class="disabled || display ? 'text-gray-400 cursor-not-allowed' : 'text-sky-600 hover:text-rose-700 cursor-pointer'">
-
-            <!-- Value -->
-            {{ label }}
-
-        </label>
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
 
         <!-- Field -->
         <div v-if="format === 'field'"
              @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white border border-gray-300 rounded relative overflow-hidden animated">
+             class="ui-container relative group">
 
 			<!-- File Name -->
 			<input readonly
@@ -42,15 +38,8 @@
                    :name="`${name}_file_name`"
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
 				   @click="disabled || display ? null : selectNew()"
-				   class="bg-inherit text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none cursor-pointer pl-3 pt-25px pb-7px" />
-
-            <!-- Label -->
-            <v-label :icon="icon"
-                     :value="label"
-                     :focus="focus"
-                     :optional="optional"
-                     :filled="! Util.blank(display)">
-            </v-label>
+                   :placeholder="Util.blank(placeholder) ? 'Select a file...' : placeholder"
+				   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded cursor-pointer appearance-none px-14px py-3" />
 
             <!-- Clear -->
             <v-clear :focus="focus"
@@ -93,7 +82,7 @@
         <!-- Progress -->
         <v-progress class="mt-4"
                     :value="current"
-                    v-if="format !== 'button' && current !== 0">
+                    v-if="current !== 0">
         </v-progress>
 
         <!-- Error -->

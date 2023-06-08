@@ -1,8 +1,9 @@
 <template>
-    <div class="flex justify-between items-center mt-4">
+    <div class="flex justify-between items-center relative">
 
         <!-- Summary -->
-        <span class="text-12px text-gray-500/80 uppercase relative top-1px">
+        <span v-if="metrics"
+              class="text-12px text-gray-500/80 uppercase relative top-3px">
 
             <!-- Text -->
             <span>
@@ -54,17 +55,17 @@
         </span>
 
         <!-- Actions -->
-        <div class="flex justify-end rounded">
+        <div class="flex justify-end rounded relative top-3px">
 
             <!-- Reset -->
             <div v-if="reset"
-                 title="Clear search filters"
+                 title="Clear search"
+                 class="cursor-pointer px-3"
                  dusk="ui_paginator_button_reset"
-                 @click="Form.submit(Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 rounded-l cursor-pointer group animated px-13px py-2">
+                 @click="Form.submit(Form.create(), resetUrl(), 'get', { preserveScroll : true }, true)">
 
                 <!-- Link -->
-                <i class="fas fa-times text-14px text-gray-800/50"></i>
+                <i class="fas fa-times text-14px text-gray-800/50 hover:text-sky-600 animated"></i>
 
             </div>
 
@@ -72,12 +73,11 @@
             <div v-if="search"
                  title="Search"
                  @click="search()"
-                 :class="reset ? '' : 'rounded-l'"
-                 dusk="ui_paginator_button_search"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
+                 class="cursor-pointer px-3"
+                 dusk="ui_paginator_button_search">
 
                 <!-- Link -->
-                <i class="fas fa-search text-14px text-gray-800/50"></i>
+                <i class="fas fa-search text-14px text-gray-800/50 hover:text-sky-600 animated"></i>
 
             </div>
 
@@ -85,34 +85,19 @@
             <div v-if="filter"
                  @click="filter()"
                  :title="filterTitle"
-                 :class="filter ? '' : 'rounded-l'"
-                 dusk="ui_paginator_button_filter"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
+                 class="cursor-pointer px-3"
+                 dusk="ui_paginator_button_filter">
 
                 <!-- Link -->
-                <i class="fas fa-filter text-14px"
-                   :class="Browser.queryString(filterKey, '0') === '0' ? 'text-gray-800/50' : 'text-sky-600/70'">
+                <i class="fa-filter text-14px hover:text-sky-600 animated"
+                    :class="Browser.queryString(filterKey, '0') === '0' ? 'far text-gray-800/50' : 'fas text-sky-600/70'">
                 </i>
 
             </div>
 
-            <!-- Download -->
-            <div v-if="download"
-                 title="Download"
-                 @click="download()"
-                 :class="search ? '' : 'rounded-l'"
-                 dusk="ui_paginator_button_download"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
-
-                <!-- Link -->
-                <i class="fas fa-download text-14px text-gray-800/50"></i>
-
-            </div>
-
             <!-- Previous Page (Disabled) -->
-            <div :class="search ? '' : 'rounded-l'"
-                 v-if="Util.blank(source.pagination.prev_page_url)"
-                 class="border border-r-0 border-gray-300 select-none cursor-not-allowed px-3 py-2">
+            <div class="select-none cursor-not-allowed px-3"
+                 v-if="Util.blank(source.pagination.prev_page_url)">
 
                 <!-- Arrow -->
                 <i class="fas fa-arrow-left text-14px text-gray-300"></i>
@@ -121,30 +106,29 @@
 
             <!-- Previous Page (Enabled) -->
             <div title="Previous Page"
-                 :class="search ? '' : 'rounded-l'"
+                 class="cursor-pointer px-3"
                  v-if="source.pagination.prev_page_url"
-                 @click="goToPage(url(source.pagination.prev_page_url), { preserveScroll : true })"
-                 class="bg-white hover:bg-gray-100 border border-r-0 border-gray-300 cursor-pointer group animated px-3 py-2">
+                 @click="goToPage(url(source.pagination.prev_page_url), { preserveScroll : true })">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-left text-14px text-gray-800/50"></i>
+                <i class="fas fa-arrow-left text-14px text-gray-800/50 hover:text-sky-600 animated"></i>
 
             </div>
 
             <!-- Next Page (Enabled) -->
             <div title="Next Page"
+                 class="cursor-pointer pl-3"
                  v-if="source.pagination.next_page_url"
-                 @click="goToPage(url(source.pagination.next_page_url), { preserveScroll : true })"
-                 class="bg-white hover:bg-gray-100 border border-gray-300 rounded-r cursor-pointer group animated px-3 py-2">
+                 @click="goToPage(url(source.pagination.next_page_url), { preserveScroll : true })">
 
                 <!-- Link -->
-                <i class="fas fa-arrow-right text-14px text-gray-800/50"></i>
+                <i class="fas fa-arrow-right text-14px text-gray-800/50 hover:text-sky-600 animated"></i>
 
             </div>
 
             <!-- Next Page (Disabled) -->
-            <div v-if="Util.blank(source.pagination.next_page_url)"
-                 class="border border-gray-300 rounded-r select-none cursor-not-allowed px-3 py-2">
+            <div class="select-none cursor-not-allowed pl-3"
+                 v-if="Util.blank(source.pagination.next_page_url)">
 
                 <!-- Arrow -->
                 <i class="fas fa-arrow-right text-14px text-gray-300"></i>
@@ -164,10 +148,10 @@
          *
          */
         props : {
-            'download'    : { type : Function, default : null },
             'filter'      : { type : Function, default : null },
             'filterKey'   : { type : String,   default : 'filter' },
             'filterTitle' : { type : String,   default : '' },
+            'metrics'     : { type : Boolean,  default : true },
             'reset'       : { type : Boolean,  default : false },
             'search'      : { type : Function, default : null },
             'source'      : { type : Object,   default : {} },
@@ -188,8 +172,9 @@
                 window.app.config.globalProperties.$inertia.visit(url, options);
             },
 
+
             /**
-             * Generate the URL to send the request to.
+             * Generate the URL to reset the page.
              *
              */
             resetUrl()

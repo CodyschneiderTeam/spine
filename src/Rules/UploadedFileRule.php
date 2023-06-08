@@ -46,7 +46,7 @@ class UploadedFileRule extends Rule
      */
     protected function assertHasMimeType(string $value) : bool
     {
-        if (! Arr::exists($this->checks, 'types')) {
+        if (! $this->checks['types']) {
             return true;
         }
 
@@ -61,7 +61,7 @@ class UploadedFileRule extends Rule
      */
     protected function assertIsLessThanMegabytes(string $value) : bool
     {
-        if (! Arr::exists($this->checks, 'size')) {
+        if (! $this->checks['size']) {
             return true;
         }
 
@@ -76,7 +76,7 @@ class UploadedFileRule extends Rule
      */
     protected function assertIsValidImage(string $value) : bool
     {
-        if (! Arr::exists($this->checks, 'image')) {
+        if (! $this->checks['image']) {
             return true;
         }
 

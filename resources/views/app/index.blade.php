@@ -38,7 +38,7 @@
     </head>
 
     {{-- Body --}}
-    <body class="font-sans leading-none {{ Env::get('APP_DUSK') }} {{ Config::get('app.env') }}">
+    <body class="font-sans leading-none {{ Config::get('app.env') }} {{ Env::get('APP_DUSK') }}">
 
         {{-- Routes --}}
         @routes()

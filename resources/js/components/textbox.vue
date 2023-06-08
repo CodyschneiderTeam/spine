@@ -1,10 +1,17 @@
 <template>
     <div class="ui-textbox w-full min-w-250px">
 
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
+
         <!-- Container -->
         <div @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white border border-gray-300 rounded relative animated">
+             class="ui-container relative group">
 
             <!-- Input -->
             <input :id="name"
@@ -22,7 +29,7 @@
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
                    :list="Util.blank(items) ? null : `${name}_datalist`"
                    :autocomplete="Util.blank(items) ? autocomplete : 'off'"
-                   class="ui-input bg-inherit text-17px text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
+                   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded appearance-none px-14px py-3" />
 
             <!-- Textarea -->
             <textarea :id="name"
@@ -37,17 +44,8 @@
                       :placeholder="placeholder"
                       :autocomplete="autocomplete"
                       @input="change($event.target.value)"
-                      class="ui-textarea bg-inherit text-gray-900 leading-[24px] w-full rounded appearance-none resize-none pl-3 pr-11 pt-25px">
+                      class="ui-textarea bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 leading-[24px] w-full rounded appearance-none resize-none animated pl-14px pr-11 py-3">
             </textarea>
-
-            <!-- Label -->
-            <v-label :icon="icon"
-                     :value="label"
-                     :optional="optional"
-                     :optionalText="optionalText"
-                     :filled="! Util.blank(modelValue)"
-                     :focus="readOnly ? false : focus">
-            </v-label>
 
             <!-- Clear -->
             <v-clear :focus="focus"

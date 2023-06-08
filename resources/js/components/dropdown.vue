@@ -1,10 +1,17 @@
 <template>
 	<div class="ui-dropdown w-full">
 
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
+
         <!-- Container -->
         <div @mouseover="hover = true"
              @mouseout="hover = false"
-             class="ui-container bg-white border border-gray-300 rounded relative animated">
+             class="ui-container relative group">
 
 			<!-- Input -->
 			<select :id="name"
@@ -14,9 +21,19 @@
                     @focus="focus = true"
                     @focusout="focus = false"
 					@change="change($event.target.value)"
-                    :class="Util.blank(modelValue) ? '' : 'pt-24px pb-7px'"
-					style="line-height: 1.3; padding-right: 50px; -webkit-padding-end: 50px !important"
-					class="ui-input bg-inherit text-17px text-gray-900 text-ellipsis w-full h-51px align-middle overflow-hidden rounded appearance-none cursor-pointer pl-3">
+                    :class="Util.blank(modelValue) ? 'text-gray-400' : 'text-gray-900'"
+					style="line-height: 1.3; padding-right: 50px; -webkit-padding-end: 50px !important; transition: all 0.3s ease, color 0s"
+					class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-ellipsis w-full align-middle rounded appearance-none cursor-pointer px-14px py-11px">
+
+                <!-- Placeholder -->
+                <option disabled
+                        value=""
+                        :selected="Util.blank(modelValue) ? 'selected' : ''">
+
+                    <!-- Text -->
+                    {{ Util.blank(placeholder) ? 'Select...' : placeholder }}
+
+                </option>
 
 				<!-- Items -->
 				<option v-for="item in items"
@@ -24,23 +41,14 @@
                         :selected="modelValue === item[itemValueKey] ? 'selected' : ''">
 
                     <!-- Text -->
-                    {{ item[itemTextKey] }}
+                    {{ item[itemTextKey].replace('|', "\xA0") }}
 
 				</option>
 
 			</select>
 
-            <!-- Label -->
-            <v-label :icon="icon"
-                     :value="label"
-                     :optional="optional"
-                     :optionalText="optionalText"
-                     :focus="! Util.blank(modelValue)"
-                     :filled="! Util.blank(modelValue)">
-            </v-label>
-
 			<!-- Caret -->
-			<i class="ui-caret fas fa-caret-down text-gray-400 cursor-pointer pointer-events-none absolute top-18px right-19px"
+			<i class="ui-caret fas fa-caret-down text-gray-400 cursor-pointer pointer-events-none absolute top-15px right-4"
                :class="! clear ? 'opacity-100' : (Util.blank(modelValue) || (! Util.blank(modelValue) && ! hover) ? 'opacity-100' : 'opacity-0')">
             </i>
 
@@ -86,12 +94,6 @@
             'v-label' : LabelComponent,
         },
 
-        /**
-         * Define the events.
-         *
-         */
-        emits : ['change'],
-
 		/**
 		 * Define the public properties.
 		 *
@@ -117,12 +119,6 @@
 
             if (selected === undefined || [null, undefined].includes(this.modelValue)) {
                 this.change('');
-
-                return this.$refs.input.selectedIndex = -1;
-            }
-
-            if (this.modelValue.toString() === '') {
-                this.$refs.input.selectedIndex = -1;
             }
         },
 

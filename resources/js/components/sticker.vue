@@ -1,24 +1,20 @@
 <template>
     <div class="ui-sticker w-full">
 
-        <!-- Container -->
-        <div class="ui-container bg-white border border-dashed border-gray-400/80 rounded relative">
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
 
-            <!-- Input -->
-            <input :id="name"
-                   type="text"
-                   :name="name"
-                   :value="value"
-                   :readonly="true"
-                   class="ui-content bg-inherit w-full text-17px text-gray-900 text-ellipsis overflow-hidden rounded appearance-none px-3 pt-25px pb-6px" />
-
-            <!-- Label -->
-            <v-label :value="label"
-                     :focus="false"
-                     :filled="! Util.blank(value)">
-            </v-label>
-
-        </div>
+        <!-- Input -->
+        <input :id="name"
+               type="text"
+               :name="name"
+               :value="value"
+               :readonly="true"
+               class="ui-input bg-white border border-dashed border-gray-300 text-17px text-gray-900 text-ellipsis w-full rounded appearance-none px-14px py-3" />
 
     </div>
 </template>

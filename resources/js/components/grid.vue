@@ -1,28 +1,28 @@
 <template>
-    <div class="ui-grid">
+    <div class="ui-grid lg:pt-13px">
+
+        <!-- Search -->
+        <v-search v-if="search"
+                  :source="source"
+                  :visible="search"
+                  @closed="search = false">
+        </v-search>
 
         <!-- Paginator -->
-        <v-paginator class="mb-4"
+        <v-paginator class="mb-7"
                      v-if="toolbar"
                      :filter="filter"
                      :source="source"
-                     :download="download"
+                     :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :reset="!! Browser.queryString('search')"
-                     :search="() => search = (search !== null) ? ! search : (Browser.queryString('search') ? false : true)">
+                     :search="() => search = true"
+                     :reset="!! Browser.queryString('search')">
         </v-paginator>
-
-        <!-- Search -->
-        <v-search class="lg:mb-4"
-                  :source="source"
-                  @closed="search = false"
-                  style="border-width: 1px; border-radius: 0.25rem"
-                  v-if="search ? true : (search === null ? Browser.queryString('search') : false)">
-        </v-search>
 
         <!-- Content -->
         <div :class="layout"
-             class="grid grid-cols-1 gap-4 mt-4">
+             v-if="(source.data.rows ?? []).length"
+             class="grid grid-cols-1 gap-4 mb-22px">
 
             <!-- Item -->
             <div :key="row[rowKey]"
@@ -43,7 +43,8 @@
         </div>
 
         <!-- Empty -->
-        <v-empty :message="emptyMessage"
+        <v-empty class="mb-22px"
+                 :message="emptyMessage"
                  :actionLabel="emptyLabel"
                  :actionCommand="emptyAction"
                  :visible="! (source.data.rows ?? []).length">
@@ -51,7 +52,12 @@
 
         <!-- Paginator -->
         <v-paginator v-if="toolbar"
-                     :source="source">
+                     :filter="filter"
+                     :source="source"
+                     :filterKey="filterKey"
+                     :filterTitle="filterTitle"
+                     :search="() => search = true"
+                     :reset="!! Browser.queryString('search')">
         </v-paginator>
 
     </div>
@@ -88,7 +94,6 @@
          */
         props : {
             'action'       : { type : Function, default : null },
-            'download'     : { type : Function, default : null },
             'emptyAction'  : { type : Function, default : null },
             'emptyLabel'   : { type : String,   default : 'Create one now' },
             'emptyMessage' : { type : String,   default : '' },

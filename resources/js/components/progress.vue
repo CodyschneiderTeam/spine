@@ -2,7 +2,7 @@
     <div class="ui-progress relative">
 
         <!-- Bar -->
-        <div class="ui-progress-bar bg-gray-200 w-full h-8px overflow-hidden relative rounded-4px">
+        <div class="ui-progress-bar bg-gray-200 w-full h-8px overflow-hidden relative rounded-[3px]">
 
             <!-- Step -->
             <div :style="`width: ${Math.round((value / maximum) * 100)}%`"

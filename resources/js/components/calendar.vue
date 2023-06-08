@@ -18,6 +18,7 @@
                    @click="showSelectors()"
                    :dusk="`${name}_text_box`"
                    :optionalText="optionalText"
+                   :labelSummary="labelSummary"
                    placeholder="Select a date...">
         </v-textbox>
 

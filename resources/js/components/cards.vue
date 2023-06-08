@@ -6,6 +6,13 @@
                type="hidden"
                :value="selected">
 
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
+
         <!-- Grid -->
         <div :class="layout"
              class="ui-items grid gap-4">
@@ -15,7 +22,7 @@
                  v-for="item in items"
                  @click="$emit('change', item.id)"
                  :dusk="`ui-card-${id}-${item.id}`"
-                 :class="selected === item.id ? 'bg-sky-100/20 border-sky-700/40' : 'border-gray-300'"
+                 :class="selected === item.id ? 'border-sky-500' : 'border-gray-300 hover:border-sky-500'"
                  class="ui-item border flex flex-col items-start rounded cursor-pointer relative animated p-5 pb-4">
 
                 <!-- Title -->
@@ -57,6 +64,7 @@
 
 <script>
     import ErrorComponent from './error.vue';
+    import LabelComponent from './label.vue';
 
     export default
     {
@@ -66,6 +74,7 @@
          */
         components : {
             'v-error' : ErrorComponent,
+            'v-label' : LabelComponent,
         },
 
         /**
@@ -79,11 +88,15 @@
          *
          */
         props : {
-            'error'    : { type : String,           default : '' },
-            'id'       : { type : String,           default : '' },
-            'items'    : { type : Array,            default : [] },
-            'layout'   : { type : String,           default : 'grid-cols-1' },
-            'selected' : { type : [Number, String], default : 0 },
+            'error'        : { type : String,           default : '' },
+            'id'           : { type : String,           default : '' },
+            'items'        : { type : Array,            default : [] },
+            'labelSummary' : { type : String,           default : '' },
+            'labelTitle'   : { type : String,           default : '' },
+            'layout'       : { type : String,           default : 'grid-cols-1' },
+            'optional'     : { type : Boolean,          default : false },
+            'optionalText' : { type : String,           default : '' },
+            'selected'     : { type : [Number, String], default : 0 },
         },
     }
 </script>

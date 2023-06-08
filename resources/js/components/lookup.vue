@@ -1,11 +1,19 @@
 <template>
-	<div class="ui-lookup w-full">
+	<div class="ui-lookup w-full"
+         :class="open ? 'ui-open' : ''">
+
+        <!-- Label -->
+        <v-label :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText">
+        </v-label>
 
 		<!-- Container -->
 		<div ref="container"
              @mouseover="hover = true"
              @mouseout="hover = false"
-			 class="ui-container bg-white border border-gray-300 rounded relative animated">
+			 class="ui-container relative group">
 
 			<!-- Field -->
 			<input :id="name"
@@ -23,18 +31,10 @@
                    @focus="focus = true"
 				   :id="`${name}_display`"
 				   @focusout="focus = false"
+                   :placeholder="placeholder"
 				   :name="`${name}_search_display`"
 				   :dusk="`${name}_search_display`"
-				   class="ui-control ui-input bg-inherit text-17px text-gray-900 text-ellipsis w-full overflow-hidden rounded appearance-none pl-3 pt-25px pb-6px" />
-
-            <!-- Label -->
-            <v-label :icon="icon"
-                     :focus="focus"
-                     :value="label"
-                     :optional="optional"
-                     :optionalText="optionalText"
-                     :filled="! Util.blank(modelValue) || ! Util.blank(term)">
-            </v-label>
+				   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded appearance-none px-14px py-3" />
 
             <!-- Clear -->
             <v-clear @click="clear()"
@@ -48,7 +48,7 @@
 		<!-- Search Results -->
         <ul ref="list"
             :class="open ? '' : 'hidden'"
-            class="ui-selector bg-white border border-gray-300 border-t-0 max-h-[190px] overflow-y-auto list-reset rounded-b mb-0">
+            class="ui-selector bg-white border-l border-r border-b border-sky-500 max-h-[190px] overflow-y-auto list-reset rounded-b mb-0">
 
             <!-- Items -->
             <li v-for="item in items"
@@ -57,7 +57,7 @@
                 :id="`lookup-${name}-item-${item[itemValueKey]}`"
                 :dusk="`lookup-${name}-item-${item[itemValueKey]}`"
                 :class="Util.blank(item[itemSubtextKey]) ? 'pt-10px pb-1' : 'py-10px'"
-                class="bg-white hover:bg-yellow-600/10 text-gray-700 text-15px cursor-pointer relative animated list-none px-3 m-0">
+                class="bg-white hover:bg-gray-50 text-gray-700 text-15px cursor-pointer relative animated list-none px-3 m-0">
 
                 <!-- Item -->
                 <div class="truncate"

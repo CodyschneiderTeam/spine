@@ -82,12 +82,12 @@ class Search
      */
     protected function withSorting() : Builder
     {
-        return $this->query->when(Arr::exists($this->payload, 'ordering'), function($query) {
+        return $this->query->when($this->payload['ordering'], function($query) {
             return $query->orderBy(
                 Arr::get($this->payload, 'ordering.path'),
                 Arr::get($this->payload, 'ordering.direction')
             );
-        })->when($this->sort && ! Arr::exists($this->payload, 'ordering'), function($query) {
+        })->when($this->sort && ! $this->payload['ordering'], function($query) {
             return call_user_func($this->sort, $query);
         });
     }

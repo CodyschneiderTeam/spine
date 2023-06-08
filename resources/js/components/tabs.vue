@@ -13,13 +13,13 @@
 
                 <!-- Icon -->
                 <i :title="tab.label"
-                   class="ui-icon text-20px lg:text-17px animated md:mx-1 lg:ml-0 lg:mr-14px"
+                   class="ui-icon text-20px md:text-17px animated md:mr-14px"
                    :class="[tab.icon, tab.id === active ? 'text-sky-600' : 'text-gray-500/[.65]']">
                 </i>
 
                 <!-- Label -->
                 <span v-html="tab.label"
-                      class="ui-label font-medium text-16px animated hidden lg:inline"
+                      class="ui-label font-medium text-16px animated hidden md:inline"
                       :class="tab.id === active ? 'text-sky-600' : 'text-gray-600 hidden lg:inline'">
                 </span>
 

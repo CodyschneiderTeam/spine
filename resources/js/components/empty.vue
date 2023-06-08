@@ -14,7 +14,7 @@
         </span>
 
         <!-- Message -->
-        <span class="ui-message text-16px text-gray-700 text-center leading-normal max-w-450px">
+        <span class="ui-message text-16px text-gray-500 text-center leading-normal max-w-450px">
             {{ message }}
         </span>
 

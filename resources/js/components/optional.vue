@@ -1,5 +1,5 @@
 <template>
-    <span class="ui-optional bg-gray-200/70 font-medium text-10px text-gray-500 leading-normal uppercase relative rounded-lg select-none px-6px">
+    <span class="ui-optional bg-teal-500/10 font-medium text-10px text-teal-700/80 leading-normal uppercase relative rounded-lg select-none px-6px py-1px">
         {{ value }}
     </span>
 </template>

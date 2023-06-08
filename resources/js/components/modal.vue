@@ -1,48 +1,67 @@
 <template>
-	<div class="ui-modal w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
+	<div :class="dismiss ? 'cursor-pointer' : ''"
+         class="ui-modal w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
 
 		<!-- Background -->
 		<div ref="background"
 			 @click="dismiss ? close() : null"
-             class="ui-background bg-black/60 opacity-0 fixed inset-0 z-1000 animated">
+             class="ui-background bg-black/50 opacity-0 fixed inset-0 z-1000 animated">
 		</div>
 
 		<!-- Container -->
-        <div class="ui-container flex min-h-screen items-center py-14">
+        <div class="ui-container flex justify-end min-h-screen relative z-1001">
 
-            <!-- Content -->
-            <div ref="content"
-                 class="ui-content w-full md:max-w-600px md:rounded-lg animated scale-110 relative z-1001 mx-auto">
+            <!-- Panel -->
+            <div ref="trigger"
+                 class="ui-panel bg-white w-full md:max-w-600px translate-x-full cursor-auto relative z-1001 animated">
 
-                <!-- Slot -->
-                <div class="ui-slot bg-white md:rounded-lg p-10 md:p-20">
-                    <slot></slot>
+                <!-- Header -->
+                <div v-if="$slots.header"
+                     class="ui-slot-header bg-gray-50 border-b border-gray-200 px-10 md:px-20 pt-12 pb-10">
+
+                    <!-- Slot -->
+                    <slot name="header"></slot>
+
+                </div>
+
+                <!-- Content -->
+                <div class="ui-slot-content bg-white p-10 md:p-20 md:pt-19">
+                    <slot name="content"></slot>
                 </div>
 
             </div>
 
         </div>
 
-        <!-- Close -->
-        <i ref="close"
-           v-if="dismiss"
-           @click="close()"
-           dusk="modal-close"
-           title="Close the popup"
-           class="ui-close fas fa-times text-20px text-gray-400 hover:text-gray-900 animated cursor-pointer opacity-0 absolute z-1001 top-14px right-14px">
-        </i>
-
 	</div>
 </template>
 
 <script>
+    import Container from '../mixins/Container';
+
 	export default
     {
+        /**
+         * Define the mixins.
+         *
+         */
+        mixins : [
+            Container,
+        ],
+
         /**
          * Define the events.
          *
          */
-        emits : ['closed'],
+        emits : ['close', 'closed'],
+
+        /**
+         * Define the data model.
+         *
+         */
+        data() { return {
+            ready : false,
+        }},
 
 		/**
 		 * Define the public properties.
@@ -103,17 +122,30 @@
 			{
 				document.body.style.overflow = 'visible';
 
-				this.$refs.content.style.opacity   = 0;
-                this.$refs.content.style.transform = 'scale(1.1)';
-
-                if (this.$refs['close'] ?? null) {
-				    setTimeout(() => this.$refs.close.style.opacity = 0, 100);
-                }
+                this.$refs.trigger.style.transform = 'translateX(100%)';
 
 				setTimeout(() => this.$refs.background.style.opacity = 0, 100);
-				setTimeout(() => this.$el.classList.add('hidden'), 600);
-				setTimeout(() => this.$emit('closed'), 650);
+				setTimeout(() => this.$el.classList.add('hidden'), 300);
+				setTimeout(() => this.$emit('closed'), 350);
 			},
+
+	    	/**
+	    	 * Hide the component.
+	    	 *
+	    	 */
+	    	lostUserAttention()
+	    	{
+                this.dismiss ? this.close() : null;
+	    	},
+
+	    	/**
+	    	 * Determine if the component is open or visible.
+	    	 *
+	    	 */
+	    	hasUserAttention()
+	    	{
+                return this.ready;
+	    	},
 
 			/**
 			 * Open the modal window.
@@ -125,17 +157,12 @@
 
 				this.$el.classList.remove('hidden');
 
-				this.$refs.content.style.opacity   = 0;
-				this.$refs.content.style.transform = '';
+				this.$refs.trigger.style.transform = '';
 
-                if (this.$refs['close'] ?? null) {
-				    setTimeout(() => this.$refs.close.style.opacity = 1, 50);
-                }
-
+				setTimeout(() => this.ready = true, 50);
 				setTimeout(() => this.$el.scrollTop = 0, 50);
                 setTimeout(() => this.$refs.background.style.opacity = 1, 50);
-				setTimeout(() => this.$refs.content.style.opacity = 1, 50);
-				setTimeout(() => this.$refs.content.style.transform = 'scale(1)', 50);
+				setTimeout(() => this.$refs.trigger.style.transform = 'translateX(0)', 50);
 			},
 		}
 	}

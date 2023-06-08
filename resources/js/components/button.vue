@@ -1,38 +1,45 @@
 <template>
-    <button ref="btn"
-            :id="name"
-            :dusk="name"
-            @click.prevent="simple ? $refs.simple.click() : execute()"
-            :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px', $attrs?.class ?? '']"
-            class="ui-button border border-solid w-full md:w-auto min-h-35px flex items-center justify-center rounded cursor-pointer transition-all duration-300 relative">
+    <div class="ui-button w-full md:w-auto items-start">
 
-        <!-- Label -->
-        <div :class="processing ? 'text-transparent hidden' : ''"
-             class="ui-label text-13px whitespace-nowrap select-none flex items-center px-5">
+        <!-- Custom -->
+        <button ref="btn"
+                :id="name"
+                :dusk="name"
+                @click.prevent="simple ? $refs.simple.click() : execute()"
+                :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px']"
+                class="ui-control border border-solid w-full md:w-auto min-h-35px flex items-center justify-center rounded cursor-pointer transition-all duration-300 relative">
 
-            <!-- Icon -->
-            <i v-if="icon"
-               :class="icon"
-               class="ui-icon opacity-50 mr-3">
-            </i>
+            <!-- Label -->
+            <div :class="processing ? 'text-transparent hidden' : ''"
+                 class="ui-label text-13px whitespace-nowrap select-none flex items-center px-5">
 
-            <!-- Text -->
-            <span class="ui-text font-semibold uppercase tracking-[.1px]">
-                {{ label }}
-            </span>
+                <!-- Icon -->
+                <i v-if="icon"
+                   :class="icon"
+                   class="ui-icon opacity-50 mr-3">
+                </i>
 
-        </div>
+                <!-- Text -->
+                <span class="ui-text font-semibold uppercase tracking-[.1px]">
+                    {{ labelTitle }}
+                </span>
 
-        <!-- Animation -->
-        <div style="animation: ui-button-spin 750ms infinite linear"
-             :class="[processing ? '' : 'hidden', modes[mode][color].spinner]"
-             class="ui-spinner border-2 border-r-transparent border-t-transparent h-15px w-15px rounded-full">
-        </div>
+            </div>
 
-    </button>
-    <button ref="simple"
-            class="hidden">
-    </button>
+            <!-- Animation -->
+            <div style="animation: ui-button-spin 750ms infinite linear"
+                 :class="[processing ? '' : 'hidden', modes[mode][color].spinner]"
+                 class="ui-spinner border-2 border-r-transparent border-t-transparent h-15px w-15px rounded-full">
+            </div>
+
+        </button>
+
+        <!-- Traditional -->
+        <button ref="simple"
+                class="hidden">
+        </button>
+
+    </div>
 </template>
 
 <script>
@@ -55,32 +62,18 @@
         data() { return {
             modes : {
                 link : {
-                    blue   : { button : 'border-transparent text-sky-600 hover:text-sky-800',       spinner : 'border-l-sky-600 border-b-sky-600' },
-                    gray   : { button : 'border-transparent text-gray-500 hover:text-gray-700',     spinner : 'border-l-gray-500 border-b-gray-500' },
-                    green  : { button : 'border-transparent text-green-700 hover:text-green-900',   spinner : 'border-l-green-700 border-b-green-700' },
-                    orange : { button : 'border-transparent text-orange-600 hover:text-orange-800', spinner : 'border-l-orange-600 border-b-orange-600' },
-                    purple : { button : 'border-transparent text-purple-600 hover:text-purple-800', spinner : 'border-l-purple-600 border-b-purple-600' },
-                    red    : { button : 'border-transparent text-red-700 hover:text-red-900',       spinner : 'border-l-red-700 border-b-red-700' },
-                    teal   : { button : 'border-transparent text-teal-600 hover:text-teal-800',     spinner : 'border-l-teal-600 border-b-teal-600' },
+                    blue  : { button : 'border-transparent text-sky-600 hover:text-sky-800',     spinner : 'border-l-sky-600 border-b-sky-600' },
+                    gray  : { button : 'border-transparent text-gray-500 hover:text-gray-700',   spinner : 'border-l-gray-500 border-b-gray-500' },
+                    green : { button : 'border-transparent text-green-700 hover:text-green-900', spinner : 'border-l-green-700 border-b-green-700' },
+                    red   : { button : 'border-transparent text-red-700 hover:text-red-900',     spinner : 'border-l-red-700 border-b-red-700' },
                 },
                 opaque : {
-                    blue   : { button : 'bg-sky-600 hover:bg-sky-700 border-transparent text-white',       spinner : 'border-l-white border-b-white' },
-                    gray   : { button : 'bg-gray-500 hover:bg-gray-600 border-transparent text-white',     spinner : 'border-l-white border-b-white' },
-                    green  : { button : 'bg-green-700 hover:bg-green-800 border-transparent text-white',   spinner : 'border-l-white border-b-white' },
-                    orange : { button : 'bg-orange-600 hover:bg-orange-700 border-transparent text-white', spinner : 'border-l-white border-b-white' },
-                    purple : { button : 'bg-purple-600 hover:bg-purple-700 border-transparent text-white', spinner : 'border-l-white border-b-white' },
-                    red    : { button : 'bg-red-700 hover:bg-red-800 border-transparent text-white',       spinner : 'border-l-white border-b-white' },
-                    teal   : { button : 'bg-teal-600 hover:bg-teal-700 border-transparent text-white',     spinner : 'border-l-white border-b-white' },
+                    blue  : { button : 'bg-sky-100/80 border-sky-200 hover:border-sky-500 text-sky-700',            spinner : 'border-l-sky-700 border-b-sky-700' },
+                    gray  : { button : 'bg-gray-100/80 border-gray-200 hover:border-gray-500 text-gray-600',        spinner : 'border-l-gray-600 border-b-gray-600' },
+                    green : { button : 'bg-green-600/10 border-green-600/10 hover:border-green-500 text-green-700', spinner : 'border-l-green-700 border-b-green-700' },
+                    red   : { button : 'bg-red-100/80 border-red-200 hover:border-red-500 text-red-700',            spinner : 'border-l-red-700 border-b-red-700' },
+                    white : { button : 'bg-white border-gray-300 hover:border-gray-500 text-gray-500',              spinner : 'border-l-gray-500 border-b-gray-500' },
                 },
-                outline : {
-                    blue   : { button : 'hover:bg-sky-600 border-sky-600 text-sky-600 hover:text-white',          spinner : 'border-l-sky-600 border-b-sky-600' },
-                    gray   : { button : 'hover:bg-gray-400 border-gray-400 text-gray-500 hover:text-white',       spinner : 'border-l-gray-500 border-b-gray-500' },
-                    green  : { button : 'hover:bg-green-700 border-green-700 text-green-700 hover:text-white',    spinner : 'border-l-green-700 border-b-green-700' },
-                    orange : { button : 'hover:bg-orange-600 border-orange-600 text-orange-600 hover:text-white', spinner : 'border-l-orange-600 border-b-orange-600' },
-                    purple : { button : 'hover:bg-purple-600 border-purple-600 text-purple-600 hover:text-white', spinner : 'border-l-purple-600 border-b-purple-600' },
-                    red    : { button : 'hover:bg-red-700 border-red-700 text-red-700 hover:text-white',          spinner : 'border-l-red-700 border-b-red-700' },
-                    teal   : { button : 'hover:bg-teal-600 border-teal-600 text-teal-600 hover:text-white',       spinner : 'border-l-teal-600 border-b-teal-600' },
-                }
             }
         }},
 
@@ -97,6 +90,7 @@
         props : {
             'color'      : { type : String,  default : 'blue' },
             'disabled'   : { type : Boolean, default : false },
+            'icon'       : { type : String,  default : '' },
             'mode'       : { type : String,  default : 'opaque' },
             'processing' : { type : Boolean, default : false },
             'simple'     : { type : Boolean, default : false },
@@ -114,12 +108,12 @@
              */
             theme()
             {
-                let regex = this.disabled || this.processing ? /hover:(bg|text)-(white|.+-.{3})/gm : '';
+                let regex = this.disabled || this.processing ? /hover:(bg|text|border)-(white|.+-.{3})/gm : '';
 
                 return [
                     this.modes[this.mode][this.color].button.replace(regex, ''),
                     this.disabled ? 'opacity-20 cursor-not-allowed' : '',
-                    this.processing ? 'opacity-60 cursor-wait transition-none' : '',
+                    this.processing ? 'cursor-wait' : '',
                 ];
             }
         },

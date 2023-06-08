@@ -1,0 +1,116 @@
+<template>
+	<div class="ui-dialog w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
+
+		<!-- Background -->
+		<div ref="background"
+             class="ui-background bg-black/50 opacity-0 fixed inset-0 z-1000 animated">
+		</div>
+
+		<!-- Container -->
+        <div ref="container"
+             class="ui-container flex justify-center items-center min-h-screen scale-110 relative animated z-1001">
+
+            <!-- Slot -->
+            <slot></slot>
+
+        </div>
+
+	</div>
+</template>
+
+<script>
+	export default
+    {
+        /**
+         * Define the events.
+         *
+         */
+        emits : ['closed'],
+
+		/**
+		 * Define the public properties.
+		 *
+		 */
+		props: {
+			'visible' : { type : Boolean, default : false },
+		},
+
+        /**
+         * Define the watch methods.
+         *
+         */
+        watch :
+        {
+            /**
+             * Watch the 'visible' property.
+             *
+             */
+            visible : function(current, previous)
+            {
+                return current ? this.open() : this.close();
+            }
+        },
+
+		/**
+		 * Execute actions when the component is mounted to the DOM.
+		 *
+		 */
+		mounted()
+		{
+			if (this.visible) {
+                this.open();
+            }
+		},
+
+		/**
+		 * Execute actions when the component is unmounted from the DOM.
+		 *
+		 */
+		unmounted()
+		{
+            document.body.style.overflow = 'visible';
+		},
+
+		/**
+		 * Define the supporting methods.
+		 *
+		 */
+		methods:
+        {
+			/**
+			 * Close the modal window.
+			 *
+			 */
+			close()
+			{
+				document.body.style.overflow = 'visible';
+
+				this.$refs.container.style.opacity   = 0;
+                this.$refs.container.style.transform = 'scale(1.1)';
+
+				setTimeout(() => this.$refs.background.style.opacity = 0, 100);
+				setTimeout(() => this.$el.classList.add('hidden'), 300);
+				setTimeout(() => this.$emit('closed'), 350);
+			},
+
+			/**
+			 * Open the modal window.
+			 *
+			 */
+			open()
+			{
+				document.body.style.overflow = 'hidden';
+
+				this.$el.classList.remove('hidden');
+
+				this.$refs.container.style.opacity   = 0;
+				this.$refs.container.style.transform = '';
+
+				setTimeout(() => this.$el.scrollTop = 0, 50);
+                setTimeout(() => this.$refs.background.style.opacity = 1, 50);
+				setTimeout(() => this.$refs.container.style.opacity = 1, 50);
+				setTimeout(() => this.$refs.container.style.transform = 'scale(1)', 50);
+			},
+		}
+	}
+</script>

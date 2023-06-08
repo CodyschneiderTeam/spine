@@ -1,19 +1,27 @@
 <template>
     <div class="ui-table">
 
+        <!-- Search -->
+        <v-search v-if="search"
+                  :source="source"
+                  :visible="search"
+                  @closed="search = false">
+        </v-search>
+
         <!-- Paginator -->
-        <v-paginator class="mb-4"
-                     v-if="toolbar"
+        <v-paginator v-if="toolbar"
                      :filter="filter"
                      :source="source"
-                     :download="download"
+                     class="lg:hidden mb-5"
+                     :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :reset="!! Browser.queryString('search')"
-                     :search="() => search = (search !== null) ? ! search : (Browser.queryString('search') ? false : true)">
+                     :search="() => search = true"
+                     :reset="!! Browser.queryString('search')">
         </v-paginator>
 
         <!-- Content -->
-        <div class="lg:border border-gray-300/70 rounded">
+        <div class="ui-content mb-4"
+             v-if="(source.data.rows ?? []).length">
 
             <!-- Table -->
             <table>
@@ -24,10 +32,31 @@
 
                         <!-- Columns -->
                         <th v-for="column in source.data.columns"
-                            :class="column.align ? column.align : 'text-center first-of-type:text-left'">
+                            :class="[
+                                column.label === 'Actions' ? 'pr-0' : '',
+                                column.align ? column.align : (column.label === 'Actions' ? 'text-right' : 'text-center first-of-type:text-left first-of-type:pl-0'),
+                            ]">
 
                             <!-- Column -->
                             {{ (column?.desktop ?? true) ? column.label : '' }}
+
+                            <!-- Paginator -->
+                            <v-paginator :metrics="false"
+                                         :filter="filter"
+                                         :source="source"
+                                         class="-top-3px"
+                                         :filterKey="filterKey"
+                                         :filterTitle="filterTitle"
+                                         :search="() => search = true"
+                                         :reset="!! Browser.queryString('search')"
+                                         v-if="toolbar && controls && column.label === 'Actions'">
+                            </v-paginator>
+
+                            <!-- Controls -->
+                            <i @click="controls = true"
+                               v-if="! controls && column.label === 'Actions'"
+                               class="far fa-cog text-gray-800/50 hover:text-sky-600/70 cursor-pointer animated">
+                            </i>
 
                         </th>
 
@@ -37,20 +66,7 @@
                 <!-- Body -->
                 <tbody>
 
-                    <!-- Search Row -->
-                    <tr class="search"
-                        v-if="search ? true : (search === null ? Browser.queryString('search') : false)">
-
-                        <!-- Cell -->
-                        <td :colspan="source.data.columns.length">
-                            <v-search :source="source"
-                                      @closed="search = false">
-                            </v-search>
-                        </td>
-
-                    </tr>
-
-                    <!-- Content Row -->
+                    <!-- Row -->
                     <tr :key="row[rowKey]"
                         v-for="row in source.data.rows ?? []"
                         :dusk="`ui-table-row-${row[rowKey]}`"
@@ -62,13 +78,13 @@
                             v-for="column in source.data.columns"
                             :class="[
                                 column.styles,
-                                column.align ? column.align : 'text-right lg:text-center first-of-type:lg:text-left',
-                                column.label === 'Actions' ? 'lg:w-90px lg:min-w-90px lg:max-w-90px lg:pr-0' : 'lg:max-w-250px',
+                                column.label === 'Actions' ? 'lg:w-50px lg:min-w-50px lg:max-w-50px lg:pr-0' : 'lg:max-w-300px',
+                                column.align ? column.align : 'text-right lg:text-center first-of-type:lg:text-left first-of-type:lg:pl-0',
                             ]">
 
                             <!-- Slot -->
                             <slot :item="row"
-                                  :name="column.label.toLowerCase().replaceAll(' ', '')">
+                                  :name="column.label.toLowerCase().replaceAll(' ', '').replaceAll('.', '_')">
                             </slot>
 
                         </td>
@@ -79,19 +95,36 @@
 
             </table>
 
-            <!-- Empty -->
-            <v-empty class="lg:border-0"
-                     :message="emptyMessage"
-                     :actionLabel="emptyLabel"
-                     :actionCommand="emptyAction"
-                     :visible="! (source.data.rows ?? []).length">
-            </v-empty>
 
         </div>
 
         <!-- Paginator -->
+        <v-paginator class="lg:mt-11"
+                     :filter="filter"
+                     :source="source"
+                     :filterKey="filterKey"
+                     :filterTitle="filterTitle"
+                     :search="() => search = true"
+                     :reset="!! Browser.queryString('search')"
+                     v-if="toolbar && ! (source.data.rows ?? []).length">
+        </v-paginator>
+
+        <!-- Empty -->
+        <v-empty class="mt-6 mb-5"
+                 :message="emptyMessage"
+                 :actionLabel="emptyLabel"
+                 :actionCommand="emptyAction"
+                 :visible="! (source.data.rows ?? []).length">
+        </v-empty>
+
+        <!-- Paginator -->
         <v-paginator v-if="toolbar"
-                     :source="source">
+                     :filter="filter"
+                     :source="source"
+                     :filterKey="filterKey"
+                     :filterTitle="filterTitle"
+                     :search="() => search = true"
+                     :reset="!! Browser.queryString('search')">
         </v-paginator>
 
     </div>
@@ -119,7 +152,8 @@
          *
          */
         data() { return {
-            search : null,
+            controls : false,
+            search   : null,
         }},
 
         /**
@@ -128,7 +162,6 @@
          */
         props : {
             'action'       : { type : Function, default : null },
-            'download'     : { type : Function, default : null },
             'emptyAction'  : { type : Function, default : null },
             'emptyLabel'   : { type : String,   default : 'Create one now' },
             'emptyMessage' : { type : String,   default : '' },

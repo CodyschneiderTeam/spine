@@ -17,15 +17,14 @@
      * UI.
      *
      */
-    .ui-search .ui-label { @apply pl-0 pt-9px }
-    .ui-search .ui-label.pl-2 { @apply hidden }
-    .ui-search .ui-clear { @apply w-35px h-35px }
-    .ui-search .ui-caret { @apply top-9px right-11px }
-    .ui-search .ui-textbox .ui-input { @apply h-35px pt-6px pb-7px }
-    .ui-search .ui-calendar .ui-textbox .ui-input { @apply h-35px }
-    .ui-search .ui-calendar .ui-textbox .ui-label { @apply pt-9px }
-    .ui-search .ui-dropdown .ui-input { @apply h-35px pt-6px }
-    .ui-search .ui-dropdown .ui-label { @apply pt-9px }
-    .ui-search .ui-button .ui-label { @apply pt-0 pl-5 }
+    .ui-calendar .ui-textbox .ui-input { @apply cursor-pointer }
+    .ui-calendar.ui-open .ui-textbox .ui-input { @apply border-sky-500 }
+    .ui-lookup.ui-open .ui-input { @apply border-sky-500 rounded-b-none }
     .ui-table .ui-badge .ui-content-opaque { @apply inline }
+
+    /**
+     * Animations.
+     *
+     */
+    @keyframes ui-button-spin { 0% { transform: rotate(0deg) } 100% { transform: rotate(359deg) } }
 }

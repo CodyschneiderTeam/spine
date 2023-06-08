@@ -26,9 +26,9 @@ export default
     props : {
         'autocomplete' : { type : String,                           default : 'off' },
         'error'        : { type : String,                           default : '' },
-        'icon'         : { type : String,                           default : '' },
         'id'           : { type : String,                           default : '' },
-        'label'        : { type : String,                           default : 'Label' },
+        'labelSummary' : { type : String,                           default : '' },
+        'labelTitle'   : { type : String,                           default : 'Label' },
         'modelValue'   : { type : [String, Number, Boolean, Array], default : '' },
         'optional'     : { type : Boolean,                          default : false },
         'optionalText' : { type : String,                           default : 'Optional' },
@@ -49,7 +49,7 @@ export default
         {
             if (this.id) return this.id;
 
-            if (this.label) return this.label.toLowerCase().replaceAll(' ', '_');
+            if (this.labelTitle) return this.labelTitle.toLowerCase().replaceAll(' ', '_');
 
             return `id-${parseInt(window.performance.now())}`;
         },

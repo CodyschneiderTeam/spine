@@ -1,29 +1,45 @@
 <template>
-    <label v-if="! Browser.automated()"
-           style="width: calc(100% - 19px)"
-           :class="filled ? small : (focus ? small : large)"
-           class="ui-label bg-white text-gray-700/90 flex items-center cursor-text select-none pointer-events-none absolute top-0 left-1">
+    <label @click.prevent
+           class="ui-label flex flex-col items-start">
 
-        <!-- Icon -->
-        <i :class="icon"
-           v-if="! filled && ! focus && icon"
-           class="ui-icon text-15px text-gray-500/40 text-center w-31px min-w-31px max-w-31px relative top-[.5px] mr-6px">
-        </i>
+        <!-- Title -->
+        <span :class="summary ? 'mb-9px' : 'mb-15px'"
+              class="font-medium text-[16.5px] text-gray-700 text-left w-full flex justify-between items-center">
 
-        <!-- Value -->
-        <span class="ui-value"
-              :class="icon ? '' : 'ml-6px'">
+            <!-- Content -->
+            <span class="pr-6">
 
-            <!-- Text -->
-            {{ value }}
+                <!-- Text -->
+                <span>
+                    {{ title }}
+                </span>
+
+                <!-- Optional -->
+                <v-optional v-if="optional"
+                            :value="optionalText"
+                            class="relative -top-1px ml-3">
+                </v-optional>
+
+            </span>
+
+            <!-- Slot -->
+            <slot></slot>
 
         </span>
 
-        <!-- Optional -->
-        <v-optional :value="optionalText"
-                    class="relative top-1px ml-3"
-                    v-if="optional && ! filled && ! focus">
-        </v-optional>
+        <!-- Summary -->
+        <span v-if="summary"
+              class="text-15px text-gray-500/90 text-left flex mb-13px">
+
+            <!-- Icon -->
+            <i class="far fa-circle-info text-14px text-emerald-600 relative top-[4.5px] mr-2"></i>
+
+            <!-- Text -->
+            <span class="leading-normal">
+                {{ summary }}
+            </span>
+
+        </span>
 
     </label>
 </template>
@@ -42,25 +58,14 @@
         },
 
         /**
-         * Define the data model.
-         *
-         */
-        data() { return {
-            large : 'text-16px pl-6px pr-4 pt-18px',
-            small : 'text-13px pl-2 pr-3 pt-8px pb-5px',
-        }},
-
-        /**
          * Define the public properties.
          *
          */
         props : {
-            'filled'       : { type : Boolean, default : false },
-            'focus'        : { type : Boolean, default : false },
-            'icon'         : { type : String,  default : 'fas fa-terminal' },
             'optional'     : { type : Boolean, default : false },
             'optionalText' : { type : String,  default : 'Optional' },
-            'value'        : { type : String,  default : 'Label' },
+            'summary'      : { type : String,  default : '' },
+            'title'        : { type : String,  default : 'Label' },
         },
     }
 </script>

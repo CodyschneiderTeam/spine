@@ -1,5 +1,5 @@
 import Bugsnag from '@bugsnag/js';
-import { createApp, h, reactive } from 'vue';
+import { createApp, h } from 'vue';
 import Application from '../mixins/Application';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -36,19 +36,12 @@ export default class EventListener
         {
             let path = (name) => resolvePageComponent(
                 `../../../../../../spa/pages/${name}.vue`,
-                import.meta.glob('../../../../../../spa/pages/**/*.vue')
+                import.meta.glob('../../../../../../spa/pages/**/*.vue', { eager : true })
             );
 
             let setup = ({ el, App, props, plugin }) =>
             {
-                window.app = createApp({
-                    render : () => h(App, {
-                        initialPage      : JSON.parse(document.getElementById('app').dataset.page),
-                        resolveComponent : name => path(name).then(module => {
-                            window.session = window.session ??= reactive({ }); return module.default;
-                        }),
-                    }),
-                });
+                window.app = createApp({ render : () => h(App, props) });
 
                 window.production
                     ? window.app.mixin(Application).use(plugin).use(Bugsnag.getPlugin('vue')).mount(el)

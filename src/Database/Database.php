@@ -7,13 +7,13 @@ use System\Support\Util;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 
-class Query
+class Database
 {
     /**
      * Execute the given (write-based) database query.
      *
      */
-    public static function run(Closure $action) : mixed
+    public static function write(Closure $action) : mixed
     {
         $delay    = App::isProduction() ? 250 : 0;
         $retries  = App::isProduction() ? 40 : 0;

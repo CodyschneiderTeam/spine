@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import ReportComponent from '../components/report.vue';
 import ConfirmComponent from '../components/confirm.vue';
 import NotificationComponent from '../components/notification.vue';
 
@@ -47,7 +48,7 @@ export default class Dialog
         return new Promise((resolve, reject) =>
         {
             element.container = createApp(ConfirmComponent, {
-                summary : summary ?? 'Note that in most cases, this action is not reversible. If you need some help, then please contact support.',
+                summary : summary ?? 'In most cases, this action is not reversible. If you need some help, then please contact support.',
                 title   : title ?? 'Are you sure you wish to proceed?',
                 visible : true,
                 onCancel : () => {
@@ -82,5 +83,24 @@ export default class Dialog
         element.container.mount(`#${element.id}`);
 
         setTimeout(() => Dialog.#closeDialog(element), 3500);
+    }
+
+    /**
+     * Display some information to the user.
+     *
+     */
+    static report(title, summary, content)
+    {
+        let element = Dialog.#createDialogElement();
+
+        element.container = createApp(ReportComponent, {
+            content : content,
+            summary : summary,
+            title   : title,
+            visible : true,
+            onClose : () => Dialog.#closeDialog(element),
+        });
+
+        element.container.mount(`#${element.id}`);
     }
 }

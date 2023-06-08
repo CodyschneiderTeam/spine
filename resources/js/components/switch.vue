@@ -1,30 +1,31 @@
 <template>
-    <div class="ui-switch">
+    <div class="ui-switch w-full min-w-250px">
 
-        <!-- Container -->
-        <div class="ui-container flex justify-between items-center">
-
-            <!-- Hidden -->
-            <input :id="name"
-                   :name="name"
-                   type="hidden"
-                   :value="active ? 1 : 0">
-
-            <!-- Label -->
-            <label class="ui-label font-semibold text-13px text-gray-600/70 uppercase relative mr-5">
-                {{ label }}
-            </label>
+        <!-- Label -->
+        <v-label class="pr-20"
+                 :title="labelTitle"
+                 :optional="optional"
+                 :summary="labelSummary"
+                 :optionalText="optionalText"
+                 :class="labelSummary ? '-mb-5' : ''">
 
             <!-- Button -->
             <button :dusk="name"
                     :id="`toggle-${name}`"
-                    @click.prevent="change(active ? 0 : 1)"
-                    :class="active ? 'ui-active after:left-32px bg-emerald-600/80' : 'after:left-3px bg-gray-400/40'"
-                    class="ui-toggle w-60px h-31px relative transition-all duration-200 rounded-full cursor-pointer
-                           after:h-25px after:w-25px after:bg-white after:absolute after:transition-all after:duration-200 after:top-3px after:rounded-full">
+                    @click.stop="change(active ? 0 : 1)"
+                    :class="[active ? 'after:left-25px bg-green-600/60' : 'after:left-3px bg-gray-400/40', labelSummary ? '-mb-9px' : '']"
+                    class="ui-toggle w-48px h-26px rounded-full after:rounded-full cursor-pointer relative
+                           transition-all duration-200 after:transition-all after:duration-200 -mr-20
+                           after:h-20px after:w-20px after:bg-white after:absolute after:top-3px">
             </button>
 
-        </div>
+        </v-label>
+
+        <!-- Hidden -->
+        <input :id="name"
+               :name="name"
+               type="hidden"
+               :value="active ? 1 : 0">
 
         <!-- Error -->
         <v-error :value="fault"></v-error>
@@ -34,6 +35,7 @@
 
 <script>
     import ErrorComponent from './error.vue';
+    import LabelComponent from './label.vue';
     import Component from '../mixins/Component';
 
     export default
@@ -52,6 +54,7 @@
          */
         components : {
             'v-error' : ErrorComponent,
+            'v-label' : LabelComponent,
         },
 
         /**

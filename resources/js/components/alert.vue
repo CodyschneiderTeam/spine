@@ -104,7 +104,7 @@
          *
          */
         props : {
-            'border'  : { type : Boolean, default : false },
+            'border'  : { type : Boolean, default : true },
             'dismiss' : { type : Boolean, default : false },
             'id'      : { type : String,  default : '' },
             'icon'    : { type : Boolean, default : true },

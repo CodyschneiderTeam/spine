@@ -58,17 +58,8 @@ export default class Browser
      * Adjust the position of the viewport.
      *
      */
-    static scrollTo(x, y)
+    static scrollTo(x, y, smooth = false)
     {
-        window.scrollTo(x, y);
-    }
-
-    /**
-     * Retrieve the current user's session.
-     *
-     */
-    static session()
-    {
-        return window.session;
+        window.scrollTo({ left : x, top : y, behavior : smooth ? 'smooth' : 'instant' });
     }
 }

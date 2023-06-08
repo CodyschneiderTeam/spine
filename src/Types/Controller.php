@@ -28,11 +28,7 @@ class Controller
      */
     public function callAction(string $method, array $parameters) : Response | InertiaResponse | Paginator | string
     {
-        $payload = Collection::make($parameters)
-            ->values()
-            ->toArray();
-
-        return $this->{$method}(...$payload);
+        return $this->{$method}(...Collection::make($parameters)->values());
     }
 
     /**
