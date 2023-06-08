@@ -16,7 +16,7 @@ export default class Util
             return false;
         }
 
-        if (isProxy(value) && toRaw(value).constructor.name === 'Calendar') {
+        if (isProxy(value) && toRaw(value).constructor.name === 'DateTime') {
             return false;
         }
 
