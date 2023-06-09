@@ -11,13 +11,21 @@
             </div>
 
             <!-- Title -->
-            <h4 class="text-center mb-4">
+            <h4 class="text-center"
+                :class="summary ? 'mb-4' : 'mb-0'">
+
+                <!-- Text -->
                 {{ title }}
+
             </h4>
 
             <!-- Summary -->
-            <p class="text-center mb-0">
+            <p v-if="summary"
+               class="text-center mb-0">
+
+                <!-- Text -->
                 {{ summary }}
+
             </p>
 
         </template>

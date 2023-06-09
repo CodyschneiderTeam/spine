@@ -15,8 +15,8 @@
                      class="lg:hidden mb-5"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :search="() => search = true"
-                     :reset="!! Browser.queryString('search')">
+                     :reset="!! Browser.queryString('search')"
+                     :search="hideSearch ? null : () => search = true">
         </v-paginator>
 
         <!-- Content -->
@@ -47,8 +47,8 @@
                                          class="-top-3px"
                                          :filterKey="filterKey"
                                          :filterTitle="filterTitle"
-                                         :search="() => search = true"
                                          :reset="!! Browser.queryString('search')"
+                                         :search="hideSearch ? null : () => search = true"
                                          v-if="toolbar && controls && column.label === 'Actions'">
                             </v-paginator>
 
@@ -104,8 +104,8 @@
                      :source="source"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :search="() => search = true"
                      :reset="!! Browser.queryString('search')"
+                     :search="hideSearch ? null : () => search = true"
                      v-if="toolbar && ! (source.data.rows ?? []).length">
         </v-paginator>
 
@@ -123,8 +123,8 @@
                      :source="source"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :search="() => search = true"
-                     :reset="!! Browser.queryString('search')">
+                     :reset="!! Browser.queryString('search')"
+                     :search="hideSearch ? null : () => search = true">
         </v-paginator>
 
     </div>
@@ -168,6 +168,7 @@
             'filter'       : { type : Function, default : null },
             'filterKey'    : { type : String,   default : 'filter' },
             'filterTitle'  : { type : String,   default : '' },
+            'hideSearch'   : { type : Boolean,  default : false },
             'rowKey'       : { type : String,   default : 'id' },
             'source'       : { type : Object,   default : {} },
             'toolbar'      : { type : Boolean,  default : true },

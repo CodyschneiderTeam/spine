@@ -40,7 +40,7 @@ class Paginator extends BasePaginator
                 'prev_page_url'  => $this->previousPageUrl(),
                 'to'             => $this->lastItem(),
                 'total'          => null,
-                'redirecting'    => $this->redirectToLastPage($request->query()),
+                'redirecting'    => $this->redirectToFirstPage($request->query()),
             ],
         ];
     }

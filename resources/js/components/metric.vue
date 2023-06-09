@@ -1,7 +1,7 @@
 <template>
     <div :id="id"
          :dusk="id"
-         class="ui-metric bg-white border border-gray-300 w-full flex flex-col rounded-lg p-6 md:p-8">
+         class="ui-metric bg-white border border-gray-200 w-full flex flex-col rounded-lg relative p-6">
 
         <!-- Label -->
         <span class="ui-label font-medium text-13px text-gray-500/90 uppercase mb-4">
@@ -12,12 +12,13 @@
         <div class="ui-summary flex items-center">
 
             <!-- Current -->
-            <span class="ui-current font-semibold text-35px text-gray-700 mr-6">
+            <span class="ui-current font-semibold text-30px text-gray-700 mr-6">
                 {{ formatted }}
             </span>
 
             <!-- Performance -->
-            <div class="ui-performance flex flex-col">
+            <div class="ui-performance flex flex-col"
+                 :class="Util.blank(previous) ? 'invisible' : ''">
 
                 <!-- Direction -->
                 <div class="ui-direction flex items-center font-semibold">
@@ -38,13 +39,18 @@
                 </div>
 
                 <!-- Period -->
-                <span class="ui-period font-medium text-13px text-gray-500/80 pl-2px pt-5px">
+                <span class="ui-period font-medium text-13px text-gray-500/80 whitespace-nowrap pl-2px pt-5px">
                     vs. {{ period }}
                 </span>
 
             </div>
 
         </div>
+
+        <!-- Report -->
+        <i v-if="reportTitle"
+           @click="Dialog.report(reportTitle, '', reportContent)"
+           class="ui-report far fa-circle-info text-14px text-emerald-600 cursor-pointer absolute top-3 right-11px"></i>
 
     </div>
 </template>
@@ -78,14 +84,16 @@
          *
          */
         props : {
-            'id'         : { type : String, default : '' },
-            'currency'   : { type : String, default : 'USD' },
-            'current'    : { type : Number, default : 0 },
-            'labelTitle' : { type : String, default : 'Label' },
-            'locale'     : { type : String, default : 'en-US' },
-            'period'     : { type : String, default : '' },
-            'previous'   : { type : Number, default : 0 },
-            'type'       : { type : String, default : 'integer' },
+            'id'            : { type : String, default : '' },
+            'currency'      : { type : String, default : 'USD' },
+            'current'       : { type : Number, default : 0 },
+            'labelTitle'    : { type : String, default : 'Label' },
+            'locale'        : { type : String, default : 'en-US' },
+            'period'        : { type : String, default : '' },
+            'previous'      : { type : Number, default : null },
+            'reportContent' : { type : String, default : '' },
+            'reportTitle'   : { type : String, default : '' },
+            'type'          : { type : String, default : 'integer' },
         },
 
         /**
@@ -109,9 +117,17 @@
              */
             formatted()
             {
+                let digits = this.current < 1000 ? 0 :
+                             this.current < 10000 ? 2 :
+                             this.current < 100000 ? 1 :
+                             this.current < 1000000 ? 0 : 2;
+
                 let options = {
-                    compactDisplay : 'short',
-                    notation       : 'compact',
+                    compactDisplay        : 'short',
+                    notation              : 'compact',
+                    roundingMode          : 'floor',
+                    minimumFractionDigits : digits,
+                    maximumFractionDigits : digits,
                 };
 
                 if (this.type === 'financial') {
@@ -128,7 +144,7 @@
              */
             percentage()
             {
-                return ((this.current - this.previous) / this.previous) * 100;
+                return Math.floor(((this.current - this.previous) / this.previous) * 100);
             },
         },
     }

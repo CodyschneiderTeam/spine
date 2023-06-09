@@ -15,8 +15,8 @@
                      :source="source"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :search="() => search = true"
-                     :reset="!! Browser.queryString('search')">
+                     :reset="!! Browser.queryString('search')"
+                     :search="hideSearch ? null : () => search = true">
         </v-paginator>
 
         <!-- Content -->
@@ -56,8 +56,8 @@
                      :source="source"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
-                     :search="() => search = true"
-                     :reset="!! Browser.queryString('search')">
+                     :reset="!! Browser.queryString('search')"
+                     :search="hideSearch ? null : () => search = true">
         </v-paginator>
 
     </div>
@@ -100,6 +100,7 @@
             'filter'       : { type : Function, default : null },
             'filterKey'    : { type : String,   default : 'filter' },
             'filterTitle'  : { type : String,   default : '' },
+            'hideSearch'   : { type : Boolean,  default : false },
             'layout'       : { type : String,   default : 'md:grid-cols-2' },
             'rowKey'       : { type : String,   default : 'id' },
             'source'       : { type : Object,   default : {} },

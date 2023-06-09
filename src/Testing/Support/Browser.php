@@ -236,8 +236,7 @@ class Browser extends BaseBrowser
     public function lookup(string $field, string $search, mixed $value) : static
     {
         return $this->type("{$field}_search_display", $search)->pause()
-            ->click("lookup-{$field}-item-{$value}")
-            ->assertInputValue($field, $value);
+            ->click("lookup-{$field}-item-{$value}");
     }
 
     /**

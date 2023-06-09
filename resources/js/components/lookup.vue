@@ -52,18 +52,18 @@
 
             <!-- Items -->
             <li v-for="item in items"
-                @click="select(item)"
+                @click.stop="select(item)"
                 :value="item[itemValueKey]"
                 :id="`lookup-${name}-item-${item[itemValueKey]}`"
                 :dusk="`lookup-${name}-item-${item[itemValueKey]}`"
                 :class="Util.blank(item[itemSubtextKey]) ? 'pt-10px pb-1' : 'py-10px'"
-                class="bg-white hover:bg-gray-50 text-gray-700 text-15px cursor-pointer relative animated list-none px-3 m-0">
+                class="bg-white hover:bg-gray-50 border-b border-gray-200/90 last-of-type:border-0 text-gray-700 text-15px cursor-pointer relative animated list-none px-14px m-0">
 
                 <!-- Item -->
                 <div class="truncate"
                      :class="[
+                        Util.blank(itemImageKey) ? '' : 'flex items-center',
                         Util.blank(itemSubtextKey) || Util.blank(item[itemSubtextKey]) ? 'pb-7px' : '',
-                        Util.blank(itemImageKey) ? '' : 'flex items-center'
                      ]">
 
                     <!-- Image -->
@@ -91,7 +91,7 @@
             </li>
 
             <!-- Feedback -->
-            <li v-show="feedback"
+            <li v-if="feedback"
                 class="bg-green-600/5 text-12px text-gray-600/90 uppercase pointer-events-none relative px-3 pt-13px pb-11px m-0">
 
                 <!-- Text -->
