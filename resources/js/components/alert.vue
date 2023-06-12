@@ -9,7 +9,7 @@
 
             <!-- Icon -->
             <i :class="[types[type].icon, icon ? '' : 'hidden']"
-               class="ui-icon fas text-18px relative top-0.5px mr-3">
+               class="ui-icon far text-18px relative top-0.5px mr-3">
             </i>
 
             <!-- Title -->
@@ -29,7 +29,7 @@
 
             <!-- Icon -->
             <i v-if="! title"
-               class="ui-icon fas text-21px relative mr-4"
+               class="ui-icon far text-21px relative mr-4"
                :class="types[type].icon, icon ? '' : 'hidden'">
             </i>
 
