@@ -3,7 +3,7 @@
            class="ui-label flex flex-col items-start">
 
         <!-- Title -->
-        <span :class="summary ? 'mb-9px' : 'mb-15px'"
+        <span :class="summary ? ($slots.default ? 'mb-2' : 'mb-9px') : 'mb-15px'"
               class="font-medium text-[16.5px] text-gray-700 text-left w-full flex justify-between items-center">
 
             <!-- Content -->
