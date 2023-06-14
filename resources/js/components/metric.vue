@@ -69,7 +69,7 @@
                     icon  : 'fa-arrow-trend-down',
                 },
                 same : {
-                    color : 'bg-sky-50 text-sky-500',
+                    color : 'bg-sky-50 text-sky-600',
                     icon  : 'fa-arrows-rotate',
                 },
                 up : {
@@ -144,7 +144,8 @@
              */
             percentage()
             {
-                return Math.floor(((this.current - this.previous) / this.previous) * 100);
+                return this.current === 0 && this.previous === 0 ? 0 :
+                    Math.floor(((this.current - this.previous) / this.previous) * 100);
             },
         },
     }

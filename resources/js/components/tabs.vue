@@ -20,7 +20,7 @@
                 <!-- Label -->
                 <span v-html="tab.label"
                       class="ui-label font-medium text-16px animated hidden md:inline"
-                      :class="tab.id === active ? 'text-sky-600' : 'text-gray-600 hidden lg:inline'">
+                      :class="tab.id === active ? 'text-sky-700' : 'text-gray-600 hidden lg:inline'">
                 </span>
 
             </div>
@@ -55,7 +55,18 @@
 		 */
 		mounted()
 		{
-            this.$el.style.maxWidth = `${this.$el.closest('.container').getBoundingClientRect().width - 48}px`;
+            this.setComponentWidth();
+
+            window.addEventListener('resize', this.setComponentWidth());
+		},
+
+		/**
+		 * Execute actions when the component is unmounted from the DOM.
+		 *
+		 */
+		unmounted()
+		{
+            window.removeEventListener('resize', this.setComponentWidth());
 		},
 
         /**
@@ -73,5 +84,21 @@
                 return this.items.filter(tab => tab?.visible ?? true);
             }
         },
+
+		/**
+		 * Define the supporting methods.
+		 *
+		 */
+		methods:
+        {
+	    	/**
+	    	 * Adjust the component's width to be that of its closest container.
+	    	 *
+	    	 */
+	    	setComponentWidth()
+	    	{
+                this.$el.style.maxWidth = `${this.$el.closest('.container').getBoundingClientRect().width - 48}px`;
+	    	},
+        }
 	}
 </script>

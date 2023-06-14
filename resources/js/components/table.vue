@@ -9,14 +9,15 @@
         </v-search>
 
         <!-- Paginator -->
-        <v-paginator v-if="toolbar"
+        <v-paginator class="mb-5"
+                     v-if="toolbar"
                      :filter="filter"
                      :source="source"
-                     class="lg:hidden mb-5"
                      :filterKey="filterKey"
                      :filterTitle="filterTitle"
                      :reset="!! Browser.queryString('search')"
-                     :search="hideSearch ? null : () => search = true">
+                     :search="hideSearch ? null : () => search = true"
+                     :class="(source.data.rows ?? []).length ? 'lg:hidden' : ''">
         </v-paginator>
 
         <!-- Content -->
@@ -95,19 +96,7 @@
 
             </table>
 
-
         </div>
-
-        <!-- Paginator -->
-        <v-paginator class="lg:mt-11"
-                     :filter="filter"
-                     :source="source"
-                     :filterKey="filterKey"
-                     :filterTitle="filterTitle"
-                     :reset="!! Browser.queryString('search')"
-                     :search="hideSearch ? null : () => search = true"
-                     v-if="toolbar && ! (source.data.rows ?? []).length">
-        </v-paginator>
 
         <!-- Empty -->
         <v-empty class="mt-6 mb-5"
