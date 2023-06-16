@@ -1,13 +1,13 @@
 <template>
-    <v-modal :visible="visible"
-             class="ui-information">
+    <v-modal class="ui-notice"
+             :visible="visible">
 
         <!-- Header -->
         <template #header>
 
             <!-- Icon -->
-            <div class="bg-amber-500/20 flex justify-center items-center w-50px h-50px rounded-full mx-auto mb-6">
-                <i class="far fa-circle-info text-20px text-amber-700/80"></i>
+            <div class="bg-purple-500/20 flex justify-center items-center w-50px h-50px rounded-full mx-auto mb-6">
+                <i class="far fa-circle-info text-20px text-purple-700/80"></i>
             </div>
 
             <!-- Title -->

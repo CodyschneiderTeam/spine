@@ -25,11 +25,10 @@ class TestResponse
      */
     protected static function assertNotification() : void
     {
-        Facade::macro('assertNotification', function($message, $type = 'success', $fixed = false) {
-            return Util::tap($this)->assertSessionHas('notification', [
-                'message' => $message,
+        Facade::macro('assertNotification', function($message, $type = 'success') {
+            return Util::tap($this)->assertSessionHas('message', [
+                'content' => $message,
                 'type'    => $type,
-                'fixed'   => $fixed,
             ]);
         });
     }

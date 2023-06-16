@@ -5,7 +5,7 @@
         <button ref="btn"
                 :id="name"
                 :dusk="name"
-                @click.prevent="simple ? $refs.simple.click() : execute()"
+                @click="execute($event)"
                 :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px']"
                 class="ui-control border border-solid w-full md:w-auto min-h-35px flex items-center justify-center rounded cursor-pointer transition-all duration-300 relative">
 
@@ -144,11 +144,13 @@
              * Respond to the button being clicked.
              *
              */
-            execute()
+            execute(event)
             {
-                if (! this.disabled && ! this.processing) {
-                    this.$emit('click');
-                }
+                if (! this.simple) event.stopPropagation();
+
+                if (this.disabled || this.processing) return;
+
+                this.simple ? $refs.simple.click() : this.$emit('click');
             }
         }
     }

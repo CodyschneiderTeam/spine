@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
-import ReportComponent from '../components/report.vue';
+import HintComponent from '../components/hint.vue';
+import NoticeComponent from '../components/notice.vue';
 import ConfirmComponent from '../components/confirm.vue';
-import NotificationComponent from '../components/notification.vue';
+import MessageComponent from '../components/message.vue';
 
 export default class Dialog
 {
@@ -21,7 +22,7 @@ export default class Dialog
     }
 
     /**
-     * Remove the open dialog from the viewport.
+     * Remove the open dialog from the view-port.
      *
      */
     static #closeDialog(element)
@@ -68,15 +69,33 @@ export default class Dialog
     }
 
     /**
-     * Advise the user that something has happened.
+     * Provide further context to the user.
      *
      */
-    static notification(type, message)
+    static hint(title, summary)
     {
         let element = Dialog.#createDialogElement();
 
-        element.container = createApp(NotificationComponent, {
-            message : message,
+        element.container = createApp(HintComponent, {
+            summary : summary,
+            title   : title,
+            visible : true,
+            onClose : () => Dialog.#closeDialog(element),
+        });
+
+        element.container.mount(`#${element.id}`);
+    }
+
+    /**
+     * Notify the user about something.
+     *
+     */
+    static message(type, content)
+    {
+        let element = Dialog.#createDialogElement();
+
+        element.container = createApp(MessageComponent, {
+            content : content,
             type    : type,
         });
 
@@ -89,11 +108,11 @@ export default class Dialog
      * Display some information to the user.
      *
      */
-    static report(title, summary, content)
+    static notice(title, summary, content)
     {
         let element = Dialog.#createDialogElement();
 
-        element.container = createApp(ReportComponent, {
+        element.container = createApp(NoticeComponent, {
             content : content,
             summary : summary,
             title   : title,

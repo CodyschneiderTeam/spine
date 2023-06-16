@@ -31,7 +31,7 @@ class InertiaRequest extends Middleware
             'file'          => Storage::url(''),
             'guest'         => Auth::guest(),
             'data'          => fn() => Util::rescue(fn() => Session::get('data'), []),
-            'notification'  => fn() => Util::rescue(fn() => Session::get('notification')),
+            'message'       => fn() => Util::rescue(fn() => Session::get('message')),
             'impersonation' => fn() => Util::rescue(fn() => Session::get('impersonation')),
         ];
 

@@ -47,10 +47,10 @@
 
         </div>
 
-        <!-- Report -->
-        <i v-if="reportTitle"
-           @click="Dialog.report(reportTitle, '', reportContent)"
-           class="ui-report far fa-circle-info text-14px text-emerald-600 cursor-pointer absolute top-3 right-11px"></i>
+        <!-- Hint -->
+        <i v-if="hintTitle"
+           @click="Dialog.hint(hintTitle, hintSummary)"
+           class="ui-hint-icon far fa-circle-info text-14px text-emerald-600 cursor-pointer absolute top-3 right-11px"></i>
 
     </div>
 </template>
@@ -84,16 +84,16 @@
          *
          */
         props : {
-            'id'            : { type : String, default : '' },
-            'currency'      : { type : String, default : 'USD' },
-            'current'       : { type : Number, default : 0 },
-            'labelTitle'    : { type : String, default : 'Label' },
-            'locale'        : { type : String, default : 'en-US' },
-            'period'        : { type : String, default : '' },
-            'previous'      : { type : Number, default : null },
-            'reportContent' : { type : String, default : '' },
-            'reportTitle'   : { type : String, default : '' },
-            'type'          : { type : String, default : 'integer' },
+            'id'          : { type : String, default : '' },
+            'currency'    : { type : String, default : 'USD' },
+            'current'     : { type : Number, default : 0 },
+            'hintSummary' : { type : String, default : '' },
+            'hintTitle'   : { type : String, default : '' },
+            'labelTitle'  : { type : String, default : 'Label' },
+            'locale'      : { type : String, default : 'en-US' },
+            'period'      : { type : String, default : '' },
+            'previous'    : { type : Number, default : null },
+            'type'        : { type : String, default : 'integer' },
         },
 
         /**

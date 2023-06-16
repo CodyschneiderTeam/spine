@@ -6,9 +6,9 @@
                 leave-to-class="translate-x-[350px] md:translate-x-[450px]"
                 enter-from-class="translate-x-[350px] md:translate-x-[450px]">
 
-        <!-- Notification -->
+        <!-- Message -->
         <div v-if="show"
-             class="ui-notification min-w-250px max-w-350px fixed top-74px right-0 z-1002">
+             class="ui-message min-w-250px max-w-350px fixed top-74px right-0 z-1002">
 
             <!-- Container -->
             <div ref="container"
@@ -36,9 +36,9 @@
 
                 </div>
 
-                <!-- Message -->
-                <span v-html="message"
-                      class="ui-message text-16px text-gray-800 leading-normal break-words relative top-[.5px]">
+                <!-- Content -->
+                <span v-html="content"
+                      class="ui-content text-16px text-gray-800 leading-normal break-words relative top-[.5px]">
                 </span>
 
             </div>
@@ -69,7 +69,7 @@
          *
          */
         props : {
-            'message' : { type : String,  default : '' },
+            'content' : { type : String,  default : '' },
             'type'    : { type : String,  default : 'success' },
             'visible' : { type : Boolean, default : false },
         },
