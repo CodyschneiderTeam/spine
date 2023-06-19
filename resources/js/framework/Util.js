@@ -48,6 +48,23 @@ export default class Util
     }
 
     /**
+     * Load an external JavaScript file or library.
+     *
+     */
+    static load(url)
+    {
+        let scripts = document.getElementsByTagName('script');
+
+        if (! Util.blank(Array.from(scripts).filter(item => item.src === url))) return;
+
+        let script = document.createElement('script');
+
+        script.src = url;
+
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    /**
      * Assign a deeply-nested property on the given target.
      *
      */
