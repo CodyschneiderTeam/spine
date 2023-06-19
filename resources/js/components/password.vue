@@ -36,7 +36,7 @@
                    :autocomplete="autocomplete"
                    @input="change($event.target.value)"
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
-                   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full rounded appearance-none animated px-14px py-3" />
+                   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full rounded appearance-none animated px-14px pt-9px pb-10px" />
 
             <!-- Clear -->
             <v-clear :focus="focus"

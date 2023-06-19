@@ -32,30 +32,15 @@
         {{-- Favicon --}}
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
 
+        {{-- Fonts --}}
+        <link rel="stylesheet" href="{{ Config::get('theme.fonts') }}">
+
         {{-- Scripts --}}
         <script src="https://cdn.tailwindcss.com"></script>
 
         {{-- Styles --}}
         <style>
-
-            /**
-             * Font.
-             *
-             */
-            @font-face {
-                font-family: 'Proxima Vara';
-                font-style: normal;
-                font-weight: 100 900;
-                font-variant-numeric: proportional-nums;
-                src: url('/fonts/ProximaVara.woff2') format('woff2')
-            }
-
-            /**
-             * Classes.
-             *
-             */
-            .font-sans { font-family: 'Proxima Vara' !important }
-
+            .font-sans { font-family: 'proxima-nova' !important }
         </style>
 
     </head>
@@ -69,7 +54,7 @@
         </h3>
 
         {{-- Title --}}
-        <h1 class="font-[650] text-[30px] md:text-[40px] mb-7">
+        <h1 class="font-bold text-[30px] md:text-[40px] mb-7">
             {{ $title }}
         </h1>
 

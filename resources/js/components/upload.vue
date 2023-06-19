@@ -39,7 +39,7 @@
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
 				   @click="disabled || display ? null : selectNew()"
                    :placeholder="Util.blank(placeholder) ? 'Select a file...' : placeholder"
-				   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded cursor-pointer appearance-none px-14px py-3" />
+				   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded cursor-pointer appearance-none px-14px pt-9px pb-10px" />
 
             <!-- Clear -->
             <v-clear :focus="focus"

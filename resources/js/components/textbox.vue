@@ -29,7 +29,7 @@
                    :class="hover || focus ? 'pr-50px' : 'pr-3'"
                    :list="Util.blank(items) ? null : `${name}_datalist`"
                    :autocomplete="Util.blank(items) ? autocomplete : 'off'"
-                   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded appearance-none px-14px py-3" />
+                   class="ui-input bg-white border border-gray-300 group-hover:border-sky-500 focus:border-sky-500 text-17px text-gray-900 text-ellipsis w-full animated rounded appearance-none px-14px pt-9px pb-10px" />
 
             <!-- Textarea -->
             <textarea :id="name"

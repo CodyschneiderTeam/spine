@@ -32,6 +32,12 @@
         {{-- Favicon --}}
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
 
+        {{-- Fonts --}}
+        <link rel="stylesheet" href="{{ Config::get('theme.fonts') }}">
+
+        {{-- Icons --}}
+        <script src="{{ Config::get('theme.icons') }}" crossorigin="anonymous"></script>
+
         {{-- Vite --}}
         @vite(['bootstrap/app.js'])
 

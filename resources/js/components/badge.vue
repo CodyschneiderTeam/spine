@@ -5,8 +5,8 @@
 
         <!-- Opaque -->
         <div v-if="mode === 'opaque'"
-             :class="[modes.opaque[color], small ? 'text-10px px-1' : 'text-11px px-2 py-1']"
-             class="ui-content ui-content-opaque inline-block rounded-md font-[630] tracking-[.1px] select-none whitespace-nowrap uppercase">
+             :class="[modes.opaque[color], small ? 'text-10px px-1' : 'text-11px px-2 py-2px']"
+             class="ui-content ui-content-opaque inline-block rounded-md font-semibold tracking-[.1px] select-none whitespace-nowrap uppercase">
 
             <!-- Text -->
             {{ value }}
@@ -15,7 +15,7 @@
 
         <!-- Dot -->
         <div v-if="mode === 'dot'"
-             class="ui-content ui-content-dot flex justify-center items-center rounded-md font-[630] text-11px text-gray-500 tracking-[.1px] select-none whitespace-nowrap uppercase">
+             class="ui-content ui-content-dot flex justify-center items-center rounded-md font-semibold text-11px text-gray-500 tracking-[.1px] select-none whitespace-nowrap uppercase">
 
             <!-- Outer -->
             <div :class="modes.dot[color].outer"

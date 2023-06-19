@@ -14,7 +14,7 @@
                :name="name"
                :value="value"
                :readonly="true"
-               class="ui-input bg-white border border-dashed border-gray-300 text-17px text-gray-900 text-ellipsis w-full rounded appearance-none px-14px py-3" />
+               class="ui-input bg-white border border-dashed border-gray-300 text-17px text-gray-900 text-ellipsis w-full rounded appearance-none px-14px pt-9px pb-10px" />
 
     </div>
 </template>
