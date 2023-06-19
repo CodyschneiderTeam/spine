@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="{{ Config::get('theme.fonts') }}">
 
         {{-- Icons --}}
-        <script src="{{ Config::get('theme.icons') }}" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ Config::get('theme.icons') }}" crossorigin="anonymous">
 
         {{-- Vite --}}
         @vite(['bootstrap/app.js'])
