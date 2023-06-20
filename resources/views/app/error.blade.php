@@ -59,7 +59,7 @@
         </h1>
 
         {{-- Description --}}
-        <h2 class="text-[18px] text-gray-500 text-center leading-normal px-6 mb-9">
+        <h2 class="text-[18px] text-gray-500 text-center leading-normal max-w-[500px] px-6 mb-9">
             {{ $description }}
         </h2>
 
