@@ -18,7 +18,6 @@ return [
 
     'paths' => [
         Container::getInstance()->basePath('mail'),
-        Container::getInstance()->basePath('resources/views'),
         Container::getInstance()->basePath('vendor/caneara/spine/resources/views'),
     ],
 

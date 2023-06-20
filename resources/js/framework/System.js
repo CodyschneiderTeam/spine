@@ -24,6 +24,20 @@ export default class System
             Page, Request, Server, Text, User, Util,
         });
 
-        Object.entries(window.System).forEach(i => window[i[0]] = i[1]);
+        Object.entries(window.System).forEach(i => {
+            window[i[0]] ? System.#merge(i[0], i[1]) : window[i[0]] = i[1];
+        });
+    }
+
+    /**
+     * Merge the given framework class into the global namespace.
+     *
+     */
+    static #merge(name, object)
+    {
+        Object.getOwnPropertyNames(object)
+            .filter(i => i !== 'prototype')
+            .filter(i => typeof Object.getOwnPropertyDescriptor(object, i).value === 'function')
+            .forEach(i => window[name][i] = Object.getOwnPropertyDescriptor(object, i).value);
     }
 }
