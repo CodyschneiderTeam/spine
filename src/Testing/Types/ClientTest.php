@@ -14,7 +14,7 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class AcceptanceTest extends TestCase
+class ClientTest extends TestCase
 {
     use Process;
     use Bootstrap;
