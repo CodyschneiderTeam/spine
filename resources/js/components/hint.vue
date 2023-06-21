@@ -9,7 +9,7 @@
             <div class="px-9 py-8">
 
                 <!-- Title -->
-                <div class="ui-title font-os font-semibold text-20px text-gray-900 leading-snug -tracking-[.2px] mb-4">
+                <div class="ui-title font-os font-medium text-20px text-gray-900 leading-snug -tracking-[.2px] mb-4">
 
                     <!-- Icon -->
                     <i class="ui-icon far fa-info-circle text-19px text-emerald-700/80 mr-2"></i>
