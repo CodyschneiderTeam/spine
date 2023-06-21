@@ -39,7 +39,7 @@
                             ]">
 
                             <!-- Column -->
-                            {{ (column?.desktop ?? true) ? column.label : '' }}
+                            {{ column.label === 'Actions' ? '' : column.label }}
 
                             <!-- Paginator -->
                             <v-paginator :metrics="false"
