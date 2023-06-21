@@ -17,7 +17,7 @@
                 <div class="w-full md:ml-6">
 
                     <!-- Title -->
-                    <div class="ui-title font-os font-medium text-20px text-gray-900 text-center md:text-left leading-snug -tracking-[.2px] mb-10px">
+                    <div class="ui-title font-os font-medium text-19px text-gray-900 text-center md:text-left leading-snug -tracking-[.2px] mb-10px">
                         {{ title }}
                     </div>
 
