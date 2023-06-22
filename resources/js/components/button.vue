@@ -150,7 +150,7 @@
 
                 if (this.disabled || this.processing) return;
 
-                this.simple ? $refs.simple.click() : this.$emit('click');
+                this.simple ? this.$refs.simple.click() : this.$emit('click');
             }
         }
     }
