@@ -3,7 +3,7 @@
 
         <!-- Tabs -->
         <div ref="tabs"
-             class="flex overflow-x-auto hide-scrollbar">
+             class="w-full flex items-end overflow-x-auto hide-scrollbar">
 
             <!-- Tab -->
             <div @click="tab.action()"
