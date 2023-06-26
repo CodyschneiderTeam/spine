@@ -16,8 +16,8 @@ class Client
     public static function make() : PendingRequest
     {
         return Http::acceptJson()
+            ->connectTimeout(20)
             ->timeout(App::isProduction() ? 40 : 0)
-            ->withOptions(['connect_timeout' => 20])
             ->withUserAgent(Config::get('app.agent'))
             ->retry(App::isProduction() ? 10 : 0, 5000, null, false);
     }
