@@ -2,6 +2,7 @@
 
 namespace System;
 
+use System\Http\Client;
 use System\Support\Util;
 use System\Macros\Builder;
 use Laravel\Sanctum\Sanctum;
@@ -31,11 +32,7 @@ class ServiceProvider extends Provider
      */
     public function boot() : void
     {
-        Builder::register();
-        Notification::register();
-        TestResponse::register();
-        RedirectResponse::register();
-
+        Client::configure();
         PasswordDefaults::enforce();
 
         $this->commands(Commands::$list);
@@ -47,6 +44,11 @@ class ServiceProvider extends Provider
         Util::when(App::isProduction(), fn() => SlowQueries::setup());
         Util::unless(App::isProduction(), fn() => LocalDriver::setup());
         Util::unless(App::isProduction(), fn() => LazyLoading::setup());
+
+        Builder::register();
+        RedirectResponse::register();
+        Util::unless(App::isProduction(), fn() => Notification::register());
+        Util::unless(App::isProduction(), fn() => TestResponse::register());
 
         App::bind('url', fn($app) => new UrlGenerator($app['router']->getRoutes(), $app['request']));
     }

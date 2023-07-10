@@ -5,20 +5,21 @@ namespace System\Http;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Http\Client\PendingRequest;
 
 class Client
 {
     /**
-     * Create an instance of the HTTP client.
+     * Configure the HTTP client.
      *
      */
-    public static function make() : PendingRequest
+    public static function configure() : void
     {
-        return Http::acceptJson()
-            ->connectTimeout(20)
-            ->timeout(App::isProduction() ? 40 : 0)
-            ->withUserAgent(Config::get('app.agent'))
-            ->retry(App::isProduction() ? 10 : 0, 5000, null, false);
+        Http::globalRequestMiddleware(function($request) {
+            return $request->acceptJson()
+                ->withUserAgent(Config::get('app.agent'))
+                ->timeout(App::isProduction() ? 40 : 0)
+                ->connectTimeout(App::isProduction() ? 20 : 0)
+                ->retry(App::isProduction() ? 10 : 0, 5000, null, false);
+        });
     }
 }
