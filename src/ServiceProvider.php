@@ -2,7 +2,6 @@
 
 namespace System;
 
-use System\Http\Client;
 use System\Support\Util;
 use System\Macros\Builder;
 use Laravel\Sanctum\Sanctum;
@@ -32,7 +31,6 @@ class ServiceProvider extends Provider
      */
     public function boot() : void
     {
-        Client::configure();
         PasswordDefaults::enforce();
 
         $this->commands(Commands::$list);
