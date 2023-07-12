@@ -3,6 +3,7 @@
 
 		<!-- Background -->
 		<div ref="background"
+             @click="close()"
              class="ui-background bg-black/50 opacity-0 fixed inset-0 z-1000 animated">
 		</div>
 
@@ -11,7 +12,9 @@
              class="ui-container flex justify-center items-center min-h-screen scale-110 relative animated z-1001">
 
             <!-- Slot -->
-            <slot></slot>
+            <div ref="trigger">
+                <slot></slot>
+            </div>
 
         </div>
 
@@ -19,13 +22,31 @@
 </template>
 
 <script>
+    import Container from '../mixins/Container';
+
 	export default
     {
+        /**
+         * Define the mixins.
+         *
+         */
+        mixins : [
+            Container,
+        ],
+
         /**
          * Define the events.
          *
          */
         emits : ['closed'],
+
+        /**
+         * Define the data model.
+         *
+         */
+        data() { return {
+            ready : false,
+        }},
 
 		/**
 		 * Define the public properties.
@@ -93,6 +114,24 @@
 				setTimeout(() => this.$emit('closed'), 350);
 			},
 
+	    	/**
+	    	 * Hide the component.
+	    	 *
+	    	 */
+	    	lostUserAttention()
+	    	{
+                this.close();
+	    	},
+
+	    	/**
+	    	 * Determine if the component is open or visible.
+	    	 *
+	    	 */
+	    	hasUserAttention()
+	    	{
+                return this.ready;
+	    	},
+
 			/**
 			 * Open the modal window.
 			 *
@@ -106,6 +145,7 @@
 				this.$refs.container.style.opacity   = 0;
 				this.$refs.container.style.transform = '';
 
+				setTimeout(() => this.ready = true, 50);
 				setTimeout(() => this.$el.scrollTop = 0, 50);
                 setTimeout(() => this.$refs.background.style.opacity = 1, 50);
 				setTimeout(() => this.$refs.container.style.opacity = 1, 50);
