@@ -47,7 +47,7 @@ return [
             'secret'                  => Env::get('AWS_SECRET_ACCESS_KEY'),
             'region'                  => Env::get('AWS_DEFAULT_REGION'),
             'bucket'                  => Env::get('AWS_BUCKET'),
-            'url'                     => Env::get('AWS_CDN_URL'),
+            'url'                     => Env::get('AWS_URL'),
             'endpoint'                => Env::get('AWS_ENDPOINT'),
             'use_path_style_endpoint' => Env::get('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw'                   => false,
