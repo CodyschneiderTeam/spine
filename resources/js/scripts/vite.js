@@ -15,4 +15,5 @@ let aliases = {
 export default vite.defineConfig({
     plugins : plugins,
     resolve : { alias : aliases },
+    build   : { chunkSizeWarningLimit : 1000 },
 });
