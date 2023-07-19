@@ -10,7 +10,6 @@ use System\Support\Calendar;
 use System\Database\Paginator;
 use System\Macros\Notification;
 use System\Macros\TestResponse;
-use System\Storage\LocalDriver;
 use System\Database\LazyLoading;
 use System\Database\SlowQueries;
 use System\Routing\UrlGenerator;
@@ -40,7 +39,6 @@ class ServiceProvider extends Provider
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
         Util::when(App::isProduction(), fn() => SlowQueries::setup());
-        Util::unless(App::isProduction(), fn() => LocalDriver::setup());
         Util::unless(App::isProduction(), fn() => LazyLoading::setup());
 
         Builder::register();

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => Env::get('FILESYSTEM_DISK', 'local'),
+    'default' => Env::get('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,24 +33,20 @@ return [
 
     'disks' => [
 
-        'local' => [
+        'public' => [
             'driver'     => 'local',
-            'root'       => Container::getInstance()->storagePath(Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app'),
+            'root'       => Container::getInstance()->storagePath((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/public'),
             'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'public',
             'throw'      => false,
         ],
 
-        's3' => [
-            'driver'                  => 's3',
-            'key'                     => Env::get('AWS_ACCESS_KEY_ID'),
-            'secret'                  => Env::get('AWS_SECRET_ACCESS_KEY'),
-            'region'                  => Env::get('AWS_DEFAULT_REGION'),
-            'bucket'                  => Env::get('AWS_BUCKET'),
-            'url'                     => Env::get('AWS_URL'),
-            'endpoint'                => Env::get('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => Env::get('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw'                   => false,
+        'private' => [
+            'driver'     => 'local',
+            'root'       => Container::getInstance()->storagePath((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/private'),
+            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing/private' : '/storage'),
+            'visibility' => 'private',
+            'throw'      => false,
         ],
 
     ],
@@ -67,8 +63,8 @@ return [
     */
 
     'links' => [
-        Container::getInstance()->publicPath('storage') => Container::getInstance()->storagePath('app'),
-        Container::getInstance()->publicPath('testing') => Container::getInstance()->storagePath('framework/testing'),
+        Container::getInstance()->publicPath('storage') => Container::getInstance()->storagePath('app/public'),
+        Container::getInstance()->publicPath('testing') => Container::getInstance()->storagePath('framework/testing/public'),
     ],
 
 ];

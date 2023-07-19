@@ -54,7 +54,7 @@
         <div @dragover.prevent
              v-if="format === 'drag'"
              @click="disabled || display ? null : selectNew()"
-             @drop.prevent="disabled || display ? null : uploadMany($event.dataTransfer.files)"
+             @drop.prevent="disabled || display ? null : upload($event.dataTransfer.files[0])"
              class="bg-gray-50/60 border-[1.5px] border-dashed border-gray-300 flex flex-col justify-center items-center rounded-md cursor-pointer p-14 pb-11">
 
             <!-- Icon -->
@@ -67,12 +67,12 @@
 
                 <!-- Uploading -->
                 <span v-if="display">
-                    The selected {{ multiple ? 'file(s) are' : 'file is now' }} being uploaded. Just one moment&hellip;
+                    The selected file is now being uploaded. Just one moment&hellip;
                 </span>
 
                 <!-- Waiting -->
                 <span v-if="! display">
-                    Drag and drop {{ multiple ? 'file(s)' : 'a file' }} to upload, or click here to select one.
+                    Drag and drop a file to upload, or click here to select one.
                 </span>
 
             </div>
@@ -81,8 +81,8 @@
 
         <!-- Progress -->
         <v-progress class="mt-4"
-                    :value="current"
-                    v-if="current !== 0">
+                    v-if="form.progress"
+                    :value="form.progress.percentage">
         </v-progress>
 
         <!-- Error -->
@@ -92,7 +92,6 @@
 </template>
 
 <script>
-    import Vapor from '../scripts/vapor';
     import ClearComponent from './clear.vue';
     import ErrorComponent from './error.vue';
     import LabelComponent from './label.vue';
@@ -126,14 +125,12 @@
          */
         data() { return {
             display : '',
-            current : 0,
-        }},
 
-        /**
-         * Define the events.
-         *
-         */
-        emits : ['reset', 'uploading', 'uploaded'],
+            form : Form.create({
+                [this.id] : null,
+                ...this.payload,
+            }),
+        }},
 
         /**
          * Define the public properties.
@@ -141,9 +138,11 @@
          */
         props : {
             'disabled' : { type : Boolean, default : false },
+            'payload'  : { type : Object,  default : {} },
             'format'   : { type : String,  default : 'field' },
-            'multiple' : { type : Boolean, default : false },
+            'method'   : { type : String,  default : 'post' },
             'size'     : { type : Number,  default : 1048576 },
+            'target'   : { type : String,  default : '' },
             'types'    : { type : String,  default : 'image/png, image/jpeg' },
         },
 
@@ -154,17 +153,6 @@
         methods :
         {
             /**
-             * Update the user interface after completion.
-             *
-             */
-            finish()
-            {
-                this.current = 0;
-
-                this.$refs.file.value = null;
-            },
-
-            /**
              * Clear the state of the component.
              *
              */
@@ -174,9 +162,7 @@
 
                 this.fault = error;
 
-                this.$emit('reset');
-
-                this.finish();
+                this.$refs.file.value = null;
             },
 
             /**
@@ -194,7 +180,7 @@
              * Stream the chosen file to the server.
              *
              */
-            async upload(file = null)
+            upload(file = null)
             {
                 file = file ?? this.$refs.file.files[0];
 
@@ -209,25 +195,9 @@
                 this.fault   = '';
                 this.display = file.name;
 
-                this.$emit('uploading', file);
+                this.form[this.id] = file;
 
-                await Vapor.store(file, { progress : progress => this.current = Math.round(progress) })
-                     .then(response => { this.$emit('uploaded', { uuid : response.uuid, file : file }); this.finish() });
-            },
-
-            /**
-             * Stream one or more files to the server.
-             *
-             */
-            async uploadMany(files)
-            {
-                if (! this.multiple) {
-                    return await this.upload(files[0]);
-                }
-
-                for (const file of files) {
-                    await this.upload(file);
-                }
+                Form.submit(this.form, this.target, this.method, { preserveScroll : true, headers : { 'Content-Type' : 'multipart/form-data' } });
             },
         }
     }

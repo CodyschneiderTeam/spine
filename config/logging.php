@@ -72,11 +72,6 @@ return [
             'driver' => 'bugsnag',
         ],
 
-        'vapor' => [
-            'driver'   => 'stack',
-            'channels' => ['bugsnag', 'stderr'],
-        ],
-
         'slack' => [
             'driver'   => 'slack',
             'url'      => Env::get('SLACK_WEBHOOK_URL'),

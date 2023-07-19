@@ -26,7 +26,6 @@ class Files
             __DIR__ . '/../../config/sanctum.php'      => 'sanctum',
             __DIR__ . '/../../config/session.php'      => 'session',
             __DIR__ . '/../../config/queue.php'        => 'queue',
-            __DIR__ . '/../../config/vapor.php'        => 'vapor',
             __DIR__ . '/../../config/view.php'         => 'view',
             __DIR__ . '/../../config/ziggy.php'        => 'ziggy',
         ]);
