@@ -20,7 +20,7 @@ return [
     |
     */
 
-    'default' => Env::get('CACHE_DRIVER', 'dynamodb'),
+    'default' => Env::get('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------

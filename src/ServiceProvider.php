@@ -32,8 +32,6 @@ class ServiceProvider extends Provider
     {
         PasswordDefaults::enforce();
 
-        $this->commands(Commands::$list);
-
         App::useLangPath(__DIR__ . '/../resources/lang');
 
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
