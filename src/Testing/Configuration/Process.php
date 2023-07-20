@@ -28,9 +28,11 @@ trait Process
 
         $this->unless(Env::get('APP_DUSK'), fn() => $this->withoutVite());
 
-        File::deleteDirectory(App::storagePath('framework/testing'), true);
         File::deleteDirectory(App::storagePath('framework/dusk/console'), true);
         File::deleteDirectory(App::storagePath('framework/dusk/screenshots'), true);
+
+        File::deleteDirectory(App::storagePath('framework/testing/public'), true);
+        File::deleteDirectory(App::storagePath('framework/testing/private'), true);
 
         Browser::$storeConsoleLogAt  = App::storagePath('framework/dusk/console');
         Browser::$storeScreenshotsAt = App::storagePath('framework/dusk/screenshots');
@@ -42,8 +44,10 @@ trait Process
      */
     protected function tearDown() : void
     {
-        File::deleteDirectory(App::storagePath('framework/testing'), true);
         File::deleteDirectory(App::storagePath('framework/dusk/console'), true);
+
+        File::deleteDirectory(App::storagePath('framework/testing/public'), true);
+        File::deleteDirectory(App::storagePath('framework/testing/private'), true);
 
         parent::tearDown();
     }

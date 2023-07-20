@@ -21,11 +21,11 @@ class Image
      * Create a dummy image using the given parameters.
      *
      */
-    public static function fake(string $id, string $path, string $format, bool $extension) : void
+    public static function fake(string $id, string $disk, string $path, string $format, bool $extension) : void
     {
-        Storage::makeDirectory($path);
+        Storage::disk($disk)->makeDirectory($path);
 
-        $path = Text::of("framework/testing/{$path}/{$id}")
+        $path = Text::of("framework/testing/{$disk}/{$path}/{$id}")
             ->append($extension ? static::$formats[$format] : '')
             ->pipe(fn($path) => App::storagePath($path))
             ->toString();

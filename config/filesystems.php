@@ -44,7 +44,7 @@ return [
         'private' => [
             'driver'     => 'local',
             'root'       => Container::getInstance()->storagePath((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/private'),
-            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing/private' : '/storage'),
+            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'private',
             'throw'      => false,
         ],
