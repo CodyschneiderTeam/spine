@@ -2,28 +2,25 @@
 
 namespace System\Console;
 
+use System\Commands\BackupCommand;
 use Illuminate\Support\Facades\App;
 use System\Commands\MakeModelCommand;
 use System\Commands\MakeFactoryCommand;
+use Illuminate\Console\Application as Artisan;
 use Illuminate\Database\Migrations\MigrationCreator;
 
 class Commands
 {
-    /**
-     * List of console commands.
-     *
-     */
-    public static array $list = [
-        MakeModelCommand::class,
-        MakeFactoryCommand::class,
-    ];
-
     /**
      * Register the commands.
      *
      */
     public static function register() : void
     {
+        Artisan::starting(function($artisan) {
+            $artisan->resolveCommands([BackupCommand::class]);
+        });
+
         App::extend('command.make.model', fn() => new MakeModelCommand());
         App::extend('command.make.factory', fn() => new MakeFactoryCommand());
 
