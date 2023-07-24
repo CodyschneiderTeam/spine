@@ -16,7 +16,7 @@ export default class Util
             return false;
         }
 
-        if (isProxy(value) && toRaw(value).constructor.name.includes('DateTime')) {
+        if (isProxy(value) && toRaw(value).hasOwnProperty('isLuxonDateTime')) {
             return false;
         }
 
