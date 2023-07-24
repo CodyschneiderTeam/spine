@@ -16,7 +16,7 @@ export default class Util
             return false;
         }
 
-        if (isProxy(value) && toRaw(value).constructor.name === 'DateTime') {
+        if (isProxy(value) && toRaw(value).constructor.name.includes('DateTime')) {
             return false;
         }
 
