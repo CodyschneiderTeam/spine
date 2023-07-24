@@ -49,6 +49,18 @@ return [
             'throw'      => false,
         ],
 
+        'backup' => [
+            'driver'                  => 's3',
+            'key'                     => Env::get('AWS_ACCESS_KEY_ID'),
+            'secret'                  => Env::get('AWS_SECRET_ACCESS_KEY'),
+            'region'                  => Env::get('AWS_DEFAULT_REGION', 'eu-west-2'),
+            'bucket'                  => Env::get('AWS_BUCKET'),
+            'url'                     => Env::get('AWS_URL'),
+            'endpoint'                => Env::get('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => Env::get('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw'                   => false,
+        ],
+
     ],
 
     /*
