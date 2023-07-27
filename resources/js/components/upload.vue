@@ -86,7 +86,7 @@
         </v-progress>
 
         <!-- Error -->
-        <v-error :value="fault"></v-error>
+        <v-error :value="form.errors[id]"></v-error>
 
     </div>
 </template>
@@ -160,7 +160,7 @@
             {
                 this.display = '';
 
-                this.fault = error;
+                this.form.errors[this.id] = error;
 
                 this.$refs.file.value = null;
             },
@@ -192,10 +192,10 @@
                     return this.reset('The file must be in the correct format.');
 				}
 
-                this.fault   = '';
                 this.display = file.name;
 
                 this.form[this.id] = file;
+                this.form.errors[this.id] = '';
 
                 Form.submit(this.form, this.target, this.method, { preserveScroll : true, headers : { 'Content-Type' : 'multipart/form-data' } });
             },
