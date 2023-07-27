@@ -13,23 +13,23 @@ class SlowQueries
      *
      */
     public static function setup() : void
-    {
-        if (! App::isProduction()) {
-            return;
-        }
+    {       
+        // if (! App::isProduction()) {
+        //     return;
+        // }
 
-        $error   = 'SlowDatabaseQueryError';
-        $message = 'The database query did not execute in a timely fashion.';
+        // $error   = 'SlowDatabaseQueryError';
+        // $message = 'The database query did not execute in a timely fashion.';
 
-        DB::whenQueryingForLongerThan(1000, function($source, $event) use ($error, $message) {
-            Bugsnag::notifyError($error, $message, function($report) use ($event) {
-                return $report->setSeverity('warning')->setMetaData([
-                    'query' => [
-                        'sql'      => $event->sql,
-                        'bindings' => $event->bindings,
-                    ],
-                ]);
-            });
-        });
+        // DB::whenQueryingForLongerThan(1000, function($source, $event) use ($error, $message) {
+        //     Bugsnag::notifyError($error, $message, function($report) use ($event) {
+        //         return $report->setSeverity('warning')->setMetaData([
+        //             'query' => [
+        //                 'sql'      => $event->sql,
+        //                 'bindings' => $event->bindings,
+        //             ],
+        //         ]);
+        //     });
+        // });
     }
 }
