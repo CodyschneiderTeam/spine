@@ -1,9 +1,9 @@
 <?php
 
+use System\Container\Path;
 use Illuminate\Support\Env;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
-use Illuminate\Container\Container;
 
 return [
 
@@ -57,13 +57,13 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path'   => Container::getInstance()->storagePath('logs/laravel.log'),
+            'path'   => Path::storage('logs/laravel.log'),
             'level'  => Env::get('LOG_LEVEL', 'debug'),
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path'   => Container::getInstance()->storagePath('logs/laravel.log'),
+            'path'   => Path::storage('logs/laravel.log'),
             'level'  => Env::get('LOG_LEVEL', 'debug'),
             'days'   => 14,
         ],
@@ -106,7 +106,7 @@ return [
         ],
 
         'emergency' => [
-            'path' => Container::getInstance()->storagePath('logs/laravel.log'),
+            'path' => Path::storage('logs/laravel.log'),
         ],
     ],
 

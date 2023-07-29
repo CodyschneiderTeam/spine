@@ -2,7 +2,7 @@
 
 namespace System\Backup;
 
-use Illuminate\Container\Container;
+use System\Container\Path;
 use Illuminate\Support\Facades\Process;
 
 class Purge
@@ -14,7 +14,7 @@ class Purge
     public static function execute() : void
     {
         Process::timeout(600)
-            ->path(Container::getInstance()->storagePath())
+            ->path(Path::storage())
             ->run('rm database.sql; rm files.zip');
     }
 }

@@ -4,8 +4,8 @@ namespace System\Backup;
 
 use System\Support\Text;
 use System\Support\Util;
+use System\Container\Path;
 use System\Support\Calendar;
-use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Process;
 
@@ -33,7 +33,7 @@ class Upload
     public static function execute() : void
     {
         $result = Process::timeout(3600)
-            ->path(Container::getInstance()->storagePath())
+            ->path(Path::storage())
             ->run(static::command());
 
         Util::when($result->failed(), fn() => static::purge());
@@ -46,7 +46,7 @@ class Upload
     public static function purge() : void
     {
         Process::timeout(600)
-            ->path(Container::getInstance()->storagePath())
+            ->path(Path::storage())
             ->run('rm database.sql; rm files.zip');
     }
 }

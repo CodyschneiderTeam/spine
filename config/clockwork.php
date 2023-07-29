@@ -1,7 +1,7 @@
 <?php
 
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -206,9 +206,9 @@ return [
     */
 
     'storage'                => Env::get('CLOCKWORK_STORAGE', 'files'),
-    'storage_files_path'     => Env::get('CLOCKWORK_STORAGE_FILES_PATH', Container::getInstance()->storagePath('framework/clockwork')),
+    'storage_files_path'     => Env::get('CLOCKWORK_STORAGE_FILES_PATH', Path::storage('framework/clockwork')),
     'storage_files_compress' => Env::get('CLOCKWORK_STORAGE_FILES_COMPRESS', false),
-    'storage_sql_database'   => Env::get('CLOCKWORK_STORAGE_SQL_DATABASE', Container::getInstance()->storagePath('clockwork.sqlite')),
+    'storage_sql_database'   => Env::get('CLOCKWORK_STORAGE_SQL_DATABASE', Path::storage('clockwork.sqlite')),
     'storage_sql_table'      => Env::get('CLOCKWORK_STORAGE_SQL_TABLE', 'clockwork'),
     'storage_expiration'     => Env::get('CLOCKWORK_STORAGE_EXPIRATION', 2),
 

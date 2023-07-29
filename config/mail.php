@@ -1,8 +1,8 @@
 <?php
 
 use System\Support\Text;
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -96,7 +96,7 @@ return [
 
     'markdown' => [
         'theme' => 'system',
-        'paths' => [Container::getInstance()->basePath('vendor/caneara/spine/resources/views/vendor/mail')],
+        'paths' => [Path::base('vendor/caneara/spine/resources/views/vendor/mail')],
     ],
 
 ];

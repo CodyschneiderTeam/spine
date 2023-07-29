@@ -4,7 +4,7 @@ namespace System\Backup;
 
 use System\Support\Text;
 use System\Support\Util;
-use Illuminate\Container\Container;
+use System\Container\Path;
 use Illuminate\Support\Facades\Process;
 
 class Storage
@@ -15,8 +15,8 @@ class Storage
      */
     protected static function command() : string
     {
-        return Text::of('zip -r ' . Container::getInstance()->storagePath('files.zip'))
-            ->append(' ' . Container::getInstance()->storagePath('app'))
+        return Text::of('zip -r ' . Path::storage('files.zip'))
+            ->append(' ' . Path::storage('app'))
             ->toString();
     }
 
@@ -27,7 +27,7 @@ class Storage
     public static function execute() : void
     {
         $result = Process::timeout(3600)
-            ->path(Container::getInstance()->storagePath())
+            ->path(Path::storage())
             ->run(static::command());
 
         Util::when($result->failed(), fn() => Purge::execute());

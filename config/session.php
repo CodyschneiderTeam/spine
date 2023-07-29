@@ -1,8 +1,8 @@
 <?php
 
 use System\Support\Text;
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -61,7 +61,7 @@ return [
     |
     */
 
-    'files' => Container::getInstance()->storagePath('framework/sessions'),
+    'files' => Path::storage('framework/sessions'),
 
     /*
     |--------------------------------------------------------------------------

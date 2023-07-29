@@ -1,8 +1,8 @@
 <?php
 
 use System\Support\Text;
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -49,7 +49,7 @@ return [
 
         'file' => [
             'driver' => 'file',
-            'path'   => Container::getInstance()->storagePath('framework/cache/data'),
+            'path'   => Path::storage('framework/cache/data'),
         ],
 
         'redis' => [

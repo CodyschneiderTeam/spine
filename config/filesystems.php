@@ -1,7 +1,7 @@
 <?php
 
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -35,7 +35,7 @@ return [
 
         'public' => [
             'driver'     => 'local',
-            'root'       => Container::getInstance()->storagePath((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/public'),
+            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/public'),
             'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'public',
             'throw'      => false,
@@ -43,7 +43,7 @@ return [
 
         'private' => [
             'driver'     => 'local',
-            'root'       => Container::getInstance()->storagePath((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/private'),
+            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/private'),
             'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'private',
             'throw'      => false,
@@ -75,8 +75,8 @@ return [
     */
 
     'links' => [
-        Container::getInstance()->publicPath('storage') => Container::getInstance()->storagePath('app/public'),
-        Container::getInstance()->publicPath('testing') => Container::getInstance()->storagePath('framework/testing/public'),
+        Path::public('storage') => Path::storage('app/public'),
+        Path::public('testing') => Path::storage('framework/testing/public'),
     ],
 
 ];

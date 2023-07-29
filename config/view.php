@@ -1,7 +1,7 @@
 <?php
 
+use System\Container\Path;
 use Illuminate\Support\Env;
-use Illuminate\Container\Container;
 
 return [
 
@@ -17,8 +17,8 @@ return [
     */
 
     'paths' => [
-        Container::getInstance()->basePath('mail'),
-        Container::getInstance()->basePath('vendor/caneara/spine/resources/views'),
+        Path::base('mail'),
+        Path::base('vendor/caneara/spine/resources/views'),
     ],
 
     /*
@@ -32,6 +32,6 @@ return [
     |
     */
 
-    'compiled' => Env::get('VIEW_COMPILED_PATH', realpath(Container::getInstance()->storagePath('framework/views'))),
+    'compiled' => Env::get('VIEW_COMPILED_PATH', realpath(Path::storage('framework/views'))),
 
 ];
