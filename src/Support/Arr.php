@@ -17,6 +17,15 @@ class Arr extends Base
     }
 
     /**
+     * Create an array of the given size and set each item to the given value.
+     *
+     */
+    public static function fill(int $count, mixed $value = null, int $start = 0) : array
+    {
+        return array_fill($start, $count, $value);
+    }
+
+    /**
      * Transform the given array using the given closure.
      *
      */
