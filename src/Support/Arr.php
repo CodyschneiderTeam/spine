@@ -35,7 +35,7 @@ class Arr extends Base
     }
 
     /**
-     * Transform the given array using the given closure.
+     * Merge the given payload into the given array.
      *
      */
     public static function merge(array $array, array $payload) : array
