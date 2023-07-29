@@ -11,9 +11,9 @@ class Arr extends Base
      * Determine if the given value is in the array.
      *
      */
-    public static function contains(mixed $value, array $array) : bool
+    public static function contains(mixed $value, array $array, bool $strict = false) : bool
     {
-        return in_array($value, $array, true);
+        return in_array($value, $array, $strict);
     }
 
     /**
