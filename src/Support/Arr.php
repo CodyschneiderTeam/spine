@@ -17,6 +17,19 @@ class Arr extends Base
     }
 
     /**
+     * Iterate over the given array and pass each item to the given closure.
+     *
+     */
+    public static function each(array $array, callable $closure) : void
+    {
+        foreach ($array as $key => $item) {
+            if ($closure($item, $key) === false) {
+                break;
+            }
+        }
+    }
+
+    /**
      * Create an array of the given size and set each item to the given value.
      *
      */
