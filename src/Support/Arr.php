@@ -35,6 +35,15 @@ class Arr extends Base
     }
 
     /**
+     * Transform the given array using the given closure.
+     *
+     */
+    public static function merge(array $array, array $payload) : array
+    {
+        return array_merge($array, $payload);
+    }
+
+    /**
      * Convert the given array into a collection.
      *
      */
