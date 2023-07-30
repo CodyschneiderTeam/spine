@@ -23,7 +23,7 @@ class Notification extends BaseNotification implements ShouldQueue
      * The rendered mailable.
      *
      */
-    protected MailMessage $mailable;
+    public MailMessage $mailable;
 
     /**
      * The subject to use for the email.
