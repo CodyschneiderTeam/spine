@@ -5,6 +5,7 @@ namespace System\Types;
 use Exception;
 use System\Support\Arr;
 use System\Support\Text;
+use System\Support\Util;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Markdown;
 use Illuminate\Container\Container;
@@ -23,6 +24,12 @@ class Notification extends BaseNotification implements ShouldQueue
      *
      */
     protected MailMessage $mailable;
+
+    /**
+     * The subject to use for the email.
+     *
+     */
+    protected string $subject = '';
 
     /**
      * Verify that the email's action button uses the given label and url.
@@ -129,7 +136,7 @@ class Notification extends BaseNotification implements ShouldQueue
      * Create a new email message.
      *
      */
-    protected function email(mixed $notifiable, string $subject = '') : MailMessage
+    protected function email(mixed $notifiable) : MailMessage
     {
         $message = new MailMessage();
 
@@ -139,7 +146,7 @@ class Notification extends BaseNotification implements ShouldQueue
 
         $payload = method_exists($this, 'parameters') ? $this->parameters() : [];
 
-        return $message->subject($subject)->markdown(
+        return $message->subject($this->subject)->markdown(
             'vendor.mail.html.index',
             Arr::merge($payload, ['slot' => Blade::render($this->view($notifiable))])
         );
@@ -162,7 +169,7 @@ class Notification extends BaseNotification implements ShouldQueue
      */
     public function toMail($notifiable) : MailMessage
     {
-        $subject = Text::of(get_class($this))
+        $default = Text::of(get_class($this))
             ->classBasename()
             ->before('Notification')
             ->kebab()
@@ -170,7 +177,9 @@ class Notification extends BaseNotification implements ShouldQueue
             ->title()
             ->toString();
 
-        return $this->email($notifiable, $subject);
+        Util::unless($this->subject, fn() => $this->subject = $default);
+
+        return $this->email($notifiable);
     }
 
     /**
