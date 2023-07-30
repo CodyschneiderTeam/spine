@@ -3,10 +3,12 @@
 namespace System\Types;
 
 use Exception;
+use System\Support\Arr;
 use System\Support\Text;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Markdown;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Blade;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -130,9 +132,20 @@ class Notification extends BaseNotification implements ShouldQueue
      * Create a new email message.
      *
      */
-    protected function email() : MailMessage
+    protected function email(mixed $notifiable, string $subject = '') : MailMessage
     {
-        return new MailMessage();
+        $message = new MailMessage();
+
+        if (! method_exists($this, 'view')) {
+            throw new Exception('No inline view is available for this email notification');
+        }
+
+        $payload = method_exists($this, 'parameters') ? $this->parameters() : [];
+
+        return $message->subject($subject)->markdown(
+            'vendor.mail.html.index',
+            Arr::merge($payload, ['slot' => Blade::render($this->view($notifiable))])
+        );
     }
 
     /**
@@ -153,6 +166,23 @@ class Notification extends BaseNotification implements ShouldQueue
         $this->mailable = $this->toMail($notifiable);
 
         return $this;
+    }
+
+    /**
+     * Retrieve the mail representation of the notification.
+     *
+     */
+    public function toMail($notifiable) : MailMessage
+    {
+        $subject = Text::of(get_class($this))
+            ->classBasename()
+            ->before('Notification')
+            ->kebab()
+            ->replace('-', ' ')
+            ->title()
+            ->toString();
+
+        return $this->email($notifiable, $subject);
     }
 
     /**

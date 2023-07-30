@@ -21,7 +21,7 @@
     {{-- Footer --}}
     <x-slot:footer>
         <x-mail::footer>
-            © {{ System\Support\Calendar::now()->year() }} {{ Config::get('app.company', Config::get('app.name')) }}. @lang('All rights reserved.')
+            © {{ System\Support\Calendar::now()->year }} {{ Config::get('app.company', Config::get('app.name')) }}. @lang('All rights reserved.')
         </x-mail::footer>
     </x-slot:footer>
 </x-mail::layout>

@@ -7,7 +7,6 @@ use System\Support\Calendar;
 use System\Types\Notification;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class VerifyEmailAddressNotification extends Notification
 {
@@ -30,15 +29,29 @@ class VerifyEmailAddressNotification extends Notification
     }
 
     /**
-     * Retrieve the mail representation of the notification.
+     * Generate the Blade template to use for the notification.
      *
      */
-    public function toMail($notifiable) : MailMessage
+    public function view(mixed $notifiable) : string
     {
         $url = $this->createUrl($notifiable);
 
-        return $this->email()
-            ->subject('Verify Email')
-            ->markdown('mail.email.verify', ['url' => $url]);
+        return <<<BLADE
+        # Verify Email
+
+        In order to access your account, we need you to confirm your email
+        address by clicking the 'verify' button below.
+
+        {{-- Action --}}
+        @component('mail::button', ['url' => '$url'])
+        Verify Email Address
+        @endcomponent
+
+        {{-- Link Help --}}
+        @component('mail::subcopy')
+        If you are having trouble clicking the button, you can click the following
+        link, or copy and paste it into your web browser: [{$url}]({$url})
+        @endcomponent
+        BLADE;
     }
 }

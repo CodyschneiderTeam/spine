@@ -3,6 +3,7 @@
 namespace System;
 
 use System\Support\Util;
+use System\Container\Path;
 use System\Macros\Builder;
 use Laravel\Sanctum\Sanctum;
 use System\Console\Commands;
@@ -15,6 +16,7 @@ use System\Database\SlowQueries;
 use System\Routing\UrlGenerator;
 use Illuminate\Support\Facades\App;
 use System\Macros\RedirectResponse;
+use Illuminate\Support\Facades\View;
 use System\Security\PasswordDefaults;
 use System\Database\LengthAwarePaginator;
 use Illuminate\Support\ServiceProvider as Provider;
@@ -45,6 +47,8 @@ class ServiceProvider extends Provider
         Util::unless(App::isProduction(), fn() => TestResponse::register());
 
         App::bind('url', fn($app) => new UrlGenerator($app['router']->getRoutes(), $app['request']));
+
+        View::addNamespace('mail', Path::base('vendor/caneara/spine/resources/views/vendor/mail/html'));
     }
 
     /**
