@@ -17,7 +17,6 @@ return [
     */
 
     'paths' => [
-        Path::base('mail'),
         Path::base('vendor/caneara/spine/resources/views'),
     ],
 
