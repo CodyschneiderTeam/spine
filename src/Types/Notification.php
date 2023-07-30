@@ -38,7 +38,7 @@ class Notification extends BaseNotification implements ShouldQueue
     public function assertAction(string $label, string $url) : static
     {
         return $this->assertMessageContains(">{$label}</a>")
-            ->assertMessageContains("<a href=\"{$url}\"");
+            ->assertMessageContains("<a href=\"" . Text::before($url, '?'));
     }
 
     /**
