@@ -28,13 +28,10 @@ class Notification extends BaseNotification implements ShouldQueue
      * Verify that the email's action button uses the given label and url.
      *
      */
-    public function assertAction(string $label, string $url, bool $query = true) : static
+    public function assertAction(string $label, string $url) : static
     {
-        $action = $query ? $this->getActionUrl() : Text::before($this->getActionUrl(), '?');
-
-        PHPUnit::assertEquals($action, $url);
-
-        return $this->assertMessageContains($label);
+        return $this->assertMessageContains(">{$label}</a>")
+            ->assertMessageContains("<a href=\"{$url}\"");
     }
 
     /**
@@ -146,15 +143,6 @@ class Notification extends BaseNotification implements ShouldQueue
             'vendor.mail.html.index',
             Arr::merge($payload, ['slot' => Blade::render($this->view($notifiable))])
         );
-    }
-
-    /**
-     * Retrieve the email's action button url.
-     *
-     */
-    public function getActionUrl(string $key = 'url') : string
-    {
-        return $this->mailable->viewData[$key];
     }
 
     /**
