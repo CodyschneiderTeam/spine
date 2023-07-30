@@ -3,7 +3,7 @@
 namespace System\Exception;
 
 use Throwable;
-use Illuminate\Support\Arr;
+use System\Support\Arr;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
@@ -60,17 +60,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e) : Response
     {
+        $response = parent::render($request, $e);
+
         if (Arr::exists($this->exceptions, get_class($e))) {
             return $this->renderMessage($request, $e);
         }
 
-        if (! App::isProduction()) {
-            return parent::render($request, $e);
+        if (App::isProduction() && Arr::contains($response->getStatusCode(), [403, 404, 500, 503])) {
+            return ResponseBuilder::view('app.error', $this->errors[$response->getStatusCode()]);
         }
 
-        return ResponseBuilder::view('app.error', $this->errors[
-            parent::render($request, $e)->getStatusCode()
-        ]);
+        return $response;
     }
 
     /**
