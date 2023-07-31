@@ -25,7 +25,7 @@ class Handler extends ExceptionHandler
             403     => $this->showErrorPage($code),
             404     => $this->showErrorPage($code),
             405     => $this->showErrorPage($code),
-            418     => $this->showErrorNotification($code, $e->getMessage()),
+            418     => $this->showErrorNotification(403, $e->getMessage()),
             419     => $this->showErrorNotification($code, 'The page expired, please try again'),
             429     => $this->showErrorNotification($code, 'Too many attempts, wait a minute'),
             503     => $this->showErrorPage($code),
