@@ -5,7 +5,7 @@ namespace System\Database;
 use System\Support\Text;
 use Illuminate\Support\Arr;
 use System\Types\ListRequest;
-use System\Exception\TemporaryRedirectException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class LengthAwarePaginator extends Paginator
@@ -62,6 +62,6 @@ class LengthAwarePaginator extends Paginator
             ->append(Arr::query($query))
             ->toString();
 
-        throw new TemporaryRedirectException($url);
+        throw new HttpException(307, $url);
     }
 }

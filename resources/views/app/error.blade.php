@@ -50,17 +50,17 @@
 
         {{-- Code --}}
         <h3 class="font-semibold text-indigo-600 mb-3">
-            {{ $code }}
+            Code
         </h3>
 
         {{-- Title --}}
         <h1 class="font-bold text-[30px] md:text-[40px] mb-7">
-            {{ $title }}
+            Title
         </h1>
 
         {{-- Description --}}
         <h2 class="text-[18px] text-gray-500 text-center leading-normal max-w-[500px] px-6 mb-9">
-            {{ $description }}
+            Description
         </h2>
 
         {{-- Link --}}
@@ -71,6 +71,23 @@
             Go home
 
         </a>
+
+        {{-- Script --}}
+        <script>
+            let errors = {
+                '403' : { code : 403, title : 'Forbidden',             description : 'An error occurred while attempting to access this page.' },
+                '404' : { code : 404, title : 'Page Not Found',        description : 'The page you were trying to access could not be found.' },
+                '405' : { code : 405, title : 'Not Allowed',           description : 'The request method is not valid for the chosen resource.' },
+                '500' : { code : 500, title : 'Server Issue',          description : 'The server encountered an error. Try again, or contact us.' },
+                '503' : { code : 503, title : 'Maintenance Mode',      description : 'The server is currently unavailable while we conduct routine maintenance… please check back later.' },
+            };
+
+            window.addEventListener("DOMContentLoaded", () => {
+                document.querySelector('h1').innerHTML = errors[{{ $code }}].title;
+                document.querySelector('h2').innerHTML = errors[{{ $code }}].description;
+                document.querySelector('h3').innerHTML = errors[{{ $code }}].code;
+            });
+        </script>
 
     </body>
 

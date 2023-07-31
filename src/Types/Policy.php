@@ -5,7 +5,7 @@ namespace System\Types;
 use System\Support\Text;
 use System\Support\Util;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Policy
 {
@@ -24,9 +24,9 @@ class Policy
      */
     protected function deny(string $message = '') : void
     {
-        throw new AccessDeniedHttpException(
-            Util::blank($message) ? $this->makeErrorMessage() : $message
-        );
+        $error = Util::blank($message) ? $this->makeErrorMessage() : $message;
+
+        throw new HttpException(418, $error);
     }
 
     /**

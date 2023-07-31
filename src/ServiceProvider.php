@@ -32,7 +32,9 @@ class ServiceProvider extends Provider
      */
     public function boot() : void
     {
+        Builder::register();
         PasswordDefaults::enforce();
+        RedirectResponse::register();
 
         App::useLangPath(__DIR__ . '/../resources/lang');
 
@@ -40,9 +42,6 @@ class ServiceProvider extends Provider
 
         Util::when(App::isProduction(), fn() => SlowQueries::setup());
         Util::unless(App::isProduction(), fn() => LazyLoading::setup());
-
-        Builder::register();
-        RedirectResponse::register();
         Util::unless(App::isProduction(), fn() => Notification::register());
         Util::unless(App::isProduction(), fn() => TestResponse::register());
 
@@ -57,10 +56,8 @@ class ServiceProvider extends Provider
      */
     public function register() : void
     {
-        Calendar::useImmutable();
-
         Commands::register();
-
+        Calendar::useImmutable();
         Sanctum::ignoreMigrations();
 
         App::bind(BasePaginator::class, Paginator::class);

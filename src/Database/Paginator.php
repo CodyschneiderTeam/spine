@@ -5,8 +5,8 @@ namespace System\Database;
 use System\Support\Text;
 use Illuminate\Support\Arr;
 use System\Types\ListRequest;
-use System\Exception\TemporaryRedirectException;
 use Illuminate\Pagination\Paginator as BasePaginator;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Paginator extends BasePaginator
 {
@@ -62,6 +62,6 @@ class Paginator extends BasePaginator
             ->append(Arr::query($query))
             ->toString();
 
-        throw new TemporaryRedirectException($url);
+        throw new HttpException(307, $url);
     }
 }
