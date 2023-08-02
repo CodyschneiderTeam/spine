@@ -39,6 +39,15 @@ class Arr extends Base
     }
 
     /**
+     * Pass each item in the given array through the given closure.
+     *
+     */
+    public static function filter(array $array, callable $closure = null, int $mode = 0) : array
+    {
+        return array_filter($array, $closure, $mode);
+    }
+
+    /**
      * Transform the given array using the given closure.
      *
      */

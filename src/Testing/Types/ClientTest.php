@@ -2,9 +2,9 @@
 
 namespace System\Testing\Types;
 
+use System\Support\Arr;
 use Laravel\Dusk\TestCase;
 use Illuminate\Support\Env;
-use Illuminate\Support\Collection;
 use System\Testing\Support\Browser;
 use System\Testing\Configuration\Process;
 use System\Testing\Configuration\Bootstrap;
@@ -27,23 +27,22 @@ class ClientTest extends TestCase
      */
     protected function driver() : RemoteWebDriver
     {
-        $arguments = [
+        $arguments = Arr::filter([
             '--disable-gpu',
             '--window-size=1920,1080',
             '--time-zone-for-testing=UTC',
-            Env::get('DUSK_HEADLESS', true) ? '--headless' : '',
-        ];
+            Env::get('DUSK_HEADLESS', true) ? '--headless=new' : '',
+        ]);
 
-        $arguments = Collection::make($arguments)
-            ->filter()
-            ->toArray();
+        $options = (new ChromeOptions())->addArguments($arguments);
+
+        if (PHP_OS === 'Darwin') {
+            $options->setBinary('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
+        }
 
         return RemoteWebDriver::create(
             'http://localhost:9515',
-            DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY,
-                (new ChromeOptions())->addArguments($arguments)
-            )
+            DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options)
         );
     }
 
