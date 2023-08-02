@@ -6,30 +6,24 @@ use System\Support\Hash;
 use System\Support\Calendar;
 use System\Types\Notification;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class VerifyEmailAddressNotification extends Notification
 {
     /**
-     * The URL used to verify the email address.
+     * Generate a temporary signed route.
      *
      */
-    public string $url;
-
-    /**
-     * Constructor.
-     *
-     */
-    public function __construct()
+    protected function createUrl(Authenticatable $user) : string
     {
         $payload = [
-            'id'   => $this->notifiable->id,
-            'hash' => Hash::sha1($this->notifiable->email),
+            'id'   => $user->id,
+            'hash' => Hash::sha1($user->email),
         ];
 
-        $this->url = URL::temporarySignedRoute(
+        return URL::temporarySignedRoute(
             'authentication.email.verify.confirm',
-            Calendar::now()->addMinutes(Config::get('auth.verification.expire')),
+            Calendar::now()->addHour(),
             $payload
         );
     }
@@ -38,8 +32,10 @@ class VerifyEmailAddressNotification extends Notification
      * Generate the Blade template to use for the notification.
      *
      */
-    public function view() : string
+    public function view(mixed $notifiable) : string
     {
+        $url = $this->createUrl($notifiable);
+
         return <<<BLADE
         # Verify Email
 
@@ -47,14 +43,14 @@ class VerifyEmailAddressNotification extends Notification
         address by clicking the 'verify' button below.
 
         {{-- Action --}}
-        @component('mail::button', ['url' => '$this->url'])
+        @component('mail::button', ['url' => '$url'])
         Verify Email Address
         @endcomponent
 
         {{-- Link Help --}}
         @component('mail::subcopy')
         If you are having trouble clicking the button, you can click the following
-        link, or copy and paste it into your web browser: [{$this->url}]({$this->url})
+        link, or copy and paste it into your web browser: [{$url}]({$url})
         @endcomponent
         BLADE;
     }

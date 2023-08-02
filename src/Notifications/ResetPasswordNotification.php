@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\URL;
 class ResetPasswordNotification extends Notification
 {
     /**
-     * The URL used to reset the password.
+     * The password reset token.
      *
      */
-    public string $url;
+    public string $token;
 
     /**
      * Constructor.
@@ -19,18 +19,20 @@ class ResetPasswordNotification extends Notification
      */
     public function __construct(string $token)
     {
-        $this->url = URL::route('authentication.password.reset', [
-            'token' => $token,
-            'email' => $this->notifiable->email,
-        ]);
+        $this->token = $token;
     }
 
     /**
      * Generate the Blade template to use for the notification.
      *
      */
-    public function view() : string
+    public function view(mixed $notifiable) : string
     {
+        $url = URL::route('authentication.password.reset', [
+            'token' => $this->token,
+            'email' => $notifiable->email,
+        ]);
+
         return <<<BLADE
         # Reset Password
 
@@ -41,14 +43,14 @@ class ResetPasswordNotification extends Notification
         ignore this email.
 
         {{-- Action --}}
-        @component('mail::button', ['url' => '$this->url'])
+        @component('mail::button', ['url' => '$url'])
         Reset Password
         @endcomponent
 
         {{-- Link Help --}}
         @component('mail::subcopy')
         If you are having trouble clicking the button, you can click the following
-        link, or copy and paste it into your web browser: [{$this->url}]({$this->url})
+        link, or copy and paste it into your web browser: [{$url}]({$url})
         @endcomponent
         BLADE;
     }
