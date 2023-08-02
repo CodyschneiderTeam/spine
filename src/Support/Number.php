@@ -17,7 +17,7 @@ class Number
      * Round the given value to the given precision using the given mode then cast to an integer.
      *
      */
-    public static function roundToInteger(int | float $value, int $precision = 0, int $mode = PHP_ROUND_HALF_UP) : float
+    public static function roundToInteger(int | float $value, int $precision = 0, int $mode = PHP_ROUND_HALF_UP) : int
     {
         return (int) static::round($value, $precision, $mode);
     }
