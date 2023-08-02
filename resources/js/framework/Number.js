@@ -1,4 +1,4 @@
-export default class Figure
+export default class Number
 {
     /**
      * Process the given numerical value into its correct format.
@@ -14,9 +14,9 @@ export default class Figure
         };
 
         if (type === 'bytes') {
-            return Figure.#formatBytes(value);
+            return Number.#formatBytes(value);
         } else if (type === 'financial') {
-            return Figure.#formatFinancial(value, currency);
+            return Number.#formatFinancial(value, currency);
         } else {
             return new Intl.NumberFormat('en-US', options[type]).format(value);
         }
@@ -28,13 +28,13 @@ export default class Figure
      */
     static #formatBytes(value)
     {
-        if (value < 1024) return `${Figure.format(value / 1024)} KB`;
+        if (value < 1024) return `${Number.format(value / 1024)} KB`;
 
         let index = -1;
 
         for (index; value >= 1024; index++) value /= 1024;
 
-        return `${Figure.format(value)} ${['KB', 'MB', 'GB', 'TB', 'PB'][index]}`;
+        return `${Number.format(value)} ${['KB', 'MB', 'GB', 'TB', 'PB'][index]}`;
     }
 
     /**

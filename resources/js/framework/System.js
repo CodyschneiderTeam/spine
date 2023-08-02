@@ -5,7 +5,7 @@ import Text from './Text';
 import User from './User';
 import Util from './Util';
 import Dialog from './Dialog';
-import Figure from './Figure';
+import Number from './Number';
 import Server from './Server';
 import Browser from './Browser';
 import Request from './Request';
@@ -20,7 +20,7 @@ export default class System
     static configure(classes = {})
     {
         window.System = Object.assign({}, classes, {
-            Browser, Calendar, Dialog, Form, Is, Figure,
+            Browser, Calendar, Dialog, Form, Is, Number,
             Page, Request, Server, Text, User, Util,
         });
 
