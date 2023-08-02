@@ -22,6 +22,18 @@ class ClientTest extends TestCase
     use DatabaseMigrations;
 
     /**
+     * Assign the path to the web browser binary.
+     *
+     */
+    protected function binary(ChromeOptions $options) : ChromeOptions
+    {
+        return match(PHP_OS) {
+            'Darwin' => $options->setBinary('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'),
+            default  => $options,
+        };
+    }
+
+    /**
      * Create the remote web driver instance.
      *
      */
@@ -34,11 +46,9 @@ class ClientTest extends TestCase
             Env::get('DUSK_HEADLESS', true) ? '--headless=new' : '',
         ]);
 
-        $options = (new ChromeOptions())->addArguments($arguments);
-
-        if (PHP_OS === 'Darwin') {
-            $options->setBinary('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
-        }
+        $options = $this->binary(
+            (new ChromeOptions())->addArguments($arguments)
+        );
 
         return RemoteWebDriver::create(
             'http://localhost:9515',
