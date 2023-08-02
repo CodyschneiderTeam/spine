@@ -57,6 +57,15 @@ class Arr extends Base
     }
 
     /**
+     * Split the given string value into array items using the given separator.
+     *
+     */
+    public static function split(string $value, string $separator = ',') : array
+    {
+        return explode($separator, $value);
+    }
+
+    /**
      * Convert the given array into a collection.
      *
      */

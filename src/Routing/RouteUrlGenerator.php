@@ -2,9 +2,9 @@
 
 namespace System\Routing;
 
+use System\Support\Arr;
 use System\Support\Text;
 use System\Support\Util;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Routing\RouteUrlGenerator as BaseRouteUrlGenerator;
 

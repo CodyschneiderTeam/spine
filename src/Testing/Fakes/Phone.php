@@ -2,7 +2,7 @@
 
 namespace System\Testing\Fakes;
 
-use Illuminate\Support\Collection;
+use System\Support\Arr;
 
 class Phone
 {
@@ -31,6 +31,6 @@ class Phone
      */
     public static function fake() : string
     {
-        return Collection::make(static::$numbers)->random();
+        return Arr::random(static::$numbers);
     }
 }

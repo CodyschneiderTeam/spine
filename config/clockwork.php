@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'enable' => Env::get('CLOCKWORK_ENABLE', null),
+    'enable' => Env::get('CLOCKWORK_ENABLE'),
 
     /*
     |-----------------------------------------------------------------------

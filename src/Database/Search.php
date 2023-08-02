@@ -3,7 +3,7 @@
 namespace System\Database;
 
 use Closure;
-use Illuminate\Support\Arr;
+use System\Support\Arr;
 use System\Support\Calendar;
 use System\Macros\Builder as Macro;
 use Illuminate\Support\Facades\Auth;
@@ -59,14 +59,14 @@ class Search
     {
         $zone = Auth::user()?->time_zone?->code() ?? 'UTC';
 
-        $range = fn($value) => [
+        $period = fn($value) => [
             Calendar::parse($value)->setTimezone($zone)->startOfDay()->setTimezone('UTC'),
             Calendar::parse($value)->setTimezone($zone)->endOfDay()->setTimezone('UTC'),
         ];
 
         foreach ($this->payload['filtering'] as $key => $filter) {
             $this->query = match ($filter['type']) {
-                'calendar' => $this->query->whereBetween($key, $range($filter['value'])),
+                'calendar' => $this->query->whereBetween($key, $period($filter['value'])),
                 'like'     => $this->query->whereLike($key, $filter['value']),
                 'match'    => $this->query->where($key, $filter['value']),
                 default    => $this->query,

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Arr;
+use System\Support\Arr;
 use System\Support\Text;
 use System\Types\Factory;
 

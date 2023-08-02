@@ -3,6 +3,7 @@
 namespace System\Types;
 
 use ReflectionEnum;
+use System\Support\Arr;
 use System\Support\Text;
 use System\Support\Util;
 use BadMethodCallException;
@@ -93,7 +94,7 @@ trait Enum
      */
     public static function random(string $key = null) : mixed
     {
-        $case = Collection::make(static::toArray())->random();
+        $case = Arr::random(static::toArray());
 
         return $key ? $case[$key] : $case;
     }

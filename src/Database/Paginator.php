@@ -2,8 +2,8 @@
 
 namespace System\Database;
 
+use System\Support\Arr;
 use System\Support\Text;
-use Illuminate\Support\Arr;
 use System\Types\ListRequest;
 use Illuminate\Pagination\Paginator as BasePaginator;
 use Symfony\Component\HttpKernel\Exception\HttpException;

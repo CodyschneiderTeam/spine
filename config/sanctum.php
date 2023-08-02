@@ -1,5 +1,6 @@
 <?php
 
+use System\Support\Arr;
 use Illuminate\Support\Env;
 use Laravel\Sanctum\Sanctum;
 use System\Middleware\VerifyCsrfToken;
@@ -18,11 +19,10 @@ return [
     |
     */
 
-    'stateful' => explode(',', Env::get('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+    'stateful' => Arr::split(Env::get('SANCTUM_STATEFUL_DOMAINS',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1' .
         Sanctum::currentApplicationUrlWithPort()
-    ))),
+    )),
 
     /*
     |--------------------------------------------------------------------------

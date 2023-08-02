@@ -52,7 +52,7 @@ class Path
     }
 
     /**
-     * Retrieve the path to the resource folder.
+     * Retrieve the path to the resources folder.
      *
      */
     public static function resource(string $path = '') : string

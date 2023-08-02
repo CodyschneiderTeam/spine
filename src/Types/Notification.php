@@ -26,6 +26,12 @@ class Notification extends BaseNotification implements ShouldQueue
     public MailMessage $mailable;
 
     /**
+     * The notifiable instance.
+     *
+     */
+    protected mixed $notifiable = [];
+
+    /**
      * The subject to use for the email.
      *
      */
@@ -136,7 +142,7 @@ class Notification extends BaseNotification implements ShouldQueue
      * Create a new email message.
      *
      */
-    protected function email(mixed $notifiable) : MailMessage
+    protected function email() : MailMessage
     {
         $message = new MailMessage();
 
@@ -148,7 +154,7 @@ class Notification extends BaseNotification implements ShouldQueue
 
         return $message->subject($this->subject)->markdown(
             'vendor.mail.html.index',
-            Arr::merge($payload, ['slot' => Blade::render($this->view($notifiable))])
+            Arr::merge($payload, ['slot' => Blade::render($this->view())])
         );
     }
 
@@ -177,9 +183,11 @@ class Notification extends BaseNotification implements ShouldQueue
             ->title()
             ->toString();
 
+        $this->notifiable = $notifiable;
+
         Util::unless($this->subject, fn() => $this->subject = $default);
 
-        return $this->email($notifiable);
+        return $this->email();
     }
 
     /**

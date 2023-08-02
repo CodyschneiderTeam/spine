@@ -20,7 +20,7 @@ return [
     |
     */
 
-    'driver' => Env::get('SESSION_DRIVER', 'file'),
+    'driver' => Env::get('SESSION_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------

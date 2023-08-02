@@ -4,7 +4,7 @@ namespace System\Types;
 
 use DateTimeInterface;
 use System\Support\Is;
-use Illuminate\Support\Arr;
+use System\Support\Arr;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 class Model extends BaseModel

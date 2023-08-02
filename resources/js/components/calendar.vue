@@ -582,7 +582,7 @@
                 if (Util.blank(this.value)) {
                     this.value = this.startDate
                         ? DateTime.fromISO(this.startDate).startOf('day').setLocale(this.locale)
-                        : DateTime.now().startOf('day').setLocale(this.locale);
+                        : DateTime.now().setLocale(this.locale);
                 }
 
                 this.luxon = this.value;

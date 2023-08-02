@@ -50,9 +50,7 @@ return [
             'prefix_indexes' => true,
             'strict'         => true,
             'engine'         => null,
-            'options'        => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => Env::get('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options'        => [],
         ],
 
     ],
@@ -107,5 +105,18 @@ return [
         ],
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Slow Query Duration
+    |--------------------------------------------------------------------------
+    |
+    | This value specifies the maximum duration in milliseconds that a query
+    | may run for before it is considered slow and should be reported for
+    | review via an exception. Set to null, to skip monitoring queries.
+    |
+    */
+
+    'slow_query_duration' => Env::get('DB_SLOW_QUERY_DURATION', 5000),
 
 ];

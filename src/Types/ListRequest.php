@@ -3,8 +3,8 @@
 namespace System\Types;
 
 use System\Support\Is;
+use System\Support\Arr;
 use System\Support\Util;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
 

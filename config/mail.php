@@ -80,7 +80,7 @@ return [
 
     'from' => [
         'name'    => Env::get('MAIL_FROM_NAME', Env::get('APP_NAME')),
-        'address' => Env::get('MAIL_FROM_ADDRESS', 'noreply@' . Text::lower(Env::get('APP_NAME')) . '.test'),
+        'address' => Env::get('MAIL_FROM_ADDRESS', Text::lower('noreply@' . Env::get('APP_NAME') . '.test')),
     ],
 
     /*

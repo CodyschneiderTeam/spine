@@ -16,7 +16,7 @@ class LazyLoading
     public static function setup() : void
     {
         Model::handleLazyLoadingViolationUsing(function($model, $relation) {
-            $source = get_class($model->$relation()->getRelated());
+            $source = get_class($model->{$relation}()->getRelated());
 
             if (! App::runningUnitTests() && Text::startsWith($source, 'App')) {
                 throw new LazyLoadingViolationException($model, $relation);

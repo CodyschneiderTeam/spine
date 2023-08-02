@@ -80,6 +80,6 @@ return [
     |
     */
 
-    'prefix' => Env::get('CACHE_PREFIX', Text::slug(Env::get('APP_NAME'), '_').'_cache_'),
+    'prefix' => Env::get('CACHE_PREFIX', Text::slug(Env::get('APP_NAME'), '_') . '_cache_'),
 
 ];

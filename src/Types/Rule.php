@@ -3,13 +3,11 @@
 namespace System\Types;
 
 use Closure;
-use Illuminate\Support\Traits\Conditionable;
+use System\Support\Util;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 abstract class Rule implements ValidationRule
 {
-    use Conditionable;
-
     /**
      * The error message to use.
      *
@@ -57,6 +55,6 @@ abstract class Rule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail) : void
     {
-        $this->unless($this->passes($value), fn() => $fail($this->message));
+        Util::unless($this->passes($value), fn() => $fail($this->message));
     }
 }

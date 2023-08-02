@@ -36,17 +36,6 @@ class Upload
             ->path(Path::storage())
             ->run(static::command());
 
-        Util::when($result->failed(), fn() => static::purge());
-    }
-
-    /**
-     * Perform any clean-up operations.
-     *
-     */
-    public static function purge() : void
-    {
-        Process::timeout(600)
-            ->path(Path::storage())
-            ->run('rm database.sql; rm files.zip');
+        Util::when($result->failed(), fn() => Purge::execute());
     }
 }

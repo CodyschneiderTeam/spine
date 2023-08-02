@@ -2,6 +2,7 @@
 
 namespace System\Database;
 
+use System\Support\Util;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
@@ -17,7 +18,9 @@ class SlowQueries
         $error   = 'SlowDatabaseQueryError';
         $message = 'The database query did not execute in a timely fashion.';
 
-        $duration = Config::get('database.slow_query_duration', 5000);
+        if (Util::blank($duration = Config::get('database.slow_query_duration'))) {
+            return;
+        }
 
         DB::whenQueryingForLongerThan($duration, function($source, $event) use ($error, $message) {
             Bugsnag::notifyError($error, $message, function($report) use ($event) {

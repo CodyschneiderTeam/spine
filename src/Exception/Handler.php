@@ -19,7 +19,7 @@ class Handler extends ExceptionHandler
     {
         $response = parent::render($request, $e);
 
-        return match ($code = $response->getStatusCode()) {
+        return match($code = $response->getStatusCode()) {
             302     => $response,
             307     => Redirect::to($e->getMessage()),
             403     => $this->showErrorPage($code),
@@ -50,10 +50,8 @@ class Handler extends ExceptionHandler
      */
     protected function showErrorPage(int $code, mixed $response = null) : mixed
     {
-        if (App::isProduction()) {
-            return Response::view('app.error', ['code' => $code], $code);
-        }
+        $view = Response::view('app.error', ['code' => $code], $code);
 
-        return $response ?? Response::view('app.error', ['code' => $code], $code);
+        return App::isProduction() ? $view : ($response ?? $view);
     }
 }

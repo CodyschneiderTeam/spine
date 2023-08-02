@@ -4,7 +4,7 @@ namespace System\Rules;
 
 use Exception;
 use System\Types\Rule;
-use Illuminate\Support\Arr;
+use System\Support\Arr;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Intervention\Image\Facades\Image;
