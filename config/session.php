@@ -1,7 +1,7 @@
 <?php
 
 use System\Support\Text;
-use System\Framework\Path;
+use System\Foundation\Path;
 use Illuminate\Support\Env;
 
 return [

@@ -2,7 +2,7 @@
 
 namespace System\Backup;
 
-use System\Framework\Path;
+use System\Foundation\Path;
 use Illuminate\Support\Facades\Process;
 
 class Purge
