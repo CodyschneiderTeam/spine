@@ -1,6 +1,6 @@
 <?php
 
-use System\Container\Path;
+use System\Framework\Path;
 use Illuminate\Support\Env;
 
 return [

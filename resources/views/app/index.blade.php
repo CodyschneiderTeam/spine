@@ -6,7 +6,7 @@
     <head>
 
         {{-- Title --}}
-        <title>{{ $title }}</title>
+        <title>{{ $title ?? Config::get('app.name') }}</title>
 
         {{-- Meta --}}
         <meta name="format-detection" content="telephone=no">
@@ -17,14 +17,14 @@
 
         {{-- Open Graph --}}
         <meta property="og:type"        content="website">
-        <meta property="og:title"       content="{{ $title }}">
+        <meta property="og:title"       content="{{ $title ?? Config::get('app.name') }}">
         <meta property="og:url"         content="{{ Request::url() }}">
         <meta property="og:image"       content="{{ URL::asset('images/card.png') }}">
         <meta property="og:secure_url"  content="{{ URL::asset('images/card.png') }}">
         <meta property="og:description" content="{{ Config::get('app.description') }}">
 
         {{-- Twitter Card --}}
-        <meta name="twitter:title"       content="{{ $title }}">
+        <meta name="twitter:title"       content="{{ $title ?? Config::get('app.name') }}">
         <meta name="twitter:card"        content="summary_large_image">
         <meta name="twitter:image"       content="{{ URL::asset('images/card.png') }}">
         <meta name="twitter:description" content="{{ Config::get('app.description') }}">

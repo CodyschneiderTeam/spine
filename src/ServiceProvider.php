@@ -3,7 +3,7 @@
 namespace System;
 
 use System\Support\Util;
-use System\Container\Path;
+use System\Framework\Path;
 use System\Macros\Builder;
 use Laravel\Sanctum\Sanctum;
 use System\Console\Commands;

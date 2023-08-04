@@ -2,7 +2,7 @@
 
 namespace System\Kernel;
 
-use Illuminate\Support\Collection;
+use System\Support\Arr;
 use Illuminate\Foundation\Http\Kernel;
 
 class Http extends Kernel
@@ -72,9 +72,7 @@ class Http extends Kernel
      */
     public function getMiddlewareAliases() : array
     {
-        return Collection::make($this->middlewareAliases)
-            ->merge($this->customMiddlewareAliases)
-            ->toArray();
+        return Arr::merge($this->middlewareAliases, $this->customMiddlewareAliases);
     }
 
     /**

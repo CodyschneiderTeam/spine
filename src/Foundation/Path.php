@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Container;
+namespace System\Foundation;
 
 use Illuminate\Container\Container;
 
