@@ -6,8 +6,8 @@ use Closure;
 use System\Support\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
+use System\Providers\RouteServiceProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
@@ -18,11 +18,13 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards) : Response
     {
+        $route =
+
         $guards = Util::blank($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return Redirect::route(Config::get('routing.home'));
+                return Redirect::route(RouteServiceProvider::home());
             }
         }
 

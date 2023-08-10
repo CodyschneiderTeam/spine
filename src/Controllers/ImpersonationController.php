@@ -6,9 +6,9 @@ use System\Types\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use System\Providers\RouteServiceProvider;
 
 class ImpersonationController extends Controller
 {
@@ -31,7 +31,7 @@ class ImpersonationController extends Controller
 
         Auth::loginUsingId(Session::remove('impersonation'));
 
-        return Redirect::route(Config::get('routing.home'))
+        return Redirect::route(RouteServiceProvider::home())
             ->notify('User impersonation has ended');
     }
 
@@ -49,7 +49,7 @@ class ImpersonationController extends Controller
 
         Auth::loginUsingId($id);
 
-        return Redirect::route(Config::get('routing.home'))
+        return Redirect::route(RouteServiceProvider::home())
             ->notify('User impersonation has started');
     }
 }
