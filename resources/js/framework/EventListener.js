@@ -36,7 +36,7 @@ export default class EventListener
         {
             let path = (name) => resolvePageComponent(
                 `../../../../../../spa/pages/${name}.vue`,
-                import.meta.glob('../../../../../../spa/pages/**/*.vue', { eager : true })
+                import.meta.glob('../../../../../../spa/pages/**/*.vue')
             );
 
             let setup = ({ el, App, props, plugin }) =>

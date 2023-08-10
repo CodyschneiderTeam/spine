@@ -3,6 +3,7 @@ const { default : vue }     = await import(`${process.cwd()}/node_modules/@vitej
 const { default : laravel } = await import(`${process.cwd()}/node_modules/laravel-vite-plugin/dist/index.cjs`);
 
 let plugins = [
+    vite.splitVendorChunkPlugin(),
     laravel.default([`${process.cwd()}/bootstrap/app.js`]),
     vue({ template: { transformAssetUrls : { base : null, includeAbsolute : false } } }),
 ];
