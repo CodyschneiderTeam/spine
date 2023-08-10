@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public static function home() : string
     {
-        return Config::get('routing.home') ?? (Route::exists('home') ? 'home' : 'dashboard');
+        return Config::get('routing.home') ?? (Route::has('home') ? 'home' : 'dashboard');
     }
 
     /**
