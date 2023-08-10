@@ -33,10 +33,10 @@
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
 
         {{-- Fonts --}}
-        <link rel="stylesheet" href="{{ Config::get('theme.fonts') }}">
+        <link rel="stylesheet" href="{{ Config::get('services.type_kit.url') }}">
 
         {{-- Icons --}}
-        <script src="{{ Config::get('theme.icons') }}" crossorigin="anonymous"></script>
+        <script src="{{ Config::get('services.font_awesome.url') }}" crossorigin="anonymous"></script>
 
         {{-- Analytics --}}
         @production

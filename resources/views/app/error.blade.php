@@ -33,7 +33,7 @@
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
 
         {{-- Fonts --}}
-        <link rel="stylesheet" href="{{ Config::get('theme.fonts') }}">
+        <link rel="stylesheet" href="{{ Config::get('services.type_kit.url') }}">
 
         {{-- Scripts --}}
         <script src="https://cdn.tailwindcss.com"></script>
