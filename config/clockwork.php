@@ -202,14 +202,17 @@ return [
     |
     |   - files - Storing data in one-per-request files.
     |   - sql - Stores requests in a sql database.
+    |   - redis - Stores requests in redis. Requires phpredis.
     |
     */
 
-    'storage'                => Env::get('CLOCKWORK_STORAGE', 'files'),
+    'storage'                => Env::get('CLOCKWORK_STORAGE', 'sql'),
     'storage_files_path'     => Env::get('CLOCKWORK_STORAGE_FILES_PATH', Path::storage('framework/clockwork')),
     'storage_files_compress' => Env::get('CLOCKWORK_STORAGE_FILES_COMPRESS', false),
-    'storage_sql_database'   => Env::get('CLOCKWORK_STORAGE_SQL_DATABASE', Path::storage('clockwork.sqlite')),
+    'storage_sql_database'   => Env::get('CLOCKWORK_STORAGE_SQL_DATABASE', 'testing'),
     'storage_sql_table'      => Env::get('CLOCKWORK_STORAGE_SQL_TABLE', 'clockwork'),
+	'storage_redis'          => Env::get('CLOCKWORK_STORAGE_REDIS', 'default'),
+	'storage_redis_prefix'   => Env::get('CLOCKWORK_STORAGE_REDIS_PREFIX', 'clockwork'),
     'storage_expiration'     => Env::get('CLOCKWORK_STORAGE_EXPIRATION', 2),
 
     /*

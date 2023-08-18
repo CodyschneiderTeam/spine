@@ -53,6 +53,24 @@ return [
             'options'        => [],
         ],
 
+        'testing' => [
+            'driver'         => 'mysql',
+            'url'            => null,
+            'host'           => '127.0.0.1',
+            'port'           => '3306',
+            'database'       => 'testing',
+            'username'       => 'root',
+            'password'       => '',
+            'unix_socket'    => '',
+            'charset'        => 'utf8mb4',
+            'collation'      => 'utf8mb4_0900_ai_ci',
+            'prefix'         => '',
+            'prefix_indexes' => true,
+            'strict'         => true,
+            'engine'         => null,
+            'options'        => [],
+        ],
+
     ],
 
     /*
