@@ -51,7 +51,7 @@ class InstallCommand extends Command
 
         File::put(Path::storage('framework/logs/laravel.log'), '');
 
-        Artisan::call('storage:link');
+        Artisan::call('storage:link --force');
     }
 
     /**
