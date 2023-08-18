@@ -2,6 +2,7 @@
 
 use System\Foundation\Path;
 use Illuminate\Support\Env;
+use System\Support\Arr;
 
 return [
 
@@ -35,7 +36,7 @@ return [
 
         'public' => [
             'driver'     => 'local',
-            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/public'),
+            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'testing' : 'app') . '/public'),
             'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'public',
             'throw'      => false,
@@ -43,7 +44,7 @@ return [
 
         'private' => [
             'driver'     => 'local',
-            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app') . '/private'),
+            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'testing' : 'app') . '/private'),
             'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'private',
             'throw'      => false,
@@ -74,9 +75,9 @@ return [
     |
     */
 
-    'links' => [
+    'links' => Arr::filter([
         Path::public('storage') => Path::storage('app/public'),
-        Path::public('testing') => Path::storage('framework/testing/public'),
-    ],
+        Env::get('APP_ENV') === 'production' ? null : Path::public('testing') => Path::storage('testing/public'),
+    ]),
 
 ];

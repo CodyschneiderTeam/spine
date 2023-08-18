@@ -207,7 +207,7 @@ return [
     */
 
     'storage'                => Env::get('CLOCKWORK_STORAGE', 'sql'),
-    'storage_files_path'     => Env::get('CLOCKWORK_STORAGE_FILES_PATH', Path::storage('framework/clockwork')),
+    'storage_files_path'     => Env::get('CLOCKWORK_STORAGE_FILES_PATH', Path::storage('clockwork')),
     'storage_files_compress' => Env::get('CLOCKWORK_STORAGE_FILES_COMPRESS', false),
     'storage_sql_database'   => Env::get('CLOCKWORK_STORAGE_SQL_DATABASE', 'testing'),
     'storage_sql_table'      => Env::get('CLOCKWORK_STORAGE_SQL_TABLE', 'clockwork'),

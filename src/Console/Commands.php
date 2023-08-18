@@ -5,6 +5,7 @@ namespace System\Console;
 use System\Commands\DuskCommand;
 use System\Commands\BackupCommand;
 use Illuminate\Support\Facades\App;
+use System\Commands\InstallCommand;
 use System\Commands\MakeModelCommand;
 use System\Commands\MakeFactoryCommand;
 use Illuminate\Console\Application as Artisan;
@@ -20,7 +21,7 @@ class Commands
     public static function register() : void
     {
         Artisan::starting(function($artisan) {
-            $artisan->resolveCommands([BackupCommand::class]);
+            $artisan->resolveCommands([BackupCommand::class, InstallCommand::class]);
         });
 
         App::extend(BaseDuskCommand::class, fn() => new DuskCommand());

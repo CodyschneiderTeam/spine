@@ -25,7 +25,7 @@ class Image
     {
         Storage::disk($disk)->makeDirectory($path);
 
-        $path = Text::of("framework/testing/{$disk}/{$path}/{$id}")
+        $path = Text::of("testing/{$disk}/{$path}/{$id}")
             ->append($extension ? static::$formats[$format] : '')
             ->pipe(fn($path) => App::storagePath($path))
             ->toString();

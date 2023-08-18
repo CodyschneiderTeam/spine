@@ -70,9 +70,9 @@ class Browser extends BaseBrowser
     {
         $this->pause($wait);
 
-        PHPUnit::assertCount(1, glob(getcwd() . "/storage/framework/testing/downloads/{$file}"));
+        PHPUnit::assertCount(1, glob(getcwd() . "/storage/testing/downloads/{$file}"));
 
-        @unlink(glob(getcwd() . "/storage/framework/testing/downloads/{$file}")[0]);
+        @unlink(glob(getcwd() . "/storage/testing/downloads/{$file}")[0]);
 
         return $this;
     }
@@ -289,7 +289,7 @@ class Browser extends BaseBrowser
                 'cmd'    => 'Page.setDownloadBehavior',
                 'params' => [
                     'behavior'     => 'allow',
-                    'downloadPath' => getcwd() . '/storage/framework/testing/downloads/',
+                    'downloadPath' => getcwd() . '/storage/testing/downloads/',
                 ],
             ]),
         ];

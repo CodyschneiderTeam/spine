@@ -2,8 +2,10 @@
 
 namespace System\Commands;
 
+use System\Support\Util;
 use System\Foundation\Path;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 
@@ -19,7 +21,7 @@ class InstallCommand extends Command
      * The console command description.
      *
      */
-    protected $description = 'Perform Laravel post-deployment installation steps.';
+    protected $description = 'Perform any required installation steps.';
 
     /**
      * Execute the console command.
@@ -27,20 +29,52 @@ class InstallCommand extends Command
      */
     public function handle() : void
     {
-        File::ensureDirectoryExists(Path::storage('app/public'));
-        File::ensureDirectoryExists(Path::storage('app/private'));
-        File::ensureDirectoryExists(Path::storage('framework/cache'));
-        File::ensureDirectoryExists(Path::storage('framework/clockwork'));
-        File::ensureDirectoryExists(Path::storage('framework/dusk/console'));
-        File::ensureDirectoryExists(Path::storage('framework/dusk/screenshots'));
-        File::ensureDirectoryExists(Path::storage('framework/sessions'));
-        File::ensureDirectoryExists(Path::storage('framework/testing/downloads'));
-        File::ensureDirectoryExists(Path::storage('framework/testing/public'));
-        File::ensureDirectoryExists(Path::storage('framework/testing/private'));
-        File::ensureDirectoryExists(Path::storage('framework/views'));
+        Util::when(App::isProduction(), fn() => $this->production());
+        Util::unless(App::isProduction(), fn() => $this->local());
 
-        Artisan::call('storage:link');
+        $this->all();
 
         $this->info('The installation process is complete.');
+    }
+
+    /**
+     * Perform any required installation steps for all environments.
+     *
+     */
+    protected function all() : void
+    {
+        File::ensureDirectoryExists(Path::storage('app/public'));
+        File::ensureDirectoryExists(Path::storage('app/private'));
+
+        File::ensureDirectoryExists(Path::storage('framework/logs'));
+        File::ensureDirectoryExists(Path::storage('framework/views'));
+
+        File::put(Path::storage('framework/logs/laravel.log'), '');
+
+        Artisan::call('storage:link');
+    }
+
+    /**
+     * Perform any required installation steps for the local environment.
+     *
+     */
+    protected function local() : void
+    {
+        File::ensureDirectoryExists(Path::storage('framework/dusk/console'));
+        File::ensureDirectoryExists(Path::storage('framework/dusk/screenshots'));
+
+        File::ensureDirectoryExists(Path::storage('testing/downloads'));
+        File::ensureDirectoryExists(Path::storage('testing/public'));
+        File::ensureDirectoryExists(Path::storage('testing/private'));
+    }
+
+    /**
+     * Perform any required installation steps for the production environment.
+     *
+     */
+    protected function production() : void
+    {
+        File::ensureDirectoryExists(Path::storage('framework/cache'));
+        File::ensureDirectoryExists(Path::storage('framework/sessions'));
     }
 }
