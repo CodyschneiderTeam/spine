@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => Env::get('QUEUE_CONNECTION', 'sync'),
+    'default' => Env::get('QUEUE_CONNECTION', 'redis'),
 
     /*
     |--------------------------------------------------------------------------

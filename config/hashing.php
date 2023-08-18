@@ -46,9 +46,9 @@ return [
     */
 
     'argon' => [
-        'memory'  => Env::get('ARGON_MEMORY', 65536),
-        'threads' => Env::get('ARGON_THREADS', 1),
-        'time'    => Env::get('ARGON_TIME', 4),
+        'memory'  => Env::get('ARGON_MEMORY', Env::get('APP_ENV') === 'production' ? 65536 : 1024),
+        'threads' => Env::get('ARGON_THREADS', Env::get('APP_ENV') === 'production' ? 1 : 2),
+        'time'    => Env::get('ARGON_TIME', Env::get('APP_ENV') === 'production' ? 4 : 2),
     ],
 
 ];

@@ -51,7 +51,7 @@ return [
     'channels' => [
         'stack' => [
             'driver'            => 'stack',
-            'channels'          => [Env::get('LOG_STACK', 'bugsnag')],
+            'channels'          => [Env::get('LOG_STACK', Env::get('APP_ENV') === 'production' ? 'bugsnag' : 'single')],
             'ignore_exceptions' => false,
         ],
 
