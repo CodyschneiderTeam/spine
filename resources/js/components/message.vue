@@ -8,7 +8,7 @@
 
         <!-- Message -->
         <div v-if="show"
-             class="ui-message min-w-250px max-w-350px fixed top-74px right-0 z-1002">
+             class="ui-message min-w-250px max-w-350px fixed right-0 top-120px xl:top-80px z-1002">
 
             <!-- Container -->
             <div ref="container"

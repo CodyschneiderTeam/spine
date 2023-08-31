@@ -27,6 +27,16 @@ class Browser extends BaseBrowser
     }
 
     /**
+     * Click on the given action link.
+     *
+     */
+    public function action(string $key) : static
+    {
+        return $this->click('@actions-menu-toggle')
+            ->click("@action-{$key}");
+    }
+
+    /**
      * Assert that the given field has the given date and time.
      *
      */
@@ -301,6 +311,15 @@ class Browser extends BaseBrowser
             ->getAddressOfRemoteServer();
 
         (new Client())->post("{$address}/session/{$id}/chromium/send_command", $payload);
+    }
+
+    /**
+     * Click on the given tab link.
+     *
+     */
+    public function tab(string $key) : static
+    {
+        return $this->click("@tab-{$key}");
     }
 
     /**

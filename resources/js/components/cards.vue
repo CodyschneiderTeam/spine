@@ -26,7 +26,7 @@
                  class="ui-item border flex flex-col items-start rounded cursor-pointer relative animated p-5 pb-4">
 
                 <!-- Title -->
-                <h6 class="ui-header font-os text-16px flex items-center mb-4">
+                <h6 class="ui-header font-system text-16px flex items-center mb-4">
 
                     <!-- Icon -->
                     <span class="ui-icon text-gray-400 mr-3">

@@ -55,7 +55,7 @@
 
                             <!-- Controls -->
                             <i @click="controls = true"
-                               v-if="! controls && column.label === 'Actions'"
+                               v-if="toolbar && ! controls && column.label === 'Actions'"
                                class="far fa-cog text-gray-800/50 hover:text-sky-600/70 cursor-pointer animated">
                             </i>
 

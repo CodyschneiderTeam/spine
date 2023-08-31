@@ -14,7 +14,7 @@
 
             <!-- Title -->
             <h6 :class="types[type].title"
-                class="ui-title font-os text-16px mb-0">
+                class="ui-title font-system text-16px mb-0">
 
                 <!-- Text -->
                 {{ title }}
