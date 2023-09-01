@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,6 +31,7 @@ class InertiaRequest extends Middleware
             'asset'         => URL::asset(''),
             'file'          => Storage::url(''),
             'guest'         => Auth::guest(),
+            'creator'       => Config::get('app.company', Config::get('app.name')),
             'data'          => fn() => Util::rescue(fn() => Session::get('data'), []),
             'message'       => fn() => Util::rescue(fn() => Session::get('message')),
             'impersonation' => fn() => Util::rescue(fn() => Session::get('impersonation')),

@@ -32,7 +32,7 @@ class Browser extends BaseBrowser
      */
     public function action(string $key) : static
     {
-        return $this->click('@actions-menu-toggle')
+        return $this->click('|#action-menu-toggle')
             ->click("@action-{$key}");
     }
 
@@ -96,15 +96,6 @@ class Browser extends BaseBrowser
         $value = Is::boolean($value) ? ($value ? 'true' : 'false') : $value;
 
         return parent::assertInputValue($field, $value);
-    }
-
-    /**
-     * Assert that the given statistic is present in the sidebar.
-     *
-     */
-    public function assertSeeInSidebar(string $key, mixed $value = null) : static
-    {
-        return $this->assertSeeIn("@sidebar-statistic-{$key}", $value);
     }
 
     /**
@@ -208,15 +199,6 @@ class Browser extends BaseBrowser
             : Text::start($selector, '@');
 
         return parent::click($selector)->pause();
-    }
-
-    /**
-     * Click on the given sidebar link.
-     *
-     */
-    public function clickOnSidebarLink(string $key) : static
-    {
-        return $this->click("@sidebar-link-{$key}");
     }
 
     /**

@@ -70,9 +70,6 @@
 
         @endproduction
 
-        {{-- Slot --}}
-        @includeIf('views.head')
-
         {{-- Vite --}}
         @vite(['bootstrap/app.js'])
 

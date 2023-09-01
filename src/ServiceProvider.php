@@ -36,8 +36,6 @@ class ServiceProvider extends Provider
         PasswordDefaults::enforce();
         RedirectResponse::register();
 
-        App::useLangPath(__DIR__ . '/../resources/lang');
-
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
         Util::when(App::isProduction(), fn() => SlowQueries::setup());

@@ -24,12 +24,10 @@
 		 */
 		mounted()
 		{
-            let closure = () => Dialog.message(
+            Util.when(Page.property('message'), Dialog.message(
                 Page.property('message.type'),
                 Page.property('message.content')
-            );
-
-            Util.when(Page.property('message'), closure);
+            ));
 		},
     }
 </script>

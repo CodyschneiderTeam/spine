@@ -25,12 +25,21 @@ export default
     methods :
     {
         /**
+         * Retrieve the element that serves as the container's trigger.
+         *
+         */
+        getTriggerForContainer()
+        {
+            return this.$refs.trigger ? this.$refs.trigger : this.$el;
+        },
+
+        /**
          * Handle a click or tap on the page.
          *
          */
         pageClicked(event)
         {
-            let trigger = this.$refs.trigger ? this.$refs.trigger : this.$el;
+            let trigger = this.getTriggerForContainer();
 
             if (! this.hasUserAttention() || trigger === event.target) return;
 

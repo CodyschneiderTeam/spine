@@ -6,9 +6,7 @@
     <head>
 
         {{-- Title --}}
-        <title>
-            {{ Config::get('app.name') }}
-        </title>
+        <title>{{ Config::get('app.name') }}</title>
 
         {{-- Meta --}}
         <meta name="format-detection" content="telephone=no">
@@ -40,15 +38,11 @@
         {{-- Scripts --}}
         <script src="https://cdn.tailwindcss.com"></script>
 
-        {{-- Styles --}}
-        <style>
-            .font-sans { font-family: 'proxima-nova' !important }
-        </style>
-
     </head>
 
     {{-- Body --}}
-    <body class="font-sans leading-none flex flex-col justify-center items-center min-h-screen">
+    <body style="font-family: 'proxima-nova' !important"
+          class="leading-none flex flex-col justify-center items-center min-h-screen">
 
         {{-- Graphic --}}
         <svg viewBox="0 0 2745 3192"
@@ -127,7 +121,7 @@
         </svg>
 
         {{-- Title --}}
-        <h1 class="font-semibold text-[30px] md:text-[32px] text-center -tracking-[.3px] mb-5">
+        <h1 class="font-semibold text-[30px] md:text-[31px] text-center -tracking-[.5px] mb-5">
             Something went wrong&hellip;
         </h1>
 
@@ -161,7 +155,7 @@
 
         {{-- Credit --}}
         <a target="_blank"
-           class="text-[12px] text-gray-400 absolute left-2 bottom-2"
+           class="text-[11px] text-gray-400 absolute left-2 bottom-2"
            href="https://www.vecteezy.com/vector-art/3475012-confused-man-with-question-mark-concept-flat-illustration">
 
             {{-- Text --}}
