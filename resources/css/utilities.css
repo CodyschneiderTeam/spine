@@ -8,5 +8,4 @@
     .hide-scrollbar::-webkit-scrollbar { @apply w-0 h-0 bg-transparent }
     .hide-scrollbar::-webkit-scrollbar-thumb { @apply bg-transparent }
     .hide-scrollbar::-webkit-scrollbar-track { @apply bg-transparent }
-    .opacity-none { @apply opacity-0 }
 }

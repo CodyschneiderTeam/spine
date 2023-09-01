@@ -13,18 +13,18 @@
             <!-- Link -->
             <div @click="link['action']()"
                  v-if="! (link?.separator ?? false)"
-                 :class="isActive(link) ? 'bg-sky-100/70' : 'hover:bg-sky-100/70'"
+                 :class="isActive(link) ? 'lg:bg-sky-100/70' : ''"
                  :dusk="`tab-${link?.id ?? link.label.toLowerCase().replaceAll(' ', '-')}`"
-                 class="flex items-center min-w-175px rounded-lg cursor-pointer animated group px-3 py-10px mb-6px">
+                 class="hover:bg-gray-200/75 lg:hover:bg-sky-100/70 flex items-center min-w-175px lg:rounded-lg cursor-pointer animated group px-6 lg:px-3 py-10px lg:mb-6px">
 
                 <!-- Icon -->
-                <i class="fa-fw animated -ml-2 mr-1"
-                   :class="[link.icon, isActive(link) ? 'text-sky-700' : 'text-gray-500 group-hover:text-sky-700']">
+                <i class="fa-fw animated -ml-2 mr-6px lg:mr-1"
+                   :class="[link.icon, isActive(link) ? 'text-gray-400 lg:text-sky-700' : 'text-gray-400 lg:text-gray-500']">
                 </i>
 
                 <!-- Label -->
-                <span class="font-medium text-black"
-                      :class="isActive(link) ? 'text-sky-800' : 'text-black-500 group-hover:text-sky-800'">
+                <span :class="isActive(link) ? 'lg:text-sky-800' : ''"
+                      class="lg:font-medium text-gray-700 lg:text-black">
 
                     <!-- Text -->
                     {{ link.label }}

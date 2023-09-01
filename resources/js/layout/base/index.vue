@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import '../../css/app.css';
+    import '../../../css/app.css';
 
     export default
     {
@@ -24,7 +24,7 @@
 		 */
 		mounted()
 		{
-            Util.when(Page.property('message'), Dialog.message(
+            Util.when(Page.property('message'), () => Dialog.message(
                 Page.property('message.type'),
                 Page.property('message.content')
             ));

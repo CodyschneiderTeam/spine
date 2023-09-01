@@ -24,13 +24,13 @@
 
                     <!-- Tabs -->
                     <v-tabs :menu="tabs"
-                            class="lg:hidden p-6"
+                            class="lg:hidden py-10px"
                             v-if="! Browser.automated()"
                             :class="actions.filter(link => (link?.show ?? true)).length ? 'pb-7' : 'pb-18px'">
                     </v-tabs>
 
                     <!-- Separator -->
-                    <div class="border-b border-gray-200 relative mb-1"
+                    <div class="border-b border-gray-200 relative mb-14px"
                          v-if="tabs.filter(link => (link?.show ?? true)).length"
                          :class="actions.filter(link => (link?.show ?? true)).length ? 'lg:hidden' : 'hidden'">
 
