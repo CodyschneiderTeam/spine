@@ -36,16 +36,16 @@ return [
 
         'public' => [
             'driver'     => 'local',
-            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'testing' : 'app') . '/public'),
-            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
+            'root'       => Path::storage((Env::get('APP_ENV', 'production') === 'testing' ? 'testing' : 'app') . '/public'),
+            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV', 'production') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'public',
             'throw'      => false,
         ],
 
         'private' => [
             'driver'     => 'local',
-            'root'       => Path::storage((Env::get('APP_ENV') === 'testing' ? 'testing' : 'app') . '/private'),
-            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
+            'root'       => Path::storage((Env::get('APP_ENV', 'production') === 'testing' ? 'testing' : 'app') . '/private'),
+            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV', 'production') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'private',
             'throw'      => false,
         ],
@@ -77,7 +77,7 @@ return [
 
     'links' => Arr::filter([
         Path::public('storage') => Path::storage('app/public'),
-        Env::get('APP_ENV') === 'production' ? null : Path::public('testing') => Path::storage('testing/public'),
+        Env::get('APP_ENV', 'production') === 'production' ? null : Path::public('testing') => Path::storage('testing/public'),
     ]),
 
 ];

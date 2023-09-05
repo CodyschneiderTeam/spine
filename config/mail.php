@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default'  => Env::get('MAIL_MAILER', Env::get('APP_ENV') === 'testing' ? 'array' : 'smtp'),
+    'default'  => Env::get('MAIL_MAILER', Env::get('APP_ENV', 'production') === 'testing' ? 'array' : 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
