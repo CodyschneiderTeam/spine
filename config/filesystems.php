@@ -77,7 +77,7 @@ return [
 
     'links' => Arr::filter([
         Path::public('storage') => Path::storage('app/public'),
-        Env::get('APP_ENV', 'production') === 'production' ? null : Path::public('testing') => Path::storage('testing/public'),
+        Path::public('testing') => Env::get('APP_ENV', 'production') === 'production' ? null : Path::storage('testing/public'),
     ]),
 
 ];
