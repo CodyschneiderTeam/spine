@@ -1,9 +1,9 @@
 <template>
     <div class="ui-button w-full md:w-auto items-start">
 
-        <!-- Custom -->
-        <button ref="btn"
-                :id="name"
+        <!-- Button -->
+        <button :id="name"
+                ref="button"
                 :dusk="name"
                 @click="execute($event)"
                 :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px']"
@@ -32,11 +32,6 @@
                  class="ui-spinner border-2 border-r-transparent border-t-transparent h-15px w-15px rounded-full">
             </div>
 
-        </button>
-
-        <!-- Traditional -->
-        <button ref="simple"
-                class="hidden">
         </button>
 
     </div>
@@ -130,7 +125,7 @@
              */
             processing : function(current, previous)
             {
-                this.$refs.btn.style.width = current ? `${this.$refs.btn.offsetWidth}px` : '';
+                this.$refs.button.style.width = current ? `${this.$refs.button.offsetWidth}px` : '';
             }
         },
 
@@ -150,7 +145,7 @@
 
                 if (this.disabled || this.processing) return;
 
-                this.simple ? this.$refs.simple.click() : this.$emit('click');
+                this.simple ? null : this.$emit('click');
             }
         }
     }
