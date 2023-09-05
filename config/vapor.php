@@ -55,7 +55,7 @@ return [
     */
 
     'signed_storage' => [
-        'enabled' => Env::get('APP_ENV') === 'production' ? true : false,
+        'enabled' => Env::get('APP_ENV', 'production') === 'production' ? true : false,
     ]
 
 ];

@@ -35,8 +35,8 @@ return [
 
         'local' => [
             'driver'     => 'local',
-            'root'       => Container::getInstance()->storagePath(Env::get('APP_ENV') === 'testing' ? 'framework/testing' : 'app'),
-            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV') === 'testing' ? '/testing' : '/storage'),
+            'root'       => Container::getInstance()->storagePath(Env::get('APP_ENV', 'production') === 'testing' ? 'framework/testing' : 'app'),
+            'url'        => Env::get('APP_URL') . (Env::get('APP_ENV', 'production') === 'testing' ? '/testing' : '/storage'),
             'visibility' => 'public',
             'throw'      => false,
         ],
