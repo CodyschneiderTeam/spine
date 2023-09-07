@@ -41,6 +41,11 @@
         {{-- Analytics --}}
         @production
 
+            {{-- Google Search Console --}}
+            @if (Config::get('services.google.console.key'))
+                <meta name="google-site-verification" content="{{ Config::get('services.google.console.key') }}" />
+            @endif
+
             {{-- Google Tag Manager --}}
             @if (Config::get('services.google.analytics.key'))
                 <script>
