@@ -35,8 +35,8 @@ class Hash
      * Calculate the SHA-256 hash of the given value.
      *
      */
-    public static function sha256(string $value) : string
+    public static function sha256(string $value, bool $binary = false) : string
     {
-        return hash('sha256', $value);
+        return hash('sha256', $value, $binary);
     }
 }

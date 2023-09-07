@@ -22,6 +22,24 @@ class Model extends BaseModel
     protected $hidden = [];
 
     /**
+     * Determine if the model does not exist in the database.
+     *
+     */
+    public function doesntExist() : bool
+    {
+        return ! $this->exists();
+    }
+
+    /**
+     * Determine if the given model does not belong to the model.
+     *
+     */
+    public function doesntOwn(BaseModel $model, string $key = '') : bool
+    {
+        return ! $this->owns($model, $key);
+    }
+
+    /**
      * Retrieve a subset of the model's attributes.
      *
      */
@@ -33,21 +51,23 @@ class Model extends BaseModel
     }
 
     /**
+     * Determine if the model really exists in the database.
+     *
+     */
+    public function exists() : bool
+    {
+        return static::query()
+            ->where($this->getKeyName(), $this->getKey())
+            ->exists();
+    }
+
+    /**
      * Create a new factory instance for the model.
      *
      */
     public static function factory() : Factory
     {
         return Factory::factoryForModel(get_called_class());
-    }
-
-    /**
-     * Determine if the given model does not belong to the model.
-     *
-     */
-    public function doesntOwn(BaseModel $model, string $key = '') : bool
-    {
-        return ! $this->owns($model, $key);
     }
 
     /**

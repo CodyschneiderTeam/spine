@@ -2,6 +2,7 @@
 
 namespace System\Macros;
 
+use System\Support\Arr;
 use System\Support\Text;
 use System\Support\Util;
 use PHPUnit\Framework\Assert as PHPUnit;
@@ -16,7 +17,9 @@ class TestResponse
     public static function register() : void
     {
         static::assertPage();
+        static::assertProperty();
         static::assertNotification();
+        static::assertPropertyContains();
     }
 
     /**
@@ -43,6 +46,36 @@ class TestResponse
             $page = Text::replace('/', '.', $this->original->getData()['page']['component']);
 
             PHPUnit::assertEquals($path, $page);
+
+            return $this;
+        });
+    }
+
+    /**
+     * Register the 'assert property' macro.
+     *
+     */
+    protected static function assertProperty() : void
+    {
+        Facade::macro('assertProperty', function($key, $value) {
+            $prop = Arr::get($this->original->getData(), "page.props.{$key}");
+
+            PHPUnit::assertEquals($prop, $value);
+
+            return $this;
+        });
+    }
+
+    /**
+     * Register the 'assert property contains' macro.
+     *
+     */
+    protected static function assertPropertyContains() : void
+    {
+        Facade::macro('assertPropertyContains', function($key, $value) {
+            $prop = Arr::get($this->original->getData(), "page.props.{$key}");
+
+            PHPUnit::assertStringContainsStringIgnoringLineEndings($value, $prop);
 
             return $this;
         });

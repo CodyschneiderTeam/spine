@@ -6,7 +6,8 @@
             <article class="bg-white md:border border-gray-300/75 flex-1 rounded-lg text-center p-6 pt-10 md:p-100px">
 
                 <!-- Logo -->
-                <img class="w-40px mx-auto mb-7"
+                <img v-if="logo"
+                     class="w-40px mx-auto mb-7"
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Slot -->
@@ -34,6 +35,14 @@
          */
         components : {
             'v-base' : Base,
+        },
+
+        /**
+         * Define the public properties.
+         *
+         */
+        props : {
+            'logo' : { type : Boolean, default : true },
         },
     }
 </script>

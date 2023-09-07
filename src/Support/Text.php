@@ -26,6 +26,24 @@ class Text extends Str
     }
 
     /**
+     * Decode the given text using Base-64.
+     *
+     */
+    public static function decodeBase64(string $text, bool $strict = false) : string
+    {
+        return base64_decode($text, $strict);
+    }
+
+    /**
+     * Encode the given text using Base-64.
+     *
+     */
+    public static function encodeBase64(string $text) : string
+    {
+        return base64_encode($text);
+    }
+
+    /**
      * Create a fluent string using the given string.
      *
      */
