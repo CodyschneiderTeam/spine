@@ -1,5 +1,5 @@
 <template>
-    <v-modal :visible="visible"
+    <v-aside :visible="visible"
              @closed="$emit('closed')">
 
         <!-- Header -->
@@ -116,11 +116,11 @@
 
         </template>
 
-    </v-modal>
+    </v-aside>
 </template>
 
 <script>
-    import ModalComponent from './modal.vue';
+    import AsideComponent from './aside.vue';
     import ButtonComponent from './button.vue';
     import TextBoxComponent from './textbox.vue';
     import CalendarComponent from './calendar.vue';
@@ -133,10 +133,10 @@
          *
          */
         components : {
+            'v-aside'    : AsideComponent,
             'v-button'   : ButtonComponent,
             'v-calendar' : CalendarComponent,
             'v-dropdown' : DropDownComponent,
-            'v-modal'    : ModalComponent,
             'v-textbox'  : TextBoxComponent,
         },
 

@@ -1,12 +1,10 @@
 <template>
-    <v-dialog :visible="visible"
-              class="ui-confirm">
+    <v-modal :visible="visible"
+             class="ui-confirm">
 
-        <!-- Container -->
-        <div class="bg-white w-full max-w-500px md:rounded-lg">
-
-            <!-- Content -->
-            <div class="flex flex-col md:flex-row px-8 pt-10 pb-8">
+        <!-- Content -->
+        <template #content>
+            <div class="flex flex-col md:flex-row">
 
                 <!-- Icon -->
                 <div class="ui-circle bg-yellow-500/30 h-50px w-50px min-w-50px md:h-40px md:w-40px md:min-w-40px flex justify-center items-center rounded-full mx-auto mb-6 md:mb-0">
@@ -29,36 +27,35 @@
                 </div>
 
             </div>
+        </template>
 
-            <!-- Actions -->
-            <div class="ui-actions bg-gray-50 border-t border-gray-200 flex flex-col-reverse md:flex-row justify-end gap-x-3 md:rounded-b-lg p-5">
+        <!-- Footer -->
+        <template #footer>
 
-                <!-- Cancel -->
-                <v-button mode="link"
-                          color="gray"
-                          labelTitle="Cancel"
-                          class="mt-1 md:mt-0"
-                          @click="$emit('cancel')"
-                          id="dialog_confirm_cancel">
-                </v-button>
+            <!-- Cancel -->
+            <v-button mode="link"
+                      color="gray"
+                      labelTitle="Cancel"
+                      class="mt-1 md:mt-0"
+                      @click="$emit('cancel')"
+                      id="dialog_confirm_cancel">
+            </v-button>
 
-                <!-- Continue -->
-                <v-button color="blue"
-                          labelTitle="Continue"
-                          @click="$emit('continue')"
-                          id="dialog_confirm_continue">
-                </v-button>
+            <!-- Continue -->
+            <v-button color="blue"
+                      labelTitle="Continue"
+                      @click="$emit('continue')"
+                      id="dialog_confirm_continue">
+            </v-button>
 
-            </div>
+        </template>
 
-        </div>
-
-    </v-dialog>
+    </v-modal>
 </template>
 
 <script>
+    import ModalComponent from './modal.vue';
     import ButtonComponent from './button.vue';
-    import DialogComponent from './dialog.vue';
 
     export default
     {
@@ -68,7 +65,7 @@
          */
         components : {
             'v-button' : ButtonComponent,
-            'v-dialog' : DialogComponent,
+            'v-modal'  : ModalComponent,
         },
 
         /**

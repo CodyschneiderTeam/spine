@@ -1,5 +1,5 @@
 <template>
-    <v-modal class="ui-notice"
+    <v-aside class="ui-notice"
              :visible="visible">
 
         <!-- Header -->
@@ -48,11 +48,11 @@
 
         </template>
 
-    </v-modal>
+    </v-aside>
 </template>
 
 <script>
-    import ModalComponent from './modal.vue';
+    import AsideComponent from './aside.vue';
     import ButtonComponent from './button.vue';
 
     export default
@@ -62,8 +62,8 @@
          *
          */
         components : {
+            'v-aside'  : AsideComponent,
             'v-button' : ButtonComponent,
-            'v-modal'  : ModalComponent,
         },
 
         /**

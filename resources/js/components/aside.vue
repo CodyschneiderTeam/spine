@@ -1,19 +1,34 @@
 <template>
-	<div class="ui-dialog w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
+	<div :class="dismiss ? 'cursor-pointer' : ''"
+         class="ui-aside w-full h-full hidden fixed top-0 left-0 z-1001 overflow-x-hidden overflow-y-auto animated">
 
 		<!-- Background -->
 		<div ref="background"
-             @click="close()"
+			 @click="dismiss ? close() : null"
              class="ui-background bg-black/50 opacity-0 fixed inset-0 z-1000 animated">
 		</div>
 
 		<!-- Container -->
-        <div ref="container"
-             class="ui-container flex justify-center items-center min-h-screen scale-110 relative animated z-1001">
+        <div class="ui-container flex justify-end min-h-screen relative z-1001">
 
-            <!-- Slot -->
-            <div ref="trigger">
-                <slot></slot>
+            <!-- Panel -->
+            <div ref="trigger"
+                 class="ui-panel bg-white w-full md:max-w-600px translate-x-full cursor-auto relative z-1001 animated">
+
+                <!-- Header -->
+                <div v-if="$slots.header"
+                     class="ui-slot-header bg-gray-50 border-b border-gray-200 px-10 md:px-20 pt-12 pb-10">
+
+                    <!-- Slot -->
+                    <slot name="header"></slot>
+
+                </div>
+
+                <!-- Content -->
+                <div class="ui-slot-content bg-white p-10 md:p-20 md:pt-19">
+                    <slot name="content"></slot>
+                </div>
+
             </div>
 
         </div>
@@ -38,7 +53,7 @@
          * Define the events.
          *
          */
-        emits : ['closed'],
+        emits : ['close', 'closed'],
 
         /**
          * Define the data model.
@@ -53,6 +68,7 @@
 		 *
 		 */
 		props: {
+            'dismiss' : { type : Boolean, default : true },
 			'visible' : { type : Boolean, default : false },
 		},
 
@@ -106,8 +122,7 @@
 			{
 				document.body.style.overflow = 'visible';
 
-				this.$refs.container.style.opacity   = 0;
-                this.$refs.container.style.transform = 'scale(1.1)';
+                this.$refs.trigger.style.transform = 'translateX(100%)';
 
 				setTimeout(() => this.$refs.background.style.opacity = 0, 100);
 				setTimeout(() => this.$el.classList.add('hidden'), 300);
@@ -120,7 +135,7 @@
 	    	 */
 	    	lostUserAttention()
 	    	{
-                this.close();
+                this.dismiss ? this.close() : null;
 	    	},
 
 	    	/**
@@ -142,14 +157,12 @@
 
 				this.$el.classList.remove('hidden');
 
-				this.$refs.container.style.opacity   = 0;
-				this.$refs.container.style.transform = '';
+				this.$refs.trigger.style.transform = '';
 
 				setTimeout(() => this.ready = true, 50);
 				setTimeout(() => this.$el.scrollTop = 0, 50);
                 setTimeout(() => this.$refs.background.style.opacity = 1, 50);
-				setTimeout(() => this.$refs.container.style.opacity = 1, 50);
-				setTimeout(() => this.$refs.container.style.transform = 'scale(1)', 50);
+				setTimeout(() => this.$refs.trigger.style.transform = 'translateX(0)', 50);
 			},
 		}
 	}

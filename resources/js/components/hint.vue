@@ -1,52 +1,47 @@
 <template>
-    <v-dialog class="ui-hint"
-              :visible="visible">
+    <v-modal class="ui-hint"
+             :visible="visible">
 
-        <!-- Container -->
-        <div class="bg-white w-full max-w-500px md:rounded-lg">
+        <!-- Content -->
+        <template #content>
 
-            <!-- Content -->
-            <div class="px-9 py-8">
+            <!-- Title -->
+            <div class="ui-title font-system font-medium text-19px text-gray-900 leading-snug -tracking-[.2px] mb-4">
 
-                <!-- Title -->
-                <div class="ui-title font-system font-medium text-19px text-gray-900 leading-snug -tracking-[.2px] mb-4">
+                <!-- Icon -->
+                <i class="ui-icon far fa-info-circle text-19px text-emerald-700/80 mr-2"></i>
 
-                    <!-- Icon -->
-                    <i class="ui-icon far fa-info-circle text-19px text-emerald-700/80 mr-2"></i>
-
-                    <!-- Text -->
-                    {{ title }}
-
-                </div>
-
-                <!-- Information -->
-                <div class="ui-summary text-17px text-gray-600 leading-[1.6rem]">
-                    {{ summary }}
-                </div>
+                <!-- Text -->
+                {{ title }}
 
             </div>
 
-            <!-- Actions -->
-            <div class="ui-actions bg-gray-50 border-t border-gray-200 md:rounded-b-lg p-5">
-
-                <!-- Continue -->
-                <v-button color="blue"
-                          labelTitle="Close"
-                          id="dialog_hint_close"
-                          @click="$emit('close')"
-                          class="flex justify-end">
-                </v-button>
-
+            <!-- Information -->
+            <div class="ui-summary text-17px text-gray-600 leading-[1.6rem]">
+                {{ summary }}
             </div>
 
-        </div>
+        </template>
 
-    </v-dialog>
+        <!-- Footer -->
+        <template #footer>
+
+            <!-- Continue -->
+            <v-button color="blue"
+                      labelTitle="Close"
+                      id="dialog_hint_close"
+                      @click="$emit('close')"
+                      class="flex justify-end">
+            </v-button>
+
+        </template>
+
+    </v-modal>
 </template>
 
 <script>
+    import ModalComponent from './modal.vue';
     import ButtonComponent from './button.vue';
-    import DialogComponent from './dialog.vue';
 
     export default
     {
@@ -56,7 +51,7 @@
          */
         components : {
             'v-button' : ButtonComponent,
-            'v-dialog' : DialogComponent,
+            'v-modal'  : ModalComponent,
         },
 
         /**
