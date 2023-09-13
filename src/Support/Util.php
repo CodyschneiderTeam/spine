@@ -3,6 +3,8 @@
 namespace System\Support;
 
 use Closure;
+use Exception;
+use Throwable;
 
 class Util
 {
@@ -49,6 +51,32 @@ class Util
     public static function tap(mixed $value, callable $callback = null) : mixed
     {
         return tap($value, $callback);
+    }
+
+    /**
+     * Throw the given exception when the given value is truthy.
+     *
+     */
+    public static function throwIf(mixed $condition, string | Throwable $exception) : void
+    {
+        $condition = Is::callable($condition) ? $condition() : $condition;
+
+        $exception = Is::string($exception) ? new Exception($exception) : $exception;
+
+        static::when($condition, fn() => throw $exception);
+    }
+
+    /**
+     * Throw the given exception when the given value is falsy.
+     *
+     */
+    public static function throwUnless(mixed $condition, string | Throwable $exception) : void
+    {
+        $condition = Is::callable($condition) ? $condition() : $condition;
+
+        $exception = Is::string($exception) ? new Exception($exception) : $exception;
+
+        static::unless($condition, fn() => throw $exception);
     }
 
     /**

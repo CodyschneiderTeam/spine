@@ -69,9 +69,9 @@ class Arr extends Base
      * Split the given string value into array items using the given separator.
      *
      */
-    public static function split(string $value, string $separator = ',') : array
+    public static function split(string $value, string $separator = ',', int $limit = null) : array
     {
-        return explode($separator, $value);
+        return Is::null($limit) ? explode($separator, $value) : explode($separator, $value, $limit);
     }
 
     /**

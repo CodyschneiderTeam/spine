@@ -23,6 +23,15 @@ class Is
     }
 
     /**
+     * Determine if the given value is a function.
+     *
+     */
+    public static function callable(mixed $value) : bool
+    {
+        return is_callable($value);
+    }
+
+    /**
      * Determine if the given value is an integer.
      *
      */
@@ -47,6 +56,15 @@ class Is
     public static function notBoolean(mixed $value) : bool
     {
         return ! static::boolean($value);
+    }
+
+    /**
+     * Determine if the given value is not a function.
+     *
+     */
+    public static function notCallable(mixed $value) : bool
+    {
+        return ! static::callable($value);
     }
 
     /**
