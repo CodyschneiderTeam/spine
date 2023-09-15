@@ -13,6 +13,16 @@
              @mouseout="hover = false"
              class="ui-container relative group">
 
+            <!-- Counter -->
+            <div v-if="counter && maxLength !== null"
+                 class="font-semibold text-13px absolute bottom-2 right-2"
+                 :class="((modelValue.length / maxLength) * 100) < 75 ? 'text-emerald-600' : (modelValue.length < maxLength ? 'text-amber-500' : 'text-red-500')">
+
+                <!-- Remaining -->
+                {{ maxLength - modelValue.length }}
+
+            </div>
+
             <!-- Input -->
             <input :id="name"
                    :name="name"
@@ -104,6 +114,7 @@
          *
          */
         props : {
+            'counter'      : { type : Boolean,         default : false },
 			'items'        : { type : [Array, Object], default : [] },
 			'itemValueKey' : { type : String,          default : '' },
             'lines'        : { type : Number,          default : 1 },
