@@ -17,6 +17,15 @@ class Arr extends Base
     }
 
     /**
+     * Determine if the given value is not in the array.
+     *
+     */
+    public static function doesntContain(mixed $value, array $array, bool $strict = false) : bool
+    {
+        return ! static::contains($value, $array, $strict);
+    }
+
+    /**
      * Iterate over the given array and pass each item to the given closure.
      *
      */

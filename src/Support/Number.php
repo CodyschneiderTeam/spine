@@ -25,6 +25,28 @@ class Number
     }
 
     /**
+     * Retrieve the highest value between the given value and options.
+     *
+     */
+    public static function maximum(mixed $value, int | float | array ...$options) : mixed
+    {
+        $options = Util::blank($options) ? [0] : $options;
+
+        return max($value, ...$options);
+    }
+
+    /**
+     * Retrieve the lowest value between the given value and options.
+     *
+     */
+    public static function minimum(mixed $value, int | float | array ...$options) : mixed
+    {
+        $options = Util::blank($options) ? [0] : $options;
+
+        return min($value, ...$options);
+    }
+
+    /**
      * Round the given value to the given precision using the given mode.
      *
      */
