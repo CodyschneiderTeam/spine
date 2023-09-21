@@ -33,9 +33,15 @@ export default class Util
      */
     static copy(value, closure = null)
     {
-        let promise = window.navigator.clipboard.writeText(value);
+        if (! window.isSecureContext) {
+            return window.alert('Clipboard access is disabled on websites without SSL.');
+        }
 
-        return closure ? promise.then(() => closure()) : null;
+        try {
+            window.navigator.clipboard.writeText(value).then(() => closure ? closure() : null)
+        } catch (err) {
+            window.alert('Unable to copy text. Your browser or popup does not allow it.');
+        }
     }
 
     /**
