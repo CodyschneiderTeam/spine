@@ -47,6 +47,15 @@ class Number
     }
 
     /**
+     * Generate a random integer between the given range.
+     *
+     */
+    public static function random(int $from = 1, int $to = 10) : int
+    {
+        return rand($from, $to);
+    }
+
+    /**
      * Round the given value to the given precision using the given mode.
      *
      */

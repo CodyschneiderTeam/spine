@@ -57,6 +57,15 @@ class Arr extends Base
     }
 
     /**
+     * Retrieve all the keys or a subset of the keys of in the given array.
+     *
+     */
+    public static function keys(array $array, mixed $filter = null, bool $strict = false) : array
+    {
+        return Is::null($filter) ? array_keys($array) : array_keys($array, $filter, $strict);
+    }
+
+    /**
      * Transform the given array using the given closure.
      *
      */
