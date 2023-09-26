@@ -4,7 +4,7 @@ namespace System\Enums;
 
 use System\Types\Enum;
 
-enum HttpCodes : int
+enum HttpStatusCodes : int
 {
     use Enum;
 
