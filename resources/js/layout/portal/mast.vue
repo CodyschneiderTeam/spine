@@ -3,16 +3,18 @@
         <div class="container h-full flex justify-between items-center">
 
             <!-- Branding -->
-            <div class="flex items-center">
+            <div class="w-full flex items-center">
 
                 <!-- Logo -->
                 <img class="h-22px"
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Product -->
-                <img title="Product"
-                     class="h-14px ml-13px"
-                     :src="Server.asset('images/product.png')" />
+                <div title="Product"
+                     class="bg-white h-14px w-full ml-13px"
+                     :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
+                              -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
+                </div>
 
             </div>
 

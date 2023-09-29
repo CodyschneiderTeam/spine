@@ -15,8 +15,8 @@
 
                 <!-- Header -->
                 <v-header :title="title"
-                          :tabs="!! tabs.filter(link => (link?.show ?? true)).length"
-                          :actions="!! actions.filter(link => (link?.show ?? true)).length">
+                          :tabs="!! tabs.filter(link => link.hasOwnProperty('separator') ? link.separator : (link?.show ?? true)).length"
+                          :actions="!! actions.filter(link => link.hasOwnProperty('separator') ? link.separator : (link?.show ?? true)).length">
                 </v-header>
 
                 <!-- Actions -->

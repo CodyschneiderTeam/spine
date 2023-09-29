@@ -13,13 +13,13 @@
             <template v-for="link in menu.filter(link => (link?.show ?? true))">
 
                 <!-- Separator -->
-                <div v-if="link?.separator ?? false"
-                     class="border-t border-gray-200 pt-10px mt-10px">
+                <div class="border-t border-gray-200 pt-10px mt-10px"
+                     v-if="link.hasOwnProperty('separator') && link.separator">
                 </div>
 
                 <!-- Link -->
                 <div @click="link['action']()"
-                     v-if="! (link?.separator ?? false)"
+                     v-if="! link.hasOwnProperty('separator')"
                      :dusk="`action-${link?.id ?? link.label.toLowerCase().replaceAll(' ', '-')}`"
                      class="hover:bg-gray-200/75 flex items-center min-w-175px cursor-pointer animated group px-6 py-10px">
 
@@ -36,6 +36,19 @@
                 </div>
 
             </template>
+
+            {{ menu.filter(link => (link.hasOwnProperty('separator') && link.separator) || (link?.show ?? true)).length }}
+
+                <!-- Empty -->
+                <div v-if="! menu.filter(link => (link.hasOwnProperty('separator') && link.separator) || (link?.show ?? true)).length"
+                     class="flex items-center min-w-175px cursor-pointer animated group px-6 py-10px">
+
+                    <!-- Label -->
+                    <span class="text-gray-700">
+                        No options available
+                    </span>
+
+                </div>
 
         </div>
 

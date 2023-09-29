@@ -10,9 +10,11 @@
                  :src="Server.asset('images/logo.png')" />
 
             <!-- Product -->
-            <img title="Product"
-                 class="h-15px ml-3"
-                 :src="Server.asset('images/product.png')" />
+            <div title="Product"
+                 class="bg-white h-15px w-full ml-3"
+                 :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
+                          -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
+            </div>
 
         </div>
 
