@@ -8,12 +8,14 @@
             <div class="flex items-center mb-16">
 
                 <!-- Logo -->
-                <img class="h-22px"
+                <img class="h-22px cursor-pointer"
+                     @click="Browser.redirect(home)"
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Product -->
                 <div title="Product"
-                     class="bg-[#04263b] h-14px w-full ml-13px"
+                     @click="Browser.redirect(home)"
+                     class="bg-[#04263b] h-14px w-full cursor-pointer ml-13px"
                      :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
                               -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
                 </div>
@@ -139,6 +141,7 @@
          *
          */
         props : {
+            'home'   : { type : String, default : 'dashboard' },
             'wizard' : { type : Object, default : {} },
         },
     }
