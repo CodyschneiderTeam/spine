@@ -6,8 +6,8 @@
                 ref="button"
                 :dusk="name"
                 @click="execute($event)"
-                :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px']"
-                class="ui-control border border-solid w-full md:w-auto min-h-35px flex items-center justify-center rounded cursor-pointer transition-all duration-300 relative">
+                :class="[theme.join(' '), mode === 'link' ? '' : 'min-w-100px', disabled ? '' : 'cursor-pointer']"
+                class="ui-control border border-solid w-full md:w-auto min-h-35px flex items-center justify-center rounded transition-all duration-300 relative">
 
             <!-- Label -->
             <div :class="processing ? 'text-transparent hidden' : ''"
