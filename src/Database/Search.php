@@ -67,6 +67,7 @@ class Search
         foreach ($this->payload['filtering'] as $key => $filter) {
             $this->query = match ($filter['type']) {
                 'calendar' => $this->query->whereBetween($key, $period($filter['value'])),
+                'having'   => $this->query->having($key, $filter['value']),
                 'like'     => $this->query->whereLike($key, $filter['value']),
                 'match'    => $this->query->where($key, $filter['value']),
                 default    => $this->query,

@@ -21,7 +21,7 @@
         <!-- Action -->
         <span @click="actionCommand()"
               v-if="! Util.blank(actionLabel) && ! Util.blank(actionCommand)"
-              class="ui-action font-semibold text-13px text-sky-600 hover:text-rose-700 uppercase cursor-pointer animated mt-5">
+              class="ui-action font-semibold text-13px text-sky-600 hover:text-rose-700 uppercase cursor-pointer animated mt-6">
 
             <!-- Text -->
             {{ actionLabel }}

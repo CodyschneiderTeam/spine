@@ -27,9 +27,8 @@
             </div>
 
             <!-- Animation -->
-            <div style="animation: ui-button-spin 750ms infinite linear"
-                 :class="[processing ? '' : 'hidden', modes[mode][color].spinner]"
-                 class="ui-spinner border-2 border-r-transparent border-t-transparent h-15px w-15px rounded-full">
+            <div :class="[processing ? '' : 'hidden', modes[mode][color].spinner]"
+                 class="ui-spinner border-2 border-r-transparent border-t-transparent h-15px w-15px rounded-full animate-spin">
             </div>
 
         </button>

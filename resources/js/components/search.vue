@@ -70,12 +70,12 @@
                         itemValueKey="id"
                         itemTextKey="label"
                         labelTitle="Order by"
-                        :items="source.search.ordering"
                         placeholder="Select a field..."
-                        v-if="source.search.ordering.length"
                         v-model="form[source.search.order_key]"
                         :id="`search_${source.search.order_key}`"
-                        :error="form.errors[source.search.order_key]">
+                        :error="form.errors[source.search.order_key]"
+                        :items="source.search.ordering.filter(i => i?.show ?? true)"
+                        v-if="source.search.ordering.filter(i => i?.show ?? true).length">
             </v-dropdown>
 
             <!-- Footer -->

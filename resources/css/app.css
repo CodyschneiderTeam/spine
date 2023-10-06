@@ -3,8 +3,8 @@
  *
  */
 @import './utilities.css';
-@import './elements.css';
-@import './packages.css';
+@import './theme.css';
+@import './vendor.css';
 
 /**
  * Tailwind CSS.

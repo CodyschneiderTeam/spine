@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'driver' => Env::get('HASH_DRIVER', 'argon2id'),
+    'driver' => Env::get('HASH_DRIVER', 'bcrypt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
     */
 
     'bcrypt' => [
-        'rounds' => Env::get('BCRYPT_ROUNDS', 10),
+        'rounds' => Env::get('BCRYPT_ROUNDS', 12),
     ],
 
     /*
