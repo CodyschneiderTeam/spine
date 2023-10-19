@@ -20,8 +20,18 @@ export default class System
     static configure(classes = {})
     {
         window.System = Object.assign({}, classes, {
-            Browser, Calendar, Dialog, Form, Is, Number,
-            Page, Request, Server, Text, User, Util,
+            Browser,
+            Calendar,
+            Dialog,
+            Form,
+            Is,
+            Number,
+            Page,
+            Request,
+            Server,
+            Text,
+            User,
+            Util,
         });
 
         Object.entries(window.System).forEach(i => {

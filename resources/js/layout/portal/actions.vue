@@ -37,18 +37,16 @@
 
             </template>
 
-            {{ menu.filter(link => (link.hasOwnProperty('separator') && link.separator) || (link?.show ?? true)).length }}
+            <!-- Empty -->
+            <div v-if="! menu.filter(link => (link.hasOwnProperty('separator') && link.separator) || (link?.show ?? true)).length"
+                 class="flex items-center min-w-175px cursor-pointer animated group px-6 py-10px">
 
-                <!-- Empty -->
-                <div v-if="! menu.filter(link => (link.hasOwnProperty('separator') && link.separator) || (link?.show ?? true)).length"
-                     class="flex items-center min-w-175px cursor-pointer animated group px-6 py-10px">
+                <!-- Label -->
+                <span class="text-gray-700">
+                    No options available
+                </span>
 
-                    <!-- Label -->
-                    <span class="text-gray-700">
-                        No options available
-                    </span>
-
-                </div>
+            </div>
 
         </div>
 

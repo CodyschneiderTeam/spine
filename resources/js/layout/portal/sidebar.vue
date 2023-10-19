@@ -10,11 +10,11 @@
                  :src="Server.asset('images/logo.png')" />
 
             <!-- Product -->
-            <div title="Product"
-                 class="bg-white h-15px w-full ml-3"
-                 :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
-                          -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
-            </div>
+            <v-svg title="Product"
+                   class="text-white h-15px ml-3"
+                   @click="Browser.redirect(home)"
+                   :source="Server.asset('images/product.svg')">
+            </v-svg>
 
         </div>
 
@@ -56,6 +56,7 @@
 
 <script>
     import Container from 'ui/mixins/Container';
+    import SvgComponent from '../../components/svg.vue';
 
     export default
     {
@@ -66,6 +67,14 @@
         mixins : [
             Container,
         ],
+
+        /**
+         * Define the components.
+         *
+         */
+        components : {
+            'v-svg' : SvgComponent,
+        },
 
 		/**
 		 * Define the supporting methods.

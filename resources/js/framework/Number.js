@@ -1,6 +1,15 @@
 export default class Number
 {
     /**
+     * Determine if the given value is between the given minimum and maximum.
+     *
+     */
+    static between(value, min, max)
+    {
+        return value >= min && value <= max;
+    }
+
+    /**
      * Process the given numerical value into its correct format.
      *
      */

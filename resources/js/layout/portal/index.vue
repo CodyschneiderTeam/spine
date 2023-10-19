@@ -26,7 +26,7 @@
                     <v-tabs :menu="tabs"
                             class="lg:hidden py-10px"
                             v-if="! Browser.automated()"
-                            :class="actions.filter(link => (link?.show ?? true)).length ? 'pb-7' : 'pb-18px'">
+                            :class="actions.filter(link => (link?.show ?? true)).length ? 'pb-7' : 'pb-10px'">
                     </v-tabs>
 
                     <!-- Separator -->

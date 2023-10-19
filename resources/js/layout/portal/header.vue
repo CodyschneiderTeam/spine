@@ -3,13 +3,13 @@
 
         <!-- Breadcrumbs -->
         <h3 class="font-medium text-17px xl:text-18px flex-1 -mb-3px xl:-mb-1px">
-            <template v-for="(element, index) in title.split('-')">
+            <template v-for="(element, index) in title.split(' -- ')">
 
                 <!-- Element -->
                 {{ element }}
 
                 <!-- Arrow -->
-                <i v-if="index !== title.split('-').length - 1"
+                <i v-if="index !== title.split(' -- ').length - 1"
                    class="fas fa-arrow-right text-13px text-gray-400 relative -top-1px mx-1 md:mx-2">
                 </i>
 

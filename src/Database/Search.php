@@ -3,11 +3,17 @@
 namespace System\Database;
 
 use Closure;
+use Exception;
 use System\Support\Arr;
+use System\Support\Text;
+use System\Support\Util;
 use System\Support\Calendar;
+use System\Types\ListRequest;
+use Illuminate\Support\Collection;
 use System\Macros\Builder as Macro;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Expression;
 
 class Search
 {
@@ -33,22 +39,44 @@ class Search
      * Constructor.
      *
      */
-    public function __construct(Builder $query, array $payload, Closure $sort = null)
+    public function __construct(Builder $query, ListRequest $request, Closure $sort = null)
     {
+        foreach ($request->filtering as $filter) {
+            if (Util::blank($query->columns) && ($filter['type'] ?? '') === 'having') {
+                throw new Exception("You need to select the columns using ->select() when filters include 'having'");
+            }
+        }
+
         $this->sort    = $sort;
         $this->query   = $query;
-        $this->payload = $payload;
+        $this->payload = $request->validated();
     }
 
     /**
      * Factory method.
      *
      */
-    public static function execute(Builder | Macro $query, array $payload, Closure $sort = null) : Builder
+    public static function execute(Builder | Macro $query, ListRequest $request, Closure $sort = null) : Builder
     {
-        return (new static($query, $payload, $sort))
+        return (new static($query, $request, $sort))
             ->withFiltering()
             ->withSorting();
+    }
+
+    /**
+     * Extract the relevant having clause from the underlying query and format it for use.
+     *
+     */
+    protected function havingExpression(string $key, mixed $value) : Builder
+    {
+        $sql = Collection::make($this->query->columns)
+            ->filter(fn($item) => $item instanceof Expression)
+            ->map(fn($item) => Text::lower($item->getValue($this->query->getGrammar())))
+            ->filter(fn($item) => Text::endsWith($item, $key))
+            ->map(fn($item) => Text::before($item, 'as '))
+            ->first();
+
+        return $this->query->havingRaw("$sql = {$value}");
     }
 
     /**
@@ -67,7 +95,7 @@ class Search
         foreach ($this->payload['filtering'] as $key => $filter) {
             $this->query = match ($filter['type']) {
                 'calendar' => $this->query->whereBetween($key, $period($filter['value'])),
-                'having'   => $this->query->having($key, $filter['value']),
+                'having'   => $this->havingExpression($key, $filter['value']),
                 'like'     => $this->query->whereLike($key, $filter['value']),
                 'match'    => $this->query->where($key, $filter['value']),
                 default    => $this->query,

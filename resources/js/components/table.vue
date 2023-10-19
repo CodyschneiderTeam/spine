@@ -77,6 +77,7 @@
                         <!-- Cell -->
                         <td :data-title="column.label"
                             v-for="column in source.data.columns"
+                            :dusk="`ui-table-row-${row[rowKey]}-cell-${column.label.toLowerCase()}`"
                             :class="[
                                 column.styles,
                                 column.label === 'Actions' ? 'lg:w-50px lg:min-w-50px lg:max-w-50px lg:pr-0' : 'lg:max-w-300px',

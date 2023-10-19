@@ -15,7 +15,7 @@
             <div ref="trigger">
 
                 <!-- Content -->
-                <div class="bg-white w-full max-w-500px md:rounded-lg p-8">
+                <div class="ui-content bg-white w-full max-w-500px md:rounded-lg p-8">
                     <slot name="content"></slot>
                 </div>
 

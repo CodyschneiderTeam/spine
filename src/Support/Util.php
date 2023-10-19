@@ -96,4 +96,13 @@ class Util
     {
         return $value ? $callback($value) : $value;
     }
+
+    /**
+     * Call the given Closure with the given value then return the value.
+     *
+     */
+    public static function with(mixed $value, callable $callback = null) : mixed
+    {
+        return with($value, $callback);
+    }
 }

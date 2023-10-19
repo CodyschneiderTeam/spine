@@ -10,11 +10,11 @@
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Product -->
-                <div title="Product"
-                     class="bg-white h-14px w-full ml-13px"
-                     :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
-                              -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
-                </div>
+                <v-svg title="Product"
+                       @click="Browser.redirect(home)"
+                       class="text-white h-14px ml-13px"
+                       :source="Server.asset('images/product.svg')">
+                </v-svg>
 
             </div>
 
@@ -32,3 +32,18 @@
         </div>
     </div>
 </template>
+
+<script>
+    import SvgComponent from '../../components/svg.vue';
+
+    export default
+    {
+        /**
+         * Define the components.
+         *
+         */
+        components : {
+            'v-svg' : SvgComponent,
+        },
+    }
+</script>

@@ -110,6 +110,7 @@ return [
         'default' => [
             'url'      => Env::get('REDIS_URL'),
             'host'     => Env::get('REDIS_HOST', '127.0.0.1'),
+            'username' => Env::get('REDIS_USERNAME'),
             'password' => Env::get('REDIS_PASSWORD'),
             'port'     => Env::get('REDIS_PORT', '6379'),
             'database' => Env::get('REDIS_DB', '0'),
@@ -118,6 +119,7 @@ return [
         'cache'   => [
             'url'      => Env::get('REDIS_URL'),
             'host'     => Env::get('REDIS_HOST', '127.0.0.1'),
+            'username' => Env::get('REDIS_USERNAME'),
             'password' => Env::get('REDIS_PASSWORD'),
             'port'     => Env::get('REDIS_PORT', '6379'),
             'database' => Env::get('REDIS_CACHE_DB', '0'),

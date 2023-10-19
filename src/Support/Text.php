@@ -44,6 +44,15 @@ class Text extends Str
     }
 
     /**
+     * Determine if the given text is between the given min and max number of characters.
+     *
+     */
+    public static function lengthBetween(string $text, int $min, int $max) : string
+    {
+        return static::length($text) >= $min && static::length($text) <= $max;
+    }
+
+    /**
      * Create a fluent string using the given string.
      *
      */

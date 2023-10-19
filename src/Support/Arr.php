@@ -8,6 +8,15 @@ use Illuminate\Support\Arr as Base;
 class Arr extends Base
 {
     /**
+     * Retrieve the total number of items in the given array.
+     *
+     */
+    public static function count(array $array) : int
+    {
+        return count($array);
+    }
+
+    /**
      * Determine if the given value is in the array.
      *
      */
@@ -81,6 +90,15 @@ class Arr extends Base
     public static function merge(array $array, array $payload) : array
     {
         return array_merge($array, $payload);
+    }
+
+    /**
+     * Reverse the content of the given array.
+     *
+     */
+    public static function reverse(array $array, bool $preserve_keys = true) : array
+    {
+        return array_reverse($array, $preserve_keys);
     }
 
     /**

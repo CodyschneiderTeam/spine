@@ -14,19 +14,19 @@ abstract class ListRequest extends FormRequest
      * Retrieve the list of columns to display.
      *
      */
-    protected mixed $columns = [];
+    public mixed $columns = [];
 
     /**
      * Retrieve the applicable filtering options.
      *
      */
-    protected mixed $filtering = [];
+    public mixed $filtering = [];
 
     /**
      * Retrieve the applicable ordering options.
      *
      */
-    protected mixed $ordering = [];
+    public mixed $ordering = [];
 
     /**
      * Retrieve the column options.

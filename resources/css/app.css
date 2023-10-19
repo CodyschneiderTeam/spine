@@ -1,10 +1,119 @@
 /**
- * Imports.
+ * Theme.
  *
  */
-@import './utilities.css';
-@import './theme.css';
-@import './vendor.css';
+@layer base
+{
+    /**
+     * Page.
+     *
+     */
+    body { margin-bottom: 0 !important; font-variant-numeric: proportional-nums }
+
+    /**
+     * Headings.
+     *
+     */
+    h1 { @apply font-system font-semibold text-23px text-gray-800 -tracking-[.4px] mb-6 }
+    h2 { @apply font-system font-semibold text-22px text-gray-800 mb-6 }
+    h3 { @apply font-system font-semibold text-21px text-gray-800 mb-6 }
+    h4 { @apply font-system font-semibold text-19px text-gray-800 mb-6 }
+    h5 { @apply font-system font-medium text-17px text-gray-800 mb-6 }
+    h6 { @apply font-system font-medium text-16px text-gray-800 mb-6 }
+
+    /**
+     * Content.
+     *
+     */
+    p { @apply text-17px text-gray-600 leading-normal mb-5 }
+    a { @apply text-sky-600 hover:text-rose-700 no-underline animated }
+    span { @apply leading-none }
+
+    /**
+     * Lists.
+     *
+     */
+    ul { @apply mb-7 }
+    ol { @apply mb-7 }
+    li { @apply text-gray-600/90 leading-normal list-disc ml-6 mb-2px }
+
+    /**
+     * Images.
+     *
+     */
+    svg { @apply fill-current }
+
+    /**
+     * Layout.
+     *
+     */
+    hr { @apply my-10 }
+
+    /**
+     * Controls.
+     *
+     */
+    input::placeholder { @apply font-normal text-16px text-gray-400 pt-2px }
+    textarea::placeholder { @apply font-normal text-16px text-gray-400 }
+    input:-webkit-autofill { animation-name: autofill; animation-fill-mode: both; transition-delay: 99999s }
+    input:-webkit-autofill .clear { @apply bg-transparent }
+    button, input, textarea, select { @apply outline-none focus:outline-none active:outline-none ; font-variant-numeric: proportional-nums }
+    [list]::-webkit-calendar-picker-indicator { display: none !important }
+
+    /**
+     * Tables.
+     *
+     */
+    table { @apply lg:table w-full border-spacing-0 border-collapse }
+    table thead { @apply hidden lg:table-header-group }
+    table thead tr th { @apply border-b border-gray-200/80 font-medium text-gray-700 first-of-type:rounded-tl last-of-type:rounded-tr align-baseline px-5 pb-17px }
+    table tbody tr { @apply lg:hover:bg-orange-200/10 flex flex-col lg:table-row animated mb-4 last-of-type:mb-0 }
+    table tbody tr td { @apply border-x border-b first-of-type:border-t lg:border-l-0 lg:border-r-0 lg:border-t border-x-gray-200 border-b-gray-200/80 last-of-type:border-b-gray-200 text-16px text-gray-500 leading-5 first-of-type:rounded-t last-of-type:rounded-b lg:first-of-type:rounded-none lg:last-of-type:rounded-none flex flex-col items-end lg:table-cell relative p-5 pt-11 lg:pt-5 before:text-16px before:text-gray-500/90 before:absolute before:top-3 before:left-14px before:lg:hidden before:content-[attr(data-title)] }
+
+    /**
+     * Components.
+     *
+     */
+    .ui-calendar .ui-textbox .ui-input { @apply cursor-pointer }
+    .ui-calendar.ui-open .ui-textbox .ui-input { @apply border-sky-500 }
+    .ui-hint .ui-container .ui-content { @apply md:rounded-b-none }
+    .ui-lookup.ui-open .ui-input { @apply border-sky-500 rounded-b-none }
+    .ui-table .ui-badge .ui-content-opaque { @apply inline }
+    .ui-tags .tagify { @apply border border-gray-300 animated }
+    .ui-tags .tagify .tagify__input:before { @apply text-16px text-gray-400 }
+    .ui-tags .tagify .tagify__input:after { @apply text-16px text-gray-400 }
+    .ui-tags .tagify .tagify__tag { @apply bg-sky-600/10 hover:bg-sky-600/10 rounded px-1 mb-0 }
+    .ui-tags .tagify .tagify__tag div:before { @apply shadow-none }
+    .ui-tags .tagify .tagify__tag:hover div:before { @apply shadow-none }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn { @apply bg-transparent relative top-[.5px] }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn:after { @apply text-16px text-gray-400 animated }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn:hover { @apply bg-transparent }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn:hover:after { @apply text-sky-700 }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn:hover + div:before { box-shadow: 0 0 #0000 !important }
+    .ui-tags .tagify .tagify__tag .tagify__tag__removeBtn:hover + div > span.tagify__tag-text { @apply opacity-100 }
+    .ui-tags .tagify .tagify__tag .tagify__tag-text { @apply font-normal text-17px text-black overflow-visible pt-1 }
+    .ui-tags .tagify .tagify__tag + .tagify__input:before { @apply hidden }
+    .ui-tags .tagify .tagify__tag + .tagify__input:after { @apply hidden }
+    .ui-tags .tagify.tagify--focus .tagify__input:before { @apply hidden }
+    .ui-tags .tagify.tagify--focus .tagify__input:after { @apply hidden }
+
+    /**
+     * Utilities.
+     *
+     */
+    .animated { @apply transition duration-300 }
+    .hide-scrollbar::-webkit-scrollbar { @apply w-0 h-0 bg-transparent }
+    .hide-scrollbar::-webkit-scrollbar-thumb { @apply bg-transparent }
+    .hide-scrollbar::-webkit-scrollbar-track { @apply bg-transparent }
+
+    /**
+     * Vendor.
+     *
+     */
+    .fa-fw { @apply w-31px min-w-31px max-w-31px }
+    #nprogress .bar { height: 3px !important }
+    #nprogress .bar .peg { @apply shadow-none }
+}
 
 /**
  * Tailwind CSS.

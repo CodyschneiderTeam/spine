@@ -5,7 +5,7 @@
         <aside class="bg-gray-50 lg:border-r border-b lg:border-b-0 border-gray-200 flex flex-col w-full lg:max-w-350px lg:h-screen lg:sticky top-0 p-12 mb-4 lg:mb-0">
 
             <!-- Branding -->
-            <div class="flex items-center mb-16">
+            <div class="flex items-center mb-10 lg:mb-16">
 
                 <!-- Logo -->
                 <img class="h-22px cursor-pointer"
@@ -13,12 +13,11 @@
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Product -->
-                <div title="Product"
-                     @click="Browser.redirect(home)"
-                     class="bg-[#04263b] h-14px w-full cursor-pointer ml-13px"
-                     :style="`mask: url('${Server.asset('images/product.svg')}') no-repeat left center;
-                              -webkit-mask: url('${Server.asset('images/product.svg')}') no-repeat left center`">
-                </div>
+                <v-svg title="Product"
+                       @click="Browser.redirect(home)"
+                       :source="Server.asset('images/product.svg')"
+                       class="text-[#04263b] h-14px cursor-pointer ml-13px">
+                </v-svg>
 
             </div>
 
@@ -27,7 +26,7 @@
 
             <!-- Steps -->
             <div v-if="wizard.steps.length"
-                 class="flex flex-col items-start mt-16">
+                 class="flex flex-col items-start mt-11 lg:mt-16">
 
                 <!-- Step -->
                 <div class="flex"
@@ -125,6 +124,7 @@
 
 <script>
     import Base from '../base/index.vue';
+    import SvgComponent from '../../components/svg.vue';
 
     export default
     {
@@ -134,6 +134,7 @@
          */
         components : {
             'v-base' : Base,
+            'v-svg'  : SvgComponent,
         },
 
         /**

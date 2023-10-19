@@ -92,20 +92,20 @@ class Calendar extends CarbonImmutable
     }
 
     /**
-     * Ensure that Laravel always uses an immutable Carbon instance.
-     *
-     */
-    public static function useImmutable() : void
-    {
-        Facade::use(static::class);
-    }
-
-    /**
      * Format the instance as a human-friendly time.
      *
      */
     public function time() : string
     {
         return $this->format('g:i');
+    }
+
+    /**
+     * Ensure that Laravel always uses an immutable Carbon instance.
+     *
+     */
+    public static function useImmutable() : void
+    {
+        Facade::use(static::class);
     }
 }

@@ -7,6 +7,15 @@ use Countable;
 class Number
 {
     /**
+     * Determine if the given value is between the given minimun and maximum.
+     *
+     */
+    public static function between(mixed $value, int $min, int $max) : bool
+    {
+        return $value >= $min && $value <= $max;
+    }
+
+    /**
      * Retrieve the total number of items in the given value.
      *
      */
@@ -65,11 +74,20 @@ class Number
     }
 
     /**
-     * Round the given value to the given precision using the given mode then cast to an integer.
+     * Round the given value down.
      *
      */
-    public static function roundToInteger(int | float $value, int $precision = 0, int $mode = PHP_ROUND_HALF_UP) : int
+    public static function roundDown(int | float $value) : float | false
     {
-        return (int) static::round($value, $precision, $mode);
+        return floor($value);
+    }
+
+    /**
+     * Round the given value up.
+     *
+     */
+    public static function roundUp(int | float $value) : float | false
+    {
+        return ceil($value);
     }
 }
