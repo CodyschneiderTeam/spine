@@ -76,6 +76,7 @@
      */
     .ui-calendar .ui-textbox .ui-input { @apply cursor-pointer }
     .ui-calendar.ui-open .ui-textbox .ui-input { @apply border-sky-500 }
+    .ui-confirm .ui-container .ui-content { @apply md:rounded-b-none }
     .ui-hint .ui-container .ui-content { @apply md:rounded-b-none }
     .ui-lookup.ui-open .ui-input { @apply border-sky-500 rounded-b-none }
     .ui-table .ui-badge .ui-content-opaque { @apply inline }

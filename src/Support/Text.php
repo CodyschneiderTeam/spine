@@ -71,4 +71,13 @@ class Text extends Str
     {
         return trim($value, $characters);
     }
+
+    /**
+     * Capitalize each of the words in the given value.
+     *
+     */
+    public static function ucwords(string $value) : string
+    {
+        return ucwords($value);
+    }
 }
