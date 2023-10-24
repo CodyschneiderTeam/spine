@@ -54,12 +54,12 @@
 
                             <!-- Options -->
                             <option :key="index"
-                                    :value="index + 1"
+                                    :value="index"
                                     v-for="(month, index) in months"
-                                    :selected="(index + 1) === luxon.month">
+                                    :selected="index === luxon.month">
 
                                 <!-- Text -->
-                                {{ month }}
+                                {{ months[index - 1] }}
 
                             </option>
 
@@ -314,8 +314,7 @@
             limits    : { minimum : DateTime.fromISO(this.minDate), maximum : DateTime.fromISO(this.maxDate) },
             luxon     : null,
             minutes   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
-            months    : Array(12).fill('').map((v, i) => new Intl.DateTimeFormat(this.locale, { month: 'short' }).format(new Date(Date.UTC(2021, (i)%12)))),
-            seconds   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
+            months    : Array(12).fill('').map((v, i) => new Intl.DateTimeFormat(this.locale, { month: 'short' }).format(new Date(Date.UTC(2021, (i)%12, 20)))),            seconds   : Array(60).fill('').map((v, i) => `${i}`.padStart(2, '0')),
             selectors : { date : false, time : false },
             value     : null,
             week      : Array(7).fill('').map((v, i) => new Intl.DateTimeFormat(this.locale, { weekday: 'short' }).format(new Date(Date.UTC(2021, 5, i)))),
