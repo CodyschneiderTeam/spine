@@ -102,6 +102,15 @@ class Arr extends Base
     }
 
     /**
+     * Extract a slice of elements from the given array.
+     *
+     */
+    public static function slice(array $array, int $offset, int $length = null, bool $preserve_keys = true) : array
+    {
+        return array_slice($array, $offset, $length, $preserve_keys);
+    }
+
+    /**
      * Split the given string value into array items using the given separator.
      *
      */
@@ -117,5 +126,14 @@ class Arr extends Base
     public static function toCollection(array $array) : Collection
     {
         return Collection::make($array);
+    }
+
+    /**
+     * Retrieve all the values in the given array.
+     *
+     */
+    public static function values(array $array) : array
+    {
+        return array_values($array);
     }
 }
