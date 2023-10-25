@@ -139,7 +139,7 @@
                     405 => 'the request method is not valid for the chosen resource.',
                     500 => 'the server encountered an error. Try again, or contact us.',
                     503 => 'we are performing routine maintenance. Try again later.',
-                ][$code]
+                ][$code] ?? 'the server encountered an unknown error. Try again, or contact us'
             }}
 
         </h2>
