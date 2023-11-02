@@ -35,8 +35,6 @@ class ServiceProvider extends Provider
         PasswordDefaults::enforce();
         RedirectResponse::register();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
-
         Util::when(App::isProduction(), fn() => SlowQueries::setup());
         Util::unless(App::isProduction(), fn() => LazyLoading::setup());
         Util::unless(App::isProduction(), fn() => Notification::register());
