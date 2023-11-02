@@ -44,6 +44,8 @@ trait Process
      */
     protected function tearDown() : void
     {
+        File::delete(App::storagePath('framework/clockwork'));
+
         File::deleteDirectory(App::storagePath('testing/public'), true);
         File::deleteDirectory(App::storagePath('testing/private'), true);
 
