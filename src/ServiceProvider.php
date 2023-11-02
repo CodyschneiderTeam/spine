@@ -21,7 +21,6 @@ use System\Security\PasswordDefaults;
 use System\Database\LengthAwarePaginator;
 use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Pagination\Paginator as BasePaginator;
-use System\Configuration\Files as ConfigurationFiles;
 use Illuminate\Pagination\LengthAwarePaginator as BaseLengthAwarePaginator;
 
 class ServiceProvider extends Provider
@@ -60,7 +59,5 @@ class ServiceProvider extends Provider
 
         App::bind(BasePaginator::class, Paginator::class);
         App::bind(BaseLengthAwarePaginator::class, LengthAwarePaginator::class);
-
-        ConfigurationFiles::get()->each(fn($name, $path) => $this->mergeConfigFrom($path, $name));
     }
 }
