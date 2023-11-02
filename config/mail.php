@@ -48,6 +48,13 @@ return [
             'timeout'    => null,
         ],
 
+        'mailgun' => [
+            'transport' => 'mailgun',
+            'domain'    => Env::get('MAILGUN_DOMAIN'),
+            'secret'    => Env::get('MAILGUN_SECRET'),
+            'endpoint'  => Env::get('MAILGUN_ENDPOINT'),
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],
