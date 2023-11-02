@@ -6,7 +6,7 @@
             <template v-for="(element, index) in title.split(' -- ')">
 
                 <!-- Element -->
-                {{ element }}
+                <span>{{ element }}</span>
 
                 <!-- Arrow -->
                 <i v-if="index !== title.split(' -- ').length - 1"
