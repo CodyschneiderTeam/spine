@@ -42,7 +42,16 @@
 
     {{-- Body --}}
     <body style="font-family: 'proxima-nova' !important"
-          class="leading-none flex flex-col justify-center items-center min-h-screen">
+          class="leading-none flex flex-col justify-center items-center min-h-screen relative">
+
+        {{-- Banner --}}
+        @if (Config::get('system.error_message'))
+            <div class="bg-red-100 leading-normal absolute left-0 right-0 top-0 p-6">
+                <div class="max-w-[650px] text-center mx-auto">
+                    {{ Config::get('system.error_message') }}
+                </div>
+            </div>
+        @endif
 
         {{-- Graphic --}}
         <svg viewBox="0 0 2745 3192"
