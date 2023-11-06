@@ -3,10 +3,13 @@
 namespace System\Exception;
 
 use Throwable;
+use System\Response\Page;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
+use Inertia\Response as InertiaResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -51,8 +54,21 @@ class Handler extends ExceptionHandler
      */
     protected function showErrorPage(int $code, mixed $response = null) : mixed
     {
-        $view = Response::view('app.error', ['code' => $code], $code);
+        return App::isProduction()
+            ? $this->showErrorPageForProduction($code)
+            : $response ?? Response::view('app.error', ['code' => $code], $code);
+    }
 
-        return App::isProduction() ? $view : ($response ?? $view);
+    /**
+     * Generate an error response page for production.
+     *
+     */
+    protected function showErrorPageForProduction(int $code) : InertiaResponse
+    {
+        return Page::make()
+            ->title('Error')
+            ->view('error.index')
+            ->with('code', $code)
+            ->with('banner', Config::get('system.error_message'));
     }
 }
