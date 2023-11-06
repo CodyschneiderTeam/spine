@@ -7,6 +7,15 @@ use Countable;
 class Number
 {
     /**
+     * Retrieve the absolute value of the given value (converts negatives to positives).
+     *
+     */
+    public static function absolute(mixed $value) : mixed
+    {
+        return abs($value);
+    }
+
+    /**
      * Determine if the given value is between the given minimun and maximum.
      *
      */
