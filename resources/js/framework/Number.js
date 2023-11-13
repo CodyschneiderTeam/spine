@@ -16,7 +16,6 @@ export default class Number
     static format(value, type = 'standard', currency = 'USD', fractions = 2)
     {
         let options = {
-            compact  : { notation : 'compact', compactDisplay : 'short' },
             decimal  : { minimumFractionDigits : fractions, maximumFractionDigits : fractions },
             rounded  : { maximumFractionDigits : 0 },
             standard : { maximumFractionDigits : fractions },
@@ -24,6 +23,8 @@ export default class Number
 
         if (type === 'bytes') {
             return Number.#formatBytes(value);
+        } else if (type === 'compact') {
+            return Number.#formatCompact(value);
         } else if (type === 'financial') {
             return Number.#formatFinancial(value, currency, fractions);
         } else {
@@ -44,6 +45,28 @@ export default class Number
         for (index; value >= 1024; index++) value /= 1024;
 
         return `${Number.format(value)} ${['KB', 'MB', 'GB', 'TB', 'PB'][index]}`;
+    }
+
+    /**
+     * Format the given value into a compact representation.
+     *
+     */
+    static #formatCompact(value)
+    {
+        let magnitude = 0;
+
+        while (value >= 1000) {
+            value /= 1000;
+            magnitude++;
+        }
+
+        if (value % 1 !== 0 && value < 10) {
+            value = `${Math.floor(value)}.${(value % 1).toString().split('.')[1][0]}`;
+        } else {
+            value = Math.floor(value);
+        }
+
+        return value + ['', 'K', 'M', 'B', 'T'][magnitude];
     }
 
     /**
