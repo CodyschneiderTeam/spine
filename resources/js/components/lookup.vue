@@ -286,8 +286,6 @@
 			 */
 			more()
 			{
-                console.log('h');
-
 				if (this.end) return;
 
 				let position = this.$refs.list.scrollTop;
