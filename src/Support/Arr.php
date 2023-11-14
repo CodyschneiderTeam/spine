@@ -93,6 +93,15 @@ class Arr extends Base
     }
 
     /**
+     * Pad the given array to the given length using the given value.
+     *
+     */
+    public static function pad(array $array, int $length, mixed $value = null) : array
+    {
+        return array_pad($array, $length, $value);
+    }
+
+    /**
      * Reverse the content of the given array.
      *
      */
