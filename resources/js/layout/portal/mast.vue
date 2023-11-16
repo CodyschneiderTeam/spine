@@ -6,7 +6,8 @@
             <div class="w-full flex items-center">
 
                 <!-- Logo -->
-                <img class="h-22px"
+                <img class="h-22px cursor-pointer"
+                     @click="Browser.redirect(home)"
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Product -->

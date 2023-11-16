@@ -6,7 +6,8 @@
 
             <!-- Logo -->
             <img title="Logo"
-                 class="w-26px h-26px"
+                 @click="Browser.redirect(home)"
+                 class="w-26px h-26px cursor-pointer"
                  :src="Server.asset('images/logo.png')" />
 
             <!-- Product -->
