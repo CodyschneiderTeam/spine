@@ -76,6 +76,14 @@
             'v-svg' : SvgComponent,
         },
 
+        /**
+         * Define the public properties.
+         *
+         */
+        props : {
+            'home' : { type : String, default : 'dashboard' },
+        },
+
 		/**
 		 * Define the supporting methods.
 		 *

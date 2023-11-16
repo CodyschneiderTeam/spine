@@ -8,6 +8,7 @@
                 <!-- Logo -->
                 <img v-if="logo"
                      class="w-40px mx-auto mb-7"
+                     @click="Browser.redirect(home)"
                      :src="Server.asset('images/logo.png')" />
 
                 <!-- Slot -->
@@ -42,6 +43,7 @@
          *
          */
         props : {
+            'home' : { type : String, default : 'dashboard' },
             'logo' : { type : Boolean, default : true },
         },
     }

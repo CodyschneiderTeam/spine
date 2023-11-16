@@ -2,13 +2,13 @@
     <v-layout class="flex flex-col justify-between min-h-screen">
 
         <!-- Mast -->
-        <v-mast></v-mast>
+        <v-mast :home="home"></v-mast>
 
         <!-- Section -->
         <section class="flex flex-1">
 
             <!-- Sidebar -->
-            <v-sidebar></v-sidebar>
+            <v-sidebar :home="home"></v-sidebar>
 
             <!-- Article -->
             <article class="w-full flex flex-col">
@@ -107,6 +107,7 @@
          */
         props : {
             'actions' : { type : Array,  default : [] },
+            'home'    : { type : String, default : 'dashboard' },
             'tabs'    : { type : Array,  default : [] },
             'title'   : { type : String, default : '' },
         },
