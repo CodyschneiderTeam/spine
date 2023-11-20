@@ -39,11 +39,13 @@ trait Enum
      * Retrieve an item from the array of cases that matches the given key and value.
      *
      */
-    public static function find(mixed $value = null, string $key = 'id') : array | null
+    public static function find(mixed $value = null, string $key = 'id', bool $cast = false) : array | null
     {
         if (Util::blank($value)) {
             return null;
         }
+
+        $value = $cast ? static::from($value) : $value;
 
         $result = Collection::make(static::toArray())
             ->when($value, fn($items) => $items->where($key, $value));
