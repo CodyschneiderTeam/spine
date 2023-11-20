@@ -10,6 +10,25 @@ export default class Text
     }
 
     /**
+     * Replace URL-encoded entities with their rendered equivalent.
+     *
+     */
+    static decode(value)
+    {
+        let entities = {
+            'quot' : '"',
+            'amp'  : '&',
+            'apos' : "'",
+            'lt'   : '<',
+            'gt'   : '>',
+        }
+
+        return value.replace(/&([^;]+);/g, function (match, entity) {
+            return entities[entity] || match;
+        });;
+    }
+
+    /**
      * Generate a formatted string using the given count and noun.
      *
      */
