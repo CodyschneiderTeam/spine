@@ -34,10 +34,10 @@
                 <v-textbox class="mb-10"
                            v-model="form[field.id]"
                            :error="form.errors[field.id]"
-                           :placeholder="`Filter by ${field.label.toLowerCase()}`"
                            :labelTitle="Text.capitalize(field.label.toLowerCase())"
                            v-if="! Is.array(field.control) && field.control === 'TextBox'"
-                           :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`">
+                           :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
+                           :placeholder="field?.placeholder ? field.placeholder : `Filter by ${field.label.toLowerCase()}`">
                 </v-textbox>
 
                 <!-- DropDown -->
@@ -47,10 +47,10 @@
                             v-model="form[field.id]"
                             :error="form.errors[field.id]"
                             :items="Page.property(field.control[1])"
-                            :placeholder="`Filter by ${field.label.toLowerCase()}`"
                             :labelTitle="Text.capitalize(field.label.toLowerCase())"
                             :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
-                            v-if="Is.array(field.control) && field.control[0] === 'DropDown'">
+                            v-if="Is.array(field.control) && field.control[0] === 'DropDown'"
+                            :placeholder="field?.placeholder ? field.placeholder : 'Select...'">
                 </v-dropdown>
 
                 <!-- Calendar -->
@@ -62,6 +62,20 @@
                             :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
                             v-if="! Is.array(field.control) && field.control === 'Calendar'">
                 </v-calendar>
+
+                <!-- Lookup -->
+                <v-lookup class="mb-10"
+                          v-model="form[field.id]"
+                          :error="form.errors[field.id]"
+                          :url="Server.route(field.control[1])"
+                          :itemTextKey="field.control[3] ?? 'name'"
+                          :itemValueKey="field.control[2] ?? 'id'"
+                          :itemSubtextKey="field.control[4] ?? null"
+                          :labelTitle="Text.capitalize(field.label.toLowerCase())"
+                          v-if="Is.array(field.control) && field.control[0] === 'LookUp'"
+                          :id="`search_${field.label.toLowerCase().replaceAll(' ', '_')}`"
+                          :placeholder="field?.placeholder ? field.placeholder : `Filter by ${field.label.toLowerCase()}`">
+                </v-lookup>
 
             </div>
 
@@ -122,6 +136,7 @@
 <script>
     import AsideComponent from './aside.vue';
     import ButtonComponent from './button.vue';
+    import LookUpComponent from './lookup.vue';
     import TextBoxComponent from './textbox.vue';
     import CalendarComponent from './calendar.vue';
     import DropDownComponent from './dropdown.vue';
@@ -137,6 +152,7 @@
             'v-button'   : ButtonComponent,
             'v-calendar' : CalendarComponent,
             'v-dropdown' : DropDownComponent,
+            'v-lookup'   : LookUpComponent,
             'v-textbox'  : TextBoxComponent,
         },
 

@@ -21,11 +21,10 @@ export default class Text
             'apos' : "'",
             'lt'   : '<',
             'gt'   : '>',
+            '#39'  : "'",
         }
 
-        return value.replace(/&([^;]+);/g, function (match, entity) {
-            return entities[entity] || match;
-        });;
+        return value.replace(/&([^;]+);/g, (m, e) => entities[e] || m);
     }
 
     /**

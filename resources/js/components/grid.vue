@@ -46,8 +46,8 @@
         <v-empty class="mb-22px"
                  :message="emptyMessage"
                  :actionLabel="emptyLabel"
-                 :actionCommand="emptyAction"
-                 :visible="! (source.data.rows ?? []).length">
+                 :visible="! (source.data.rows ?? []).length"
+                 :actionCommand="emptyActionIsSearch ? () => this.search = true : emptyAction">
         </v-empty>
 
         <!-- Paginator -->
@@ -93,18 +93,19 @@
          *
          */
         props : {
-            'action'       : { type : Function, default : null },
-            'emptyAction'  : { type : Function, default : null },
-            'emptyLabel'   : { type : String,   default : 'Create one now' },
-            'emptyMessage' : { type : String,   default : '' },
-            'filter'       : { type : Function, default : null },
-            'filterKey'    : { type : String,   default : 'filter' },
-            'filterTitle'  : { type : String,   default : '' },
-            'hideSearch'   : { type : Boolean,  default : false },
-            'layout'       : { type : String,   default : 'md:grid-cols-2' },
-            'rowKey'       : { type : String,   default : 'id' },
-            'source'       : { type : Object,   default : {} },
-            'toolbar'      : { type : Boolean,  default : true },
+            'action'              : { type : Function, default : null },
+            'emptyAction'         : { type : Function, default : null },
+            'emptyActionIsSearch' : { type : Boolean,  default : false },
+            'emptyLabel'          : { type : String,   default : 'Create one now' },
+            'emptyMessage'        : { type : String,   default : '' },
+            'filter'              : { type : Function, default : null },
+            'filterKey'           : { type : String,   default : 'filter' },
+            'filterTitle'         : { type : String,   default : '' },
+            'hideSearch'          : { type : Boolean,  default : false },
+            'layout'              : { type : String,   default : 'md:grid-cols-2' },
+            'rowKey'              : { type : String,   default : 'id' },
+            'source'              : { type : Object,   default : {} },
+            'toolbar'             : { type : Boolean,  default : true },
         },
     }
 </script>
