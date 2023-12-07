@@ -84,16 +84,16 @@
          *
          */
         props : {
-            'id'          : { type : String, default : '' },
-            'currency'    : { type : String, default : 'USD' },
-            'current'     : { type : Number, default : 0 },
-            'hintSummary' : { type : String, default : '' },
-            'hintTitle'   : { type : String, default : '' },
-            'labelTitle'  : { type : String, default : 'Label' },
-            'locale'      : { type : String, default : 'en-US' },
-            'period'      : { type : String, default : '' },
-            'previous'    : { type : Number, default : null },
-            'type'        : { type : String, default : 'integer' },
+            'id'          : { type : String,           default : '' },
+            'currency'    : { type : String,           default : 'USD' },
+            'current'     : { type : [String, Number], default : 0 },
+            'hintSummary' : { type : String,           default : '' },
+            'hintTitle'   : { type : String,           default : '' },
+            'labelTitle'  : { type : String,           default : 'Label' },
+            'locale'      : { type : String,           default : 'en-US' },
+            'period'      : { type : String,           default : '' },
+            'previous'    : { type : Number,           default : null },
+            'type'        : { type : String,           default : 'integer' },
         },
 
         /**
