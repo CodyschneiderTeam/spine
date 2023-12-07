@@ -130,6 +130,10 @@
                     maximumFractionDigits : digits,
                 };
 
+                if (this.type === 'unformatted') {
+                    return this.current;
+                }
+
                 if (this.type === 'financial') {
                     options.currency = this.currency;
                     options.style    = 'currency';
