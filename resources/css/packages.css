@@ -5,6 +5,7 @@
      *
      */
     .fa-fw { @apply w-31px min-w-31px max-w-31px }
+    .far { font-weight: 900 !important }
 
     /**
      * NProgress.

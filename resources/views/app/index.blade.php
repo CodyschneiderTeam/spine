@@ -33,10 +33,11 @@
         <link rel="icon" type="image/png" href="{{ URL::asset('images/logo.png') }}">
 
         {{-- Fonts --}}
-        <link rel="stylesheet" href="{{ Config::get('services.type_kit.url') }}">
+        {{-- <link rel="stylesheet" href="{{ Config::get('services.type_kit.url') }}"> --}}
 
         {{-- Icons --}}
-        <script src="{{ Config::get('services.font_awesome.url') }}" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" />
+        {{-- <script src="{{ Config::get('services.font_awesome.url') }}" crossorigin="anonymous"></script> --}}
 
         {{-- Analytics --}}
         @production
