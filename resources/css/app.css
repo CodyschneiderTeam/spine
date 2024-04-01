@@ -111,6 +111,7 @@
      * Vendor.
      *
      */
+    .far { font-weight: 900 !important } 
     .fa-fw { @apply w-31px min-w-31px max-w-31px }
     #nprogress .bar { height: 3px !important }
     #nprogress .bar .peg { @apply shadow-none }
