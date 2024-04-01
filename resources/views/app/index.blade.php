@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" />
         {{-- <script src="{{ Config::get('services.font_awesome.url') }}" crossorigin="anonymous"></script> --}}
 
+        <style>.far { font-weight: 900 !important }</style>
+        
         {{-- Analytics --}}
         @production
 
